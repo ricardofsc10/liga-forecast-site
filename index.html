@@ -140,7 +140,6 @@ section.block { padding: 44px 0 0; }
 .scores li.first span { color: var(--ink-2); font-weight: 600; }
 .scores li i { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--s3); border-radius: 0 2px 2px 0; }
 .match .foot { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); }
-.others { font-size: 12px; color: var(--muted); }
 
 /* Tables */
 .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -207,7 +206,7 @@ footer p { max-width: none; }
 <body>
 <div class="bar"><div class="wrap">
   <a class="brand" href="#top" aria-label="Primeira Liga forecasts, top of the page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6.2l4.6 3.4-1.8 5.4H9.2L7.4 9.6z" fill="currentColor"/><path d="M12 1.5v4.7M16.6 9.6l4.6-1.6M14.8 15l2.8 4.2M9.2 15l-2.8 4.2M7.4 9.6L2.8 8" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span>Primeira Liga forecasts</span></a>
-  <nav aria-label="Sections"><a href="#open">Next matches</a><a href="#awaiting">Awaiting</a><a href="#played">Results</a><a href="#ledger">Live record</a><a href="#holdout">Holdout</a><a href="#method">Method</a></nav>
+  <nav aria-label="Sections"><a href="#open">Next matches</a><a href="#played">Results</a><a href="#ledger">Live record</a><a href="#holdout">Holdout</a><a href="#method">Method</a></nav>
 </div></div>
 <main id="top" class="wrap">
 <header class="intro">
@@ -231,8 +230,8 @@ footer p { max-width: none; }
 
 <div class="tiles">
   <div class="tile"><div class="value">0</div><div class="label">open matches, frozen and waiting</div></div>
-  <div class="tile"><div class="value">0</div><div class="label">prospective forecasts scored (the evidence)</div></div>
-  <div class="tile"><div class="value">—</div><div class="label">live Δ RPS vs the market, once results arrive</div></div>
+  <div class="tile"><div class="value">4</div><div class="label">prospective forecasts scored (the evidence)</div></div>
+  <div class="tile"><div class="value">+0.0004</div><div class="label">live Δ RPS vs the market</div></div>
   <div class="tile"><div class="value">220</div><div class="label">ledger lines, last 2026-10-26</div></div>
 </div>
 
@@ -240,477 +239,176 @@ footer p { max-width: none; }
 <div class="head">
   <p class="kicker">Next matches</p>
   <h2>Open forecasts</h2>
-  <p class="note">Frozen before kick-off and not played yet, soonest first. Fair odds are 1/p, with no bookmaker margin. Exact scores come from the Dixon-Coles score grid, adjusted so its 1X2, over 2.5 and both-score totals equal the numbers on the card. Kick-off in Lisbon time.</p>
+  <p class="note">Frozen before kick-off and not played yet, soonest first. Fair odds are 1/p, with no bookmaker margin. Exact scores come from the Dixon-Coles score grid, adjusted so its 1X2, over 2.5 and both-score totals equal the numbers on the card. Kick-off in Lisbon time. One forecast per match, from phase4-v2, the current model; the other versions in the ledger are compared in the <a href="#ledger">live record</a>.</p>
 </div>
 <p class="empty">No frozen forecast is waiting for kick-off. The scheduled job freezes each match 20 to 24 h before it starts.</p>
-</section>
-
-<section class="block" id="awaiting">
-<div class="head">
-  <p class="kicker">Kicked off</p>
-  <h2>Waiting for the result</h2>
-  <p class="note">These matches have started or finished, but their result is not in the data yet: results come from football-data.co.uk, which updates its file a few times a week. They are scored as soon as it arrives.</p>
-</div>
-<div class="card scroll"><table>
-  <thead><tr><th>Kick-off</th><th class="text">Match</th><th>Version</th><th>1</th><th>X</th><th>2</th><th class="text">Most likely score</th></tr></thead>
-  <tbody>
-  <tr><td>Mon 2026-10-26 18:45</td><td class="text">Santa Clara – Benfica</td><td>phase4-v2</td><td>10%</td><td>19%</td><td>71%</td><td class="text">0–1 (16%)</td></tr>
-  <tr><td>Mon 2026-10-26 18:45</td><td class="text">Santa Clara – Benfica</td><td>phase4-v1</td><td>7%</td><td>16%</td><td>77%</td><td class="text">0–1 (17%)</td></tr>
-  <tr><td>Mon 2026-10-26 18:45</td><td class="text">Santa Clara – Benfica</td><td>phase2-v1</td><td>7%</td><td>16%</td><td>77%</td><td class="text">0–1 (22%)</td></tr>
-  <tr><td>Sun 2026-10-25 20:30</td><td class="text">Sporting – Académico de Viseu</td><td>phase2-v1</td><td>89%</td><td>8%</td><td>3%</td><td class="text">2–0 (15%)</td></tr>
-  </tbody>
-</table></div>
 </section>
 
 <section class="block" id="played">
 <div class="head">
   <p class="kicker">Results</p>
   <h2>Played matches</h2>
-<p class="note">The shown 1X2 forecast next to the no-vig closing market; the actual outcome is highlighted. RPS per match: lower is better.</p>
+<p class="note">The phase4-v2 1X2 forecast next to the no-vig closing market; the actual outcome is highlighted. RPS per match: lower is better. Status: valid if frozen in time before kick-off, retrospective if frozen after the match (a pipeline check); any other status flags a timing problem.</p>
 </div>
 <div class="card scroll"><table>
-  <thead><tr><th rowspan="2">Kick-off</th><th class="text" rowspan="2">Match</th><th rowspan="2">Score</th><th rowspan="2">Version</th><th colspan="3" class="group">Model</th><th colspan="3" class="group">Closing market</th><th colspan="2" class="group">RPS</th></tr>
+  <thead><tr><th rowspan="2">Kick-off</th><th class="text" rowspan="2">Match</th><th rowspan="2">Score</th><th rowspan="2">Status</th><th colspan="3" class="group">Model</th><th colspan="3" class="group">Closing market</th><th colspan="2" class="group">RPS</th></tr>
   <tr><th>1</th><th>X</th><th>2</th><th>1</th><th>X</th><th>2</th><th>model</th><th>market</th></tr></thead>
   <tbody>
-  <tr><td>Mon 2026-10-19 20:15</td><td class="text">Sporting de Braga – Gil Vicente</td><td class="score">1–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>69%</td><td>20%</td><td class="hit">10%</td><td>55%</td><td>26%</td><td class="hit">19%</td>    <td>0.642</td><td>0.478</td></tr>
-  <tr><td>Mon 2026-10-19 20:15</td><td class="text">Sporting de Braga – Gil Vicente</td><td class="score">1–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>69%</td><td>20%</td><td class="hit">10%</td><td>55%</td><td>26%</td><td class="hit">19%</td>    <td>0.642</td><td>0.478</td></tr>
-  <tr><td>Mon 2026-10-19 20:15</td><td class="text">Sporting de Braga – Gil Vicente</td><td class="score">1–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-10-26 18:45</td><td class="text">Santa Clara – Benfica</td><td class="score">1–2</td><td>valid</td>
+<td>10%</td><td>19%</td><td class="hit">71%</td><td>11%</td><td>18%</td><td class="hit">72%</td>    <td>0.046</td><td>0.046</td></tr>
+  <tr><td>Sun 2026-10-25 20:30</td><td class="text">Sporting – Académico de Viseu <span class="badge" title="frozen before phase4-v2 existed">phase2-v1</span></td><td class="score">1–2</td><td>valid</td>
+<td>89%</td><td>8%</td><td class="hit">3%</td><td>78%</td><td>14%</td><td class="hit">8%</td>    <td>0.867</td><td>0.724</td></tr>
+  <tr><td>Mon 2026-10-19 20:15</td><td class="text">Sporting de Braga – Gil Vicente</td><td class="score">1–2</td><td>retrospective</td>
 <td>61%</td><td>23%</td><td class="hit">15%</td><td>55%</td><td>26%</td><td class="hit">19%</td>    <td>0.546</td><td>0.478</td></tr>
-  <tr><td>Mon 2026-10-12 20:15</td><td class="text">Famalicão – Alverca</td><td class="score">1–4</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>54%</td><td>28%</td><td class="hit">19%</td><td>50%</td><td>28%</td><td class="hit">22%</td>    <td>0.475</td><td>0.431</td></tr>
-  <tr><td>Mon 2026-10-12 20:15</td><td class="text">Famalicão – Alverca</td><td class="score">1–4</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>54%</td><td>28%</td><td class="hit">19%</td><td>50%</td><td>28%</td><td class="hit">22%</td>    <td>0.475</td><td>0.431</td></tr>
-  <tr><td>Mon 2026-10-12 20:15</td><td class="text">Famalicão – Alverca</td><td class="score">1–4</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-10-12 20:15</td><td class="text">Famalicão – Alverca</td><td class="score">1–4</td><td>retrospective</td>
 <td>52%</td><td>27%</td><td class="hit">21%</td><td>50%</td><td>28%</td><td class="hit">22%</td>    <td>0.450</td><td>0.431</td></tr>
-  <tr><td>Sun 2026-10-11 20:30</td><td class="text">Arouca – Estrela da Amadora</td><td class="score">1–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">49%</td><td>29%</td><td>21%</td><td class="hit">45%</td><td>27%</td><td>28%</td>    <td class="better">0.151</td><td>0.191</td></tr>
-  <tr><td>Sun 2026-10-11 20:30</td><td class="text">Arouca – Estrela da Amadora</td><td class="score">1–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">49%</td><td>29%</td><td>21%</td><td class="hit">45%</td><td>27%</td><td>28%</td>    <td class="better">0.151</td><td>0.191</td></tr>
-  <tr><td>Sun 2026-10-11 20:30</td><td class="text">Arouca – Estrela da Amadora</td><td class="score">1–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-10-11 20:30</td><td class="text">Arouca – Estrela da Amadora</td><td class="score">1–0</td><td>retrospective</td>
 <td class="hit">45%</td><td>27%</td><td>28%</td><td class="hit">45%</td><td>27%</td><td>28%</td>    <td class="better">0.189</td><td>0.191</td></tr>
-  <tr><td>Sun 2026-10-11 18:00</td><td class="text">Benfica – Vitória de Guimarães</td><td class="score">2–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">80%</td><td>14%</td><td>6%</td><td class="hit">81%</td><td>12%</td><td>7%</td>    <td>0.022</td><td>0.021</td></tr>
-  <tr><td>Sun 2026-10-11 18:00</td><td class="text">Benfica – Vitória de Guimarães</td><td class="score">2–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">80%</td><td>14%</td><td>6%</td><td class="hit">81%</td><td>12%</td><td>7%</td>    <td>0.022</td><td>0.021</td></tr>
-  <tr><td>Sun 2026-10-11 18:00</td><td class="text">Benfica – Vitória de Guimarães</td><td class="score">2–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-10-11 18:00</td><td class="text">Benfica – Vitória de Guimarães</td><td class="score">2–0</td><td>retrospective</td>
 <td class="hit">81%</td><td>13%</td><td>6%</td><td class="hit">81%</td><td>12%</td><td>7%</td>    <td class="better">0.021</td><td>0.021</td></tr>
-  <tr><td>Sun 2026-10-11 15:30</td><td class="text">Rio Ave – Nacional</td><td class="score">3–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">44%</td><td>31%</td><td>25%</td><td class="hit">45%</td><td>28%</td><td>27%</td>    <td>0.187</td><td>0.185</td></tr>
-  <tr><td>Sun 2026-10-11 15:30</td><td class="text">Rio Ave – Nacional</td><td class="score">3–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">44%</td><td>31%</td><td>25%</td><td class="hit">45%</td><td>28%</td><td>27%</td>    <td>0.187</td><td>0.185</td></tr>
-  <tr><td>Sun 2026-10-11 15:30</td><td class="text">Rio Ave – Nacional</td><td class="score">3–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-10-11 15:30</td><td class="text">Rio Ave – Nacional</td><td class="score">3–2</td><td>retrospective</td>
 <td class="hit">42%</td><td>28%</td><td>30%</td><td class="hit">45%</td><td>28%</td><td>27%</td>    <td>0.213</td><td>0.185</td></tr>
-  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Casa Pia – Santa Clara</td><td class="score">0–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>36%</td><td>32%</td><td class="hit">32%</td><td>25%</td><td>29%</td><td class="hit">46%</td>    <td>0.298</td><td>0.179</td></tr>
-  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Casa Pia – Santa Clara</td><td class="score">0–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>36%</td><td>32%</td><td class="hit">32%</td><td>25%</td><td>29%</td><td class="hit">46%</td>    <td>0.298</td><td>0.179</td></tr>
-  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Casa Pia – Santa Clara</td><td class="score">0–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Casa Pia – Santa Clara</td><td class="score">0–1</td><td>retrospective</td>
 <td>21%</td><td>28%</td><td class="hit">52%</td><td>25%</td><td>29%</td><td class="hit">46%</td>    <td class="better">0.139</td><td>0.179</td></tr>
-  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Académico de Viseu – Estoril Praia</td><td class="score">2–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">36%</td><td>32%</td><td>33%</td><td class="hit">44%</td><td>27%</td><td>28%</td>    <td>0.261</td><td>0.195</td></tr>
-  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Académico de Viseu – Estoril Praia</td><td class="score">2–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">36%</td><td>32%</td><td>33%</td><td class="hit">44%</td><td>27%</td><td>28%</td>    <td>0.261</td><td>0.195</td></tr>
+  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Académico de Viseu – Estoril Praia</td><td class="score">2–1</td><td>retrospective</td>
+<td class="hit">42%</td><td>27%</td><td>31%</td><td class="hit">44%</td><td>27%</td><td>28%</td>    <td>0.215</td><td>0.195</td></tr>
+  <tr><td>Sat 2026-10-10 18:00</td><td class="text">Marítimo – Porto</td><td class="score">1–2</td><td>retrospective</td>
+<td>9%</td><td>16%</td><td class="hit">76%</td><td>8%</td><td>17%</td><td class="hit">75%</td>    <td class="better">0.034</td><td>0.035</td></tr>
+  <tr><td>Fri 2026-10-09 20:15</td><td class="text">Sporting de Braga – Sporting</td><td class="score">1–3</td><td>retrospective</td>
+<td>24%</td><td>28%</td><td class="hit">49%</td><td>32%</td><td>30%</td><td class="hit">39%</td>    <td class="better">0.160</td><td>0.238</td></tr>
+  <tr><td>Fri 2026-10-09 18:45</td><td class="text">Moreirense – Gil Vicente</td><td class="score">0–1</td><td>retrospective</td>
+<td>31%</td><td>30%</td><td class="hit">39%</td><td>28%</td><td>30%</td><td class="hit">42%</td>    <td>0.235</td><td>0.204</td></tr>
+  <tr><td>Sun 2026-09-20 20:30</td><td class="text">Porto – Benfica</td><td class="score">3–1</td><td>retrospective</td>
+<td class="hit">36%</td><td>27%</td><td>37%</td><td class="hit">34%</td><td>28%</td><td>38%</td>    <td class="better">0.276</td><td>0.289</td></tr>
+  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Santa Clara – Sporting de Braga</td><td class="score">0–0</td><td>retrospective</td>
+<td>25%</td><td class="hit">29%</td><td>46%</td><td>27%</td><td class="hit">29%</td><td>44%</td>    <td>0.136</td><td>0.132</td></tr>
+  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Estoril Praia – Casa Pia</td><td class="score">1–2</td><td>retrospective</td>
+<td>55%</td><td>25%</td><td class="hit">20%</td><td>57%</td><td>24%</td><td class="hit">19%</td>    <td class="better">0.466</td><td>0.486</td></tr>
+  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Vitória de Guimarães – Moreirense</td><td class="score">1–1</td><td>retrospective</td>
+<td>64%</td><td class="hit">22%</td><td>14%</td><td>65%</td><td class="hit">21%</td><td>13%</td>    <td class="better">0.214</td><td>0.222</td></tr>
+  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Estrela da Amadora – Académico de Viseu</td><td class="score">0–2</td><td>retrospective</td>
+<td>45%</td><td>28%</td><td class="hit">27%</td><td>44%</td><td>28%</td><td class="hit">28%</td>    <td>0.364</td><td>0.355</td></tr>
+  <tr><td>Sat 2026-09-19 20:30</td><td class="text">Sporting – Arouca</td><td class="score">2–2</td><td>retrospective</td>
+<td>81%</td><td class="hit">12%</td><td>6%</td><td>85%</td><td class="hit">10%</td><td>5%</td>    <td class="better">0.334</td><td>0.364</td></tr>
+  <tr><td>Sat 2026-09-19 18:00</td><td class="text">Alverca – Rio Ave</td><td class="score">1–0</td><td>retrospective</td>
+<td class="hit">49%</td><td>28%</td><td>23%</td><td class="hit">54%</td><td>25%</td><td>20%</td>    <td>0.154</td><td>0.125</td></tr>
+  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Nacional – Famalicão</td><td class="score">0–4</td><td>retrospective</td>
+<td>26%</td><td>29%</td><td class="hit">45%</td><td>23%</td><td>28%</td><td class="hit">50%</td>    <td>0.182</td><td>0.151</td></tr>
   </tbody>
 </table></div>
 
-<details><summary>196 older row(s)</summary>
+<details><summary>54 older row(s)</summary>
 <div class="card scroll"><table>
-  <thead><tr><th rowspan="2">Kick-off</th><th class="text" rowspan="2">Match</th><th rowspan="2">Score</th><th rowspan="2">Version</th><th colspan="3" class="group">Model</th><th colspan="3" class="group">Closing market</th><th colspan="2" class="group">RPS</th></tr>
+  <thead><tr><th rowspan="2">Kick-off</th><th class="text" rowspan="2">Match</th><th rowspan="2">Score</th><th rowspan="2">Status</th><th colspan="3" class="group">Model</th><th colspan="3" class="group">Closing market</th><th colspan="2" class="group">RPS</th></tr>
   <tr><th>1</th><th>X</th><th>2</th><th>1</th><th>X</th><th>2</th><th>model</th><th>market</th></tr></thead>
   <tbody>
-  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Académico de Viseu – Estoril Praia</td><td class="score">2–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td class="hit">42%</td><td>27%</td><td>31%</td><td class="hit">44%</td><td>27%</td><td>28%</td>    <td>0.215</td><td>0.195</td></tr>
-  <tr><td>Sat 2026-10-10 18:00</td><td class="text">Marítimo – Porto</td><td class="score">1–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>5%</td><td>12%</td><td class="hit">83%</td><td>8%</td><td>17%</td><td class="hit">75%</td>    <td class="better">0.016</td><td>0.035</td></tr>
-  <tr><td>Sat 2026-10-10 18:00</td><td class="text">Marítimo – Porto</td><td class="score">1–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>5%</td><td>12%</td><td class="hit">83%</td><td>8%</td><td>17%</td><td class="hit">75%</td>    <td class="better">0.016</td><td>0.035</td></tr>
-  <tr><td>Sat 2026-10-10 18:00</td><td class="text">Marítimo – Porto</td><td class="score">1–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>9%</td><td>16%</td><td class="hit">76%</td><td>8%</td><td>17%</td><td class="hit">75%</td>    <td class="better">0.034</td><td>0.035</td></tr>
-  <tr><td>Fri 2026-10-09 20:15</td><td class="text">Sporting de Braga – Sporting</td><td class="score">1–3</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>24%</td><td>30%</td><td class="hit">46%</td><td>32%</td><td>30%</td><td class="hit">39%</td>    <td class="better">0.173</td><td>0.238</td></tr>
-  <tr><td>Fri 2026-10-09 20:15</td><td class="text">Sporting de Braga – Sporting</td><td class="score">1–3</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>24%</td><td>30%</td><td class="hit">46%</td><td>32%</td><td>30%</td><td class="hit">39%</td>    <td class="better">0.173</td><td>0.238</td></tr>
-  <tr><td>Fri 2026-10-09 20:15</td><td class="text">Sporting de Braga – Sporting</td><td class="score">1–3</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>24%</td><td>28%</td><td class="hit">49%</td><td>32%</td><td>30%</td><td class="hit">39%</td>    <td class="better">0.160</td><td>0.238</td></tr>
-  <tr><td>Fri 2026-10-09 18:45</td><td class="text">Moreirense – Gil Vicente</td><td class="score">0–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>39%</td><td>31%</td><td class="hit">29%</td><td>28%</td><td>30%</td><td class="hit">42%</td>    <td>0.329</td><td>0.204</td></tr>
-  <tr><td>Fri 2026-10-09 18:45</td><td class="text">Moreirense – Gil Vicente</td><td class="score">0–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>39%</td><td>31%</td><td class="hit">29%</td><td>28%</td><td>30%</td><td class="hit">42%</td>    <td>0.329</td><td>0.204</td></tr>
-  <tr><td>Fri 2026-10-09 18:45</td><td class="text">Moreirense – Gil Vicente</td><td class="score">0–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>31%</td><td>30%</td><td class="hit">39%</td><td>28%</td><td>30%</td><td class="hit">42%</td>    <td>0.235</td><td>0.204</td></tr>
-  <tr><td>Sun 2026-09-20 20:30</td><td class="text">Porto – Benfica</td><td class="score">3–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">40%</td><td>31%</td><td>29%</td><td class="hit">34%</td><td>28%</td><td>38%</td>    <td class="better">0.222</td><td>0.289</td></tr>
-  <tr><td>Sun 2026-09-20 20:30</td><td class="text">Porto – Benfica</td><td class="score">3–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">40%</td><td>31%</td><td>29%</td><td class="hit">34%</td><td>28%</td><td>38%</td>    <td class="better">0.222</td><td>0.289</td></tr>
-  <tr><td>Sun 2026-09-20 20:30</td><td class="text">Porto – Benfica</td><td class="score">3–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td class="hit">36%</td><td>27%</td><td>37%</td><td class="hit">34%</td><td>28%</td><td>38%</td>    <td class="better">0.276</td><td>0.289</td></tr>
-  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Santa Clara – Sporting de Braga</td><td class="score">0–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>16%</td><td class="hit">25%</td><td>59%</td><td>27%</td><td class="hit">29%</td><td>44%</td>    <td>0.185</td><td>0.132</td></tr>
-  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Santa Clara – Sporting de Braga</td><td class="score">0–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>16%</td><td class="hit">25%</td><td>59%</td><td>27%</td><td class="hit">29%</td><td>44%</td>    <td>0.185</td><td>0.132</td></tr>
-  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Santa Clara – Sporting de Braga</td><td class="score">0–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>25%</td><td class="hit">29%</td><td>46%</td><td>27%</td><td class="hit">29%</td><td>44%</td>    <td>0.136</td><td>0.132</td></tr>
-  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Estoril Praia – Casa Pia</td><td class="score">1–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>45%</td><td>31%</td><td class="hit">25%</td><td>57%</td><td>24%</td><td class="hit">19%</td>    <td class="better">0.381</td><td>0.486</td></tr>
-  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Estoril Praia – Casa Pia</td><td class="score">1–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>45%</td><td>31%</td><td class="hit">25%</td><td>57%</td><td>24%</td><td class="hit">19%</td>    <td class="better">0.381</td><td>0.486</td></tr>
-  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Estoril Praia – Casa Pia</td><td class="score">1–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>55%</td><td>25%</td><td class="hit">20%</td><td>57%</td><td>24%</td><td class="hit">19%</td>    <td class="better">0.466</td><td>0.486</td></tr>
-  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Vitória de Guimarães – Moreirense</td><td class="score">1–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>52%</td><td class="hit">28%</td><td>20%</td><td>65%</td><td class="hit">21%</td><td>13%</td>    <td class="better">0.153</td><td>0.222</td></tr>
-  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Vitória de Guimarães – Moreirense</td><td class="score">1–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>52%</td><td class="hit">28%</td><td>20%</td><td>65%</td><td class="hit">21%</td><td>13%</td>    <td class="better">0.153</td><td>0.222</td></tr>
-  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Vitória de Guimarães – Moreirense</td><td class="score">1–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>64%</td><td class="hit">22%</td><td>14%</td><td>65%</td><td class="hit">21%</td><td>13%</td>    <td class="better">0.214</td><td>0.222</td></tr>
-  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Estrela da Amadora – Académico de Viseu</td><td class="score">0–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>44%</td><td>31%</td><td class="hit">25%</td><td>44%</td><td>28%</td><td class="hit">28%</td>    <td>0.376</td><td>0.355</td></tr>
-  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Estrela da Amadora – Académico de Viseu</td><td class="score">0–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>44%</td><td>31%</td><td class="hit">25%</td><td>44%</td><td>28%</td><td class="hit">28%</td>    <td>0.376</td><td>0.355</td></tr>
-  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Estrela da Amadora – Académico de Viseu</td><td class="score">0–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>45%</td><td>28%</td><td class="hit">27%</td><td>44%</td><td>28%</td><td class="hit">28%</td>    <td>0.364</td><td>0.355</td></tr>
-  <tr><td>Sat 2026-09-19 20:30</td><td class="text">Sporting – Arouca</td><td class="score">2–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>85%</td><td class="hit">11%</td><td>5%</td><td>85%</td><td class="hit">10%</td><td>5%</td>    <td class="better">0.360</td><td>0.364</td></tr>
-  <tr><td>Sat 2026-09-19 20:30</td><td class="text">Sporting – Arouca</td><td class="score">2–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>85%</td><td class="hit">11%</td><td>5%</td><td>85%</td><td class="hit">10%</td><td>5%</td>    <td class="better">0.360</td><td>0.364</td></tr>
-  <tr><td>Sat 2026-09-19 20:30</td><td class="text">Sporting – Arouca</td><td class="score">2–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>81%</td><td class="hit">12%</td><td>6%</td><td>85%</td><td class="hit">10%</td><td>5%</td>    <td class="better">0.334</td><td>0.364</td></tr>
-  <tr><td>Sat 2026-09-19 18:00</td><td class="text">Alverca – Rio Ave</td><td class="score">1–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">40%</td><td>31%</td><td>29%</td><td class="hit">54%</td><td>25%</td><td>20%</td>    <td>0.221</td><td>0.125</td></tr>
-  <tr><td>Sat 2026-09-19 18:00</td><td class="text">Alverca – Rio Ave</td><td class="score">1–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">40%</td><td>31%</td><td>29%</td><td class="hit">54%</td><td>25%</td><td>20%</td>    <td>0.221</td><td>0.125</td></tr>
-  <tr><td>Sat 2026-09-19 18:00</td><td class="text">Alverca – Rio Ave</td><td class="score">1–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td class="hit">49%</td><td>28%</td><td>23%</td><td class="hit">54%</td><td>25%</td><td>20%</td>    <td>0.154</td><td>0.125</td></tr>
-  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Nacional – Famalicão</td><td class="score">0–4</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>29%</td><td>31%</td><td class="hit">40%</td><td>23%</td><td>28%</td><td class="hit">50%</td>    <td>0.222</td><td>0.151</td></tr>
-  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Nacional – Famalicão</td><td class="score">0–4</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>29%</td><td>31%</td><td class="hit">40%</td><td>23%</td><td>28%</td><td class="hit">50%</td>    <td>0.222</td><td>0.151</td></tr>
-  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Nacional – Famalicão</td><td class="score">0–4</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>26%</td><td>29%</td><td class="hit">45%</td><td>23%</td><td>28%</td><td class="hit">50%</td>    <td>0.182</td><td>0.151</td></tr>
-  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Gil Vicente – Marítimo</td><td class="score">1–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>53%</td><td class="hit">28%</td><td>19%</td><td>48%</td><td class="hit">28%</td><td>23%</td>    <td>0.159</td><td>0.144</td></tr>
-  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Gil Vicente – Marítimo</td><td class="score">1–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>53%</td><td class="hit">28%</td><td>19%</td><td>48%</td><td class="hit">28%</td><td>23%</td>    <td>0.159</td><td>0.144</td></tr>
-  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Gil Vicente – Marítimo</td><td class="score">1–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Gil Vicente – Marítimo</td><td class="score">1–1</td><td>retrospective</td>
 <td>42%</td><td class="hit">29%</td><td>29%</td><td>48%</td><td class="hit">28%</td><td>23%</td>    <td class="better">0.129</td><td>0.144</td></tr>
-  <tr><td>Mon 2026-09-14 20:45</td><td class="text">Sporting de Braga – Estoril Praia</td><td class="score">1–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">74%</td><td>18%</td><td>9%</td><td class="hit">70%</td><td>19%</td><td>11%</td>    <td class="better">0.039</td><td>0.050</td></tr>
-  <tr><td>Mon 2026-09-14 20:45</td><td class="text">Sporting de Braga – Estoril Praia</td><td class="score">1–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">74%</td><td>18%</td><td>9%</td><td class="hit">70%</td><td>19%</td><td>11%</td>    <td class="better">0.039</td><td>0.050</td></tr>
-  <tr><td>Mon 2026-09-14 20:45</td><td class="text">Sporting de Braga – Estoril Praia</td><td class="score">1–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-09-14 20:45</td><td class="text">Sporting de Braga – Estoril Praia</td><td class="score">1–0</td><td>retrospective</td>
 <td class="hit">67%</td><td>20%</td><td>13%</td><td class="hit">70%</td><td>19%</td><td>11%</td>    <td>0.063</td><td>0.050</td></tr>
-  <tr><td>Mon 2026-09-14 20:15</td><td class="text">Moreirense – Marítimo</td><td class="score">3–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">50%</td><td>29%</td><td>21%</td><td class="hit">34%</td><td>30%</td><td>36%</td>    <td class="better">0.144</td><td>0.281</td></tr>
-  <tr><td>Mon 2026-09-14 20:15</td><td class="text">Moreirense – Marítimo</td><td class="score">3–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">50%</td><td>29%</td><td>21%</td><td class="hit">34%</td><td>30%</td><td>36%</td>    <td class="better">0.144</td><td>0.281</td></tr>
-  <tr><td>Mon 2026-09-14 20:15</td><td class="text">Moreirense – Marítimo</td><td class="score">3–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-09-14 20:15</td><td class="text">Moreirense – Marítimo</td><td class="score">3–1</td><td>retrospective</td>
 <td class="hit">39%</td><td>29%</td><td>32%</td><td class="hit">34%</td><td>30%</td><td>36%</td>    <td class="better">0.238</td><td>0.281</td></tr>
-  <tr><td>Mon 2026-09-14 18:45</td><td class="text">Rio Ave – Estrela da Amadora</td><td class="score">3–3</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>44%</td><td class="hit">31%</td><td>26%</td><td>33%</td><td class="hit">29%</td><td>38%</td>    <td class="better">0.128</td><td>0.128</td></tr>
-  <tr><td>Mon 2026-09-14 18:45</td><td class="text">Rio Ave – Estrela da Amadora</td><td class="score">3–3</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>44%</td><td class="hit">31%</td><td>26%</td><td>33%</td><td class="hit">29%</td><td>38%</td>    <td class="better">0.128</td><td>0.128</td></tr>
-  <tr><td>Mon 2026-09-14 18:45</td><td class="text">Rio Ave – Estrela da Amadora</td><td class="score">3–3</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-09-14 18:45</td><td class="text">Rio Ave – Estrela da Amadora</td><td class="score">3–3</td><td>retrospective</td>
 <td>34%</td><td class="hit">28%</td><td>37%</td><td>33%</td><td class="hit">29%</td><td>38%</td>    <td>0.128</td><td>0.128</td></tr>
-  <tr><td>Sun 2026-09-13 20:30</td><td class="text">Famalicão – Sporting</td><td class="score">1–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>10%</td><td class="hit">19%</td><td>71%</td><td>15%</td><td class="hit">22%</td><td>63%</td>    <td>0.255</td><td>0.212</td></tr>
-  <tr><td>Sun 2026-09-13 20:30</td><td class="text">Famalicão – Sporting</td><td class="score">1–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>10%</td><td class="hit">19%</td><td>71%</td><td>15%</td><td class="hit">22%</td><td>63%</td>    <td>0.255</td><td>0.212</td></tr>
-  <tr><td>Sun 2026-09-13 20:30</td><td class="text">Famalicão – Sporting</td><td class="score">1–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-09-13 20:30</td><td class="text">Famalicão – Sporting</td><td class="score">1–1</td><td>retrospective</td>
 <td>16%</td><td class="hit">21%</td><td>63%</td><td>15%</td><td class="hit">22%</td><td>63%</td>    <td class="better">0.212</td><td>0.212</td></tr>
-  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Benfica – Gil Vicente</td><td class="score">3–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">85%</td><td>11%</td><td>5%</td><td class="hit">88%</td><td>9%</td><td>4%</td>    <td>0.013</td><td>0.008</td></tr>
-  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Benfica – Gil Vicente</td><td class="score">3–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">85%</td><td>11%</td><td>5%</td><td class="hit">88%</td><td>9%</td><td>4%</td>    <td>0.013</td><td>0.008</td></tr>
-  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Benfica – Gil Vicente</td><td class="score">3–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Benfica – Gil Vicente</td><td class="score">3–1</td><td>retrospective</td>
 <td class="hit">87%</td><td>10%</td><td>4%</td><td class="hit">88%</td><td>9%</td><td>4%</td>    <td>0.009</td><td>0.008</td></tr>
-  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Arouca – Santa Clara</td><td class="score">1–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>43%</td><td>31%</td><td class="hit">26%</td><td>37%</td><td>30%</td><td class="hit">33%</td>    <td>0.370</td><td>0.296</td></tr>
-  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Arouca – Santa Clara</td><td class="score">1–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>43%</td><td>31%</td><td class="hit">26%</td><td>37%</td><td>30%</td><td class="hit">33%</td>    <td>0.370</td><td>0.296</td></tr>
-  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Arouca – Santa Clara</td><td class="score">1–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Arouca – Santa Clara</td><td class="score">1–2</td><td>retrospective</td>
 <td>36%</td><td>30%</td><td class="hit">34%</td><td>37%</td><td>30%</td><td class="hit">33%</td>    <td class="better">0.284</td><td>0.296</td></tr>
-  <tr><td>Sat 2026-09-12 20:30</td><td class="text">Académico de Viseu – Vitória de Guimarães</td><td class="score">2–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">23%</td><td>30%</td><td>47%</td><td class="hit">25%</td><td>28%</td><td>46%</td>    <td>0.402</td><td>0.387</td></tr>
-  <tr><td>Sat 2026-09-12 20:30</td><td class="text">Académico de Viseu – Vitória de Guimarães</td><td class="score">2–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">23%</td><td>30%</td><td>47%</td><td class="hit">25%</td><td>28%</td><td>46%</td>    <td>0.402</td><td>0.387</td></tr>
-  <tr><td>Sat 2026-09-12 20:30</td><td class="text">Académico de Viseu – Vitória de Guimarães</td><td class="score">2–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-09-12 20:30</td><td class="text">Académico de Viseu – Vitória de Guimarães</td><td class="score">2–1</td><td>retrospective</td>
 <td class="hit">25%</td><td>27%</td><td>47%</td><td class="hit">25%</td><td>28%</td><td>46%</td>    <td>0.389</td><td>0.387</td></tr>
-  <tr><td>Sat 2026-09-12 18:00</td><td class="text">Casa Pia – Porto</td><td class="score">1–4</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>6%</td><td>14%</td><td class="hit">80%</td><td>5%</td><td>12%</td><td class="hit">84%</td>    <td>0.023</td><td>0.015</td></tr>
-  <tr><td>Sat 2026-09-12 18:00</td><td class="text">Casa Pia – Porto</td><td class="score">1–4</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>6%</td><td>14%</td><td class="hit">80%</td><td>5%</td><td>12%</td><td class="hit">84%</td>    <td>0.023</td><td>0.015</td></tr>
-  <tr><td>Sat 2026-09-12 18:00</td><td class="text">Casa Pia – Porto</td><td class="score">1–4</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-09-12 18:00</td><td class="text">Casa Pia – Porto</td><td class="score">1–4</td><td>retrospective</td>
 <td>7%</td><td>13%</td><td class="hit">80%</td><td>5%</td><td>12%</td><td class="hit">84%</td>    <td>0.022</td><td>0.015</td></tr>
-  <tr><td>Sat 2026-09-12 15:30</td><td class="text">Nacional – Alverca</td><td class="score">1–3</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>41%</td><td>31%</td><td class="hit">28%</td><td>34%</td><td>28%</td><td class="hit">38%</td>    <td>0.344</td><td>0.248</td></tr>
-  <tr><td>Sat 2026-09-12 15:30</td><td class="text">Nacional – Alverca</td><td class="score">1–3</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>41%</td><td>31%</td><td class="hit">28%</td><td>34%</td><td>28%</td><td class="hit">38%</td>    <td>0.344</td><td>0.248</td></tr>
-  <tr><td>Sat 2026-09-12 15:30</td><td class="text">Nacional – Alverca</td><td class="score">1–3</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-09-12 15:30</td><td class="text">Nacional – Alverca</td><td class="score">1–3</td><td>retrospective</td>
 <td>34%</td><td>30%</td><td class="hit">36%</td><td>34%</td><td>28%</td><td class="hit">38%</td>    <td>0.264</td><td>0.248</td></tr>
-  <tr><td>Thu 2026-09-10 20:15</td><td class="text">Estrela da Amadora – Sporting de Braga</td><td class="score">2–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">13%</td><td>22%</td><td>65%</td><td class="hit">15%</td><td>23%</td><td>62%</td>    <td>0.594</td><td>0.559</td></tr>
-  <tr><td>Thu 2026-09-10 20:15</td><td class="text">Estrela da Amadora – Sporting de Braga</td><td class="score">2–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">13%</td><td>22%</td><td>65%</td><td class="hit">15%</td><td>23%</td><td>62%</td>    <td>0.594</td><td>0.559</td></tr>
-  <tr><td>Thu 2026-09-10 20:15</td><td class="text">Estrela da Amadora – Sporting de Braga</td><td class="score">2–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Thu 2026-09-10 20:15</td><td class="text">Estrela da Amadora – Sporting de Braga</td><td class="score">2–1</td><td>retrospective</td>
 <td class="hit">19%</td><td>25%</td><td>56%</td><td class="hit">15%</td><td>23%</td><td>62%</td>    <td class="better">0.480</td><td>0.559</td></tr>
-  <tr><td>Wed 2026-09-09 20:45</td><td class="text">Moreirense – Benfica</td><td class="score">0–4</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>8%</td><td>16%</td><td class="hit">76%</td><td>4%</td><td>9%</td><td class="hit">88%</td>    <td>0.031</td><td>0.008</td></tr>
-  <tr><td>Wed 2026-09-09 20:45</td><td class="text">Moreirense – Benfica</td><td class="score">0–4</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>8%</td><td>16%</td><td class="hit">76%</td><td>4%</td><td>9%</td><td class="hit">88%</td>    <td>0.031</td><td>0.008</td></tr>
-  <tr><td>Wed 2026-09-09 20:45</td><td class="text">Moreirense – Benfica</td><td class="score">0–4</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Wed 2026-09-09 20:45</td><td class="text">Moreirense – Benfica</td><td class="score">0–4</td><td>retrospective</td>
 <td>5%</td><td>11%</td><td class="hit">84%</td><td>4%</td><td>9%</td><td class="hit">88%</td>    <td>0.013</td><td>0.008</td></tr>
-  <tr><td>Mon 2026-09-07 20:15</td><td class="text">Estoril Praia – Arouca</td><td class="score">0–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>38%</td><td class="hit">32%</td><td>31%</td><td>39%</td><td class="hit">27%</td><td>34%</td>    <td class="better">0.118</td><td>0.134</td></tr>
-  <tr><td>Mon 2026-09-07 20:15</td><td class="text">Estoril Praia – Arouca</td><td class="score">0–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>38%</td><td class="hit">32%</td><td>31%</td><td>39%</td><td class="hit">27%</td><td>34%</td>    <td class="better">0.118</td><td>0.134</td></tr>
-  <tr><td>Mon 2026-09-07 20:15</td><td class="text">Estoril Praia – Arouca</td><td class="score">0–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-09-07 20:15</td><td class="text">Estoril Praia – Arouca</td><td class="score">0–0</td><td>retrospective</td>
 <td>42%</td><td class="hit">27%</td><td>31%</td><td>39%</td><td class="hit">27%</td><td>34%</td>    <td>0.136</td><td>0.134</td></tr>
-  <tr><td>Sun 2026-09-06 20:30</td><td class="text">Gil Vicente – Académico de Viseu</td><td class="score">0–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>54%</td><td>27%</td><td class="hit">19%</td><td>39%</td><td>31%</td><td class="hit">29%</td>    <td>0.478</td><td>0.328</td></tr>
-  <tr><td>Sun 2026-09-06 20:30</td><td class="text">Gil Vicente – Académico de Viseu</td><td class="score">0–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>54%</td><td>27%</td><td class="hit">19%</td><td>39%</td><td>31%</td><td class="hit">29%</td>    <td>0.478</td><td>0.328</td></tr>
-  <tr><td>Sun 2026-09-06 20:30</td><td class="text">Gil Vicente – Académico de Viseu</td><td class="score">0–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-09-06 20:30</td><td class="text">Gil Vicente – Académico de Viseu</td><td class="score">0–1</td><td>retrospective</td>
 <td>51%</td><td>27%</td><td class="hit">23%</td><td>39%</td><td>31%</td><td class="hit">29%</td>    <td>0.426</td><td>0.328</td></tr>
-  <tr><td>Sun 2026-09-06 18:00</td><td class="text">Vitória de Guimarães – Casa Pia</td><td class="score">0–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>58%</td><td class="hit">26%</td><td>16%</td><td>67%</td><td class="hit">21%</td><td>12%</td>    <td class="better">0.180</td><td>0.229</td></tr>
-  <tr><td>Sun 2026-09-06 18:00</td><td class="text">Vitória de Guimarães – Casa Pia</td><td class="score">0–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>58%</td><td class="hit">26%</td><td>16%</td><td>67%</td><td class="hit">21%</td><td>12%</td>    <td class="better">0.180</td><td>0.229</td></tr>
-  <tr><td>Sun 2026-09-06 18:00</td><td class="text">Vitória de Guimarães – Casa Pia</td><td class="score">0–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-09-06 18:00</td><td class="text">Vitória de Guimarães – Casa Pia</td><td class="score">0–0</td><td>retrospective</td>
 <td>64%</td><td class="hit">22%</td><td>13%</td><td>67%</td><td class="hit">21%</td><td>12%</td>    <td class="better">0.215</td><td>0.229</td></tr>
-  <tr><td>Sun 2026-09-06 15:30</td><td class="text">Santa Clara – Rio Ave</td><td class="score">4–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">43%</td><td>31%</td><td>26%</td><td class="hit">49%</td><td>29%</td><td>22%</td>    <td>0.194</td><td>0.154</td></tr>
-  <tr><td>Sun 2026-09-06 15:30</td><td class="text">Santa Clara – Rio Ave</td><td class="score">4–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">43%</td><td>31%</td><td>26%</td><td class="hit">49%</td><td>29%</td><td>22%</td>    <td>0.194</td><td>0.154</td></tr>
-  <tr><td>Sun 2026-09-06 15:30</td><td class="text">Santa Clara – Rio Ave</td><td class="score">4–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-09-06 15:30</td><td class="text">Santa Clara – Rio Ave</td><td class="score">4–0</td><td>retrospective</td>
 <td class="hit">55%</td><td>26%</td><td>19%</td><td class="hit">49%</td><td>29%</td><td>22%</td>    <td class="better">0.122</td><td>0.154</td></tr>
-  <tr><td>Sat 2026-09-05 20:30</td><td class="text">Sporting – Nacional</td><td class="score">2–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">88%</td><td>8%</td><td>4%</td><td class="hit">89%</td><td>8%</td><td>3%</td>    <td>0.008</td><td>0.007</td></tr>
-  <tr><td>Sat 2026-09-05 20:30</td><td class="text">Sporting – Nacional</td><td class="score">2–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">88%</td><td>8%</td><td>4%</td><td class="hit">89%</td><td>8%</td><td>3%</td>    <td>0.008</td><td>0.007</td></tr>
-  <tr><td>Sat 2026-09-05 20:30</td><td class="text">Sporting – Nacional</td><td class="score">2–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-09-05 20:30</td><td class="text">Sporting – Nacional</td><td class="score">2–0</td><td>retrospective</td>
 <td class="hit">81%</td><td>12%</td><td>6%</td><td class="hit">89%</td><td>8%</td><td>3%</td>    <td>0.019</td><td>0.007</td></tr>
-  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Marítimo – Benfica</td><td class="score">0–3</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>5%</td><td>12%</td><td class="hit">82%</td><td>5%</td><td>11%</td><td class="hit">84%</td>    <td>0.017</td><td>0.015</td></tr>
-  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Marítimo – Benfica</td><td class="score">0–3</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>5%</td><td>12%</td><td class="hit">82%</td><td>5%</td><td>11%</td><td class="hit">84%</td>    <td>0.017</td><td>0.015</td></tr>
-  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Marítimo – Benfica</td><td class="score">0–3</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Marítimo – Benfica</td><td class="score">0–3</td><td>retrospective</td>
 <td>6%</td><td>13%</td><td class="hit">81%</td><td>5%</td><td>11%</td><td class="hit">84%</td>    <td>0.020</td><td>0.015</td></tr>
-  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Alverca – Sporting de Braga</td><td class="score">1–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>13%</td><td>23%</td><td class="hit">64%</td><td>19%</td><td>26%</td><td class="hit">55%</td>    <td class="better">0.075</td><td>0.117</td></tr>
-  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Alverca – Sporting de Braga</td><td class="score">1–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>13%</td><td>23%</td><td class="hit">64%</td><td>19%</td><td>26%</td><td class="hit">55%</td>    <td class="better">0.075</td><td>0.117</td></tr>
-  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Alverca – Sporting de Braga</td><td class="score">1–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Alverca – Sporting de Braga</td><td class="score">1–2</td><td>retrospective</td>
 <td>21%</td><td>27%</td><td class="hit">53%</td><td>19%</td><td>26%</td><td class="hit">55%</td>    <td>0.134</td><td>0.117</td></tr>
-  <tr><td>Sat 2026-09-05 15:30</td><td class="text">Estrela da Amadora – Famalicão</td><td class="score">2–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>29%</td><td class="hit">31%</td><td>40%</td><td>32%</td><td class="hit">29%</td><td>39%</td>    <td class="better">0.121</td><td>0.126</td></tr>
-  <tr><td>Sat 2026-09-05 15:30</td><td class="text">Estrela da Amadora – Famalicão</td><td class="score">2–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>29%</td><td class="hit">31%</td><td>40%</td><td>32%</td><td class="hit">29%</td><td>39%</td>    <td class="better">0.121</td><td>0.126</td></tr>
-  <tr><td>Sat 2026-09-05 15:30</td><td class="text">Estrela da Amadora – Famalicão</td><td class="score">2–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-09-05 15:30</td><td class="text">Estrela da Amadora – Famalicão</td><td class="score">2–2</td><td>retrospective</td>
 <td>27%</td><td class="hit">29%</td><td>44%</td><td>32%</td><td class="hit">29%</td><td>39%</td>    <td>0.134</td><td>0.126</td></tr>
-  <tr><td>Fri 2026-09-04 20:15</td><td class="text">Porto – Moreirense</td><td class="score">2–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">85%</td><td>11%</td><td>5%</td><td class="hit">88%</td><td>9%</td><td>3%</td>    <td>0.012</td><td>0.007</td></tr>
-  <tr><td>Fri 2026-09-04 20:15</td><td class="text">Porto – Moreirense</td><td class="score">2–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">85%</td><td>11%</td><td>5%</td><td class="hit">88%</td><td>9%</td><td>3%</td>    <td>0.012</td><td>0.007</td></tr>
-  <tr><td>Fri 2026-09-04 20:15</td><td class="text">Porto – Moreirense</td><td class="score">2–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Fri 2026-09-04 20:15</td><td class="text">Porto – Moreirense</td><td class="score">2–1</td><td>retrospective</td>
 <td class="hit">84%</td><td>11%</td><td>5%</td><td class="hit">88%</td><td>9%</td><td>3%</td>    <td>0.014</td><td>0.007</td></tr>
-  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Sporting de Braga – Vitória de Guimarães</td><td class="score">1–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">62%</td><td>24%</td><td>14%</td><td class="hit">53%</td><td>27%</td><td>20%</td>    <td class="better">0.084</td><td>0.130</td></tr>
-  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Sporting de Braga – Vitória de Guimarães</td><td class="score">1–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">62%</td><td>24%</td><td>14%</td><td class="hit">53%</td><td>27%</td><td>20%</td>    <td class="better">0.084</td><td>0.130</td></tr>
-  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Sporting de Braga – Vitória de Guimarães</td><td class="score">1–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Sporting de Braga – Vitória de Guimarães</td><td class="score">1–0</td><td>retrospective</td>
 <td class="hit">56%</td><td>25%</td><td>19%</td><td class="hit">53%</td><td>27%</td><td>20%</td>    <td class="better">0.117</td><td>0.130</td></tr>
-  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Benfica – Estoril Praia</td><td class="score">2–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">86%</td><td>10%</td><td>4%</td><td class="hit">90%</td><td>7%</td><td>3%</td>    <td>0.010</td><td>0.005</td></tr>
-  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Benfica – Estoril Praia</td><td class="score">2–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">86%</td><td>10%</td><td>4%</td><td class="hit">90%</td><td>7%</td><td>3%</td>    <td>0.010</td><td>0.005</td></tr>
-  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Benfica – Estoril Praia</td><td class="score">2–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Benfica – Estoril Praia</td><td class="score">2–1</td><td>retrospective</td>
 <td class="hit">84%</td><td>11%</td><td>5%</td><td class="hit">90%</td><td>7%</td><td>3%</td>    <td>0.014</td><td>0.005</td></tr>
-  <tr><td>Sun 2026-08-30 20:30</td><td class="text">Famalicão – Gil Vicente</td><td class="score">0–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>45%</td><td class="hit">30%</td><td>24%</td><td>52%</td><td class="hit">28%</td><td>20%</td>    <td class="better">0.132</td><td>0.155</td></tr>
-  <tr><td>Sun 2026-08-30 20:30</td><td class="text">Famalicão – Gil Vicente</td><td class="score">0–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>45%</td><td class="hit">30%</td><td>24%</td><td>52%</td><td class="hit">28%</td><td>20%</td>    <td class="better">0.132</td><td>0.155</td></tr>
-  <tr><td>Sun 2026-08-30 20:30</td><td class="text">Famalicão – Gil Vicente</td><td class="score">0–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-30 20:30</td><td class="text">Famalicão – Gil Vicente</td><td class="score">0–0</td><td>retrospective</td>
 <td>44%</td><td class="hit">29%</td><td>27%</td><td>52%</td><td class="hit">28%</td><td>20%</td>    <td class="better">0.134</td><td>0.155</td></tr>
-  <tr><td>Sun 2026-08-30 18:00</td><td class="text">Casa Pia – Moreirense</td><td class="score">0–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>36%</td><td>32%</td><td class="hit">32%</td><td>36%</td><td>30%</td><td class="hit">33%</td>    <td>0.297</td><td>0.289</td></tr>
-  <tr><td>Sun 2026-08-30 18:00</td><td class="text">Casa Pia – Moreirense</td><td class="score">0–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>36%</td><td>32%</td><td class="hit">32%</td><td>36%</td><td>30%</td><td class="hit">33%</td>    <td>0.297</td><td>0.289</td></tr>
-  <tr><td>Sun 2026-08-30 18:00</td><td class="text">Casa Pia – Moreirense</td><td class="score">0–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-30 18:00</td><td class="text">Casa Pia – Moreirense</td><td class="score">0–1</td><td>retrospective</td>
 <td>40%</td><td>30%</td><td class="hit">30%</td><td>36%</td><td>30%</td><td class="hit">33%</td>    <td>0.324</td><td>0.289</td></tr>
-  <tr><td>Sun 2026-08-30 15:30</td><td class="text">Nacional – Estrela da Amadora</td><td class="score">2–3</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>43%</td><td>31%</td><td class="hit">26%</td><td>40%</td><td>29%</td><td class="hit">31%</td>    <td>0.362</td><td>0.320</td></tr>
-  <tr><td>Sun 2026-08-30 15:30</td><td class="text">Nacional – Estrela da Amadora</td><td class="score">2–3</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>43%</td><td>31%</td><td class="hit">26%</td><td>40%</td><td>29%</td><td class="hit">31%</td>    <td>0.362</td><td>0.320</td></tr>
-  <tr><td>Sun 2026-08-30 15:30</td><td class="text">Nacional – Estrela da Amadora</td><td class="score">2–3</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-30 15:30</td><td class="text">Nacional – Estrela da Amadora</td><td class="score">2–3</td><td>retrospective</td>
 <td>41%</td><td>28%</td><td class="hit">31%</td><td>40%</td><td>29%</td><td class="hit">31%</td>    <td>0.324</td><td>0.320</td></tr>
-  <tr><td>Sat 2026-08-29 18:00</td><td class="text">Académico de Viseu – Porto</td><td class="score">0–3</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>6%</td><td>12%</td><td class="hit">82%</td><td>8%</td><td>17%</td><td class="hit">74%</td>    <td class="better">0.018</td><td>0.037</td></tr>
-  <tr><td>Sat 2026-08-29 18:00</td><td class="text">Académico de Viseu – Porto</td><td class="score">0–3</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>6%</td><td>12%</td><td class="hit">82%</td><td>8%</td><td>17%</td><td class="hit">74%</td>    <td class="better">0.018</td><td>0.037</td></tr>
-  <tr><td>Sat 2026-08-29 18:00</td><td class="text">Académico de Viseu – Porto</td><td class="score">0–3</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-29 18:00</td><td class="text">Académico de Viseu – Porto</td><td class="score">0–3</td><td>retrospective</td>
 <td>10%</td><td>17%</td><td class="hit">73%</td><td>8%</td><td>17%</td><td class="hit">74%</td>    <td>0.041</td><td>0.037</td></tr>
-  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Arouca – Marítimo</td><td class="score">2–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">51%</td><td>28%</td><td>20%</td><td class="hit">46%</td><td>28%</td><td>26%</td>    <td class="better">0.139</td><td>0.179</td></tr>
-  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Arouca – Marítimo</td><td class="score">2–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">51%</td><td>28%</td><td>20%</td><td class="hit">46%</td><td>28%</td><td>26%</td>    <td class="better">0.139</td><td>0.179</td></tr>
-  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Arouca – Marítimo</td><td class="score">2–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Arouca – Marítimo</td><td class="score">2–1</td><td>retrospective</td>
 <td class="hit">44%</td><td>29%</td><td>27%</td><td class="hit">46%</td><td>28%</td><td>26%</td>    <td>0.196</td><td>0.179</td></tr>
-  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Alverca – Santa Clara</td><td class="score">1–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>37%</td><td class="hit">32%</td><td>31%</td><td>40%</td><td class="hit">30%</td><td>30%</td>    <td class="better">0.117</td><td>0.126</td></tr>
-  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Alverca – Santa Clara</td><td class="score">1–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>37%</td><td class="hit">32%</td><td>31%</td><td>40%</td><td class="hit">30%</td><td>30%</td>    <td class="better">0.117</td><td>0.126</td></tr>
-  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Alverca – Santa Clara</td><td class="score">1–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Alverca – Santa Clara</td><td class="score">1–1</td><td>retrospective</td>
 <td>35%</td><td class="hit">30%</td><td>35%</td><td>40%</td><td class="hit">30%</td><td>30%</td>    <td class="better">0.123</td><td>0.126</td></tr>
-  <tr><td>Fri 2026-08-28 20:15</td><td class="text">Rio Ave – Sporting</td><td class="score">0–4</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>7%</td><td>15%</td><td class="hit">78%</td><td>10%</td><td>16%</td><td class="hit">74%</td>    <td class="better">0.027</td><td>0.039</td></tr>
-  <tr><td>Fri 2026-08-28 20:15</td><td class="text">Rio Ave – Sporting</td><td class="score">0–4</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>7%</td><td>15%</td><td class="hit">78%</td><td>10%</td><td>16%</td><td class="hit">74%</td>    <td class="better">0.027</td><td>0.039</td></tr>
-  <tr><td>Fri 2026-08-28 20:15</td><td class="text">Rio Ave – Sporting</td><td class="score">0–4</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Fri 2026-08-28 20:15</td><td class="text">Rio Ave – Sporting</td><td class="score">0–4</td><td>retrospective</td>
 <td>11%</td><td>18%</td><td class="hit">71%</td><td>10%</td><td>16%</td><td class="hit">74%</td>    <td>0.047</td><td>0.039</td></tr>
-  <tr><td>Mon 2026-08-24 20:15</td><td class="text">Gil Vicente – Casa Pia</td><td class="score">2–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">48%</td><td>30%</td><td>22%</td><td class="hit">55%</td><td>27%</td><td>18%</td>    <td>0.159</td><td>0.119</td></tr>
-  <tr><td>Mon 2026-08-24 20:15</td><td class="text">Gil Vicente – Casa Pia</td><td class="score">2–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">48%</td><td>30%</td><td>22%</td><td class="hit">55%</td><td>27%</td><td>18%</td>    <td>0.159</td><td>0.119</td></tr>
-  <tr><td>Mon 2026-08-24 20:15</td><td class="text">Gil Vicente – Casa Pia</td><td class="score">2–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-08-24 20:15</td><td class="text">Gil Vicente – Casa Pia</td><td class="score">2–0</td><td>retrospective</td>
 <td class="hit">57%</td><td>26%</td><td>17%</td><td class="hit">55%</td><td>27%</td><td>18%</td>    <td class="better">0.108</td><td>0.119</td></tr>
-  <tr><td>Sun 2026-08-23 20:30</td><td class="text">Porto – Arouca</td><td class="score">2–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">84%</td><td>11%</td><td>5%</td><td class="hit">77%</td><td>16%</td><td>8%</td>    <td class="better">0.014</td><td>0.031</td></tr>
-  <tr><td>Sun 2026-08-23 20:30</td><td class="text">Porto – Arouca</td><td class="score">2–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">84%</td><td>11%</td><td>5%</td><td class="hit">77%</td><td>16%</td><td>8%</td>    <td class="better">0.014</td><td>0.031</td></tr>
-  <tr><td>Sun 2026-08-23 20:30</td><td class="text">Porto – Arouca</td><td class="score">2–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-23 20:30</td><td class="text">Porto – Arouca</td><td class="score">2–0</td><td>retrospective</td>
 <td class="hit">81%</td><td>14%</td><td>6%</td><td class="hit">77%</td><td>16%</td><td>8%</td>    <td class="better">0.021</td><td>0.031</td></tr>
-  <tr><td>Sun 2026-08-23 18:00</td><td class="text">Santa Clara – Famalicão</td><td class="score">1–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">33%</td><td>32%</td><td>35%</td><td class="hit">33%</td><td>31%</td><td>35%</td>    <td>0.288</td><td>0.285</td></tr>
-  <tr><td>Sun 2026-08-23 18:00</td><td class="text">Santa Clara – Famalicão</td><td class="score">1–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">33%</td><td>32%</td><td>35%</td><td class="hit">33%</td><td>31%</td><td>35%</td>    <td>0.288</td><td>0.285</td></tr>
-  <tr><td>Sun 2026-08-23 18:00</td><td class="text">Santa Clara – Famalicão</td><td class="score">1–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-23 18:00</td><td class="text">Santa Clara – Famalicão</td><td class="score">1–0</td><td>retrospective</td>
 <td class="hit">36%</td><td>31%</td><td>33%</td><td class="hit">33%</td><td>31%</td><td>35%</td>    <td class="better">0.263</td><td>0.285</td></tr>
-  <tr><td>Sun 2026-08-23 15:30</td><td class="text">Vitória de Guimarães – Nacional</td><td class="score">1–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">58%</td><td>26%</td><td>16%</td><td class="hit">61%</td><td>23%</td><td>16%</td>    <td>0.104</td><td>0.091</td></tr>
-  <tr><td>Sun 2026-08-23 15:30</td><td class="text">Vitória de Guimarães – Nacional</td><td class="score">1–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">58%</td><td>26%</td><td>16%</td><td class="hit">61%</td><td>23%</td><td>16%</td>    <td>0.104</td><td>0.091</td></tr>
-  <tr><td>Sun 2026-08-23 15:30</td><td class="text">Vitória de Guimarães – Nacional</td><td class="score">1–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-23 15:30</td><td class="text">Vitória de Guimarães – Nacional</td><td class="score">1–0</td><td>retrospective</td>
 <td class="hit">57%</td><td>24%</td><td>19%</td><td class="hit">61%</td><td>23%</td><td>16%</td>    <td>0.110</td><td>0.091</td></tr>
-  <tr><td>Sat 2026-08-22 20:30</td><td class="text">Sporting – Alverca</td><td class="score">3–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">87%</td><td>9%</td><td>4%</td><td class="hit">80%</td><td>13%</td><td>7%</td>    <td class="better">0.009</td><td>0.022</td></tr>
-  <tr><td>Sat 2026-08-22 20:30</td><td class="text">Sporting – Alverca</td><td class="score">3–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">87%</td><td>9%</td><td>4%</td><td class="hit">80%</td><td>13%</td><td>7%</td>    <td class="better">0.009</td><td>0.022</td></tr>
-  <tr><td>Sat 2026-08-22 20:30</td><td class="text">Sporting – Alverca</td><td class="score">3–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-22 20:30</td><td class="text">Sporting – Alverca</td><td class="score">3–1</td><td>retrospective</td>
 <td class="hit">81%</td><td>12%</td><td>6%</td><td class="hit">80%</td><td>13%</td><td>7%</td>    <td class="better">0.020</td><td>0.022</td></tr>
-  <tr><td>Sat 2026-08-22 18:00</td><td class="text">Estoril Praia – Rio Ave</td><td class="score">0–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>43%</td><td>31%</td><td class="hit">26%</td><td>49%</td><td>26%</td><td class="hit">25%</td>    <td class="better">0.369</td><td>0.400</td></tr>
-  <tr><td>Sat 2026-08-22 18:00</td><td class="text">Estoril Praia – Rio Ave</td><td class="score">0–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>43%</td><td>31%</td><td class="hit">26%</td><td>49%</td><td>26%</td><td class="hit">25%</td>    <td class="better">0.369</td><td>0.400</td></tr>
-  <tr><td>Sat 2026-08-22 18:00</td><td class="text">Estoril Praia – Rio Ave</td><td class="score">0–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-22 18:00</td><td class="text">Estoril Praia – Rio Ave</td><td class="score">0–2</td><td>retrospective</td>
 <td>51%</td><td>27%</td><td class="hit">22%</td><td>49%</td><td>26%</td><td class="hit">25%</td>    <td>0.430</td><td>0.400</td></tr>
-  <tr><td>Sat 2026-08-22 15:30</td><td class="text">Marítimo – Académico de Viseu</td><td class="score">2–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-22 15:30</td><td class="text">Marítimo – Académico de Viseu</td><td class="score">2–2</td><td>retrospective</td>
 <td>42%</td><td class="hit">31%</td><td>27%</td><td>47%</td><td class="hit">29%</td><td>24%</td>    <td class="better">0.125</td><td>0.141</td></tr>
-  <tr><td>Sat 2026-08-22 15:30</td><td class="text">Marítimo – Académico de Viseu</td><td class="score">2–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>42%</td><td class="hit">31%</td><td>27%</td><td>47%</td><td class="hit">29%</td><td>24%</td>    <td class="better">0.125</td><td>0.141</td></tr>
-  <tr><td>Sat 2026-08-22 15:30</td><td class="text">Marítimo – Académico de Viseu</td><td class="score">2–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>42%</td><td class="hit">31%</td><td>27%</td><td>47%</td><td class="hit">29%</td><td>24%</td>    <td class="better">0.125</td><td>0.141</td></tr>
-  <tr><td>Mon 2026-08-17 20:15</td><td class="text">Casa Pia – Benfica</td><td class="score">0–7</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>7%</td><td>14%</td><td class="hit">79%</td><td>5%</td><td>11%</td><td class="hit">84%</td>    <td>0.025</td><td>0.015</td></tr>
-  <tr><td>Mon 2026-08-17 20:15</td><td class="text">Casa Pia – Benfica</td><td class="score">0–7</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>7%</td><td>14%</td><td class="hit">79%</td><td>5%</td><td>11%</td><td class="hit">84%</td>    <td>0.025</td><td>0.015</td></tr>
-  <tr><td>Mon 2026-08-17 20:15</td><td class="text">Casa Pia – Benfica</td><td class="score">0–7</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-08-17 20:15</td><td class="text">Casa Pia – Benfica</td><td class="score">0–7</td><td>retrospective</td>
 <td>6%</td><td>13%</td><td class="hit">81%</td><td>5%</td><td>11%</td><td class="hit">84%</td>    <td>0.021</td><td>0.015</td></tr>
-  <tr><td>Sun 2026-08-16 20:30</td><td class="text">Famalicão – Marítimo</td><td class="score">1–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>58%</td><td>26%</td><td class="hit">16%</td><td>56%</td><td>26%</td><td class="hit">18%</td>    <td>0.519</td><td>0.490</td></tr>
-  <tr><td>Sun 2026-08-16 20:30</td><td class="text">Famalicão – Marítimo</td><td class="score">1–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>58%</td><td>26%</td><td class="hit">16%</td><td>56%</td><td>26%</td><td class="hit">18%</td>    <td>0.519</td><td>0.490</td></tr>
-  <tr><td>Sun 2026-08-16 20:30</td><td class="text">Famalicão – Marítimo</td><td class="score">1–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-16 20:30</td><td class="text">Famalicão – Marítimo</td><td class="score">1–2</td><td>retrospective</td>
 <td>54%</td><td>26%</td><td class="hit">20%</td><td>56%</td><td>26%</td><td class="hit">18%</td>    <td class="better">0.460</td><td>0.490</td></tr>
-  <tr><td>Sun 2026-08-16 18:00</td><td class="text">Arouca – Moreirense</td><td class="score">4–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">42%</td><td>31%</td><td>27%</td><td class="hit">54%</td><td>26%</td><td>20%</td>    <td>0.208</td><td>0.128</td></tr>
-  <tr><td>Sun 2026-08-16 18:00</td><td class="text">Arouca – Moreirense</td><td class="score">4–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">42%</td><td>31%</td><td>27%</td><td class="hit">54%</td><td>26%</td><td>20%</td>    <td>0.208</td><td>0.128</td></tr>
-  <tr><td>Sun 2026-08-16 18:00</td><td class="text">Arouca – Moreirense</td><td class="score">4–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-16 18:00</td><td class="text">Arouca – Moreirense</td><td class="score">4–0</td><td>retrospective</td>
 <td class="hit">46%</td><td>28%</td><td>26%</td><td class="hit">54%</td><td>26%</td><td>20%</td>    <td>0.182</td><td>0.128</td></tr>
-  <tr><td>Sun 2026-08-16 15:30</td><td class="text">Nacional – Estoril Praia</td><td class="score">2–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">37%</td><td>32%</td><td>32%</td><td class="hit">32%</td><td>28%</td><td>40%</td>    <td class="better">0.252</td><td>0.307</td></tr>
-  <tr><td>Sun 2026-08-16 15:30</td><td class="text">Nacional – Estoril Praia</td><td class="score">2–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">37%</td><td>32%</td><td>32%</td><td class="hit">32%</td><td>28%</td><td>40%</td>    <td class="better">0.252</td><td>0.307</td></tr>
-  <tr><td>Sun 2026-08-16 15:30</td><td class="text">Nacional – Estoril Praia</td><td class="score">2–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-16 15:30</td><td class="text">Nacional – Estoril Praia</td><td class="score">2–0</td><td>retrospective</td>
 <td class="hit">36%</td><td>28%</td><td>37%</td><td class="hit">32%</td><td>28%</td><td>40%</td>    <td class="better">0.274</td><td>0.307</td></tr>
-  <tr><td>Sat 2026-08-15 20:30</td><td class="text">Rio Ave – Porto</td><td class="score">0–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>7%</td><td>15%</td><td class="hit">77%</td><td>10%</td><td>18%</td><td class="hit">72%</td>    <td class="better">0.028</td><td>0.043</td></tr>
-  <tr><td>Sat 2026-08-15 20:30</td><td class="text">Rio Ave – Porto</td><td class="score">0–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>7%</td><td>15%</td><td class="hit">77%</td><td>10%</td><td>18%</td><td class="hit">72%</td>    <td class="better">0.028</td><td>0.043</td></tr>
-  <tr><td>Sat 2026-08-15 20:30</td><td class="text">Rio Ave – Porto</td><td class="score">0–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-15 20:30</td><td class="text">Rio Ave – Porto</td><td class="score">0–2</td><td>retrospective</td>
 <td>11%</td><td>19%</td><td class="hit">69%</td><td>10%</td><td>18%</td><td class="hit">72%</td>    <td>0.054</td><td>0.043</td></tr>
-  <tr><td>Sat 2026-08-15 18:00</td><td class="text">Académico de Viseu – Santa Clara</td><td class="score">0–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-15 18:00</td><td class="text">Académico de Viseu – Santa Clara</td><td class="score">0–1</td><td>retrospective</td>
 <td>34%</td><td>32%</td><td class="hit">34%</td><td>35%</td><td>31%</td><td class="hit">35%</td>    <td>0.277</td><td>0.273</td></tr>
-  <tr><td>Sat 2026-08-15 18:00</td><td class="text">Académico de Viseu – Santa Clara</td><td class="score">0–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>34%</td><td>32%</td><td class="hit">34%</td><td>35%</td><td>31%</td><td class="hit">35%</td>    <td>0.277</td><td>0.273</td></tr>
-  <tr><td>Sat 2026-08-15 18:00</td><td class="text">Académico de Viseu – Santa Clara</td><td class="score">0–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td>34%</td><td>32%</td><td class="hit">34%</td><td>35%</td><td>31%</td><td class="hit">35%</td>    <td>0.277</td><td>0.273</td></tr>
-  <tr><td>Sat 2026-08-15 15:30</td><td class="text">Alverca – Estrela da Amadora</td><td class="score">2–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>43%</td><td class="hit">31%</td><td>26%</td><td>45%</td><td class="hit">28%</td><td>26%</td>    <td class="better">0.127</td><td>0.137</td></tr>
-  <tr><td>Sat 2026-08-15 15:30</td><td class="text">Alverca – Estrela da Amadora</td><td class="score">2–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>43%</td><td class="hit">31%</td><td>26%</td><td>45%</td><td class="hit">28%</td><td>26%</td>    <td class="better">0.127</td><td>0.137</td></tr>
-  <tr><td>Sat 2026-08-15 15:30</td><td class="text">Alverca – Estrela da Amadora</td><td class="score">2–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-15 15:30</td><td class="text">Alverca – Estrela da Amadora</td><td class="score">2–2</td><td>retrospective</td>
 <td>39%</td><td class="hit">30%</td><td>31%</td><td>45%</td><td class="hit">28%</td><td>26%</td>    <td class="better">0.125</td><td>0.137</td></tr>
-  <tr><td>Fri 2026-08-14 20:15</td><td class="text">Sporting – Vitória de Guimarães</td><td class="score">3–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">78%</td><td>15%</td><td>7%</td><td class="hit">70%</td><td>18%</td><td>12%</td>    <td class="better">0.027</td><td>0.051</td></tr>
-  <tr><td>Fri 2026-08-14 20:15</td><td class="text">Sporting – Vitória de Guimarães</td><td class="score">3–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">78%</td><td>15%</td><td>7%</td><td class="hit">70%</td><td>18%</td><td>12%</td>    <td class="better">0.027</td><td>0.051</td></tr>
-  <tr><td>Fri 2026-08-14 20:15</td><td class="text">Sporting – Vitória de Guimarães</td><td class="score">3–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Fri 2026-08-14 20:15</td><td class="text">Sporting – Vitória de Guimarães</td><td class="score">3–2</td><td>retrospective</td>
 <td class="hit">80%</td><td>13%</td><td>7%</td><td class="hit">70%</td><td>18%</td><td>12%</td>    <td class="better">0.022</td><td>0.051</td></tr>
-  <tr><td>Mon 2026-08-10 20:15</td><td class="text">Santa Clara – Nacional</td><td class="score">2–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>45%</td><td class="hit">30%</td><td>25%</td><td>51%</td><td class="hit">29%</td><td>20%</td>    <td class="better">0.132</td><td>0.149</td></tr>
-  <tr><td>Mon 2026-08-10 20:15</td><td class="text">Santa Clara – Nacional</td><td class="score">2–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>45%</td><td class="hit">30%</td><td>25%</td><td>51%</td><td class="hit">29%</td><td>20%</td>    <td class="better">0.132</td><td>0.149</td></tr>
-  <tr><td>Mon 2026-08-10 20:15</td><td class="text">Santa Clara – Nacional</td><td class="score">2–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Mon 2026-08-10 20:15</td><td class="text">Santa Clara – Nacional</td><td class="score">2–2</td><td>retrospective</td>
 <td>51%</td><td class="hit">27%</td><td>21%</td><td>51%</td><td class="hit">29%</td><td>20%</td>    <td>0.155</td><td>0.149</td></tr>
-  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Moreirense – Sporting de Braga</td><td class="score">2–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>16%</td><td class="hit">26%</td><td>58%</td><td>14%</td><td class="hit">23%</td><td>63%</td>    <td class="better">0.179</td><td>0.208</td></tr>
-  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Moreirense – Sporting de Braga</td><td class="score">2–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>16%</td><td class="hit">26%</td><td>58%</td><td>14%</td><td class="hit">23%</td><td>63%</td>    <td class="better">0.179</td><td>0.208</td></tr>
-  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Moreirense – Sporting de Braga</td><td class="score">2–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Moreirense – Sporting de Braga</td><td class="score">2–2</td><td>retrospective</td>
 <td>19%</td><td class="hit">25%</td><td>56%</td><td>14%</td><td class="hit">23%</td><td>63%</td>    <td class="better">0.177</td><td>0.208</td></tr>
-  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Gil Vicente – Rio Ave</td><td class="score">1–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">46%</td><td>30%</td><td>24%</td><td class="hit">45%</td><td>28%</td><td>26%</td>    <td class="better">0.173</td><td>0.184</td></tr>
-  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Gil Vicente – Rio Ave</td><td class="score">1–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">46%</td><td>30%</td><td>24%</td><td class="hit">45%</td><td>28%</td><td>26%</td>    <td class="better">0.173</td><td>0.184</td></tr>
-  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Gil Vicente – Rio Ave</td><td class="score">1–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Gil Vicente – Rio Ave</td><td class="score">1–0</td><td>retrospective</td>
 <td class="hit">49%</td><td>27%</td><td>24%</td><td class="hit">45%</td><td>28%</td><td>26%</td>    <td class="better">0.158</td><td>0.184</td></tr>
-  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Benfica – Académico de Viseu</td><td class="score">2–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>90%</td><td class="hit">7%</td><td>3%</td><td>89%</td><td class="hit">8%</td><td>3%</td>    <td>0.401</td><td>0.400</td></tr>
-  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Benfica – Académico de Viseu</td><td class="score">2–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>90%</td><td class="hit">7%</td><td>3%</td><td>89%</td><td class="hit">8%</td><td>3%</td>    <td>0.401</td><td>0.400</td></tr>
-  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Benfica – Académico de Viseu</td><td class="score">2–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Benfica – Académico de Viseu</td><td class="score">2–2</td><td>retrospective</td>
 <td>89%</td><td class="hit">8%</td><td>3%</td><td>89%</td><td class="hit">8%</td><td>3%</td>    <td class="better">0.399</td><td>0.400</td></tr>
-  <tr><td>Sun 2026-08-09 18:00</td><td class="text">Porto – Alverca</td><td class="score">2–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td class="hit">87%</td><td>9%</td><td>4%</td><td class="hit">82%</td><td>13%</td><td>5%</td>    <td class="better">0.009</td><td>0.018</td></tr>
-  <tr><td>Sun 2026-08-09 18:00</td><td class="text">Porto – Alverca</td><td class="score">2–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">87%</td><td>9%</td><td>4%</td><td class="hit">82%</td><td>13%</td><td>5%</td>    <td class="better">0.009</td><td>0.018</td></tr>
-  <tr><td>Sun 2026-08-09 18:00</td><td class="text">Porto – Alverca</td><td class="score">2–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sun 2026-08-09 18:00</td><td class="text">Porto – Alverca</td><td class="score">2–0</td><td>retrospective</td>
 <td class="hit">83%</td><td>12%</td><td>5%</td><td class="hit">82%</td><td>13%</td><td>5%</td>    <td class="better">0.015</td><td>0.018</td></tr>
-  <tr><td>Sat 2026-08-08 20:30</td><td class="text">Estrela da Amadora – Sporting</td><td class="score">2–2</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>6%</td><td class="hit">13%</td><td>80%</td><td>9%</td><td class="hit">17%</td><td>74%</td>    <td>0.325</td><td>0.276</td></tr>
-  <tr><td>Sat 2026-08-08 20:30</td><td class="text">Estrela da Amadora – Sporting</td><td class="score">2–2</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>6%</td><td class="hit">13%</td><td>80%</td><td>9%</td><td class="hit">17%</td><td>74%</td>    <td>0.325</td><td>0.276</td></tr>
-  <tr><td>Sat 2026-08-08 20:30</td><td class="text">Estrela da Amadora – Sporting</td><td class="score">2–2</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-08 20:30</td><td class="text">Estrela da Amadora – Sporting</td><td class="score">2–2</td><td>retrospective</td>
 <td>7%</td><td class="hit">13%</td><td>80%</td><td>9%</td><td class="hit">17%</td><td>74%</td>    <td>0.322</td><td>0.276</td></tr>
-  <tr><td>Sat 2026-08-08 18:00</td><td class="text">Vitória de Guimarães – Arouca</td><td class="score">0–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>52%</td><td>28%</td><td class="hit">20%</td><td>50%</td><td>26%</td><td class="hit">24%</td>    <td>0.459</td><td>0.415</td></tr>
-  <tr><td>Sat 2026-08-08 18:00</td><td class="text">Vitória de Guimarães – Arouca</td><td class="score">0–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>52%</td><td>28%</td><td class="hit">20%</td><td>50%</td><td>26%</td><td class="hit">24%</td>    <td>0.459</td><td>0.415</td></tr>
-  <tr><td>Sat 2026-08-08 18:00</td><td class="text">Vitória de Guimarães – Arouca</td><td class="score">0–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-08 18:00</td><td class="text">Vitória de Guimarães – Arouca</td><td class="score">0–1</td><td>retrospective</td>
 <td>55%</td><td>25%</td><td class="hit">20%</td><td>50%</td><td>26%</td><td class="hit">24%</td>    <td>0.466</td><td>0.415</td></tr>
-  <tr><td>Sat 2026-08-08 15:30</td><td class="text">Marítimo – Casa Pia</td><td class="score">1–0</td><td>phase2-v1<span class="ci">retrospective</span></td>
+  <tr><td>Sat 2026-08-08 15:30</td><td class="text">Marítimo – Casa Pia</td><td class="score">1–0</td><td>retrospective</td>
 <td class="hit">36%</td><td>32%</td><td>32%</td><td class="hit">49%</td><td>29%</td><td>23%</td>    <td>0.259</td><td>0.157</td></tr>
-  <tr><td>Sat 2026-08-08 15:30</td><td class="text">Marítimo – Casa Pia</td><td class="score">1–0</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td class="hit">36%</td><td>32%</td><td>32%</td><td class="hit">49%</td><td>29%</td><td>23%</td>    <td>0.259</td><td>0.157</td></tr>
-  <tr><td>Sat 2026-08-08 15:30</td><td class="text">Marítimo – Casa Pia</td><td class="score">1–0</td><td>phase4-v2<span class="ci">retrospective</span></td>
-<td class="hit">36%</td><td>32%</td><td>32%</td><td class="hit">49%</td><td>29%</td><td>23%</td>    <td>0.259</td><td>0.157</td></tr>
-  <tr><td>Fri 2026-08-07 20:15</td><td class="text">Estoril Praia – Famalicão</td><td class="score">1–1</td><td>phase2-v1<span class="ci">retrospective</span></td>
-<td>33%</td><td class="hit">32%</td><td>35%</td><td>32%</td><td class="hit">29%</td><td>39%</td>    <td class="better">0.116</td><td>0.129</td></tr>
-  <tr><td>Fri 2026-08-07 20:15</td><td class="text">Estoril Praia – Famalicão</td><td class="score">1–1</td><td>phase4-v1<span class="ci">retrospective</span></td>
-<td>33%</td><td class="hit">32%</td><td>35%</td><td>32%</td><td class="hit">29%</td><td>39%</td>    <td class="better">0.116</td><td>0.129</td></tr>
-  <tr><td>Fri 2026-08-07 20:15</td><td class="text">Estoril Praia – Famalicão</td><td class="score">1–1</td><td>phase4-v2<span class="ci">retrospective</span></td>
+  <tr><td>Fri 2026-08-07 20:15</td><td class="text">Estoril Praia – Famalicão</td><td class="score">1–1</td><td>retrospective</td>
 <td>27%</td><td class="hit">28%</td><td>46%</td><td>32%</td><td class="hit">29%</td><td>39%</td>    <td>0.140</td><td>0.129</td></tr>
   </tbody>
 </table></div>
@@ -723,12 +421,70 @@ footer p { max-width: none; }
 <div class="head">
   <p class="kicker">Live record</p>
   <h2>Ledger against the closing market</h2>
-<p>Every model in the ledger next to the baselines (base rates and the no-vig closing market), scored once the matches are played. Differences are paired on the matches both have; lower is better; filled dots mark intervals that exclude zero.</p>
+<p>The lists above show one model per match; here every model in the ledger stands next to the baselines (base rates and the no-vig closing market), scored once the matches are played. Differences are paired on the matches both have; lower is better; filled dots mark intervals that exclude zero.</p>
 </div>
-<h3>Prospective · 0 scored forecast(s)</h3>
+<h3>Prospective · 4 scored forecast(s), 2026-10-25 to 2026-10-26</h3>
 <p class="note">Prospective: frozen before kick-off, with data up to 24 h before it.</p>
-<p class="empty">Nothing to score yet: no prospective forecast has a result.</p>
-<details open><summary>Retrospective sample (216 scored): pipeline check, not evidence</summary><h3>Retrospective · 216 scored forecast(s), 2026-08-07 to 2026-10-19</h3>
+<div class="card">
+  <h3>1X2 · RPS</h3>
+  <svg class="chart" viewBox="0 0 720 202" role="img" aria-label="RPS minus Closing market, no-vig (lower is better)"><line class="grid" x1="372.0" x2="372.0" y1="8" y2="158"/><text class="tick" x="372.0" y="174" text-anchor="middle">-0.05</text><line class="grid" x1="503.6" x2="503.6" y1="8" y2="158"/><text class="tick" x="503.6" y="174" text-anchor="middle">0</text><line class="grid" x1="635.1" x2="635.1" y1="8" y2="158"/><text class="tick" x="635.1" y="174" text-anchor="middle">+0.05</text><line class="zero" x1="503.6" x2="503.6" y1="8" y2="158"/><g><title>phase2-v1 · base rates: -0.0599 [-0.0599; -0.0599] (2 matches)</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">phase2-v1 · base rates</text><line class="whisker" x1="345.9" x2="345.9" y1="23.0" y2="23.0"/><circle class="dot solid" cx="345.9" cy="23.0" r="5"/></g><g><title>phase2-v1 · Dixon-Coles: +0.0007 [+0.0007; +0.0007] (2 matches)</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">phase2-v1 · Dixon-Coles</text><line class="whisker" x1="505.4" x2="505.4" y1="53.0" y2="53.0"/><circle class="dot solid" cx="505.4" cy="53.0" r="5"/></g><g><title>phase2-v1 · Elo: +0.0633 [+0.0633; +0.0633] (2 matches)</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">phase2-v1 · Elo</text><line class="whisker" x1="670.1" x2="670.1" y1="83.0" y2="83.0"/><circle class="dot solid" cx="670.1" cy="83.0" r="5"/></g><g><title>phase4-v1 · model: -0.0166 [-0.0166; -0.0166] (1 matches)</title><rect class="hit" x="0" y="98.0" width="720" height="30"/><text class="label" x="308" y="117.0" text-anchor="end">phase4-v1 · model</text><line class="whisker" x1="460.0" x2="460.0" y1="113.0" y2="113.0"/><circle class="dot solid" cx="460.0" cy="113.0" r="5"/></g><g><title>phase4-v2 · model: +0.0004 [+0.0004; +0.0004] (1 matches)</title><rect class="hit" x="0" y="128.0" width="720" height="30"/><text class="label" x="308" y="147.0" text-anchor="end">phase4-v2 · model</text><line class="whisker" x1="504.7" x2="504.7" y1="143.0" y2="143.0"/><circle class="dot solid" cx="504.7" cy="143.0" r="5"/></g><text class="axis-label" x="508.0" y="196" text-anchor="middle">RPS minus Closing market, no-vig (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>RPS with its 95% interval; Δ against Closing market, no-vig.</caption>
+    <thead><tr><th class="text">Forecaster</th><th>Matches</th><th>RPS</th><th>Δ</th><th>log loss</th><th>Brier</th></tr></thead>
+    <tbody>
+    <tr><td>Closing market, no-vig</td><td>2</td><td>0.3846<span class="ci">[0.3846; 0.3846]</span></td><td>—</td><td>1.4047</td><td>0.7938</td></tr>
+    <tr><td>phase2-v1 · base rates</td><td>2</td><td>0.3247<span class="ci">[0.3247; 0.3247]</span></td><td class="sig">-0.0599<span class="ci">[-0.0599; -0.0599]</span></td><td>1.1523</td><td>0.7161</td></tr>
+    <tr><td>phase2-v1 · Dixon-Coles</td><td>2</td><td>0.3853<span class="ci">[0.3853; 0.3853]</span></td><td class="sig">+0.0007<span class="ci">[+0.0007; +0.0007]</span></td><td>1.3758</td><td>0.8110</td></tr>
+    <tr><td>phase2-v1 · Elo</td><td>2</td><td>0.4479<span class="ci">[0.4479; 0.4479]</span></td><td class="sig">+0.0633<span class="ci">[+0.0633; +0.0633]</span></td><td>1.8608</td><td>0.9109</td></tr>
+    <tr><td>phase4-v1 · model</td><td>1</td><td>0.0291<span class="ci">[0.0291; 0.0291]</span></td><td class="sig">-0.0166<span class="ci">[-0.0166; -0.0166]</span></td><td>0.2611</td><td>0.0826</td></tr>
+    <tr><td>phase4-v2 · model</td><td>1</td><td>0.0461<span class="ci">[0.0461; 0.0461]</span></td><td class="sig">+0.0004<span class="ci">[+0.0004; +0.0004]</span></td><td>0.3386</td><td>0.1278</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="card">
+  <h3>Over/under 2.5 · log loss</h3>
+  <svg class="chart" viewBox="0 0 720 172" role="img" aria-label="log loss minus Closing market, no-vig (lower is better)"><line class="grid" x1="345.9" x2="345.9" y1="8" y2="128"/><text class="tick" x="345.9" y="144" text-anchor="middle">0</text><line class="grid" x1="438.7" x2="438.7" y1="8" y2="128"/><text class="tick" x="438.7" y="144" text-anchor="middle">+0.05</text><line class="grid" x1="531.4" x2="531.4" y1="8" y2="128"/><text class="tick" x="531.4" y="144" text-anchor="middle">+0.10</text><line class="grid" x1="624.1" x2="624.1" y1="8" y2="128"/><text class="tick" x="624.1" y="144" text-anchor="middle">+0.15</text><line class="zero" x1="345.9" x2="345.9" y1="8" y2="128"/><g><title>phase2-v1 · base rates: +0.1748 [+0.1748; +0.1748] (2 matches)</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">phase2-v1 · base rates</text><line class="whisker" x1="670.1" x2="670.1" y1="23.0" y2="23.0"/><circle class="dot solid" cx="670.1" cy="23.0" r="5"/></g><g><title>phase2-v1 · Dixon-Coles: +0.1632 [+0.1632; +0.1632] (2 matches)</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">phase2-v1 · Dixon-Coles</text><line class="whisker" x1="648.6" x2="648.6" y1="53.0" y2="53.0"/><circle class="dot solid" cx="648.6" cy="53.0" r="5"/></g><g><title>phase4-v1 · model: +0.1093 [+0.1093; +0.1093] (1 matches)</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">phase4-v1 · model</text><line class="whisker" x1="548.6" x2="548.6" y1="83.0" y2="83.0"/><circle class="dot solid" cx="548.6" cy="83.0" r="5"/></g><g><title>phase4-v2 · model: +0.1093 [+0.1093; +0.1093] (1 matches)</title><rect class="hit" x="0" y="98.0" width="720" height="30"/><text class="label" x="308" y="117.0" text-anchor="end">phase4-v2 · model</text><line class="whisker" x1="548.6" x2="548.6" y1="113.0" y2="113.0"/><circle class="dot solid" cx="548.6" cy="113.0" r="5"/></g><text class="axis-label" x="508.0" y="166" text-anchor="middle">log loss minus Closing market, no-vig (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>log loss with its 95% interval; Δ against Closing market, no-vig.</caption>
+    <thead><tr><th class="text">Forecaster</th><th>Matches</th><th>log loss</th><th>Δ</th><th>Brier</th></tr></thead>
+    <tbody>
+    <tr><td>Closing market, no-vig</td><td>2</td><td>0.4653<span class="ci">[0.4653; 0.4653]</span></td><td>—</td><td>0.1392</td></tr>
+    <tr><td>phase2-v1 · base rates</td><td>2</td><td>0.6401<span class="ci">[0.6401; 0.6401]</span></td><td class="sig">+0.1748<span class="ci">[+0.1748; +0.1748]</span></td><td>0.2235</td></tr>
+    <tr><td>phase2-v1 · Dixon-Coles</td><td>2</td><td>0.6285<span class="ci">[0.6285; 0.6285]</span></td><td class="sig">+0.1632<span class="ci">[+0.1632; +0.1632]</span></td><td>0.2195</td></tr>
+    <tr><td>phase4-v1 · model</td><td>1</td><td>0.6438<span class="ci">[0.6438; 0.6438]</span></td><td class="sig">+0.1093<span class="ci">[+0.1093; +0.1093]</span></td><td>0.2254</td></tr>
+    <tr><td>phase4-v2 · model</td><td>1</td><td>0.6438<span class="ci">[0.6438; 0.6438]</span></td><td class="sig">+0.1093<span class="ci">[+0.1093; +0.1093]</span></td><td>0.2254</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="card">
+  <h3>Both teams score · log loss</h3>
+  <svg class="chart" viewBox="0 0 720 142" role="img" aria-label="log loss minus phase2-v1 · base rates (lower is better)"><line class="grid" x1="345.9" x2="345.9" y1="8" y2="98"/><text class="tick" x="345.9" y="114" text-anchor="middle">0</text><line class="grid" x1="484.2" x2="484.2" y1="8" y2="98"/><text class="tick" x="484.2" y="114" text-anchor="middle">+0.02</text><line class="grid" x1="622.5" x2="622.5" y1="8" y2="98"/><text class="tick" x="622.5" y="114" text-anchor="middle">+0.04</text><line class="zero" x1="345.9" x2="345.9" y1="8" y2="98"/><g><title>phase2-v1 · Dixon-Coles: +0.0469 [+0.0469; +0.0469] (2 matches)</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">phase2-v1 · Dixon-Coles</text><line class="whisker" x1="670.1" x2="670.1" y1="23.0" y2="23.0"/><circle class="dot solid" cx="670.1" cy="23.0" r="5"/></g><g><title>phase4-v1 · model: +0.0271 [+0.0271; +0.0271] (1 matches)</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">phase4-v1 · model</text><line class="whisker" x1="533.2" x2="533.2" y1="53.0" y2="53.0"/><circle class="dot solid" cx="533.2" cy="53.0" r="5"/></g><g><title>phase4-v2 · model: +0.0271 [+0.0271; +0.0271] (1 matches)</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">phase4-v2 · model</text><line class="whisker" x1="533.2" x2="533.2" y1="83.0" y2="83.0"/><circle class="dot solid" cx="533.2" cy="83.0" r="5"/></g><text class="axis-label" x="508.0" y="136" text-anchor="middle">log loss minus phase2-v1 · base rates (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>log loss with its 95% interval; Δ against phase2-v1 · base rates.</caption>
+    <thead><tr><th class="text">Forecaster</th><th>Matches</th><th>log loss</th><th>Δ</th><th>Brier</th></tr></thead>
+    <tbody>
+    <tr><td>phase2-v1 · base rates</td><td>2</td><td>0.6910<span class="ci">[0.6910; 0.6910]</span></td><td>—</td><td>0.2489</td></tr>
+    <tr><td>phase2-v1 · Dixon-Coles</td><td>2</td><td>0.7379<span class="ci">[0.7379; 0.7379]</span></td><td class="sig">+0.0469<span class="ci">[+0.0469; +0.0469]</span></td><td>0.2721</td></tr>
+    <tr><td>phase4-v1 · model</td><td>1</td><td>0.7181<span class="ci">[0.7181; 0.7181]</span></td><td class="sig">+0.0271<span class="ci">[+0.0271; +0.0271]</span></td><td>0.2625</td></tr>
+    <tr><td>phase4-v2 · model</td><td>1</td><td>0.7181<span class="ci">[0.7181; 0.7181]</span></td><td class="sig">+0.0271<span class="ci">[+0.0271; +0.0271]</span></td><td>0.2625</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div>
+  <div class="card">
+    <h3>Running gap to the market (1X2)</h3>
+    <p class="note">Mean of RPS minus closing RPS over the matches scored so far. Below zero is better than the market.</p>
+    <div class="legend"><span><i class="k1"></i>phase2-v1</span><span><i class="k3"></i>phase4-v1</span><span><i class="k4"></i>phase4-v2</span><span><i class="kd"></i>closing market (zero)</span></div>
+    <svg class="chart" viewBox="0 0 720 240" role="img" aria-label="running mean of RPS minus closing RPS"><line class="grid" x1="64" x2="704" y1="164.8" y2="164.8"/><text class="tick" x="56" y="168.8" text-anchor="end">0</text><line class="grid" x1="64" x2="704" y1="116.8" y2="116.8"/><text class="tick" x="56" y="120.8" text-anchor="end">+0.05</text><line class="grid" x1="64" x2="704" y1="68.7" y2="68.7"/><text class="tick" x="56" y="72.7" text-anchor="end">+0.10</text><line class="grid" x1="64" x2="704" y1="20.7" y2="20.7"/><text class="tick" x="56" y="24.7" text-anchor="end">+0.15</text><text class="tick" x="64.0" y="212" text-anchor="middle">0</text><text class="tick" x="224.0" y="212" text-anchor="middle">0.5</text><text class="tick" x="384.0" y="212" text-anchor="middle">1</text><text class="tick" x="544.0" y="212" text-anchor="middle">1.5</text><text class="tick" x="704.0" y="212" text-anchor="middle">2</text><line class="zero" x1="64" x2="704" y1="164.8" y2="164.8"/><text class="axis-label" x="384.0" y="234" text-anchor="middle">matches scored</text><polyline class="line s1" points="384.0,27.3 704.0,104.0"/><g><title>phase2-v1: +0.1431 after 1 matches (to 2026-10-25)</title><circle class="hit" cx="384.0" cy="27.3" r="9"/><circle class="marker s1" cx="384.0" cy="27.3" r="3"/></g><g><title>phase2-v1: +0.0633 after 2 matches (to 2026-10-26)</title><circle class="hit" cx="704.0" cy="104.0" r="9"/><circle class="marker s1" cx="704.0" cy="104.0" r="3"/></g><polyline class="line s3" points="384.0,180.7"/><g><title>phase4-v1: -0.0166 after 1 matches (to 2026-10-26)</title><circle class="hit" cx="384.0" cy="180.7" r="9"/><circle class="marker s3" cx="384.0" cy="180.7" r="3"/></g><polyline class="line s4" points="384.0,164.3"/><g><title>phase4-v2: +0.0004 after 1 matches (to 2026-10-26)</title><circle class="hit" cx="384.0" cy="164.3" r="9"/><circle class="marker s4" cx="384.0" cy="164.3" r="3"/></g></svg>
+  </div>
+  <div class="card">
+    <h3>Calibration (1X2, every outcome)</h3>
+    <p class="note">Five bins; few matches per bin, so read the shape, not the points.</p>
+    <div class="legend"><span><i class="k1"></i>phase2-v1</span><span><i class="k3"></i>phase4-v1</span><span><i class="k4"></i>phase4-v2</span><span><i class="k2"></i>closing market</span><span><i class="kd"></i>perfect calibration</span></div>
+    <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration, prospective"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><polyline class="line s1" points="75.1,179.5 230.1,10.0 257.5,236.0"/><g><title>phase2-v1: forecast 8%, observed 25%, 4 probabilities</title><circle class="hit" cx="75.1" cy="179.5" r="10"/><circle class="marker s1" cx="75.1" cy="179.5" r="4"/></g><g><title>phase2-v1: forecast 77%, observed 100%, 1 probabilities</title><circle class="hit" cx="230.1" cy="10.0" r="10"/><circle class="marker s1" cx="230.1" cy="10.0" r="4"/></g><g><title>phase2-v1: forecast 89%, observed 0%, 1 probabilities</title><circle class="hit" cx="257.5" cy="236.0" r="10"/><circle class="marker s1" cx="257.5" cy="236.0" r="4"/></g><polyline class="line s3" points="82.0,236.0 230.1,10.0"/><g><title>phase4-v1: forecast 11%, observed 0%, 2 probabilities</title><circle class="hit" cx="82.0" cy="236.0" r="10"/><circle class="marker s3" cx="82.0" cy="236.0" r="4"/></g><g><title>phase4-v1: forecast 77%, observed 100%, 1 probabilities</title><circle class="hit" cx="230.1" cy="10.0" r="10"/><circle class="marker s3" cx="230.1" cy="10.0" r="4"/></g><polyline class="line s4" points="88.5,236.0 217.1,10.0"/><g><title>phase4-v2: forecast 14%, observed 0%, 2 probabilities</title><circle class="hit" cx="88.5" cy="236.0" r="10"/><circle class="marker s4" cx="88.5" cy="236.0" r="4"/></g><g><title>phase4-v2: forecast 71%, observed 100%, 1 probabilities</title><circle class="hit" cx="217.1" cy="10.0" r="10"/><circle class="marker s4" cx="217.1" cy="10.0" r="4"/></g><polyline class="line s2" points="84.4,179.5 225.2,123.0"/><g><title>closing market: forecast 13%, observed 25%, 4 probabilities</title><circle class="hit" cx="84.4" cy="179.5" r="10"/><circle class="marker s2" cx="84.4" cy="179.5" r="4"/></g><g><title>closing market: forecast 75%, observed 50%, 2 probabilities</title><circle class="hit" cx="225.2" cy="123.0" r="10"/><circle class="marker s2" cx="225.2" cy="123.0" r="4"/></g></svg>
+  </div>
+</div>
+<details><summary>Retrospective sample (216 scored): pipeline check, not evidence</summary><h3>Retrospective · 216 scored forecast(s), 2026-08-07 to 2026-10-19</h3>
 <p class="note">Retrospective: frozen after the match with the same 24 h cut-off. Useful to check the pipeline, never evidence.</p>
 <div class="card">
   <h3>1X2 · RPS</h3>
