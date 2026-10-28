@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primeira Liga forecasts</title>
+<meta name="description" content="Calibrated Primeira Liga forecasts, frozen 24 h before kick-off and measured against the no-vig closing market.">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f6f5f1; --surface: #ffffff; --raised: #fbfaf7; --ink: #121211; --ink-2: #4c4b47; --muted: #7d7b74;
+  --grid: #e6e4dc; --axis: #bdbbb0; --ring: rgba(18,18,17,0.09); --shadow: 0 1px 2px rgba(18,18,17,0.05), 0 4px 16px rgba(18,18,17,0.04);
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4;
+  --draw: #b9b7ad; --accent: #1a5fb4; --accent-ink: #ffffff;
+  --good: #0f7a3d; --good-wash: rgba(27,175,122,0.12); --wash: rgba(42,120,214,0.10);
+  --hero-a: #0f2a4a; --hero-b: #16406e; --hero-ink: #f4f7fb; --hero-muted: #b8c7da;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0e0e0d; --surface: #181817; --raised: #1e1e1c; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #8f8d86;
+    --grid: #2b2b29; --axis: #45443f; --ring: rgba(255,255,255,0.09); --shadow: 0 1px 2px rgba(0,0,0,0.4);
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+    --draw: #5d5c56; --accent: #6aa8f0; --accent-ink: #0e0e0d;
+    --good: #3ccf8e; --good-wash: rgba(25,158,112,0.18); --wash: rgba(57,135,229,0.16);
+    --hero-a: #10233b; --hero-b: #152f50; --hero-ink: #f0f4f9; --hero-muted: #9fb1c8;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0e0e0d; --surface: #181817; --raised: #1e1e1c; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #8f8d86;
+  --grid: #2b2b29; --axis: #45443f; --ring: rgba(255,255,255,0.09); --shadow: 0 1px 2px rgba(0,0,0,0.4);
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181;
+  --draw: #5d5c56; --accent: #6aa8f0; --accent-ink: #0e0e0d;
+  --good: #3ccf8e; --good-wash: rgba(25,158,112,0.18); --wash: rgba(57,135,229,0.16);
+  --hero-a: #10233b; --hero-b: #152f50; --hero-ink: #f0f4f9; --hero-muted: #9fb1c8;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+code { font: 0.92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+main { padding: 24px 0 64px; }
+h1 { font-size: clamp(28px, 4.2vw, 40px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 10px; }
+h2 { font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 6px; }
+h3 { font-size: 16px; line-height: 1.3; margin: 24px 0 6px; }
+p { margin: 6px 0; max-width: 72ch; }
+a { color: var(--accent); text-underline-offset: 2px; }
+.lede { color: var(--ink-2); font-size: 17px; max-width: 64ch; }
+.meta, .note, caption { color: var(--muted); font-size: 13px; }
+.kicker { text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px; font-weight: 650; color: var(--muted); margin: 0 0 4px; }
+.num, td, .tile .value { font-variant-numeric: tabular-nums; }
+
+/* Top bar */
+.bar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--page) 86%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--ring); }
+.bar .wrap { display: flex; align-items: center; gap: 16px; height: 52px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.brand svg { width: 24px; height: 24px; flex: none; }
+.bar nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; margin-left: auto; }
+.bar nav::-webkit-scrollbar { display: none; }
+.bar nav a { color: var(--ink-2); text-decoration: none; font-size: 14px; padding: 6px 10px; border-radius: 8px; white-space: nowrap; }
+.bar nav a:hover { background: var(--ring); color: var(--ink); }
+.bar a.lang { flex: none; font-size: 13px; font-weight: 650; color: var(--ink); text-decoration: none; padding: 5px 10px; border: 1px solid var(--axis); border-radius: 8px; }
+.bar a.lang:hover { background: var(--ring); }
+
+/* Intro and hero */
+.intro { padding: 36px 0 20px; }
+.hero { margin: 8px 0 16px; border-radius: 16px; padding: 28px; color: var(--hero-ink);
+  background: linear-gradient(135deg, var(--hero-a), var(--hero-b)); box-shadow: var(--shadow);
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+.hero .kicker { color: var(--hero-muted); }
+.hero p.verdict { color: var(--hero-ink);  font-size: clamp(24px, 3.4vw, 34px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin: 4px 0 10px; }
+.hero p { color: var(--hero-muted); }
+.hero p strong { color: var(--hero-ink); }
+.hero .figure { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px 14px 8px; }
+.hero .figure .figcap { font-size: 12px; color: var(--hero-muted); margin: 0 0 4px; }
+.strip { width: 100%; height: auto; display: block; font-size: 12px; }
+.strip .tick { fill: var(--hero-muted); }
+.strip .grid { stroke: rgba(255,255,255,0.22); stroke-width: 1; }
+.strip .zero { stroke: var(--hero-ink); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.strip .band-good { fill: rgba(60,207,142,0.12); }
+.strip .whisker { stroke: var(--hero-ink); stroke-width: 3; stroke-linecap: round; }
+.strip .dot { fill: var(--hero-a); stroke: var(--hero-ink); stroke-width: 2.5; }
+.strip .dot.solid { fill: var(--hero-ink); }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.pill { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,0.10); color: var(--hero-ink); border: 1px solid rgba(255,255,255,0.14); }
+
+/* Tiles */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 0 0 8px; }
+.tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); }
+.tile .value { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.tile .label { color: var(--ink-2); font-size: 13px; }
+
+/* Sections */
+section.block { padding: 44px 0 0; }
+.head { margin: 0 0 14px; }
+.card { background: var(--surface); border: 1px solid var(--ring); border-radius: 12px; padding: 18px; margin: 12px 0; box-shadow: var(--shadow); overflow-x: auto; }
+.card > h3:first-child { margin-top: 0; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.grid2 > .card { margin: 0; }
+.grid2 + .card, .card + .grid2, .grid2 + .grid2 { margin-top: 12px; }
+.empty { background: var(--raised); border: 1px dashed var(--axis); border-radius: 12px; padding: 18px; color: var(--ink-2); }
+
+/* Match cards */
+.matches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 12px; }
+.match { background: var(--surface); border: 1px solid var(--ring); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px; }
+.match .when { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13px; color: var(--muted); }
+.match .when b { color: var(--ink); font-weight: 650; font-size: 15px; }
+.teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.teams .t { font-weight: 650; font-size: 17px; line-height: 1.25; }
+.teams .t.away { text-align: right; }
+.teams .vs { color: var(--muted); font-size: 13px; }
+.teams .t.fav::after { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); margin: 0 0 3px 6px; vertical-align: middle; }
+.stack { display: flex; gap: 2px; height: 12px; border-radius: 6px; overflow: hidden; }
+.stack span { display: block; min-width: 2px; }
+.stack .h { background: var(--s1); } .stack .d { background: var(--draw); } .stack .a { background: var(--s2); }
+.probs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.probs div { display: flex; flex-direction: column; }
+.probs div:nth-child(2) { text-align: center; } .probs div:nth-child(3) { text-align: right; }
+.probs .p { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.probs .o { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.probs .k { font-size: 12px; color: var(--ink-2); }
+.probs .k i.h { background: var(--s1); } .probs .k i.d { background: var(--draw); } .probs .k i.a { background: var(--s2); }
+.probs .k i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: 0; }
+.probs .top .p { color: var(--ink); } .probs div:not(.top) .p { color: var(--ink-2); }
+.minis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 12px; border-top: 1px solid var(--grid); }
+.mini .row { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-2); }
+.mini .row b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.meter { height: 6px; border-radius: 3px; background: var(--grid); margin-top: 6px; overflow: hidden; }
+.meter span { display: block; height: 100%; background: var(--s3); border-radius: 3px; }
+.scores { padding-top: 12px; border-top: 1px solid var(--grid); }
+.scores .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13px; color: var(--ink-2); }
+.scores .hint { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+.scores .row .hint { margin: 0; }
+.scores ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.scores li { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 0; padding: 8px 6px 10px; border-radius: 10px; background: var(--raised); border: 1px solid var(--ring); }
+.scores li b { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; }
+.scores li span { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.scores li.first span { color: var(--ink-2); font-weight: 600; }
+.scores li i { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--s3); border-radius: 0 2px 2px 0; }
+.match .foot { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); }
+
+/* Tables */
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+caption { text-align: left; padding: 0 0 8px; }
+th, td { padding: 8px 8px; border-bottom: 1px solid var(--grid); text-align: right; white-space: nowrap; }
+thead th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; border-bottom-color: var(--axis); }
+tbody tr:hover td { background: var(--raised); }
+th:first-child, td:first-child, td.text, th.text { text-align: left; }
+td .ci { display: block; color: var(--muted); font-size: 12px; font-weight: 400; }
+td.hit { background: var(--wash); font-weight: 650; border-radius: 4px; }
+tbody tr:hover td.hit { background: var(--wash); }
+td.score { font-weight: 700; }
+td.better { color: var(--good); font-weight: 650; }
+thead th.group { text-align: center; border-bottom: 1px solid var(--grid); }
+.sig { font-weight: 650; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--ring); background: var(--raised); color: var(--ink-2); font-size: 12px; font-weight: 500; }
+
+/* Charts */
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--ink-2); margin: 4px 0 8px; }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.k1 { background: var(--s1); } .k2 { background: var(--s2); } .k3 { background: var(--s3); }
+.k4 { background: var(--s4); } .k5 { background: var(--s5); }
+.kd { background: var(--axis); }
+.kb { background: var(--wash); height: 10px !important; border: 1px solid color-mix(in srgb, var(--s1) 35%, transparent); }
+.ke { background: var(--ink-2); width: 2px !important; height: 12px !important; }
+.kg { background: var(--good); }
+details { margin: 14px 0; }
+summary { cursor: pointer; color: var(--ink-2); font-weight: 600; padding: 10px 14px; border: 1px solid var(--ring); border-radius: 10px; background: var(--surface); list-style-position: inside; }
+details[open] > summary { margin-bottom: 8px; }
+svg.chart { width: 100%; max-width: 760px; height: auto; display: block; font-size: 13px; min-width: 520px; }
+svg.chart.square { max-width: 340px; min-width: 0; }
+svg .grid { stroke: var(--grid); stroke-width: 1; }
+svg .zero, svg .diagonal { stroke: var(--axis); stroke-width: 1.5; }
+svg .diagonal { stroke-dasharray: 4 4; }
+svg .tick, svg .axis-label { fill: var(--muted); }
+svg .label { fill: var(--ink-2); }
+svg .hit { fill: transparent; }
+svg g:hover .hit { fill: var(--wash); }
+svg .whisker { stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round; }
+svg .dot { fill: var(--surface); stroke: var(--s1); stroke-width: 2; }
+svg .dot.solid { fill: var(--s1); }
+svg .line { fill: none; stroke-width: 2; stroke-linejoin: round; }
+svg line.band { stroke: var(--wash); stroke-width: 14; stroke-linecap: round; }
+svg rect.band { fill: var(--wash); stroke: var(--s1); stroke-opacity: 0.35; }
+svg .expected { stroke: var(--ink-2); stroke-width: 2; }
+svg .bar.better { fill: var(--good); } svg .bar.worse { fill: var(--axis); }
+td.out { color: var(--s2); font-weight: 650; }
+svg .marker { stroke: var(--surface); stroke-width: 2; }
+svg .line.s1 { stroke: var(--s1); } svg .marker.s1 { fill: var(--s1); }
+svg .line.s2 { stroke: var(--s2); } svg .marker.s2 { fill: var(--s2); }
+svg .line.s3 { stroke: var(--s3); } svg .marker.s3 { fill: var(--s3); }
+svg .line.s4 { stroke: var(--s4); } svg .marker.s4 { fill: var(--s4); }
+svg .line.s5 { stroke: var(--s5); } svg .marker.s5 { fill: var(--s5); }
+
+footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--ring); color: var(--muted); font-size: 13px; }
+footer p { max-width: none; }
+
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; padding: 22px 18px; }
+  .bar .brand span { display: none; }
+  .bar nav { margin-left: 0; }
+  section.block { padding-top: 36px; }
+  .card { padding: 14px; }
+}
+@media print {
+  .bar { position: static; }
+  .hero { color: var(--ink); background: none; border: 1px solid var(--ring); }
+}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap">
+  <a class="brand" href="#top" aria-label="Primeira Liga forecasts, top of the page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6.2l4.6 3.4-1.8 5.4H9.2L7.4 9.6z" fill="currentColor"/><path d="M12 1.5v4.7M16.6 9.6l4.6-1.6M14.8 15l2.8 4.2M9.2 15l-2.8 4.2M7.4 9.6L2.8 8" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span>Primeira Liga forecasts</span></a>
+  <nav aria-label="Sections"><a href="#open">Next matches</a><a href="#played">Results</a><a href="#trust">Said vs happened</a><a href="#ledger">Live record</a><a href="#holdout">Holdout</a><a href="#method">Method</a></nav>
+  <a class="lang" href="../" hreflang="pt" lang="pt" aria-label="Read this page in English">EN</a>
+</div></div>
+<main id="top" class="wrap">
+<header class="intro">
+  <p class="kicker">Primeira Liga · season 2026/27</p>
+  <h1>Primeira Liga forecasts</h1>
+  <p class="lede">Calibrated probabilities for every match (1X2, over/under 2.5 goals and both teams to score), frozen 24 h before kick-off in an append-only ledger and scored against the no-vig closing market.</p>
+<p class="meta">Status as of 2026-10-28 (UTC).</p></header>
+
+<section class="hero" aria-labelledby="verdict">
+  <div>
+    <p class="kicker">Verdict on the closed holdout</p>
+    <p class="verdict" id="verdict">The model is not distinguishable from the closing market.</p>
+    <p>Over <strong>612 matches</strong> of 2024/25 and 2025/26, opened once with the model fixed in a commit, the RPS of phase4-v1 minus the market's is <strong>+0.0041 [-0.0002; +0.0089]</strong> (95% interval). Below zero would mean beating the market.</p>
+    <div class="pills"><span class="pill">walk-forward</span><span class="pill">24 h point-in-time</span><span class="pill">holdout used once</span><span class="pill">report <code>f8648fb</code></span></div>
+  </div>
+  <div class="figure">
+    <p class="figcap">1X2 · RPS difference to the no-vig closing market</p>
+    <svg class="strip" viewBox="0 0 340 92" role="img" aria-label="RPS of phase4-v1 minus closing RPS: +0.0041 [-0.0002; +0.0089]"><rect class="band-good" x="18" y="30" width="152.0" height="44" rx="6"/><line class="grid" x1="18" x2="322" y1="52" y2="52"/><line class="zero" x1="170.0" x2="170.0" y1="26" y2="78"/><text class="tick" x="170.0" y="20" text-anchor="middle">market</text><text class="tick" x="24" y="88">model better</text><text class="tick" x="316" y="88" text-anchor="end">market better</text><g><title>RPS of phase4-v1 minus closing RPS: +0.0041 [-0.0002; +0.0089]</title><line class="whisker strong" x1="167.5" x2="265.0" y1="52" y2="52"/><circle class="dot" cx="214.4" cy="52" r="7"/></g></svg>
+  </div>
+</section>
+
+<div class="tiles">
+  <div class="tile"><div class="value">0</div><div class="label">open matches, frozen and waiting</div></div>
+  <div class="tile"><div class="value">4</div><div class="label">prospective forecasts scored (the evidence)</div></div>
+  <div class="tile"><div class="value">+0.0004</div><div class="label">live Δ RPS vs the market</div></div>
+  <div class="tile"><div class="value">220</div><div class="label">ledger lines, last 2026-10-26</div></div>
+</div>
+
+<section class="block" id="open">
+<div class="head">
+  <p class="kicker">Next matches</p>
+  <h2>Open forecasts</h2>
+  <p class="note">Frozen before kick-off and not played yet, soonest first. Fair odds are 1/p, with no bookmaker margin. Exact scores come from the Dixon-Coles score grid, adjusted so its 1X2, over 2.5 and both-score totals equal the numbers on the card. Kick-off in Lisbon time. One forecast per match, from phase4-v2, the current model; the other versions in the ledger are compared in the <a href="#ledger">live record</a>.</p>
+</div>
+<p class="empty">No frozen forecast is waiting for kick-off. The scheduled job freezes each match 20 to 24 h before it starts.</p>
+</section>
+
+<section class="block" id="played">
+<div class="head">
+  <p class="kicker">Results</p>
+  <h2>Played matches</h2>
+<p class="note">The phase4-v2 1X2 forecast next to the no-vig closing market; the actual outcome is highlighted. RPS per match: lower is better. Status: valid if frozen in time before kick-off, retrospective if frozen after the match (a pipeline check); any other status flags a timing problem.</p>
+</div>
+<div class="card scroll"><table>
+  <thead><tr><th rowspan="2">Kick-off</th><th class="text" rowspan="2">Match</th><th rowspan="2">Score</th><th rowspan="2">Status</th><th colspan="3" class="group">Model</th><th colspan="3" class="group">Closing market</th><th colspan="2" class="group">RPS</th></tr>
+  <tr><th>1</th><th>X</th><th>2</th><th>1</th><th>X</th><th>2</th><th>model</th><th>market</th></tr></thead>
+  <tbody>
+  <tr><td>Mon 2026-10-26 18:45</td><td class="text">Santa Clara – Benfica</td><td class="score">1–2</td><td>valid</td>
+<td>10%</td><td>19%</td><td class="hit">71%</td><td>11%</td><td>18%</td><td class="hit">72%</td>    <td>0.046</td><td>0.046</td></tr>
+  <tr><td>Sun 2026-10-25 20:30</td><td class="text">Sporting – Académico de Viseu <span class="badge" title="frozen before phase4-v2 existed">phase2-v1</span></td><td class="score">1–2</td><td>valid</td>
+<td>89%</td><td>8%</td><td class="hit">3%</td><td>78%</td><td>14%</td><td class="hit">8%</td>    <td>0.867</td><td>0.724</td></tr>
+  <tr><td>Mon 2026-10-19 20:15</td><td class="text">Sporting de Braga – Gil Vicente</td><td class="score">1–2</td><td>retrospective</td>
+<td>61%</td><td>23%</td><td class="hit">15%</td><td>55%</td><td>26%</td><td class="hit">19%</td>    <td>0.546</td><td>0.478</td></tr>
+  <tr><td>Mon 2026-10-12 20:15</td><td class="text">Famalicão – Alverca</td><td class="score">1–4</td><td>retrospective</td>
+<td>52%</td><td>27%</td><td class="hit">21%</td><td>50%</td><td>28%</td><td class="hit">22%</td>    <td>0.450</td><td>0.431</td></tr>
+  <tr><td>Sun 2026-10-11 20:30</td><td class="text">Arouca – Estrela da Amadora</td><td class="score">1–0</td><td>retrospective</td>
+<td class="hit">45%</td><td>27%</td><td>28%</td><td class="hit">45%</td><td>27%</td><td>28%</td>    <td class="better">0.189</td><td>0.191</td></tr>
+  <tr><td>Sun 2026-10-11 18:00</td><td class="text">Benfica – Vitória de Guimarães</td><td class="score">2–0</td><td>retrospective</td>
+<td class="hit">81%</td><td>13%</td><td>6%</td><td class="hit">81%</td><td>12%</td><td>7%</td>    <td class="better">0.021</td><td>0.021</td></tr>
+  <tr><td>Sun 2026-10-11 15:30</td><td class="text">Rio Ave – Nacional</td><td class="score">3–2</td><td>retrospective</td>
+<td class="hit">42%</td><td>28%</td><td>30%</td><td class="hit">45%</td><td>28%</td><td>27%</td>    <td>0.213</td><td>0.185</td></tr>
+  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Casa Pia – Santa Clara</td><td class="score">0–1</td><td>retrospective</td>
+<td>21%</td><td>28%</td><td class="hit">52%</td><td>25%</td><td>29%</td><td class="hit">46%</td>    <td class="better">0.139</td><td>0.179</td></tr>
+  <tr><td>Sat 2026-10-10 20:30</td><td class="text">Académico de Viseu – Estoril Praia</td><td class="score">2–1</td><td>retrospective</td>
+<td class="hit">42%</td><td>27%</td><td>31%</td><td class="hit">44%</td><td>27%</td><td>28%</td>    <td>0.215</td><td>0.195</td></tr>
+  <tr><td>Sat 2026-10-10 18:00</td><td class="text">Marítimo – Porto</td><td class="score">1–2</td><td>retrospective</td>
+<td>9%</td><td>16%</td><td class="hit">76%</td><td>8%</td><td>17%</td><td class="hit">75%</td>    <td class="better">0.034</td><td>0.035</td></tr>
+  <tr><td>Fri 2026-10-09 20:15</td><td class="text">Sporting de Braga – Sporting</td><td class="score">1–3</td><td>retrospective</td>
+<td>24%</td><td>28%</td><td class="hit">49%</td><td>32%</td><td>30%</td><td class="hit">39%</td>    <td class="better">0.160</td><td>0.238</td></tr>
+  <tr><td>Fri 2026-10-09 18:45</td><td class="text">Moreirense – Gil Vicente</td><td class="score">0–1</td><td>retrospective</td>
+<td>31%</td><td>30%</td><td class="hit">39%</td><td>28%</td><td>30%</td><td class="hit">42%</td>    <td>0.235</td><td>0.204</td></tr>
+  <tr><td>Sun 2026-09-20 20:30</td><td class="text">Porto – Benfica</td><td class="score">3–1</td><td>retrospective</td>
+<td class="hit">36%</td><td>27%</td><td>37%</td><td class="hit">34%</td><td>28%</td><td>38%</td>    <td class="better">0.276</td><td>0.289</td></tr>
+  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Santa Clara – Sporting de Braga</td><td class="score">0–0</td><td>retrospective</td>
+<td>25%</td><td class="hit">29%</td><td>46%</td><td>27%</td><td class="hit">29%</td><td>44%</td>    <td>0.136</td><td>0.132</td></tr>
+  <tr><td>Sun 2026-09-20 18:00</td><td class="text">Estoril Praia – Casa Pia</td><td class="score">1–2</td><td>retrospective</td>
+<td>55%</td><td>25%</td><td class="hit">20%</td><td>57%</td><td>24%</td><td class="hit">19%</td>    <td class="better">0.466</td><td>0.486</td></tr>
+  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Vitória de Guimarães – Moreirense</td><td class="score">1–1</td><td>retrospective</td>
+<td>64%</td><td class="hit">22%</td><td>14%</td><td>65%</td><td class="hit">21%</td><td>13%</td>    <td class="better">0.214</td><td>0.222</td></tr>
+  <tr><td>Sun 2026-09-20 15:30</td><td class="text">Estrela da Amadora – Académico de Viseu</td><td class="score">0–2</td><td>retrospective</td>
+<td>45%</td><td>28%</td><td class="hit">27%</td><td>44%</td><td>28%</td><td class="hit">28%</td>    <td>0.364</td><td>0.355</td></tr>
+  <tr><td>Sat 2026-09-19 20:30</td><td class="text">Sporting – Arouca</td><td class="score">2–2</td><td>retrospective</td>
+<td>81%</td><td class="hit">12%</td><td>6%</td><td>85%</td><td class="hit">10%</td><td>5%</td>    <td class="better">0.334</td><td>0.364</td></tr>
+  <tr><td>Sat 2026-09-19 18:00</td><td class="text">Alverca – Rio Ave</td><td class="score">1–0</td><td>retrospective</td>
+<td class="hit">49%</td><td>28%</td><td>23%</td><td class="hit">54%</td><td>25%</td><td>20%</td>    <td>0.154</td><td>0.125</td></tr>
+  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Nacional – Famalicão</td><td class="score">0–4</td><td>retrospective</td>
+<td>26%</td><td>29%</td><td class="hit">45%</td><td>23%</td><td>28%</td><td class="hit">50%</td>    <td>0.182</td><td>0.151</td></tr>
+  </tbody>
+</table></div>
+
+<details><summary>54 older row(s)</summary>
+<div class="card scroll"><table>
+  <thead><tr><th rowspan="2">Kick-off</th><th class="text" rowspan="2">Match</th><th rowspan="2">Score</th><th rowspan="2">Status</th><th colspan="3" class="group">Model</th><th colspan="3" class="group">Closing market</th><th colspan="2" class="group">RPS</th></tr>
+  <tr><th>1</th><th>X</th><th>2</th><th>1</th><th>X</th><th>2</th><th>model</th><th>market</th></tr></thead>
+  <tbody>
+  <tr><td>Sat 2026-09-19 15:30</td><td class="text">Gil Vicente – Marítimo</td><td class="score">1–1</td><td>retrospective</td>
+<td>42%</td><td class="hit">29%</td><td>29%</td><td>48%</td><td class="hit">28%</td><td>23%</td>    <td class="better">0.129</td><td>0.144</td></tr>
+  <tr><td>Mon 2026-09-14 20:45</td><td class="text">Sporting de Braga – Estoril Praia</td><td class="score">1–0</td><td>retrospective</td>
+<td class="hit">67%</td><td>20%</td><td>13%</td><td class="hit">70%</td><td>19%</td><td>11%</td>    <td>0.063</td><td>0.050</td></tr>
+  <tr><td>Mon 2026-09-14 20:15</td><td class="text">Moreirense – Marítimo</td><td class="score">3–1</td><td>retrospective</td>
+<td class="hit">39%</td><td>29%</td><td>32%</td><td class="hit">34%</td><td>30%</td><td>36%</td>    <td class="better">0.238</td><td>0.281</td></tr>
+  <tr><td>Mon 2026-09-14 18:45</td><td class="text">Rio Ave – Estrela da Amadora</td><td class="score">3–3</td><td>retrospective</td>
+<td>34%</td><td class="hit">28%</td><td>37%</td><td>33%</td><td class="hit">29%</td><td>38%</td>    <td>0.128</td><td>0.128</td></tr>
+  <tr><td>Sun 2026-09-13 20:30</td><td class="text">Famalicão – Sporting</td><td class="score">1–1</td><td>retrospective</td>
+<td>16%</td><td class="hit">21%</td><td>63%</td><td>15%</td><td class="hit">22%</td><td>63%</td>    <td class="better">0.212</td><td>0.212</td></tr>
+  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Benfica – Gil Vicente</td><td class="score">3–1</td><td>retrospective</td>
+<td class="hit">87%</td><td>10%</td><td>4%</td><td class="hit">88%</td><td>9%</td><td>4%</td>    <td>0.009</td><td>0.008</td></tr>
+  <tr><td>Sun 2026-09-13 18:00</td><td class="text">Arouca – Santa Clara</td><td class="score">1–2</td><td>retrospective</td>
+<td>36%</td><td>30%</td><td class="hit">34%</td><td>37%</td><td>30%</td><td class="hit">33%</td>    <td class="better">0.284</td><td>0.296</td></tr>
+  <tr><td>Sat 2026-09-12 20:30</td><td class="text">Académico de Viseu – Vitória de Guimarães</td><td class="score">2–1</td><td>retrospective</td>
+<td class="hit">25%</td><td>27%</td><td>47%</td><td class="hit">25%</td><td>28%</td><td>46%</td>    <td>0.389</td><td>0.387</td></tr>
+  <tr><td>Sat 2026-09-12 18:00</td><td class="text">Casa Pia – Porto</td><td class="score">1–4</td><td>retrospective</td>
+<td>7%</td><td>13%</td><td class="hit">80%</td><td>5%</td><td>12%</td><td class="hit">84%</td>    <td>0.022</td><td>0.015</td></tr>
+  <tr><td>Sat 2026-09-12 15:30</td><td class="text">Nacional – Alverca</td><td class="score">1–3</td><td>retrospective</td>
+<td>34%</td><td>30%</td><td class="hit">36%</td><td>34%</td><td>28%</td><td class="hit">38%</td>    <td>0.264</td><td>0.248</td></tr>
+  <tr><td>Thu 2026-09-10 20:15</td><td class="text">Estrela da Amadora – Sporting de Braga</td><td class="score">2–1</td><td>retrospective</td>
+<td class="hit">19%</td><td>25%</td><td>56%</td><td class="hit">15%</td><td>23%</td><td>62%</td>    <td class="better">0.480</td><td>0.559</td></tr>
+  <tr><td>Wed 2026-09-09 20:45</td><td class="text">Moreirense – Benfica</td><td class="score">0–4</td><td>retrospective</td>
+<td>5%</td><td>11%</td><td class="hit">84%</td><td>4%</td><td>9%</td><td class="hit">88%</td>    <td>0.013</td><td>0.008</td></tr>
+  <tr><td>Mon 2026-09-07 20:15</td><td class="text">Estoril Praia – Arouca</td><td class="score">0–0</td><td>retrospective</td>
+<td>42%</td><td class="hit">27%</td><td>31%</td><td>39%</td><td class="hit">27%</td><td>34%</td>    <td>0.136</td><td>0.134</td></tr>
+  <tr><td>Sun 2026-09-06 20:30</td><td class="text">Gil Vicente – Académico de Viseu</td><td class="score">0–1</td><td>retrospective</td>
+<td>51%</td><td>27%</td><td class="hit">23%</td><td>39%</td><td>31%</td><td class="hit">29%</td>    <td>0.426</td><td>0.328</td></tr>
+  <tr><td>Sun 2026-09-06 18:00</td><td class="text">Vitória de Guimarães – Casa Pia</td><td class="score">0–0</td><td>retrospective</td>
+<td>64%</td><td class="hit">22%</td><td>13%</td><td>67%</td><td class="hit">21%</td><td>12%</td>    <td class="better">0.215</td><td>0.229</td></tr>
+  <tr><td>Sun 2026-09-06 15:30</td><td class="text">Santa Clara – Rio Ave</td><td class="score">4–0</td><td>retrospective</td>
+<td class="hit">55%</td><td>26%</td><td>19%</td><td class="hit">49%</td><td>29%</td><td>22%</td>    <td class="better">0.122</td><td>0.154</td></tr>
+  <tr><td>Sat 2026-09-05 20:30</td><td class="text">Sporting – Nacional</td><td class="score">2–0</td><td>retrospective</td>
+<td class="hit">81%</td><td>12%</td><td>6%</td><td class="hit">89%</td><td>8%</td><td>3%</td>    <td>0.019</td><td>0.007</td></tr>
+  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Marítimo – Benfica</td><td class="score">0–3</td><td>retrospective</td>
+<td>6%</td><td>13%</td><td class="hit">81%</td><td>5%</td><td>11%</td><td class="hit">84%</td>    <td>0.020</td><td>0.015</td></tr>
+  <tr><td>Sat 2026-09-05 18:00</td><td class="text">Alverca – Sporting de Braga</td><td class="score">1–2</td><td>retrospective</td>
+<td>21%</td><td>27%</td><td class="hit">53%</td><td>19%</td><td>26%</td><td class="hit">55%</td>    <td>0.134</td><td>0.117</td></tr>
+  <tr><td>Sat 2026-09-05 15:30</td><td class="text">Estrela da Amadora – Famalicão</td><td class="score">2–2</td><td>retrospective</td>
+<td>27%</td><td class="hit">29%</td><td>44%</td><td>32%</td><td class="hit">29%</td><td>39%</td>    <td>0.134</td><td>0.126</td></tr>
+  <tr><td>Fri 2026-09-04 20:15</td><td class="text">Porto – Moreirense</td><td class="score">2–1</td><td>retrospective</td>
+<td class="hit">84%</td><td>11%</td><td>5%</td><td class="hit">88%</td><td>9%</td><td>3%</td>    <td>0.014</td><td>0.007</td></tr>
+  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Sporting de Braga – Vitória de Guimarães</td><td class="score">1–0</td><td>retrospective</td>
+<td class="hit">56%</td><td>25%</td><td>19%</td><td class="hit">53%</td><td>27%</td><td>20%</td>    <td class="better">0.117</td><td>0.130</td></tr>
+  <tr><td>Mon 2026-08-31 20:15</td><td class="text">Benfica – Estoril Praia</td><td class="score">2–1</td><td>retrospective</td>
+<td class="hit">84%</td><td>11%</td><td>5%</td><td class="hit">90%</td><td>7%</td><td>3%</td>    <td>0.014</td><td>0.005</td></tr>
+  <tr><td>Sun 2026-08-30 20:30</td><td class="text">Famalicão – Gil Vicente</td><td class="score">0–0</td><td>retrospective</td>
+<td>44%</td><td class="hit">29%</td><td>27%</td><td>52%</td><td class="hit">28%</td><td>20%</td>    <td class="better">0.134</td><td>0.155</td></tr>
+  <tr><td>Sun 2026-08-30 18:00</td><td class="text">Casa Pia – Moreirense</td><td class="score">0–1</td><td>retrospective</td>
+<td>40%</td><td>30%</td><td class="hit">30%</td><td>36%</td><td>30%</td><td class="hit">33%</td>    <td>0.324</td><td>0.289</td></tr>
+  <tr><td>Sun 2026-08-30 15:30</td><td class="text">Nacional – Estrela da Amadora</td><td class="score">2–3</td><td>retrospective</td>
+<td>41%</td><td>28%</td><td class="hit">31%</td><td>40%</td><td>29%</td><td class="hit">31%</td>    <td>0.324</td><td>0.320</td></tr>
+  <tr><td>Sat 2026-08-29 18:00</td><td class="text">Académico de Viseu – Porto</td><td class="score">0–3</td><td>retrospective</td>
+<td>10%</td><td>17%</td><td class="hit">73%</td><td>8%</td><td>17%</td><td class="hit">74%</td>    <td>0.041</td><td>0.037</td></tr>
+  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Arouca – Marítimo</td><td class="score">2–1</td><td>retrospective</td>
+<td class="hit">44%</td><td>29%</td><td>27%</td><td class="hit">46%</td><td>28%</td><td>26%</td>    <td>0.196</td><td>0.179</td></tr>
+  <tr><td>Sat 2026-08-29 15:30</td><td class="text">Alverca – Santa Clara</td><td class="score">1–1</td><td>retrospective</td>
+<td>35%</td><td class="hit">30%</td><td>35%</td><td>40%</td><td class="hit">30%</td><td>30%</td>    <td class="better">0.123</td><td>0.126</td></tr>
+  <tr><td>Fri 2026-08-28 20:15</td><td class="text">Rio Ave – Sporting</td><td class="score">0–4</td><td>retrospective</td>
+<td>11%</td><td>18%</td><td class="hit">71%</td><td>10%</td><td>16%</td><td class="hit">74%</td>    <td>0.047</td><td>0.039</td></tr>
+  <tr><td>Mon 2026-08-24 20:15</td><td class="text">Gil Vicente – Casa Pia</td><td class="score">2–0</td><td>retrospective</td>
+<td class="hit">57%</td><td>26%</td><td>17%</td><td class="hit">55%</td><td>27%</td><td>18%</td>    <td class="better">0.108</td><td>0.119</td></tr>
+  <tr><td>Sun 2026-08-23 20:30</td><td class="text">Porto – Arouca</td><td class="score">2–0</td><td>retrospective</td>
+<td class="hit">81%</td><td>14%</td><td>6%</td><td class="hit">77%</td><td>16%</td><td>8%</td>    <td class="better">0.021</td><td>0.031</td></tr>
+  <tr><td>Sun 2026-08-23 18:00</td><td class="text">Santa Clara – Famalicão</td><td class="score">1–0</td><td>retrospective</td>
+<td class="hit">36%</td><td>31%</td><td>33%</td><td class="hit">33%</td><td>31%</td><td>35%</td>    <td class="better">0.263</td><td>0.285</td></tr>
+  <tr><td>Sun 2026-08-23 15:30</td><td class="text">Vitória de Guimarães – Nacional</td><td class="score">1–0</td><td>retrospective</td>
+<td class="hit">57%</td><td>24%</td><td>19%</td><td class="hit">61%</td><td>23%</td><td>16%</td>    <td>0.110</td><td>0.091</td></tr>
+  <tr><td>Sat 2026-08-22 20:30</td><td class="text">Sporting – Alverca</td><td class="score">3–1</td><td>retrospective</td>
+<td class="hit">81%</td><td>12%</td><td>6%</td><td class="hit">80%</td><td>13%</td><td>7%</td>    <td class="better">0.020</td><td>0.022</td></tr>
+  <tr><td>Sat 2026-08-22 18:00</td><td class="text">Estoril Praia – Rio Ave</td><td class="score">0–2</td><td>retrospective</td>
+<td>51%</td><td>27%</td><td class="hit">22%</td><td>49%</td><td>26%</td><td class="hit">25%</td>    <td>0.430</td><td>0.400</td></tr>
+  <tr><td>Sat 2026-08-22 15:30</td><td class="text">Marítimo – Académico de Viseu</td><td class="score">2–2</td><td>retrospective</td>
+<td>42%</td><td class="hit">31%</td><td>27%</td><td>47%</td><td class="hit">29%</td><td>24%</td>    <td class="better">0.125</td><td>0.141</td></tr>
+  <tr><td>Mon 2026-08-17 20:15</td><td class="text">Casa Pia – Benfica</td><td class="score">0–7</td><td>retrospective</td>
+<td>6%</td><td>13%</td><td class="hit">81%</td><td>5%</td><td>11%</td><td class="hit">84%</td>    <td>0.021</td><td>0.015</td></tr>
+  <tr><td>Sun 2026-08-16 20:30</td><td class="text">Famalicão – Marítimo</td><td class="score">1–2</td><td>retrospective</td>
+<td>54%</td><td>26%</td><td class="hit">20%</td><td>56%</td><td>26%</td><td class="hit">18%</td>    <td class="better">0.460</td><td>0.490</td></tr>
+  <tr><td>Sun 2026-08-16 18:00</td><td class="text">Arouca – Moreirense</td><td class="score">4–0</td><td>retrospective</td>
+<td class="hit">46%</td><td>28%</td><td>26%</td><td class="hit">54%</td><td>26%</td><td>20%</td>    <td>0.182</td><td>0.128</td></tr>
+  <tr><td>Sun 2026-08-16 15:30</td><td class="text">Nacional – Estoril Praia</td><td class="score">2–0</td><td>retrospective</td>
+<td class="hit">36%</td><td>28%</td><td>37%</td><td class="hit">32%</td><td>28%</td><td>40%</td>    <td class="better">0.274</td><td>0.307</td></tr>
+  <tr><td>Sat 2026-08-15 20:30</td><td class="text">Rio Ave – Porto</td><td class="score">0–2</td><td>retrospective</td>
+<td>11%</td><td>19%</td><td class="hit">69%</td><td>10%</td><td>18%</td><td class="hit">72%</td>    <td>0.054</td><td>0.043</td></tr>
+  <tr><td>Sat 2026-08-15 18:00</td><td class="text">Académico de Viseu – Santa Clara</td><td class="score">0–1</td><td>retrospective</td>
+<td>34%</td><td>32%</td><td class="hit">34%</td><td>35%</td><td>31%</td><td class="hit">35%</td>    <td>0.277</td><td>0.273</td></tr>
+  <tr><td>Sat 2026-08-15 15:30</td><td class="text">Alverca – Estrela da Amadora</td><td class="score">2–2</td><td>retrospective</td>
+<td>39%</td><td class="hit">30%</td><td>31%</td><td>45%</td><td class="hit">28%</td><td>26%</td>    <td class="better">0.125</td><td>0.137</td></tr>
+  <tr><td>Fri 2026-08-14 20:15</td><td class="text">Sporting – Vitória de Guimarães</td><td class="score">3–2</td><td>retrospective</td>
+<td class="hit">80%</td><td>13%</td><td>7%</td><td class="hit">70%</td><td>18%</td><td>12%</td>    <td class="better">0.022</td><td>0.051</td></tr>
+  <tr><td>Mon 2026-08-10 20:15</td><td class="text">Santa Clara – Nacional</td><td class="score">2–2</td><td>retrospective</td>
+<td>51%</td><td class="hit">27%</td><td>21%</td><td>51%</td><td class="hit">29%</td><td>20%</td>    <td>0.155</td><td>0.149</td></tr>
+  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Moreirense – Sporting de Braga</td><td class="score">2–2</td><td>retrospective</td>
+<td>19%</td><td class="hit">25%</td><td>56%</td><td>14%</td><td class="hit">23%</td><td>63%</td>    <td class="better">0.177</td><td>0.208</td></tr>
+  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Gil Vicente – Rio Ave</td><td class="score">1–0</td><td>retrospective</td>
+<td class="hit">49%</td><td>27%</td><td>24%</td><td class="hit">45%</td><td>28%</td><td>26%</td>    <td class="better">0.158</td><td>0.184</td></tr>
+  <tr><td>Sun 2026-08-09 20:30</td><td class="text">Benfica – Académico de Viseu</td><td class="score">2–2</td><td>retrospective</td>
+<td>89%</td><td class="hit">8%</td><td>3%</td><td>89%</td><td class="hit">8%</td><td>3%</td>    <td class="better">0.399</td><td>0.400</td></tr>
+  <tr><td>Sun 2026-08-09 18:00</td><td class="text">Porto – Alverca</td><td class="score">2–0</td><td>retrospective</td>
+<td class="hit">83%</td><td>12%</td><td>5%</td><td class="hit">82%</td><td>13%</td><td>5%</td>    <td class="better">0.015</td><td>0.018</td></tr>
+  <tr><td>Sat 2026-08-08 20:30</td><td class="text">Estrela da Amadora – Sporting</td><td class="score">2–2</td><td>retrospective</td>
+<td>7%</td><td class="hit">13%</td><td>80%</td><td>9%</td><td class="hit">17%</td><td>74%</td>    <td>0.322</td><td>0.276</td></tr>
+  <tr><td>Sat 2026-08-08 18:00</td><td class="text">Vitória de Guimarães – Arouca</td><td class="score">0–1</td><td>retrospective</td>
+<td>55%</td><td>25%</td><td class="hit">20%</td><td>50%</td><td>26%</td><td class="hit">24%</td>    <td>0.466</td><td>0.415</td></tr>
+  <tr><td>Sat 2026-08-08 15:30</td><td class="text">Marítimo – Casa Pia</td><td class="score">1–0</td><td>retrospective</td>
+<td class="hit">36%</td><td>32%</td><td>32%</td><td class="hit">49%</td><td>29%</td><td>23%</td>    <td>0.259</td><td>0.157</td></tr>
+  <tr><td>Fri 2026-08-07 20:15</td><td class="text">Estoril Praia – Famalicão</td><td class="score">1–1</td><td>retrospective</td>
+<td>27%</td><td class="hit">28%</td><td>46%</td><td>32%</td><td class="hit">29%</td><td>39%</td>    <td>0.140</td><td>0.129</td></tr>
+  </tbody>
+</table></div>
+
+</details>
+
+</section>
+
+<section class="block" id="trust">
+<div class="head">
+  <p class="kicker">Said vs happened</p>
+  <h2>What we said and what happened</h2>
+<p>If the probabilities on this page are right, adding them up says how often each thing should happen, and chance alone still moves the real count around that number. The shaded band is where the count lands 9 times out of 10 when the probabilities are right: a result outside it is a warning sign, one inside it is not proof. These are the phase4-v2 forecasts shown above, one per match; the comparison with every model and the baselines is in the <a href="#ledger">live record</a>.</p>
+</div>
+<h3>Prospective · 2 played match(es)</h3>
+<p class="note">Prospective: frozen before kick-off, with data up to 24 h before it.</p>
+<div class="card">
+  <h3>Counts against their 90% band</h3>
+  <div class="legend"><span><i class="kb"></i>90% band if the probabilities are right</span><span><i class="ke"></i>what we said (expected)</span><span><i class="k1"></i>what happened (filled when outside the band)</span></div>
+  <svg class="chart" viewBox="0 0 720 290" role="img" aria-label="share of the matches"><line class="grid" x1="200.0" x2="200.0" y1="8" y2="246"/><text class="tick" x="200.0" y="262" text-anchor="middle">0%</text><line class="grid" x1="299.2" x2="299.2" y1="8" y2="246"/><text class="tick" x="299.2" y="262" text-anchor="middle">20%</text><line class="grid" x1="398.4" x2="398.4" y1="8" y2="246"/><text class="tick" x="398.4" y="262" text-anchor="middle">40%</text><line class="grid" x1="497.6" x2="497.6" y1="8" y2="246"/><text class="tick" x="497.6" y="262" text-anchor="middle">60%</text><line class="grid" x1="596.8" x2="596.8" y1="8" y2="246"/><text class="tick" x="596.8" y="262" text-anchor="middle">80%</text><line class="grid" x1="696.0" x2="696.0" y1="8" y2="246"/><text class="tick" x="696.0" y="262" text-anchor="middle">100%</text><g><title>Home wins: we said 1.0 of 2, 90% band 0 to 2, happened 0</title><rect class="hit" x="0" y="8.0" width="720" height="34"/><text class="label" x="188" y="29.0" text-anchor="end">Home wins</text><rect class="band" x="200.0" y="18.0" width="496.0" height="14" rx="4"/><line class="expected" x1="445.6" x2="445.6" y1="14.0" y2="36.0"/><circle class="dot" cx="200.0" cy="25.0" r="5"/></g><g><title>Draws: we said 0.3 of 2, 90% band 0 to 1, happened 0</title><rect class="hit" x="0" y="42.0" width="720" height="34"/><text class="label" x="188" y="63.0" text-anchor="end">Draws</text><rect class="band" x="200.0" y="52.0" width="248.0" height="14" rx="4"/><line class="expected" x1="265.8" x2="265.8" y1="48.0" y2="70.0"/><circle class="dot" cx="200.0" cy="59.0" r="5"/></g><g><title>Away wins: we said 0.7 of 2, 90% band 0 to 1, happened 2</title><rect class="hit" x="0" y="76.0" width="720" height="34"/><text class="label" x="188" y="97.0" text-anchor="end">Away wins</text><rect class="band" x="200.0" y="86.0" width="248.0" height="14" rx="4"/><line class="expected" x1="384.6" x2="384.6" y1="82.0" y2="104.0"/><circle class="dot solid" cx="696.0" cy="93.0" r="5"/></g><g><title>Over 2.5 goals: we said 1.2 of 2, 90% band 0 to 2, happened 2</title><rect class="hit" x="0" y="110.0" width="720" height="34"/><text class="label" x="188" y="131.0" text-anchor="end">Over 2.5 goals</text><rect class="band" x="200.0" y="120.0" width="496.0" height="14" rx="4"/><line class="expected" x1="492.7" x2="492.7" y1="116.0" y2="138.0"/><circle class="dot" cx="696.0" cy="127.0" r="5"/></g><g><title>Both teams scored: we said 1.0 of 2, 90% band 0 to 2, happened 2</title><rect class="hit" x="0" y="144.0" width="720" height="34"/><text class="label" x="188" y="165.0" text-anchor="end">Both teams scored</text><rect class="band" x="200.0" y="154.0" width="496.0" height="14" rx="4"/><line class="expected" x1="451.9" x2="451.9" y1="150.0" y2="172.0"/><circle class="dot" cx="696.0" cy="161.0" r="5"/></g><g><title>Favourite won: we said 1.6 of 2, 90% band 1 to 2, happened 1</title><rect class="hit" x="0" y="178.0" width="720" height="34"/><text class="label" x="188" y="199.0" text-anchor="end">Favourite won</text><rect class="band" x="448.0" y="188.0" width="248.0" height="14" rx="4"/><line class="expected" x1="597.9" x2="597.9" y1="184.0" y2="206.0"/><circle class="dot" cx="448.0" cy="195.0" r="5"/></g><g><title>Favourite at 65% or more: we said 1.6 of 2, 90% band 1 to 2, happened 1</title><rect class="hit" x="0" y="212.0" width="720" height="34"/><text class="label" x="188" y="233.0" text-anchor="end">Favourite at 65% or more</text><rect class="band" x="448.0" y="222.0" width="248.0" height="14" rx="4"/><line class="expected" x1="597.9" x2="597.9" y1="218.0" y2="240.0"/><circle class="dot" cx="448.0" cy="229.0" r="5"/></g><text class="axis-label" x="448.0" y="284" text-anchor="middle">share of the matches</text></svg>
+  <div class="scroll"><table>
+    <caption>Counts over the played matches. The closing market's expected count is on the same matches, where every one has odds; the data has no odds for both teams to score.</caption>
+    <thead><tr><th class="text">Event</th><th>Matches</th><th>We said</th><th>90% band</th><th>Happened</th><th>Market said</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Home wins</td><td>2</td><td>1.0</td><td>0 to 2</td><td>0</td><td>0.9</td></tr>
+    <tr><td class="text">Draws</td><td>2</td><td>0.3</td><td>0 to 1</td><td>0</td><td>0.3</td></tr>
+    <tr><td class="text">Away wins</td><td>2</td><td>0.7</td><td>0 to 1</td><td class="out">2 ▲</td><td>0.8</td></tr>
+    <tr><td class="text">Over 2.5 goals</td><td>2</td><td>1.2</td><td>0 to 2</td><td>2</td><td>1.3</td></tr>
+    <tr><td class="text">Both teams scored</td><td>2</td><td>1.0</td><td>0 to 2</td><td>2</td><td>—</td></tr>
+    <tr><td class="text">Favourite won</td><td>2</td><td>1.6</td><td>1 to 2</td><td>1</td><td>1.5</td></tr>
+    <tr><td class="text">Favourite at 65% or more</td><td>2</td><td>1.6</td><td>1 to 2</td><td>1</td><td>1.5</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<h3>Reliability diagrams</h3>
+<p class="note">Forecasts grouped in five bins of 20 points. A point on the dashed diagonal means things with that probability happened exactly that often; the shaded bar is the 90% band chance allows in that bin, so a point outside its bar is the warning sign. The three 1X2 outcomes of a match are pooled, which makes the band a little too narrow.</p>
+<div class="legend"><span><i class="k4"></i>phase4-v2</span><span><i class="k2"></i>closing market</span><span><i class="kb"></i>90% band</span><span><i class="kd"></i>perfect calibration</span></div>
+<div class="grid2">
+<div class="card">
+  <h3>1X2, every outcome</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration, 1X2, every outcome, prospective"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><line class="band" x1="78.3" x2="78.3" y1="236.0" y2="179.5"/><line class="band" x1="217.1" x2="217.1" y1="236.0" y2="10.0"/><line class="band" x1="257.5" x2="257.5" y1="236.0" y2="10.0"/><polyline class="line s4" points="78.3,179.5 217.1,10.0 257.5,236.0"/><g><title>phase4-v2: forecast 10%, observed 25%, 90% band 0% to 25%, 4 probabilities</title><circle class="hit" cx="78.3" cy="179.5" r="10"/><circle class="marker s4" cx="78.3" cy="179.5" r="4"/></g><g><title>phase4-v2: forecast 71%, observed 100%, 90% band 0% to 100%, 1 probabilities</title><circle class="hit" cx="217.1" cy="10.0" r="10"/><circle class="marker s4" cx="217.1" cy="10.0" r="4"/></g><g><title>phase4-v2: forecast 89%, observed 0%, 90% band 0% to 100%, 1 probabilities</title><circle class="hit" cx="257.5" cy="236.0" r="10"/><circle class="marker s4" cx="257.5" cy="236.0" r="4"/></g><polyline class="line s2" points="84.4,179.5 225.2,123.0"/><g><title>closing market: forecast 13%, observed 25%, 90% band 0% to 50%, 4 probabilities</title><circle class="hit" cx="84.4" cy="179.5" r="10"/><circle class="marker s2" cx="84.4" cy="179.5" r="4"/></g><g><title>closing market: forecast 75%, observed 50%, 90% band 0% to 100%, 2 probabilities</title><circle class="hit" cx="225.2" cy="123.0" r="10"/><circle class="marker s2" cx="225.2" cy="123.0" r="4"/></g></svg>
+</div>
+<div class="card">
+  <h3>Over 2.5 goals</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration, Over 2.5 goals, prospective"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><line class="band" x1="174.7" x2="174.7" y1="236.0" y2="10.0"/><line class="band" x1="204.0" x2="204.0" y1="236.0" y2="10.0"/><polyline class="line s4" points="174.7,10.0 204.0,10.0"/><g><title>phase4-v2: forecast 53%, observed 100%, 90% band 0% to 100%, 1 probabilities</title><circle class="hit" cx="174.7" cy="10.0" r="10"/><circle class="marker s4" cx="174.7" cy="10.0" r="4"/></g><g><title>phase4-v2: forecast 65%, observed 100%, 90% band 0% to 100%, 1 probabilities</title><circle class="hit" cx="204.0" cy="10.0" r="10"/><circle class="marker s4" cx="204.0" cy="10.0" r="4"/></g><polyline class="line s2" points="188.4,10.0 208.1,10.0"/><g><title>closing market: forecast 59%, observed 100%, 90% band 0% to 100%, 1 probabilities</title><circle class="hit" cx="188.4" cy="10.0" r="10"/><circle class="marker s2" cx="188.4" cy="10.0" r="4"/></g><g><title>closing market: forecast 67%, observed 100%, 90% band 0% to 100%, 1 probabilities</title><circle class="hit" cx="208.1" cy="10.0" r="10"/><circle class="marker s2" cx="208.1" cy="10.0" r="4"/></g></svg>
+</div>
+<div class="card">
+  <h3>Both teams score</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration, Both teams score, prospective"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><line class="band" x1="170.8" x2="170.8" y1="236.0" y2="10.0"/><polyline class="line s4" points="170.8,10.0"/><g><title>phase4-v2: forecast 51%, observed 100%, 90% band 0% to 100%, 2 probabilities</title><circle class="hit" cx="170.8" cy="10.0" r="10"/><circle class="marker s4" cx="170.8" cy="10.0" r="4"/></g></svg>
+</div>
+</div>
+<div class="card">
+  <h3>Model against the market, round by round (1X2)</h3>
+  <p class="note">Mean RPS of phase4-v2 minus that of the no-vig closing market in each round (a Tuesday-to-Monday week). Below zero the model was closer to what happened. The model was better in <strong>0 of 1</strong> rounds; one round is a handful of matches, so the overall verdict is the live record's, not this count.</p>
+  <div class="legend"><span><i class="kg"></i>model better</span><span><i class="kd"></i>market better</span></div>
+  <svg class="chart" viewBox="0 0 720 240" role="img" aria-label="mean RPS minus closing RPS, by round (below zero: model better)"><line class="grid" x1="64" x2="704" y1="180.7" y2="180.7"/><text class="tick" x="56" y="184.7" text-anchor="end">0</text><line class="grid" x1="64" x2="704" y1="73.9" y2="73.9"/><text class="tick" x="56" y="77.9" text-anchor="end">+0.05</text><g><title>week of 2026-10-20: 2 matches, model 0.4564, market 0.3846, difference +0.0718</title><rect class="hit" x="64.0" y="12" width="48.0" height="184"/><rect class="bar worse" x="71.2" y="27.3" width="33.6" height="153.3" rx="2"/></g><text class="tick" x="88.0" y="212" text-anchor="middle">20 Oct</text><line class="zero" x1="64" x2="704" y1="180.7" y2="180.7"/><text class="axis-label" x="384.0" y="234" text-anchor="middle">mean RPS minus closing RPS, by round (below zero: model better)</text></svg>
+  <details><summary>Rounds as a table</summary>
+  <div class="scroll"><table>
+    <thead><tr><th class="text">Week of</th><th>Matches</th><th>Model RPS</th><th>Market RPS</th><th>Δ</th></tr></thead>
+    <tbody>
+    <tr><td class="text">2026-10-20</td><td>2</td><td>0.4564</td><td>0.3846</td><td>+0.0718</td></tr>
+    </tbody>
+  </table></div>
+  </details>
+</div>
+<details><summary>Retrospective sample (72 matches): pipeline check, not evidence</summary><h3>Retrospective · 72 played match(es)</h3>
+<p class="note">Retrospective: frozen after the match with the same 24 h cut-off. Useful to check the pipeline, never evidence.</p>
+<div class="card">
+  <h3>Counts against their 90% band</h3>
+  <div class="legend"><span><i class="kb"></i>90% band if the probabilities are right</span><span><i class="ke"></i>what we said (expected)</span><span><i class="k1"></i>what happened (filled when outside the band)</span></div>
+  <svg class="chart" viewBox="0 0 720 358" role="img" aria-label="share of the matches"><line class="grid" x1="200.0" x2="200.0" y1="8" y2="314"/><text class="tick" x="200.0" y="330" text-anchor="middle">0%</text><line class="grid" x1="299.2" x2="299.2" y1="8" y2="314"/><text class="tick" x="299.2" y="330" text-anchor="middle">20%</text><line class="grid" x1="398.4" x2="398.4" y1="8" y2="314"/><text class="tick" x="398.4" y="330" text-anchor="middle">40%</text><line class="grid" x1="497.6" x2="497.6" y1="8" y2="314"/><text class="tick" x="497.6" y="330" text-anchor="middle">60%</text><line class="grid" x1="596.8" x2="596.8" y1="8" y2="314"/><text class="tick" x="596.8" y="330" text-anchor="middle">80%</text><line class="grid" x1="696.0" x2="696.0" y1="8" y2="314"/><text class="tick" x="696.0" y="330" text-anchor="middle">100%</text><g><title>Home wins: we said 31.2 of 72, 90% band 25 to 37, happened 28</title><rect class="hit" x="0" y="8.0" width="720" height="34"/><text class="label" x="188" y="29.0" text-anchor="end">Home wins</text><rect class="band" x="372.2" y="18.0" width="82.7" height="14" rx="4"/><line class="expected" x1="414.9" x2="414.9" y1="14.0" y2="36.0"/><circle class="dot" cx="392.9" cy="25.0" r="5"/></g><g><title>Draws: we said 16.8 of 72, 90% band 11 to 23, happened 18</title><rect class="hit" x="0" y="42.0" width="720" height="34"/><text class="label" x="188" y="63.0" text-anchor="end">Draws</text><rect class="band" x="275.8" y="52.0" width="82.7" height="14" rx="4"/><line class="expected" x1="315.9" x2="315.9" y1="48.0" y2="70.0"/><circle class="dot" cx="324.0" cy="59.0" r="5"/></g><g><title>Away wins: we said 24.0 of 72, 90% band 18 to 30, happened 26</title><rect class="hit" x="0" y="76.0" width="720" height="34"/><text class="label" x="188" y="97.0" text-anchor="end">Away wins</text><rect class="band" x="324.0" y="86.0" width="82.7" height="14" rx="4"/><line class="expected" x1="365.2" x2="365.2" y1="82.0" y2="104.0"/><circle class="dot" cx="379.1" cy="93.0" r="5"/></g><g><title>Over 2.5 goals: we said 36.4 of 72, 90% band 30 to 43, happened 40</title><rect class="hit" x="0" y="110.0" width="720" height="34"/><text class="label" x="188" y="131.0" text-anchor="end">Over 2.5 goals</text><rect class="band" x="406.7" y="120.0" width="89.6" height="14" rx="4"/><line class="expected" x1="450.7" x2="450.7" y1="116.0" y2="138.0"/><circle class="dot" cx="475.6" cy="127.0" r="5"/></g><g><title>Both teams scored: we said 35.4 of 72, 90% band 28 to 42, happened 37</title><rect class="hit" x="0" y="144.0" width="720" height="34"/><text class="label" x="188" y="165.0" text-anchor="end">Both teams scored</text><rect class="band" x="392.9" y="154.0" width="96.4" height="14" rx="4"/><line class="expected" x1="443.6" x2="443.6" y1="150.0" y2="172.0"/><circle class="dot" cx="454.9" cy="161.0" r="5"/></g><g><title>Favourite won: we said 40.7 of 72, 90% band 34 to 47, happened 38</title><rect class="hit" x="0" y="178.0" width="720" height="34"/><text class="label" x="188" y="199.0" text-anchor="end">Favourite won</text><rect class="band" x="434.2" y="188.0" width="89.6" height="14" rx="4"/><line class="expected" x1="480.2" x2="480.2" y1="184.0" y2="206.0"/><circle class="dot" cx="461.8" cy="195.0" r="5"/></g><g><title>Favourite below 50%: we said 13.3 of 32, 90% band 9 to 18, happened 14</title><rect class="hit" x="0" y="212.0" width="720" height="34"/><text class="label" x="188" y="233.0" text-anchor="end">Favourite below 50%</text><rect class="band" x="339.5" y="222.0" width="139.5" height="14" rx="4"/><line class="expected" x1="406.4" x2="406.4" y1="218.0" y2="240.0"/><circle class="dot" cx="417.0" cy="229.0" r="5"/></g><g><title>Favourite at 50% to 65%: we said 10.6 of 19, 90% band 7 to 14, happened 6</title><rect class="hit" x="0" y="246.0" width="720" height="34"/><text class="label" x="188" y="267.0" text-anchor="end">Favourite at 50% to 65%</text><rect class="band" x="382.7" y="256.0" width="182.7" height="14" rx="4"/><line class="expected" x1="476.7" x2="476.7" y1="252.0" y2="274.0"/><circle class="dot solid" cx="356.6" cy="263.0" r="5"/></g><g><title>Favourite at 65% or more: we said 16.8 of 21, 90% band 14 to 20, happened 18</title><rect class="hit" x="0" y="280.0" width="720" height="34"/><text class="label" x="188" y="301.0" text-anchor="end">Favourite at 65% or more</text><rect class="band" x="530.7" y="290.0" width="141.7" height="14" rx="4"/><line class="expected" x1="595.8" x2="595.8" y1="286.0" y2="308.0"/><circle class="dot" cx="625.1" cy="297.0" r="5"/></g><text class="axis-label" x="448.0" y="352" text-anchor="middle">share of the matches</text></svg>
+  <div class="scroll"><table>
+    <caption>Counts over the played matches. The closing market's expected count is on the same matches, where every one has odds; the data has no odds for both teams to score.</caption>
+    <thead><tr><th class="text">Event</th><th>Matches</th><th>We said</th><th>90% band</th><th>Happened</th><th>Market said</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Home wins</td><td>72</td><td>31.2</td><td>25 to 37</td><td>28</td><td>31.5</td></tr>
+    <tr><td class="text">Draws</td><td>72</td><td>16.8</td><td>11 to 23</td><td>18</td><td>16.7</td></tr>
+    <tr><td class="text">Away wins</td><td>72</td><td>24.0</td><td>18 to 30</td><td>26</td><td>23.8</td></tr>
+    <tr><td class="text">Over 2.5 goals</td><td>72</td><td>36.4</td><td>30 to 43</td><td>40</td><td>36.1</td></tr>
+    <tr><td class="text">Both teams scored</td><td>72</td><td>35.4</td><td>28 to 42</td><td>37</td><td>—</td></tr>
+    <tr><td class="text">Favourite won</td><td>72</td><td>40.7</td><td>34 to 47</td><td>38</td><td>41.1</td></tr>
+    <tr><td class="text">Favourite below 50%</td><td>32</td><td>13.3</td><td>9 to 18</td><td>14</td><td>13.7</td></tr>
+    <tr><td class="text">Favourite at 50% to 65%</td><td>19</td><td>10.6</td><td>7 to 14</td><td class="out">6 ▼</td><td>10.5</td></tr>
+    <tr><td class="text">Favourite at 65% or more</td><td>21</td><td>16.8</td><td>14 to 20</td><td>18</td><td>17.0</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<h3>Reliability diagrams</h3>
+<p class="note">Forecasts grouped in five bins of 20 points. A point on the dashed diagonal means things with that probability happened exactly that often; the shaded bar is the 90% band chance allows in that bin, so a point outside its bar is the warning sign. The three 1X2 outcomes of a match are pooled, which makes the band a little too narrow.</p>
+<div class="legend"><span><i class="k4"></i>phase4-v2</span><span><i class="k2"></i>closing market</span><span><i class="kb"></i>90% band</span><span><i class="kd"></i>perfect calibration</span></div>
+<div class="grid2">
+<div class="card">
+  <h3>1X2, every outcome</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration, 1X2, every outcome, retrospective"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><line class="band" x1="81.5" x2="81.5" y1="227.1" y2="191.7"/><line class="band" x1="120.8" x2="120.8" y1="187.0" y2="155.0"/><line class="band" x1="166.2" x2="166.2" y1="156.2" y2="96.4"/><line class="band" x1="211.6" x2="211.6" y1="145.6" y2="32.6"/><line class="band" x1="242.8" x2="242.8" y1="85.3" y2="10.0"/><polyline class="line s4" points="81.5,213.8 120.8,163.5 166.2,136.3 211.6,123.0 242.8,40.1"/><g><title>phase4-v2: forecast 11%, observed 10%, 90% band 4% to 20%, 51 probabilities</title><circle class="hit" cx="81.5" cy="213.8" r="10"/><circle class="marker s4" cx="81.5" cy="213.8" r="4"/></g><g><title>phase4-v2: forecast 29%, observed 32%, 90% band 22% to 36%, 106 probabilities</title><circle class="hit" cx="120.8" cy="163.5" r="10"/><circle class="marker s4" cx="120.8" cy="163.5" r="4"/></g><g><title>phase4-v2: forecast 49%, observed 44%, 90% band 35% to 62%, 34 probabilities</title><circle class="hit" cx="166.2" cy="136.3" r="10"/><circle class="marker s4" cx="166.2" cy="136.3" r="4"/></g><g><title>phase4-v2: forecast 69%, observed 50%, 90% band 40% to 90%, 10 probabilities</title><circle class="hit" cx="211.6" cy="123.0" r="10"/><circle class="marker s4" cx="211.6" cy="123.0" r="4"/></g><g><title>phase4-v2: forecast 83%, observed 87%, 90% band 67% to 100%, 15 probabilities</title><circle class="hit" cx="242.8" cy="40.1" r="10"/><circle class="marker s4" cx="242.8" cy="40.1" r="4"/></g><polyline class="line s2" points="81.5,207.2 121.7,168.0 165.9,126.6 212.1,106.9 249.2,44.8"/><g><title>closing market: forecast 11%, observed 13%, 90% band 5% to 18%, 55 probabilities</title><circle class="hit" cx="81.5" cy="207.2" r="10"/><circle class="marker s2" cx="81.5" cy="207.2" r="4"/></g><g><title>closing market: forecast 29%, observed 30%, 90% band 22% to 37%, 103 probabilities</title><circle class="hit" cx="121.7" cy="168.0" r="10"/><circle class="marker s2" cx="121.7" cy="168.0" r="4"/></g><g><title>closing market: forecast 49%, observed 48%, 90% band 35% to 65%, 31 probabilities</title><circle class="hit" cx="165.9" cy="126.6" r="10"/><circle class="marker s2" cx="165.9" cy="126.6" r="4"/></g><g><title>closing market: forecast 69%, observed 57%, 90% band 50% to 86%, 14 probabilities</title><circle class="hit" cx="212.1" cy="106.9" r="10"/><circle class="marker s2" cx="212.1" cy="106.9" r="4"/></g><g><title>closing market: forecast 85%, observed 85%, 90% band 69% to 100%, 13 probabilities</title><circle class="hit" cx="249.2" cy="44.8" r="10"/><circle class="marker s2" cx="249.2" cy="44.8" r="4"/></g></svg>
+</div>
+<div class="card">
+  <h3>Over 2.5 goals</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration, Over 2.5 goals, retrospective"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><line class="band" x1="138.7" x2="138.7" y1="210.9" y2="85.3"/><line class="band" x1="166.4" x2="166.4" y1="153.0" y2="97.6"/><line class="band" x1="203.9" x2="203.9" y1="139.1" y2="42.3"/><polyline class="line s4" points="138.7,160.7 166.4,116.1 203.9,58.4"/><g><title>phase4-v2: forecast 37%, observed 33%, 90% band 11% to 67%, 9 probabilities</title><circle class="hit" cx="138.7" cy="160.7" r="10"/><circle class="marker s4" cx="138.7" cy="160.7" r="4"/></g><g><title>phase4-v2: forecast 49%, observed 53%, 90% band 37% to 61%, 49 probabilities</title><circle class="hit" cx="166.4" cy="116.1" r="10"/><circle class="marker s4" cx="166.4" cy="116.1" r="4"/></g><g><title>phase4-v2: forecast 65%, observed 79%, 90% band 43% to 86%, 14 probabilities</title><circle class="hit" cx="203.9" cy="58.4" r="10"/><circle class="marker s4" cx="203.9" cy="58.4" r="4"/></g><polyline class="line s2" points="142.8,203.7 164.4,112.3 206.2,47.7"/><g><title>closing market: forecast 38%, observed 14%, 90% band 14% to 71%, 7 probabilities</title><circle class="hit" cx="142.8" cy="203.7" r="10"/><circle class="marker s2" cx="142.8" cy="203.7" r="4"/></g><g><title>closing market: forecast 48%, observed 55%, 90% band 36% to 58%, 53 probabilities</title><circle class="hit" cx="164.4" cy="112.3" r="10"/><circle class="marker s2" cx="164.4" cy="112.3" r="4"/></g><g><title>closing market: forecast 66%, observed 83%, 90% band 42% to 92%, 12 probabilities</title><circle class="hit" cx="206.2" cy="47.7" r="10"/><circle class="marker s2" cx="206.2" cy="47.7" r="4"/></g></svg>
+</div>
+<div class="card">
+  <h3>Both teams score</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration, Both teams score, retrospective"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><line class="band" x1="167.0" x2="167.0" y1="148.1" y2="104.2"/><polyline class="line s4" points="167.0,119.9"/><g><title>phase4-v2: forecast 49%, observed 51%, 90% band 39% to 58%, 72 probabilities</title><circle class="hit" cx="167.0" cy="119.9" r="10"/><circle class="marker s4" cx="167.0" cy="119.9" r="4"/></g></svg>
+</div>
+</div>
+<div class="card">
+  <h3>Model against the market, round by round (1X2)</h3>
+  <p class="note">Mean RPS of phase4-v2 minus that of the no-vig closing market in each round (a Tuesday-to-Monday week). Below zero the model was closer to what happened. The model was better in <strong>5 of 9</strong> rounds; one round is a handful of matches, so the overall verdict is the live record's, not this count.</p>
+  <div class="legend"><span><i class="kg"></i>model better</span><span><i class="kd"></i>market better</span></div>
+  <svg class="chart" viewBox="0 0 720 240" role="img" aria-label="mean RPS minus closing RPS, by round (below zero: model better)"><line class="grid" x1="64" x2="704" y1="164.1" y2="164.1"/><text class="tick" x="56" y="168.1" text-anchor="end">0</text><line class="grid" x1="64" x2="704" y1="62.6" y2="62.6"/><text class="tick" x="56" y="66.6" text-anchor="end">+0.05</text><g><title>week of 2026-08-04: 9 matches, model 0.2323, market 0.2150, difference +0.0172</title><rect class="hit" x="64.0" y="12" width="48.0" height="184"/><rect class="bar worse" x="71.2" y="129.1" width="33.6" height="34.9" rx="2"/></g><text class="tick" x="88.0" y="212" text-anchor="middle">4 Aug</text><g><title>week of 2026-08-11: 8 matches, model 0.1769, market 0.1805, difference -0.0037</title><rect class="hit" x="112.0" y="12" width="48.0" height="184"/><rect class="bar better" x="119.2" y="164.1" width="33.6" height="7.5" rx="2"/></g><text class="tick" x="136.0" y="212" text-anchor="middle">11 Aug</text><g><title>week of 2026-08-18: 7 matches, model 0.1537, market 0.1554, difference -0.0018</title><rect class="hit" x="160.0" y="12" width="48.0" height="184"/><rect class="bar better" x="167.2" y="164.1" width="33.6" height="3.6" rx="2"/></g><text class="tick" x="184.0" y="212" text-anchor="middle">18 Aug</text><g><title>week of 2026-08-25: 9 matches, model 0.1467, market 0.1423, difference +0.0044</title><rect class="hit" x="208.0" y="12" width="48.0" height="184"/><rect class="bar worse" x="215.2" y="155.2" width="33.6" height="8.9" rx="2"/></g><text class="tick" x="232.0" y="212" text-anchor="middle">25 Aug</text><g><title>week of 2026-09-01: 9 matches, model 0.1355, market 0.1241, difference +0.0114</title><rect class="hit" x="256.0" y="12" width="48.0" height="184"/><rect class="bar worse" x="263.2" y="140.9" width="33.6" height="23.1" rx="2"/></g><text class="tick" x="280.0" y="212" text-anchor="middle">1 Sep</text><g><title>week of 2026-09-08: 11 matches, model 0.1912, market 0.1993, difference -0.0082</title><rect class="hit" x="304.0" y="12" width="48.0" height="184"/><rect class="bar better" x="311.2" y="164.1" width="33.6" height="16.6" rx="2"/></g><text class="tick" x="328.0" y="212" text-anchor="middle">8 Sep</text><g><title>week of 2026-09-15: 9 matches, model 0.2506, market 0.2519, difference -0.0012</title><rect class="hit" x="352.0" y="12" width="48.0" height="184"/><rect class="bar better" x="359.2" y="164.1" width="33.6" height="2.5" rx="2"/></g><text class="tick" x="376.0" y="212" text-anchor="middle">15 Sep</text><g><title>week of 2026-10-06: 9 matches, model 0.1839, market 0.1867, difference -0.0028</title><rect class="hit" x="400.0" y="12" width="48.0" height="184"/><rect class="bar better" x="407.2" y="164.1" width="33.6" height="5.6" rx="2"/></g><text class="tick" x="424.0" y="212" text-anchor="middle">6 Oct</text><g><title>week of 2026-10-13: 1 matches, model 0.5455, market 0.4782, difference +0.0674</title><rect class="hit" x="448.0" y="12" width="48.0" height="184"/><rect class="bar worse" x="455.2" y="27.3" width="33.6" height="136.7" rx="2"/></g><text class="tick" x="472.0" y="212" text-anchor="middle">13 Oct</text><line class="zero" x1="64" x2="704" y1="164.1" y2="164.1"/><text class="axis-label" x="384.0" y="234" text-anchor="middle">mean RPS minus closing RPS, by round (below zero: model better)</text></svg>
+  <details><summary>Rounds as a table</summary>
+  <div class="scroll"><table>
+    <thead><tr><th class="text">Week of</th><th>Matches</th><th>Model RPS</th><th>Market RPS</th><th>Δ</th></tr></thead>
+    <tbody>
+    <tr><td class="text">2026-10-13</td><td>1</td><td>0.5455</td><td>0.4782</td><td>+0.0674</td></tr>
+    <tr><td class="text">2026-10-06</td><td>9</td><td>0.1839</td><td>0.1867</td><td class="better">-0.0028</td></tr>
+    <tr><td class="text">2026-09-15</td><td>9</td><td>0.2506</td><td>0.2519</td><td class="better">-0.0012</td></tr>
+    <tr><td class="text">2026-09-08</td><td>11</td><td>0.1912</td><td>0.1993</td><td class="better">-0.0082</td></tr>
+    <tr><td class="text">2026-09-01</td><td>9</td><td>0.1355</td><td>0.1241</td><td>+0.0114</td></tr>
+    <tr><td class="text">2026-08-25</td><td>9</td><td>0.1467</td><td>0.1423</td><td>+0.0044</td></tr>
+    <tr><td class="text">2026-08-18</td><td>7</td><td>0.1537</td><td>0.1554</td><td class="better">-0.0018</td></tr>
+    <tr><td class="text">2026-08-11</td><td>8</td><td>0.1769</td><td>0.1805</td><td class="better">-0.0037</td></tr>
+    <tr><td class="text">2026-08-04</td><td>9</td><td>0.2323</td><td>0.2150</td><td>+0.0172</td></tr>
+    </tbody>
+  </table></div>
+  </details>
+</div>
+</details></section>
+
+<section class="block" id="ledger">
+<div class="head">
+  <p class="kicker">Live record</p>
+  <h2>Ledger against the closing market</h2>
+<p>The lists above show one model per match; here every model in the ledger stands next to the baselines (base rates and the no-vig closing market), scored once the matches are played. Differences are paired on the matches both have; lower is better; filled dots mark intervals that exclude zero.</p>
+</div>
+<h3>Prospective · 4 scored forecast(s), 2026-10-25 to 2026-10-26</h3>
+<p class="note">Prospective: frozen before kick-off, with data up to 24 h before it.</p>
+<div class="card">
+  <h3>1X2 · RPS</h3>
+  <svg class="chart" viewBox="0 0 720 202" role="img" aria-label="RPS minus Closing market, no-vig (lower is better)"><line class="grid" x1="372.0" x2="372.0" y1="8" y2="158"/><text class="tick" x="372.0" y="174" text-anchor="middle">-0.05</text><line class="grid" x1="503.6" x2="503.6" y1="8" y2="158"/><text class="tick" x="503.6" y="174" text-anchor="middle">0</text><line class="grid" x1="635.1" x2="635.1" y1="8" y2="158"/><text class="tick" x="635.1" y="174" text-anchor="middle">+0.05</text><line class="zero" x1="503.6" x2="503.6" y1="8" y2="158"/><g><title>phase2-v1 · base rates: -0.0599 [-0.0599; -0.0599] (2 matches)</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">phase2-v1 · base rates</text><line class="whisker" x1="345.9" x2="345.9" y1="23.0" y2="23.0"/><circle class="dot solid" cx="345.9" cy="23.0" r="5"/></g><g><title>phase2-v1 · Dixon-Coles: +0.0007 [+0.0007; +0.0007] (2 matches)</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">phase2-v1 · Dixon-Coles</text><line class="whisker" x1="505.4" x2="505.4" y1="53.0" y2="53.0"/><circle class="dot solid" cx="505.4" cy="53.0" r="5"/></g><g><title>phase2-v1 · Elo: +0.0633 [+0.0633; +0.0633] (2 matches)</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">phase2-v1 · Elo</text><line class="whisker" x1="670.1" x2="670.1" y1="83.0" y2="83.0"/><circle class="dot solid" cx="670.1" cy="83.0" r="5"/></g><g><title>phase4-v1 · model: -0.0166 [-0.0166; -0.0166] (1 matches)</title><rect class="hit" x="0" y="98.0" width="720" height="30"/><text class="label" x="308" y="117.0" text-anchor="end">phase4-v1 · model</text><line class="whisker" x1="460.0" x2="460.0" y1="113.0" y2="113.0"/><circle class="dot solid" cx="460.0" cy="113.0" r="5"/></g><g><title>phase4-v2 · model: +0.0004 [+0.0004; +0.0004] (1 matches)</title><rect class="hit" x="0" y="128.0" width="720" height="30"/><text class="label" x="308" y="147.0" text-anchor="end">phase4-v2 · model</text><line class="whisker" x1="504.7" x2="504.7" y1="143.0" y2="143.0"/><circle class="dot solid" cx="504.7" cy="143.0" r="5"/></g><text class="axis-label" x="508.0" y="196" text-anchor="middle">RPS minus Closing market, no-vig (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>RPS with its 95% interval; Δ against Closing market, no-vig.</caption>
+    <thead><tr><th class="text">Forecaster</th><th>Matches</th><th>RPS</th><th>Δ</th><th>log loss</th><th>Brier</th></tr></thead>
+    <tbody>
+    <tr><td>Closing market, no-vig</td><td>2</td><td>0.3846<span class="ci">[0.3846; 0.3846]</span></td><td>—</td><td>1.4047</td><td>0.7938</td></tr>
+    <tr><td>phase2-v1 · base rates</td><td>2</td><td>0.3247<span class="ci">[0.3247; 0.3247]</span></td><td class="sig">-0.0599<span class="ci">[-0.0599; -0.0599]</span></td><td>1.1523</td><td>0.7161</td></tr>
+    <tr><td>phase2-v1 · Dixon-Coles</td><td>2</td><td>0.3853<span class="ci">[0.3853; 0.3853]</span></td><td class="sig">+0.0007<span class="ci">[+0.0007; +0.0007]</span></td><td>1.3758</td><td>0.8110</td></tr>
+    <tr><td>phase2-v1 · Elo</td><td>2</td><td>0.4479<span class="ci">[0.4479; 0.4479]</span></td><td class="sig">+0.0633<span class="ci">[+0.0633; +0.0633]</span></td><td>1.8608</td><td>0.9109</td></tr>
+    <tr><td>phase4-v1 · model</td><td>1</td><td>0.0291<span class="ci">[0.0291; 0.0291]</span></td><td class="sig">-0.0166<span class="ci">[-0.0166; -0.0166]</span></td><td>0.2611</td><td>0.0826</td></tr>
+    <tr><td>phase4-v2 · model</td><td>1</td><td>0.0461<span class="ci">[0.0461; 0.0461]</span></td><td class="sig">+0.0004<span class="ci">[+0.0004; +0.0004]</span></td><td>0.3386</td><td>0.1278</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="card">
+  <h3>Over/under 2.5 · log loss</h3>
+  <svg class="chart" viewBox="0 0 720 172" role="img" aria-label="log loss minus Closing market, no-vig (lower is better)"><line class="grid" x1="345.9" x2="345.9" y1="8" y2="128"/><text class="tick" x="345.9" y="144" text-anchor="middle">0</text><line class="grid" x1="438.7" x2="438.7" y1="8" y2="128"/><text class="tick" x="438.7" y="144" text-anchor="middle">+0.05</text><line class="grid" x1="531.4" x2="531.4" y1="8" y2="128"/><text class="tick" x="531.4" y="144" text-anchor="middle">+0.10</text><line class="grid" x1="624.1" x2="624.1" y1="8" y2="128"/><text class="tick" x="624.1" y="144" text-anchor="middle">+0.15</text><line class="zero" x1="345.9" x2="345.9" y1="8" y2="128"/><g><title>phase2-v1 · base rates: +0.1748 [+0.1748; +0.1748] (2 matches)</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">phase2-v1 · base rates</text><line class="whisker" x1="670.1" x2="670.1" y1="23.0" y2="23.0"/><circle class="dot solid" cx="670.1" cy="23.0" r="5"/></g><g><title>phase2-v1 · Dixon-Coles: +0.1632 [+0.1632; +0.1632] (2 matches)</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">phase2-v1 · Dixon-Coles</text><line class="whisker" x1="648.6" x2="648.6" y1="53.0" y2="53.0"/><circle class="dot solid" cx="648.6" cy="53.0" r="5"/></g><g><title>phase4-v1 · model: +0.1093 [+0.1093; +0.1093] (1 matches)</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">phase4-v1 · model</text><line class="whisker" x1="548.6" x2="548.6" y1="83.0" y2="83.0"/><circle class="dot solid" cx="548.6" cy="83.0" r="5"/></g><g><title>phase4-v2 · model: +0.1093 [+0.1093; +0.1093] (1 matches)</title><rect class="hit" x="0" y="98.0" width="720" height="30"/><text class="label" x="308" y="117.0" text-anchor="end">phase4-v2 · model</text><line class="whisker" x1="548.6" x2="548.6" y1="113.0" y2="113.0"/><circle class="dot solid" cx="548.6" cy="113.0" r="5"/></g><text class="axis-label" x="508.0" y="166" text-anchor="middle">log loss minus Closing market, no-vig (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>log loss with its 95% interval; Δ against Closing market, no-vig.</caption>
+    <thead><tr><th class="text">Forecaster</th><th>Matches</th><th>log loss</th><th>Δ</th><th>Brier</th></tr></thead>
+    <tbody>
+    <tr><td>Closing market, no-vig</td><td>2</td><td>0.4653<span class="ci">[0.4653; 0.4653]</span></td><td>—</td><td>0.1392</td></tr>
+    <tr><td>phase2-v1 · base rates</td><td>2</td><td>0.6401<span class="ci">[0.6401; 0.6401]</span></td><td class="sig">+0.1748<span class="ci">[+0.1748; +0.1748]</span></td><td>0.2235</td></tr>
+    <tr><td>phase2-v1 · Dixon-Coles</td><td>2</td><td>0.6285<span class="ci">[0.6285; 0.6285]</span></td><td class="sig">+0.1632<span class="ci">[+0.1632; +0.1632]</span></td><td>0.2195</td></tr>
+    <tr><td>phase4-v1 · model</td><td>1</td><td>0.6438<span class="ci">[0.6438; 0.6438]</span></td><td class="sig">+0.1093<span class="ci">[+0.1093; +0.1093]</span></td><td>0.2254</td></tr>
+    <tr><td>phase4-v2 · model</td><td>1</td><td>0.6438<span class="ci">[0.6438; 0.6438]</span></td><td class="sig">+0.1093<span class="ci">[+0.1093; +0.1093]</span></td><td>0.2254</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="card">
+  <h3>Both teams score · log loss</h3>
+  <svg class="chart" viewBox="0 0 720 142" role="img" aria-label="log loss minus phase2-v1 · base rates (lower is better)"><line class="grid" x1="345.9" x2="345.9" y1="8" y2="98"/><text class="tick" x="345.9" y="114" text-anchor="middle">0</text><line class="grid" x1="484.2" x2="484.2" y1="8" y2="98"/><text class="tick" x="484.2" y="114" text-anchor="middle">+0.02</text><line class="grid" x1="622.5" x2="622.5" y1="8" y2="98"/><text class="tick" x="622.5" y="114" text-anchor="middle">+0.04</text><line class="zero" x1="345.9" x2="345.9" y1="8" y2="98"/><g><title>phase2-v1 · Dixon-Coles: +0.0469 [+0.0469; +0.0469] (2 matches)</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">phase2-v1 · Dixon-Coles</text><line class="whisker" x1="670.1" x2="670.1" y1="23.0" y2="23.0"/><circle class="dot solid" cx="670.1" cy="23.0" r="5"/></g><g><title>phase4-v1 · model: +0.0271 [+0.0271; +0.0271] (1 matches)</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">phase4-v1 · model</text><line class="whisker" x1="533.2" x2="533.2" y1="53.0" y2="53.0"/><circle class="dot solid" cx="533.2" cy="53.0" r="5"/></g><g><title>phase4-v2 · model: +0.0271 [+0.0271; +0.0271] (1 matches)</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">phase4-v2 · model</text><line class="whisker" x1="533.2" x2="533.2" y1="83.0" y2="83.0"/><circle class="dot solid" cx="533.2" cy="83.0" r="5"/></g><text class="axis-label" x="508.0" y="136" text-anchor="middle">log loss minus phase2-v1 · base rates (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>log loss with its 95% interval; Δ against phase2-v1 · base rates.</caption>
+    <thead><tr><th class="text">Forecaster</th><th>Matches</th><th>log loss</th><th>Δ</th><th>Brier</th></tr></thead>
+    <tbody>
+    <tr><td>phase2-v1 · base rates</td><td>2</td><td>0.6910<span class="ci">[0.6910; 0.6910]</span></td><td>—</td><td>0.2489</td></tr>
+    <tr><td>phase2-v1 · Dixon-Coles</td><td>2</td><td>0.7379<span class="ci">[0.7379; 0.7379]</span></td><td class="sig">+0.0469<span class="ci">[+0.0469; +0.0469]</span></td><td>0.2721</td></tr>
+    <tr><td>phase4-v1 · model</td><td>1</td><td>0.7181<span class="ci">[0.7181; 0.7181]</span></td><td class="sig">+0.0271<span class="ci">[+0.0271; +0.0271]</span></td><td>0.2625</td></tr>
+    <tr><td>phase4-v2 · model</td><td>1</td><td>0.7181<span class="ci">[0.7181; 0.7181]</span></td><td class="sig">+0.0271<span class="ci">[+0.0271; +0.0271]</span></td><td>0.2625</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div>
+  <div class="card">
+    <h3>Running gap to the market (1X2)</h3>
+    <p class="note">Mean of RPS minus closing RPS over the matches scored so far. Below zero is better than the market.</p>
+    <div class="legend"><span><i class="k1"></i>phase2-v1</span><span><i class="k3"></i>phase4-v1</span><span><i class="k4"></i>phase4-v2</span><span><i class="kd"></i>closing market (zero)</span></div>
+    <svg class="chart" viewBox="0 0 720 240" role="img" aria-label="running mean of RPS minus closing RPS"><line class="grid" x1="64" x2="704" y1="164.8" y2="164.8"/><text class="tick" x="56" y="168.8" text-anchor="end">0</text><line class="grid" x1="64" x2="704" y1="116.8" y2="116.8"/><text class="tick" x="56" y="120.8" text-anchor="end">+0.05</text><line class="grid" x1="64" x2="704" y1="68.7" y2="68.7"/><text class="tick" x="56" y="72.7" text-anchor="end">+0.10</text><line class="grid" x1="64" x2="704" y1="20.7" y2="20.7"/><text class="tick" x="56" y="24.7" text-anchor="end">+0.15</text><text class="tick" x="64.0" y="212" text-anchor="middle">0</text><text class="tick" x="224.0" y="212" text-anchor="middle">0.5</text><text class="tick" x="384.0" y="212" text-anchor="middle">1</text><text class="tick" x="544.0" y="212" text-anchor="middle">1.5</text><text class="tick" x="704.0" y="212" text-anchor="middle">2</text><line class="zero" x1="64" x2="704" y1="164.8" y2="164.8"/><text class="axis-label" x="384.0" y="234" text-anchor="middle">matches scored</text><polyline class="line s1" points="384.0,27.3 704.0,104.0"/><g><title>phase2-v1: +0.1431 after 1 matches (to 2026-10-25)</title><circle class="hit" cx="384.0" cy="27.3" r="9"/><circle class="marker s1" cx="384.0" cy="27.3" r="3"/></g><g><title>phase2-v1: +0.0633 after 2 matches (to 2026-10-26)</title><circle class="hit" cx="704.0" cy="104.0" r="9"/><circle class="marker s1" cx="704.0" cy="104.0" r="3"/></g><polyline class="line s3" points="384.0,180.7"/><g><title>phase4-v1: -0.0166 after 1 matches (to 2026-10-26)</title><circle class="hit" cx="384.0" cy="180.7" r="9"/><circle class="marker s3" cx="384.0" cy="180.7" r="3"/></g><polyline class="line s4" points="384.0,164.3"/><g><title>phase4-v2: +0.0004 after 1 matches (to 2026-10-26)</title><circle class="hit" cx="384.0" cy="164.3" r="9"/><circle class="marker s4" cx="384.0" cy="164.3" r="3"/></g></svg>
+  </div>
+  <div class="card">
+    <h3>Calibration by model version (1X2, every outcome)</h3>
+    <p class="note">Five bins; few matches per bin, so read the shape, not the points.</p>
+    <div class="legend"><span><i class="k1"></i>phase2-v1</span><span><i class="k3"></i>phase4-v1</span><span><i class="k4"></i>phase4-v2</span><span><i class="k2"></i>closing market</span><span><i class="kd"></i>perfect calibration</span></div>
+    <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration, prospective"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><polyline class="line s1" points="75.1,179.5 230.1,10.0 257.5,236.0"/><g><title>phase2-v1: forecast 8%, observed 25%, 4 probabilities</title><circle class="hit" cx="75.1" cy="179.5" r="10"/><circle class="marker s1" cx="75.1" cy="179.5" r="4"/></g><g><title>phase2-v1: forecast 77%, observed 100%, 1 probabilities</title><circle class="hit" cx="230.1" cy="10.0" r="10"/><circle class="marker s1" cx="230.1" cy="10.0" r="4"/></g><g><title>phase2-v1: forecast 89%, observed 0%, 1 probabilities</title><circle class="hit" cx="257.5" cy="236.0" r="10"/><circle class="marker s1" cx="257.5" cy="236.0" r="4"/></g><polyline class="line s3" points="82.0,236.0 230.1,10.0"/><g><title>phase4-v1: forecast 11%, observed 0%, 2 probabilities</title><circle class="hit" cx="82.0" cy="236.0" r="10"/><circle class="marker s3" cx="82.0" cy="236.0" r="4"/></g><g><title>phase4-v1: forecast 77%, observed 100%, 1 probabilities</title><circle class="hit" cx="230.1" cy="10.0" r="10"/><circle class="marker s3" cx="230.1" cy="10.0" r="4"/></g><polyline class="line s4" points="88.5,236.0 217.1,10.0"/><g><title>phase4-v2: forecast 14%, observed 0%, 2 probabilities</title><circle class="hit" cx="88.5" cy="236.0" r="10"/><circle class="marker s4" cx="88.5" cy="236.0" r="4"/></g><g><title>phase4-v2: forecast 71%, observed 100%, 1 probabilities</title><circle class="hit" cx="217.1" cy="10.0" r="10"/><circle class="marker s4" cx="217.1" cy="10.0" r="4"/></g><polyline class="line s2" points="84.4,179.5 225.2,123.0"/><g><title>closing market: forecast 13%, observed 25%, 4 probabilities</title><circle class="hit" cx="84.4" cy="179.5" r="10"/><circle class="marker s2" cx="84.4" cy="179.5" r="4"/></g><g><title>closing market: forecast 75%, observed 50%, 2 probabilities</title><circle class="hit" cx="225.2" cy="123.0" r="10"/><circle class="marker s2" cx="225.2" cy="123.0" r="4"/></g></svg>
+  </div>
+</div>
+<details><summary>Retrospective sample (216 scored): pipeline check, not evidence</summary><h3>Retrospective · 216 scored forecast(s), 2026-08-07 to 2026-10-19</h3>
+<p class="note">Retrospective: frozen after the match with the same 24 h cut-off. Useful to check the pipeline, never evidence.</p>
+<div class="card">
+  <h3>1X2 · RPS</h3>
+  <svg class="chart" viewBox="0 0 720 202" role="img" aria-label="RPS minus Closing market, no-vig (lower is better)"><line class="grid" x1="358.1" x2="358.1" y1="8" y2="158"/><text class="tick" x="358.1" y="174" text-anchor="middle">0</text><line class="grid" x1="434.5" x2="434.5" y1="8" y2="158"/><text class="tick" x="434.5" y="174" text-anchor="middle">+0.02</text><line class="grid" x1="511.0" x2="511.0" y1="8" y2="158"/><text class="tick" x="511.0" y="174" text-anchor="middle">+0.04</text><line class="grid" x1="587.4" x2="587.4" y1="8" y2="158"/><text class="tick" x="587.4" y="174" text-anchor="middle">+0.06</text><line class="grid" x1="663.8" x2="663.8" y1="8" y2="158"/><text class="tick" x="663.8" y="174" text-anchor="middle">+0.08</text><line class="zero" x1="358.1" x2="358.1" y1="8" y2="158"/><g><title>phase2-v1 · base rates: +0.0486 [+0.0092; +0.0816] (72 matches)</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">phase2-v1 · base rates</text><line class="whisker" x1="393.3" x2="670.1" y1="23.0" y2="23.0"/><circle class="dot solid" cx="543.9" cy="23.0" r="5"/></g><g><title>phase2-v1 · Dixon-Coles: +0.0055 [-0.0015; +0.0135] (72 matches)</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">phase2-v1 · Dixon-Coles</text><line class="whisker" x1="352.4" x2="409.7" y1="53.0" y2="53.0"/><circle class="dot" cx="379.1" cy="53.0" r="5"/></g><g><title>phase2-v1 · Elo: +0.0092 [+0.0013; +0.0191] (72 matches)</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">phase2-v1 · Elo</text><line class="whisker" x1="363.2" x2="430.9" y1="83.0" y2="83.0"/><circle class="dot solid" cx="393.1" cy="83.0" r="5"/></g><g><title>phase4-v1 · model: +0.0092 [+0.0013; +0.0191] (72 matches)</title><rect class="hit" x="0" y="98.0" width="720" height="30"/><text class="label" x="308" y="117.0" text-anchor="end">phase4-v1 · model</text><line class="whisker" x1="363.2" x2="430.9" y1="113.0" y2="113.0"/><circle class="dot solid" cx="393.1" cy="113.0" r="5"/></g><g><title>phase4-v2 · model: +0.0027 [-0.0032; +0.0094] (72 matches)</title><rect class="hit" x="0" y="128.0" width="720" height="30"/><text class="label" x="308" y="147.0" text-anchor="end">phase4-v2 · model</text><line class="whisker" x1="345.9" x2="393.9" y1="143.0" y2="143.0"/><circle class="dot" cx="368.5" cy="143.0" r="5"/></g><text class="axis-label" x="508.0" y="196" text-anchor="middle">RPS minus Closing market, no-vig (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>RPS with its 95% interval; Δ against Closing market, no-vig.</caption>
+    <thead><tr><th class="text">Forecaster</th><th>Matches</th><th>RPS</th><th>Δ</th><th>log loss</th><th>Brier</th></tr></thead>
+    <tbody>
+    <tr><td>Closing market, no-vig</td><td>72</td><td>0.1873<span class="ci">[0.1608; 0.2163]</span></td><td>—</td><td>0.9394</td><td>0.5622</td></tr>
+    <tr><td>phase2-v1 · base rates</td><td>72</td><td>0.2359<span class="ci">[0.2188; 0.2543]</span></td><td class="sig">+0.0486<span class="ci">[+0.0092; +0.0816]</span></td><td>1.0866</td><td>0.6593</td></tr>
+    <tr><td>phase2-v1 · Dixon-Coles</td><td>72</td><td>0.1928<span class="ci">[0.1715; 0.2170]</span></td><td>+0.0055<span class="ci">[-0.0015; +0.0135]</span></td><td>0.9616</td><td>0.5718</td></tr>
+    <tr><td>phase2-v1 · Elo</td><td>72</td><td>0.1964<span class="ci">[0.1646; 0.2326]</span></td><td class="sig">+0.0092<span class="ci">[+0.0013; +0.0191]</span></td><td>0.9694</td><td>0.5795</td></tr>
+    <tr><td>phase4-v1 · model</td><td>72</td><td>0.1964<span class="ci">[0.1646; 0.2326]</span></td><td class="sig">+0.0092<span class="ci">[+0.0013; +0.0191]</span></td><td>0.9694</td><td>0.5795</td></tr>
+    <tr><td>phase4-v2 · model</td><td>72</td><td>0.1900<span class="ci">[0.1638; 0.2214]</span></td><td>+0.0027<span class="ci">[-0.0032; +0.0094]</span></td><td>0.9487</td><td>0.5667</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="card">
+  <h3>Over/under 2.5 · log loss</h3>
+  <svg class="chart" viewBox="0 0 720 172" role="img" aria-label="log loss minus Closing market, no-vig (lower is better)"><line class="grid" x1="331.6" x2="331.6" y1="8" y2="128"/><text class="tick" x="331.6" y="144" text-anchor="middle">-0.02</text><line class="grid" x1="415.6" x2="415.6" y1="8" y2="128"/><text class="tick" x="415.6" y="144" text-anchor="middle">0</text><line class="grid" x1="499.6" x2="499.6" y1="8" y2="128"/><text class="tick" x="499.6" y="144" text-anchor="middle">+0.02</text><line class="grid" x1="583.6" x2="583.6" y1="8" y2="128"/><text class="tick" x="583.6" y="144" text-anchor="middle">+0.04</text><line class="grid" x1="667.6" x2="667.6" y1="8" y2="128"/><text class="tick" x="667.6" y="144" text-anchor="middle">+0.06</text><line class="zero" x1="415.6" x2="415.6" y1="8" y2="128"/><g><title>phase2-v1 · base rates: +0.0211 [-0.0166; +0.0606] (72 matches)</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">phase2-v1 · base rates</text><line class="whisker" x1="345.9" x2="670.1" y1="23.0" y2="23.0"/><circle class="dot" cx="504.1" cy="23.0" r="5"/></g><g><title>phase2-v1 · Dixon-Coles: +0.0312 [+0.0044; +0.0570] (72 matches)</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">phase2-v1 · Dixon-Coles</text><line class="whisker" x1="434.2" x2="655.0" y1="53.0" y2="53.0"/><circle class="dot solid" cx="546.5" cy="53.0" r="5"/></g><g><title>phase4-v1 · model: +0.0162 [-0.0077; +0.0379] (72 matches)</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">phase4-v1 · model</text><line class="whisker" x1="383.4" x2="574.8" y1="83.0" y2="83.0"/><circle class="dot" cx="483.6" cy="83.0" r="5"/></g><g><title>phase4-v2 · model: +0.0162 [-0.0077; +0.0379] (72 matches)</title><rect class="hit" x="0" y="98.0" width="720" height="30"/><text class="label" x="308" y="117.0" text-anchor="end">phase4-v2 · model</text><line class="whisker" x1="383.4" x2="574.8" y1="113.0" y2="113.0"/><circle class="dot" cx="483.6" cy="113.0" r="5"/></g><text class="axis-label" x="508.0" y="166" text-anchor="middle">log loss minus Closing market, no-vig (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>log loss with its 95% interval; Δ against Closing market, no-vig.</caption>
+    <thead><tr><th class="text">Forecaster</th><th>Matches</th><th>log loss</th><th>Δ</th><th>Brier</th></tr></thead>
+    <tbody>
+    <tr><td>Closing market, no-vig</td><td>72</td><td>0.6675<span class="ci">[0.6315; 0.7003]</span></td><td>—</td><td>0.2377</td></tr>
+    <tr><td>phase2-v1 · base rates</td><td>72</td><td>0.6886<span class="ci">[0.6769; 0.6989]</span></td><td>+0.0211<span class="ci">[-0.0166; +0.0606]</span></td><td>0.2477</td></tr>
+    <tr><td>phase2-v1 · Dixon-Coles</td><td>72</td><td>0.6987<span class="ci">[0.6500; 0.7468]</span></td><td class="sig">+0.0312<span class="ci">[+0.0044; +0.0570]</span></td><td>0.2527</td></tr>
+    <tr><td>phase4-v1 · model</td><td>72</td><td>0.6837<span class="ci">[0.6410; 0.7213]</span></td><td>+0.0162<span class="ci">[-0.0077; +0.0379]</span></td><td>0.2455</td></tr>
+    <tr><td>phase4-v2 · model</td><td>72</td><td>0.6837<span class="ci">[0.6410; 0.7213]</span></td><td>+0.0162<span class="ci">[-0.0077; +0.0379]</span></td><td>0.2455</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="card">
+  <h3>Both teams score · log loss</h3>
+  <svg class="chart" viewBox="0 0 720 142" role="img" aria-label="log loss minus phase2-v1 · base rates (lower is better)"><line class="grid" x1="396.8" x2="396.8" y1="8" y2="98"/><text class="tick" x="396.8" y="114" text-anchor="middle">0</text><line class="grid" x1="500.2" x2="500.2" y1="8" y2="98"/><text class="tick" x="500.2" y="114" text-anchor="middle">+0.02</text><line class="grid" x1="603.6" x2="603.6" y1="8" y2="98"/><text class="tick" x="603.6" y="114" text-anchor="middle">+0.04</text><line class="zero" x1="396.8" x2="396.8" y1="8" y2="98"/><g><title>phase2-v1 · Dixon-Coles: +0.0262 [+0.0010; +0.0529] (72 matches)</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">phase2-v1 · Dixon-Coles</text><line class="whisker" x1="401.9" x2="670.1" y1="23.0" y2="23.0"/><circle class="dot solid" cx="532.3" cy="23.0" r="5"/></g><g><title>phase4-v1 · model: +0.0037 [-0.0098; +0.0181] (72 matches)</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">phase4-v1 · model</text><line class="whisker" x1="345.9" x2="490.2" y1="53.0" y2="53.0"/><circle class="dot" cx="416.0" cy="53.0" r="5"/></g><g><title>phase4-v2 · model: +0.0037 [-0.0098; +0.0181] (72 matches)</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">phase4-v2 · model</text><line class="whisker" x1="345.9" x2="490.2" y1="83.0" y2="83.0"/><circle class="dot" cx="416.0" cy="83.0" r="5"/></g><text class="axis-label" x="508.0" y="136" text-anchor="middle">log loss minus phase2-v1 · base rates (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>log loss with its 95% interval; Δ against phase2-v1 · base rates.</caption>
+    <thead><tr><th class="text">Forecaster</th><th>Matches</th><th>log loss</th><th>Δ</th><th>Brier</th></tr></thead>
+    <tbody>
+    <tr><td>phase2-v1 · base rates</td><td>72</td><td>0.6931<span class="ci">[0.6926; 0.6936]</span></td><td>—</td><td>0.2500</td></tr>
+    <tr><td>phase2-v1 · Dixon-Coles</td><td>72</td><td>0.7193<span class="ci">[0.6943; 0.7456]</span></td><td class="sig">+0.0262<span class="ci">[+0.0010; +0.0529]</span></td><td>0.2625</td></tr>
+    <tr><td>phase4-v1 · model</td><td>72</td><td>0.6968<span class="ci">[0.6832; 0.7110]</span></td><td>+0.0037<span class="ci">[-0.0098; +0.0181]</span></td><td>0.2518</td></tr>
+    <tr><td>phase4-v2 · model</td><td>72</td><td>0.6968<span class="ci">[0.6832; 0.7110]</span></td><td>+0.0037<span class="ci">[-0.0098; +0.0181]</span></td><td>0.2518</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div>
+  <div class="card">
+    <h3>Running gap to the market (1X2)</h3>
+    <p class="note">Mean of RPS minus closing RPS over the matches scored so far. Below zero is better than the market.</p>
+    <div class="legend"><span><i class="k1"></i>phase2-v1</span><span><i class="k3"></i>phase4-v1</span><span><i class="k4"></i>phase4-v2</span><span><i class="kd"></i>closing market (zero)</span></div>
+    <svg class="chart" viewBox="0 0 720 240" role="img" aria-label="running mean of RPS minus closing RPS"><line class="grid" x1="64" x2="704" y1="150.7" y2="150.7"/><text class="tick" x="56" y="154.7" text-anchor="end">0</text><line class="grid" x1="64" x2="704" y1="103.7" y2="103.7"/><text class="tick" x="56" y="107.7" text-anchor="end">+0.02</text><line class="grid" x1="64" x2="704" y1="56.7" y2="56.7"/><text class="tick" x="56" y="60.7" text-anchor="end">+0.04</text><text class="tick" x="64.0" y="212" text-anchor="middle">0</text><text class="tick" x="241.8" y="212" text-anchor="middle">20</text><text class="tick" x="419.6" y="212" text-anchor="middle">40</text><text class="tick" x="597.3" y="212" text-anchor="middle">60</text><line class="zero" x1="64" x2="704" y1="150.7" y2="150.7"/><text class="axis-label" x="384.0" y="234" text-anchor="middle">matches scored</text><polyline class="line s1" points="72.9,180.7 99.6,43.4 135.1,111.1 144.0,119.9 152.9,128.7 179.6,137.7 206.2,132.3 215.1,132.0 241.8,142.0 268.4,143.2 277.3,139.6 286.2,141.2 312.9,147.8 339.6,146.1 357.3,149.3 366.2,149.0 401.8,152.0 428.4,143.8 437.3,144.9 446.2,143.8 455.1,142.1 481.8,136.7 508.4,131.9 535.1,139.5 570.7,132.9 615.1,140.7 632.9,138.8 659.6,133.6 686.2,135.5 695.1,134.3 704.0,129.2"/><g><title>phase2-v1: -0.0127 after 1 matches (to 2026-08-07)</title><circle class="hit" cx="72.9" cy="180.7" r="9"/><circle class="marker s1" cx="72.9" cy="180.7" r="3"/></g><g><title>phase2-v1: +0.0457 after 4 matches (to 2026-08-08)</title><circle class="hit" cx="99.6" cy="43.4" r="9"/><circle class="marker s1" cx="99.6" cy="43.4" r="3"/></g><g><title>phase2-v1: +0.0169 after 8 matches (to 2026-08-09)</title><circle class="hit" cx="135.1" cy="111.1" r="9"/><circle class="marker s1" cx="135.1" cy="111.1" r="3"/></g><g><title>phase2-v1: +0.0131 after 9 matches (to 2026-08-10)</title><circle class="hit" cx="144.0" cy="119.9" r="9"/><circle class="marker s1" cx="144.0" cy="119.9" r="3"/></g><g><title>phase2-v1: +0.0094 after 10 matches (to 2026-08-14)</title><circle class="hit" cx="152.9" cy="128.7" r="9"/><circle class="marker s1" cx="152.9" cy="128.7" r="3"/></g><g><title>phase2-v1: +0.0056 after 13 matches (to 2026-08-15)</title><circle class="hit" cx="179.6" cy="137.7" r="9"/><circle class="marker s1" cx="179.6" cy="137.7" r="3"/></g><g><title>phase2-v1: +0.0078 after 16 matches (to 2026-08-16)</title><circle class="hit" cx="206.2" cy="132.3" r="9"/><circle class="marker s1" cx="206.2" cy="132.3" r="3"/></g><g><title>phase2-v1: +0.0080 after 17 matches (to 2026-08-17)</title><circle class="hit" cx="215.1" cy="132.0" r="9"/><circle class="marker s1" cx="215.1" cy="132.0" r="3"/></g><g><title>phase2-v1: +0.0037 after 20 matches (to 2026-08-22)</title><circle class="hit" cx="241.8" cy="142.0" r="9"/><circle class="marker s1" cx="241.8" cy="142.0" r="3"/></g><g><title>phase2-v1: +0.0032 after 23 matches (to 2026-08-23)</title><circle class="hit" cx="268.4" cy="143.2" r="9"/><circle class="marker s1" cx="268.4" cy="143.2" r="3"/></g><g><title>phase2-v1: +0.0047 after 24 matches (to 2026-08-24)</title><circle class="hit" cx="277.3" cy="139.6" r="9"/><circle class="marker s1" cx="277.3" cy="139.6" r="3"/></g><g><title>phase2-v1: +0.0041 after 25 matches (to 2026-08-28)</title><circle class="hit" cx="286.2" cy="141.2" r="9"/><circle class="marker s1" cx="286.2" cy="141.2" r="3"/></g><g><title>phase2-v1: +0.0012 after 28 matches (to 2026-08-29)</title><circle class="hit" cx="312.9" cy="147.8" r="9"/><circle class="marker s1" cx="312.9" cy="147.8" r="3"/></g><g><title>phase2-v1: +0.0020 after 31 matches (to 2026-08-30)</title><circle class="hit" cx="339.6" cy="146.1" r="9"/><circle class="marker s1" cx="339.6" cy="146.1" r="3"/></g><g><title>phase2-v1: +0.0006 after 33 matches (to 2026-08-31)</title><circle class="hit" cx="357.3" cy="149.3" r="9"/><circle class="marker s1" cx="357.3" cy="149.3" r="3"/></g><g><title>phase2-v1: +0.0007 after 34 matches (to 2026-09-04)</title><circle class="hit" cx="366.2" cy="149.0" r="9"/><circle class="marker s1" cx="366.2" cy="149.0" r="3"/></g><g><title>phase2-v1: -0.0005 after 38 matches (to 2026-09-05)</title><circle class="hit" cx="401.8" cy="152.0" r="9"/><circle class="marker s1" cx="401.8" cy="152.0" r="3"/></g><g><title>phase2-v1: +0.0029 after 41 matches (to 2026-09-06)</title><circle class="hit" cx="428.4" cy="143.8" r="9"/><circle class="marker s1" cx="428.4" cy="143.8" r="3"/></g><g><title>phase2-v1: +0.0025 after 42 matches (to 2026-09-07)</title><circle class="hit" cx="437.3" cy="144.9" r="9"/><circle class="marker s1" cx="437.3" cy="144.9" r="3"/></g><g><title>phase2-v1: +0.0030 after 43 matches (to 2026-09-09)</title><circle class="hit" cx="446.2" cy="143.8" r="9"/><circle class="marker s1" cx="446.2" cy="143.8" r="3"/></g><g><title>phase2-v1: +0.0037 after 44 matches (to 2026-09-10)</title><circle class="hit" cx="455.1" cy="142.1" r="9"/><circle class="marker s1" cx="455.1" cy="142.1" r="3"/></g><g><title>phase2-v1: +0.0060 after 47 matches (to 2026-09-12)</title><circle class="hit" cx="481.8" cy="136.7" r="9"/><circle class="marker s1" cx="481.8" cy="136.7" r="3"/></g><g><title>phase2-v1: +0.0080 after 50 matches (to 2026-09-13)</title><circle class="hit" cx="508.4" cy="131.9" r="9"/><circle class="marker s1" cx="508.4" cy="131.9" r="3"/></g><g><title>phase2-v1: +0.0048 after 53 matches (to 2026-09-14)</title><circle class="hit" cx="535.1" cy="139.5" r="9"/><circle class="marker s1" cx="535.1" cy="139.5" r="3"/></g><g><title>phase2-v1: +0.0076 after 57 matches (to 2026-09-19)</title><circle class="hit" cx="570.7" cy="132.9" r="9"/><circle class="marker s1" cx="570.7" cy="132.9" r="3"/></g><g><title>phase2-v1: +0.0043 after 62 matches (to 2026-09-20)</title><circle class="hit" cx="615.1" cy="140.7" r="9"/><circle class="marker s1" cx="615.1" cy="140.7" r="3"/></g><g><title>phase2-v1: +0.0051 after 64 matches (to 2026-10-09)</title><circle class="hit" cx="632.9" cy="138.8" r="9"/><circle class="marker s1" cx="632.9" cy="138.8" r="3"/></g><g><title>phase2-v1: +0.0073 after 67 matches (to 2026-10-10)</title><circle class="hit" cx="659.6" cy="133.6" r="9"/><circle class="marker s1" cx="659.6" cy="133.6" r="3"/></g><g><title>phase2-v1: +0.0065 after 70 matches (to 2026-10-11)</title><circle class="hit" cx="686.2" cy="135.5" r="9"/><circle class="marker s1" cx="686.2" cy="135.5" r="3"/></g><g><title>phase2-v1: +0.0070 after 71 matches (to 2026-10-12)</title><circle class="hit" cx="695.1" cy="134.3" r="9"/><circle class="marker s1" cx="695.1" cy="134.3" r="3"/></g><g><title>phase2-v1: +0.0092 after 72 matches (to 2026-10-19)</title><circle class="hit" cx="704.0" cy="129.2" r="9"/><circle class="marker s1" cx="704.0" cy="129.2" r="3"/></g><polyline class="line s3" points="72.9,180.7 99.6,43.4 135.1,111.1 144.0,119.9 152.9,128.7 179.6,137.7 206.2,132.3 215.1,132.0 241.8,142.0 268.4,143.2 277.3,139.6 286.2,141.2 312.9,147.8 339.6,146.1 357.3,149.3 366.2,149.0 401.8,152.0 428.4,143.8 437.3,144.9 446.2,143.8 455.1,142.1 481.8,136.7 508.4,131.9 535.1,139.5 570.7,132.9 615.1,140.7 632.9,138.8 659.6,133.6 686.2,135.5 695.1,134.3 704.0,129.2"/><g><title>phase4-v1: -0.0127 after 1 matches (to 2026-08-07)</title><circle class="hit" cx="72.9" cy="180.7" r="9"/><circle class="marker s3" cx="72.9" cy="180.7" r="3"/></g><g><title>phase4-v1: +0.0457 after 4 matches (to 2026-08-08)</title><circle class="hit" cx="99.6" cy="43.4" r="9"/><circle class="marker s3" cx="99.6" cy="43.4" r="3"/></g><g><title>phase4-v1: +0.0169 after 8 matches (to 2026-08-09)</title><circle class="hit" cx="135.1" cy="111.1" r="9"/><circle class="marker s3" cx="135.1" cy="111.1" r="3"/></g><g><title>phase4-v1: +0.0131 after 9 matches (to 2026-08-10)</title><circle class="hit" cx="144.0" cy="119.9" r="9"/><circle class="marker s3" cx="144.0" cy="119.9" r="3"/></g><g><title>phase4-v1: +0.0094 after 10 matches (to 2026-08-14)</title><circle class="hit" cx="152.9" cy="128.7" r="9"/><circle class="marker s3" cx="152.9" cy="128.7" r="3"/></g><g><title>phase4-v1: +0.0056 after 13 matches (to 2026-08-15)</title><circle class="hit" cx="179.6" cy="137.7" r="9"/><circle class="marker s3" cx="179.6" cy="137.7" r="3"/></g><g><title>phase4-v1: +0.0078 after 16 matches (to 2026-08-16)</title><circle class="hit" cx="206.2" cy="132.3" r="9"/><circle class="marker s3" cx="206.2" cy="132.3" r="3"/></g><g><title>phase4-v1: +0.0080 after 17 matches (to 2026-08-17)</title><circle class="hit" cx="215.1" cy="132.0" r="9"/><circle class="marker s3" cx="215.1" cy="132.0" r="3"/></g><g><title>phase4-v1: +0.0037 after 20 matches (to 2026-08-22)</title><circle class="hit" cx="241.8" cy="142.0" r="9"/><circle class="marker s3" cx="241.8" cy="142.0" r="3"/></g><g><title>phase4-v1: +0.0032 after 23 matches (to 2026-08-23)</title><circle class="hit" cx="268.4" cy="143.2" r="9"/><circle class="marker s3" cx="268.4" cy="143.2" r="3"/></g><g><title>phase4-v1: +0.0047 after 24 matches (to 2026-08-24)</title><circle class="hit" cx="277.3" cy="139.6" r="9"/><circle class="marker s3" cx="277.3" cy="139.6" r="3"/></g><g><title>phase4-v1: +0.0041 after 25 matches (to 2026-08-28)</title><circle class="hit" cx="286.2" cy="141.2" r="9"/><circle class="marker s3" cx="286.2" cy="141.2" r="3"/></g><g><title>phase4-v1: +0.0012 after 28 matches (to 2026-08-29)</title><circle class="hit" cx="312.9" cy="147.8" r="9"/><circle class="marker s3" cx="312.9" cy="147.8" r="3"/></g><g><title>phase4-v1: +0.0020 after 31 matches (to 2026-08-30)</title><circle class="hit" cx="339.6" cy="146.1" r="9"/><circle class="marker s3" cx="339.6" cy="146.1" r="3"/></g><g><title>phase4-v1: +0.0006 after 33 matches (to 2026-08-31)</title><circle class="hit" cx="357.3" cy="149.3" r="9"/><circle class="marker s3" cx="357.3" cy="149.3" r="3"/></g><g><title>phase4-v1: +0.0007 after 34 matches (to 2026-09-04)</title><circle class="hit" cx="366.2" cy="149.0" r="9"/><circle class="marker s3" cx="366.2" cy="149.0" r="3"/></g><g><title>phase4-v1: -0.0005 after 38 matches (to 2026-09-05)</title><circle class="hit" cx="401.8" cy="152.0" r="9"/><circle class="marker s3" cx="401.8" cy="152.0" r="3"/></g><g><title>phase4-v1: +0.0029 after 41 matches (to 2026-09-06)</title><circle class="hit" cx="428.4" cy="143.8" r="9"/><circle class="marker s3" cx="428.4" cy="143.8" r="3"/></g><g><title>phase4-v1: +0.0025 after 42 matches (to 2026-09-07)</title><circle class="hit" cx="437.3" cy="144.9" r="9"/><circle class="marker s3" cx="437.3" cy="144.9" r="3"/></g><g><title>phase4-v1: +0.0030 after 43 matches (to 2026-09-09)</title><circle class="hit" cx="446.2" cy="143.8" r="9"/><circle class="marker s3" cx="446.2" cy="143.8" r="3"/></g><g><title>phase4-v1: +0.0037 after 44 matches (to 2026-09-10)</title><circle class="hit" cx="455.1" cy="142.1" r="9"/><circle class="marker s3" cx="455.1" cy="142.1" r="3"/></g><g><title>phase4-v1: +0.0060 after 47 matches (to 2026-09-12)</title><circle class="hit" cx="481.8" cy="136.7" r="9"/><circle class="marker s3" cx="481.8" cy="136.7" r="3"/></g><g><title>phase4-v1: +0.0080 after 50 matches (to 2026-09-13)</title><circle class="hit" cx="508.4" cy="131.9" r="9"/><circle class="marker s3" cx="508.4" cy="131.9" r="3"/></g><g><title>phase4-v1: +0.0048 after 53 matches (to 2026-09-14)</title><circle class="hit" cx="535.1" cy="139.5" r="9"/><circle class="marker s3" cx="535.1" cy="139.5" r="3"/></g><g><title>phase4-v1: +0.0076 after 57 matches (to 2026-09-19)</title><circle class="hit" cx="570.7" cy="132.9" r="9"/><circle class="marker s3" cx="570.7" cy="132.9" r="3"/></g><g><title>phase4-v1: +0.0043 after 62 matches (to 2026-09-20)</title><circle class="hit" cx="615.1" cy="140.7" r="9"/><circle class="marker s3" cx="615.1" cy="140.7" r="3"/></g><g><title>phase4-v1: +0.0051 after 64 matches (to 2026-10-09)</title><circle class="hit" cx="632.9" cy="138.8" r="9"/><circle class="marker s3" cx="632.9" cy="138.8" r="3"/></g><g><title>phase4-v1: +0.0073 after 67 matches (to 2026-10-10)</title><circle class="hit" cx="659.6" cy="133.6" r="9"/><circle class="marker s3" cx="659.6" cy="133.6" r="3"/></g><g><title>phase4-v1: +0.0065 after 70 matches (to 2026-10-11)</title><circle class="hit" cx="686.2" cy="135.5" r="9"/><circle class="marker s3" cx="686.2" cy="135.5" r="3"/></g><g><title>phase4-v1: +0.0070 after 71 matches (to 2026-10-12)</title><circle class="hit" cx="695.1" cy="134.3" r="9"/><circle class="marker s3" cx="695.1" cy="134.3" r="3"/></g><g><title>phase4-v1: +0.0092 after 72 matches (to 2026-10-19)</title><circle class="hit" cx="704.0" cy="129.2" r="9"/><circle class="marker s3" cx="704.0" cy="129.2" r="3"/></g><polyline class="line s4" points="72.9,124.8 99.6,27.3 135.1,107.0 144.0,110.3 152.9,121.2 179.6,127.5 206.2,133.2 215.1,133.4 241.8,134.6 268.4,138.0 277.3,139.7 286.2,139.4 312.9,139.0 339.6,138.9 357.3,139.9 366.2,139.8 401.8,138.4 428.4,136.3 437.3,136.5 446.2,136.5 455.1,141.1 481.8,140.4 508.4,141.6 535.1,143.4 570.7,143.3 615.1,144.9 632.9,146.8 659.6,147.8 686.2,147.0 695.1,146.5 704.0,144.3"/><g><title>phase4-v2: +0.0110 after 1 matches (to 2026-08-07)</title><circle class="hit" cx="72.9" cy="124.8" r="9"/><circle class="marker s4" cx="72.9" cy="124.8" r="3"/></g><g><title>phase4-v2: +0.0525 after 4 matches (to 2026-08-08)</title><circle class="hit" cx="99.6" cy="27.3" r="9"/><circle class="marker s4" cx="99.6" cy="27.3" r="3"/></g><g><title>phase4-v2: +0.0186 after 8 matches (to 2026-08-09)</title><circle class="hit" cx="135.1" cy="107.0" r="9"/><circle class="marker s4" cx="135.1" cy="107.0" r="3"/></g><g><title>phase4-v2: +0.0172 after 9 matches (to 2026-08-10)</title><circle class="hit" cx="144.0" cy="110.3" r="9"/><circle class="marker s4" cx="144.0" cy="110.3" r="3"/></g><g><title>phase4-v2: +0.0126 after 10 matches (to 2026-08-14)</title><circle class="hit" cx="152.9" cy="121.2" r="9"/><circle class="marker s4" cx="152.9" cy="121.2" r="3"/></g><g><title>phase4-v2: +0.0099 after 13 matches (to 2026-08-15)</title><circle class="hit" cx="179.6" cy="127.5" r="9"/><circle class="marker s4" cx="179.6" cy="127.5" r="3"/></g><g><title>phase4-v2: +0.0075 after 16 matches (to 2026-08-16)</title><circle class="hit" cx="206.2" cy="133.2" r="9"/><circle class="marker s4" cx="206.2" cy="133.2" r="3"/></g><g><title>phase4-v2: +0.0074 after 17 matches (to 2026-08-17)</title><circle class="hit" cx="215.1" cy="133.4" r="9"/><circle class="marker s4" cx="215.1" cy="133.4" r="3"/></g><g><title>phase4-v2: +0.0069 after 20 matches (to 2026-08-22)</title><circle class="hit" cx="241.8" cy="134.6" r="9"/><circle class="marker s4" cx="241.8" cy="134.6" r="3"/></g><g><title>phase4-v2: +0.0054 after 23 matches (to 2026-08-23)</title><circle class="hit" cx="268.4" cy="138.0" r="9"/><circle class="marker s4" cx="268.4" cy="138.0" r="3"/></g><g><title>phase4-v2: +0.0047 after 24 matches (to 2026-08-24)</title><circle class="hit" cx="277.3" cy="139.7" r="9"/><circle class="marker s4" cx="277.3" cy="139.7" r="3"/></g><g><title>phase4-v2: +0.0048 after 25 matches (to 2026-08-28)</title><circle class="hit" cx="286.2" cy="139.4" r="9"/><circle class="marker s4" cx="286.2" cy="139.4" r="3"/></g><g><title>phase4-v2: +0.0050 after 28 matches (to 2026-08-29)</title><circle class="hit" cx="312.9" cy="139.0" r="9"/><circle class="marker s4" cx="312.9" cy="139.0" r="3"/></g><g><title>phase4-v2: +0.0050 after 31 matches (to 2026-08-30)</title><circle class="hit" cx="339.6" cy="138.9" r="9"/><circle class="marker s4" cx="339.6" cy="138.9" r="3"/></g><g><title>phase4-v2: +0.0046 after 33 matches (to 2026-08-31)</title><circle class="hit" cx="357.3" cy="139.9" r="9"/><circle class="marker s4" cx="357.3" cy="139.9" r="3"/></g><g><title>phase4-v2: +0.0047 after 34 matches (to 2026-09-04)</title><circle class="hit" cx="366.2" cy="139.8" r="9"/><circle class="marker s4" cx="366.2" cy="139.8" r="3"/></g><g><title>phase4-v2: +0.0053 after 38 matches (to 2026-09-05)</title><circle class="hit" cx="401.8" cy="138.4" r="9"/><circle class="marker s4" cx="401.8" cy="138.4" r="3"/></g><g><title>phase4-v2: +0.0062 after 41 matches (to 2026-09-06)</title><circle class="hit" cx="428.4" cy="136.3" r="9"/><circle class="marker s4" cx="428.4" cy="136.3" r="3"/></g><g><title>phase4-v2: +0.0061 after 42 matches (to 2026-09-07)</title><circle class="hit" cx="437.3" cy="136.5" r="9"/><circle class="marker s4" cx="437.3" cy="136.5" r="3"/></g><g><title>phase4-v2: +0.0061 after 43 matches (to 2026-09-09)</title><circle class="hit" cx="446.2" cy="136.5" r="9"/><circle class="marker s4" cx="446.2" cy="136.5" r="3"/></g><g><title>phase4-v2: +0.0041 after 44 matches (to 2026-09-10)</title><circle class="hit" cx="455.1" cy="141.1" r="9"/><circle class="marker s4" cx="455.1" cy="141.1" r="3"/></g><g><title>phase4-v2: +0.0044 after 47 matches (to 2026-09-12)</title><circle class="hit" cx="481.8" cy="140.4" r="9"/><circle class="marker s4" cx="481.8" cy="140.4" r="3"/></g><g><title>phase4-v2: +0.0039 after 50 matches (to 2026-09-13)</title><circle class="hit" cx="508.4" cy="141.6" r="9"/><circle class="marker s4" cx="508.4" cy="141.6" r="3"/></g><g><title>phase4-v2: +0.0031 after 53 matches (to 2026-09-14)</title><circle class="hit" cx="535.1" cy="143.4" r="9"/><circle class="marker s4" cx="535.1" cy="143.4" r="3"/></g><g><title>phase4-v2: +0.0032 after 57 matches (to 2026-09-19)</title><circle class="hit" cx="570.7" cy="143.3" r="9"/><circle class="marker s4" cx="570.7" cy="143.3" r="3"/></g><g><title>phase4-v2: +0.0025 after 62 matches (to 2026-09-20)</title><circle class="hit" cx="615.1" cy="144.9" r="9"/><circle class="marker s4" cx="615.1" cy="144.9" r="3"/></g><g><title>phase4-v2: +0.0017 after 64 matches (to 2026-10-09)</title><circle class="hit" cx="632.9" cy="146.8" r="9"/><circle class="marker s4" cx="632.9" cy="146.8" r="3"/></g><g><title>phase4-v2: +0.0013 after 67 matches (to 2026-10-10)</title><circle class="hit" cx="659.6" cy="147.8" r="9"/><circle class="marker s4" cx="659.6" cy="147.8" r="3"/></g><g><title>phase4-v2: +0.0016 after 70 matches (to 2026-10-11)</title><circle class="hit" cx="686.2" cy="147.0" r="9"/><circle class="marker s4" cx="686.2" cy="147.0" r="3"/></g><g><title>phase4-v2: +0.0018 after 71 matches (to 2026-10-12)</title><circle class="hit" cx="695.1" cy="146.5" r="9"/><circle class="marker s4" cx="695.1" cy="146.5" r="3"/></g><g><title>phase4-v2: +0.0027 after 72 matches (to 2026-10-19)</title><circle class="hit" cx="704.0" cy="144.3" r="9"/><circle class="marker s4" cx="704.0" cy="144.3" r="3"/></g></svg>
+  </div>
+  <div class="card">
+    <h3>Calibration by model version (1X2, every outcome)</h3>
+    <p class="note">Five bins; few matches per bin, so read the shape, not the points.</p>
+    <div class="legend"><span><i class="k1"></i>phase2-v1</span><span><i class="k3"></i>phase4-v1</span><span><i class="k4"></i>phase4-v2</span><span><i class="k2"></i>closing market</span><span><i class="kd"></i>perfect calibration</span></div>
+    <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration, retrospective"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><polyline class="line s1" points="80.2,196.4 123.2,165.1 165.3,163.1 221.6,62.2 248.0,62.2"/><g><title>phase2-v1: forecast 11%, observed 18%, 57 probabilities</title><circle class="hit" cx="80.2" cy="196.4" r="10"/><circle class="marker s1" cx="80.2" cy="196.4" r="4"/></g><g><title>phase2-v1: forecast 30%, observed 31%, 102 probabilities</title><circle class="hit" cx="123.2" cy="165.1" r="10"/><circle class="marker s1" cx="123.2" cy="165.1" r="4"/></g><g><title>phase2-v1: forecast 48%, observed 32%, 31 probabilities</title><circle class="hit" cx="165.3" cy="163.1" r="10"/><circle class="marker s1" cx="165.3" cy="163.1" r="4"/></g><g><title>phase2-v1: forecast 73%, observed 77%, 13 probabilities</title><circle class="hit" cx="221.6" cy="62.2" r="10"/><circle class="marker s1" cx="221.6" cy="62.2" r="4"/></g><g><title>phase2-v1: forecast 85%, observed 77%, 13 probabilities</title><circle class="hit" cx="248.0" cy="62.2" r="10"/><circle class="marker s1" cx="248.0" cy="62.2" r="4"/></g><polyline class="line s3" points="80.2,196.4 123.2,165.1 165.3,163.1 221.6,62.2 248.0,62.2"/><g><title>phase4-v1: forecast 11%, observed 18%, 57 probabilities</title><circle class="hit" cx="80.2" cy="196.4" r="10"/><circle class="marker s3" cx="80.2" cy="196.4" r="4"/></g><g><title>phase4-v1: forecast 30%, observed 31%, 102 probabilities</title><circle class="hit" cx="123.2" cy="165.1" r="10"/><circle class="marker s3" cx="123.2" cy="165.1" r="4"/></g><g><title>phase4-v1: forecast 48%, observed 32%, 31 probabilities</title><circle class="hit" cx="165.3" cy="163.1" r="10"/><circle class="marker s3" cx="165.3" cy="163.1" r="4"/></g><g><title>phase4-v1: forecast 73%, observed 77%, 13 probabilities</title><circle class="hit" cx="221.6" cy="62.2" r="10"/><circle class="marker s3" cx="221.6" cy="62.2" r="4"/></g><g><title>phase4-v1: forecast 85%, observed 77%, 13 probabilities</title><circle class="hit" cx="248.0" cy="62.2" r="10"/><circle class="marker s3" cx="248.0" cy="62.2" r="4"/></g><polyline class="line s4" points="81.5,213.8 120.8,163.5 166.2,136.3 211.6,123.0 242.8,40.1"/><g><title>phase4-v2: forecast 11%, observed 10%, 51 probabilities</title><circle class="hit" cx="81.5" cy="213.8" r="10"/><circle class="marker s4" cx="81.5" cy="213.8" r="4"/></g><g><title>phase4-v2: forecast 29%, observed 32%, 106 probabilities</title><circle class="hit" cx="120.8" cy="163.5" r="10"/><circle class="marker s4" cx="120.8" cy="163.5" r="4"/></g><g><title>phase4-v2: forecast 49%, observed 44%, 34 probabilities</title><circle class="hit" cx="166.2" cy="136.3" r="10"/><circle class="marker s4" cx="166.2" cy="136.3" r="4"/></g><g><title>phase4-v2: forecast 69%, observed 50%, 10 probabilities</title><circle class="hit" cx="211.6" cy="123.0" r="10"/><circle class="marker s4" cx="211.6" cy="123.0" r="4"/></g><g><title>phase4-v2: forecast 83%, observed 87%, 15 probabilities</title><circle class="hit" cx="242.8" cy="40.1" r="10"/><circle class="marker s4" cx="242.8" cy="40.1" r="4"/></g><polyline class="line s2" points="81.5,207.2 121.7,168.0 165.9,126.6 212.1,106.9 249.2,44.8"/><g><title>closing market: forecast 11%, observed 13%, 55 probabilities</title><circle class="hit" cx="81.5" cy="207.2" r="10"/><circle class="marker s2" cx="81.5" cy="207.2" r="4"/></g><g><title>closing market: forecast 29%, observed 30%, 103 probabilities</title><circle class="hit" cx="121.7" cy="168.0" r="10"/><circle class="marker s2" cx="121.7" cy="168.0" r="4"/></g><g><title>closing market: forecast 49%, observed 48%, 31 probabilities</title><circle class="hit" cx="165.9" cy="126.6" r="10"/><circle class="marker s2" cx="165.9" cy="126.6" r="4"/></g><g><title>closing market: forecast 69%, observed 57%, 14 probabilities</title><circle class="hit" cx="212.1" cy="106.9" r="10"/><circle class="marker s2" cx="212.1" cy="106.9" r="4"/></g><g><title>closing market: forecast 85%, observed 85%, 13 probabilities</title><circle class="hit" cx="249.2" cy="44.8" r="10"/><circle class="marker s2" cx="249.2" cy="44.8" r="4"/></g></svg>
+  </div>
+</div>
+</details>
+</section>
+
+<section class="block" id="holdout">
+<div class="head">
+  <p class="kicker">Confirmatory test</p>
+  <h2>Holdout · 2024/25 and 2025/26</h2>
+<p>The two most recent seasons were kept closed while every model choice was made, then opened once with the model fixed in a commit. Walk-forward: each forecast uses only data available 24 h before kick-off. 95% intervals from a weekly block bootstrap. Differences are model minus the closing market; negative is better.</p>
+</div>
+
+<div class="card">
+  <h3>The claim, by season (1X2 Δ RPS)</h3>
+  <svg class="chart" viewBox="0 0 720 142" role="img" aria-label="RPS of phase4-v1 minus closing RPS (lower is better)"><line class="grid" x1="423.6" x2="423.6" y1="8" y2="98"/><text class="tick" x="423.6" y="114" text-anchor="middle">0</text><line class="grid" x1="528.3" x2="528.3" y1="8" y2="98"/><text class="tick" x="528.3" y="114" text-anchor="middle">+0.005</text><line class="grid" x1="633.0" x2="633.0" y1="8" y2="98"/><text class="tick" x="633.0" y="114" text-anchor="middle">+0.010</text><line class="zero" x1="423.6" x2="423.6" y1="8" y2="98"/><g><title>2024/25 (306 matches): +0.0056 [-0.0002; +0.0118]</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">2024/25 (306 matches)</text><line class="whisker" x1="418.8" x2="670.1" y1="23.0" y2="23.0"/><circle class="dot" cx="540.2" cy="23.0" r="5"/></g><g><title>2025/26 (306 matches): +0.0027 [-0.0037; +0.0097]</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">2025/26 (306 matches)</text><line class="whisker" x1="345.9" x2="627.6" y1="53.0" y2="53.0"/><circle class="dot" cx="480.4" cy="53.0" r="5"/></g><g><title>Both (612 matches): +0.0041 [-0.0002; +0.0089]</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">Both (612 matches)</text><line class="whisker" x1="418.8" x2="608.9" y1="83.0" y2="83.0"/><circle class="dot" cx="510.3" cy="83.0" r="5"/></g><text class="axis-label" x="508.0" y="136" text-anchor="middle">RPS of phase4-v1 minus closing RPS (lower is better)</text></svg>
+</div>
+
+<div class="card">
+  <h3>1X2 · all models against the closing market</h3>
+  <svg class="chart" viewBox="0 0 720 172" role="img" aria-label="RPS minus closing RPS (lower is better)"><line class="grid" x1="346.9" x2="346.9" y1="8" y2="128"/><text class="tick" x="346.9" y="144" text-anchor="middle">0</text><line class="grid" x1="445.0" x2="445.0" y1="8" y2="128"/><text class="tick" x="445.0" y="144" text-anchor="middle">+0.02</text><line class="grid" x1="543.1" x2="543.1" y1="8" y2="128"/><text class="tick" x="543.1" y="144" text-anchor="middle">+0.04</text><line class="grid" x1="641.1" x2="641.1" y1="8" y2="128"/><text class="tick" x="641.1" y="144" text-anchor="middle">+0.06</text><line class="zero" x1="346.9" x2="346.9" y1="8" y2="128"/><g><title>Base rates: +0.0542 [+0.0420; +0.0659]</title><rect class="hit" x="0" y="8.0" width="720" height="30"/><text class="label" x="308" y="27.0" text-anchor="end">Base rates</text><line class="whisker" x1="552.9" x2="670.1" y1="23.0" y2="23.0"/><circle class="dot solid" cx="612.7" cy="23.0" r="5"/></g><g><title>Elo (phase2-v1 = phase4-v1): +0.0041 [-0.0002; +0.0088]</title><rect class="hit" x="0" y="38.0" width="720" height="30"/><text class="label" x="308" y="57.0" text-anchor="end">Elo (phase2-v1 = phase4-v1)</text><line class="whisker" x1="345.9" x2="390.1" y1="53.0" y2="53.0"/><circle class="dot" cx="367.0" cy="53.0" r="5"/></g><g><title>Dixon-Coles: +0.0061 [+0.0023; +0.0098]</title><rect class="hit" x="0" y="68.0" width="720" height="30"/><text class="label" x="308" y="87.0" text-anchor="end">Dixon-Coles</text><line class="whisker" x1="358.2" x2="395.0" y1="83.0" y2="83.0"/><circle class="dot solid" cx="376.8" cy="83.0" r="5"/></g><g><title>Pre-closing odds, no-vig (Elo where late): +0.0036 [+0.0003; +0.0065]</title><rect class="hit" x="0" y="98.0" width="720" height="30"/><text class="label" x="308" y="117.0" text-anchor="end">Pre-closing odds, no-vig (Elo where late)</text><line class="whisker" x1="348.4" x2="378.8" y1="113.0" y2="113.0"/><circle class="dot solid" cx="364.6" cy="113.0" r="5"/></g><text class="axis-label" x="508.0" y="166" text-anchor="middle">RPS minus closing RPS (lower is better)</text></svg>
+  <div class="scroll"><table>
+    <caption>612 matches; Δ against the closing market.</caption>
+    <thead><tr><th class="text">Model</th><th>RPS</th><th>Δ RPS</th><th>Log loss</th><th>Δ log loss</th><th>Brier</th><th>Δ Brier</th></tr></thead>
+    <tbody>
+    <tr><td>Base rates</td><td>0.2300<span class="ci">[0.2241; 0.2358]</span></td><td class="sig">+0.0542<span class="ci">[+0.0420; +0.0659]</span></td><td>1.0830<span class="ci">[1.0633; 1.1042]</span></td><td class="sig">+0.1706<span class="ci">[+0.1349; +0.2057]</span></td><td>0.6558<span class="ci">[0.6430; 0.6697]</span></td><td class="sig">+0.1156<span class="ci">[+0.0906; +0.1402]</span></td></tr>
+    <tr><td>Elo (phase2-v1 = phase4-v1)</td><td>0.1800<span class="ci">[0.1689; 0.1906]</span></td><td>+0.0041<span class="ci">[-0.0002; +0.0088]</span></td><td>0.9256<span class="ci">[0.8806; 0.9721]</span></td><td>+0.0132<span class="ci">[-0.0018; +0.0296]</span></td><td>0.5477<span class="ci">[0.5158; 0.5792]</span></td><td>+0.0076<span class="ci">[-0.0024; +0.0182]</span></td></tr>
+    <tr><td>Dixon-Coles</td><td>0.1819<span class="ci">[0.1711; 0.1923]</span></td><td class="sig">+0.0061<span class="ci">[+0.0023; +0.0098]</span></td><td>0.9379<span class="ci">[0.8926; 0.9833]</span></td><td class="sig">+0.0255<span class="ci">[+0.0132; +0.0376]</span></td><td>0.5546<span class="ci">[0.5230; 0.5860]</span></td><td class="sig">+0.0144<span class="ci">[+0.0061; +0.0225]</span></td></tr>
+    <tr><td>Pre-closing odds, no-vig (Elo where late)</td><td>0.1794<span class="ci">[0.1687; 0.1900]</span></td><td class="sig">+0.0036<span class="ci">[+0.0003; +0.0065]</span></td><td>0.9227<span class="ci">[0.8790; 0.9665]</span></td><td>+0.0103<span class="ci">[-0.0010; +0.0206]</span></td><td>0.5474<span class="ci">[0.5169; 0.5776]</span></td><td>+0.0072<span class="ci">[-0.0003; +0.0143]</span></td></tr>
+    <tr><td>Closing market, no-vig (AvgC)</td><td>0.1758<span class="ci">[0.1655; 0.1864]</span></td><td>—</td><td>0.9124<span class="ci">[0.8675; 0.9573]</span></td><td>—</td><td>0.5401<span class="ci">[0.5087; 0.5717]</span></td><td>—</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div>
+<div class="card">
+  <h3>Over/under 2.5 · secondary</h3>
+  <div class="scroll"><table>
+    <caption>Binary log loss; Δ against the closing market.</caption>
+    <thead><tr><th class="text">Model</th><th>Log loss</th><th>Δ</th><th>ECE</th></tr></thead>
+    <tbody>
+    <tr><td>Base rates</td><td>0.6928<span class="ci">[0.6919; 0.6938]</span></td><td class="sig">+0.0289<span class="ci">[+0.0128; +0.0434]</span></td><td>0.0082</td></tr>
+    <tr><td>Dixon-Coles (phase2-v1)</td><td>0.6772<span class="ci">[0.6561; 0.7006]</span></td><td class="sig">+0.0133<span class="ci">[+0.0013; +0.0266]</span></td><td>0.0406</td></tr>
+    <tr><td>Market as prior (phase4-v1)</td><td>0.6719<span class="ci">[0.6554; 0.6912]</span></td><td>+0.0079<span class="ci">[-0.0010; +0.0172]</span></td><td>0.0361</td></tr>
+    <tr><td>Pre-closing odds, no-vig (Dixon-Coles where late)</td><td>0.6721<span class="ci">[0.6559; 0.6913]</span></td><td>+0.0081<span class="ci">[-0.0008; +0.0175]</span></td><td>0.0352</td></tr>
+    <tr><td>Closing market, no-vig (AvgC)</td><td>0.6640<span class="ci">[0.6493; 0.6800]</span></td><td>—</td><td>0.0439</td></tr>
+    </tbody>
+  </table></div>
+</div>
+<div class="card">
+  <h3>Both teams score · secondary</h3>
+  <div class="scroll"><table>
+    <caption>Binary log loss; Δ against base rates (no odds).</caption>
+    <thead><tr><th class="text">Model</th><th>Log loss</th><th>Δ</th><th>ECE</th></tr></thead>
+    <tbody>
+    <tr><td>Base rates</td><td>0.6928<span class="ci">[0.6913; 0.6943]</span></td><td>—</td><td>0.0082</td></tr>
+    <tr><td>Dixon-Coles (phase2-v1)</td><td>0.6965<span class="ci">[0.6838; 0.7100]</span></td><td>+0.0037<span class="ci">[-0.0086; +0.0170]</span></td><td>0.0534</td></tr>
+    <tr><td>Partial pooling (phase4-v1)</td><td>0.6933<span class="ci">[0.6848; 0.7018]</span></td><td>+0.0005<span class="ci">[-0.0080; +0.0089]</span></td><td>0.0235</td></tr>
+    </tbody>
+  </table></div>
+</div>
+</div>
+
+<h3>Calibration of phase4-v1</h3>
+<p class="note">Mean forecast against observed frequency in 10-point bins; the dashed diagonal is perfect calibration. Hover a point for its numbers.</p>
+<div class="grid2">
+<div class="card">
+  <h3>Home win</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration of phase4-v1, Home win"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><polyline class="line s3" points="72.5,212.3 88.3,203.7 114.3,162.8 138.7,157.8 155.9,146.1 179.4,107.0 198.4,105.1 226.0,82.5 250.1,37.6 261.0,55.2"/><g><title>phase4-v1: 0% to 10%: forecast 7%, observed 10%, 76 matches</title><circle class="hit" cx="72.5" cy="212.3" r="10"/><circle class="marker s3" cx="72.5" cy="212.3" r="4"/></g><g><title>phase4-v1: 10% to 20%: forecast 14%, observed 14%, 35 matches</title><circle class="hit" cx="88.3" cy="203.7" r="10"/><circle class="marker s3" cx="88.3" cy="203.7" r="4"/></g><g><title>phase4-v1: 20% to 30%: forecast 26%, observed 32%, 34 matches</title><circle class="hit" cx="114.3" cy="162.8" r="10"/><circle class="marker s3" cx="114.3" cy="162.8" r="4"/></g><g><title>phase4-v1: 30% to 40%: forecast 37%, observed 35%, 130 matches</title><circle class="hit" cx="138.7" cy="157.8" r="10"/><circle class="marker s3" cx="138.7" cy="157.8" r="4"/></g><g><title>phase4-v1: 40% to 50%: forecast 44%, observed 40%, 176 matches</title><circle class="hit" cx="155.9" cy="146.1" r="10"/><circle class="marker s3" cx="155.9" cy="146.1" r="4"/></g><g><title>phase4-v1: 50% to 60%: forecast 55%, observed 57%, 35 matches</title><circle class="hit" cx="179.4" cy="107.0" r="10"/><circle class="marker s3" cx="179.4" cy="107.0" r="4"/></g><g><title>phase4-v1: 60% to 70%: forecast 63%, observed 58%, 19 matches</title><circle class="hit" cx="198.4" cy="105.1" r="10"/><circle class="marker s3" cx="198.4" cy="105.1" r="4"/></g><g><title>phase4-v1: 70% to 80%: forecast 75%, observed 68%, 28 matches</title><circle class="hit" cx="226.0" cy="82.5" r="10"/><circle class="marker s3" cx="226.0" cy="82.5" r="4"/></g><g><title>phase4-v1: 80% to 90%: forecast 86%, observed 88%, 74 matches</title><circle class="hit" cx="250.1" cy="37.6" r="10"/><circle class="marker s3" cx="250.1" cy="37.6" r="4"/></g><g><title>phase4-v1: 90% to 100%: forecast 91%, observed 80%, 5 matches</title><circle class="hit" cx="261.0" cy="55.2" r="10"/><circle class="marker s3" cx="261.0" cy="55.2" r="4"/></g></svg>
+</div>
+<div class="card">
+  <h3>Draw</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration of phase4-v1, Draw"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><polyline class="line s3" points="75.7,206.6 88.5,202.3 118.6,164.8 124.9,162.8"/><g><title>phase4-v1: 0% to 10%: forecast 9%, observed 13%, 54 matches</title><circle class="hit" cx="75.7" cy="206.6" r="10"/><circle class="marker s3" cx="75.7" cy="206.6" r="4"/></g><g><title>phase4-v1: 10% to 20%: forecast 14%, observed 15%, 134 matches</title><circle class="hit" cx="88.5" cy="202.3" r="10"/><circle class="marker s3" cx="88.5" cy="202.3" r="4"/></g><g><title>phase4-v1: 20% to 30%: forecast 28%, observed 32%, 248 matches</title><circle class="hit" cx="118.6" cy="164.8" r="10"/><circle class="marker s3" cx="118.6" cy="164.8" r="4"/></g><g><title>phase4-v1: 30% to 40%: forecast 30%, observed 32%, 176 matches</title><circle class="hit" cx="124.9" cy="162.8" r="10"/><circle class="marker s3" cx="124.9" cy="162.8" r="4"/></g></svg>
+</div>
+<div class="card">
+  <h3>Away win</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration of phase4-v1, Away win"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><polyline class="line s3" points="68.2,227.4 92.4,210.2 115.0,180.4 130.6,155.3 157.2,169.6 186.4,110.3 200.6,78.7 228.9,54.3 240.4,88.6"/><g><title>phase4-v1: 0% to 10%: forecast 5%, observed 4%, 106 matches</title><circle class="hit" cx="68.2" cy="227.4" r="10"/><circle class="marker s3" cx="68.2" cy="227.4" r="4"/></g><g><title>phase4-v1: 10% to 20%: forecast 16%, observed 11%, 44 matches</title><circle class="hit" cx="92.4" cy="210.2" r="10"/><circle class="marker s3" cx="92.4" cy="210.2" r="4"/></g><g><title>phase4-v1: 20% to 30%: forecast 26%, observed 25%, 191 matches</title><circle class="hit" cx="115.0" cy="180.4" r="10"/><circle class="marker s3" cx="115.0" cy="180.4" r="4"/></g><g><title>phase4-v1: 30% to 40%: forecast 33%, observed 36%, 126 matches</title><circle class="hit" cx="130.6" cy="155.3" r="10"/><circle class="marker s3" cx="130.6" cy="155.3" r="4"/></g><g><title>phase4-v1: 40% to 50%: forecast 45%, observed 29%, 34 matches</title><circle class="hit" cx="157.2" cy="169.6" r="10"/><circle class="marker s3" cx="157.2" cy="169.6" r="4"/></g><g><title>phase4-v1: 50% to 60%: forecast 58%, observed 56%, 9 matches</title><circle class="hit" cx="186.4" cy="110.3" r="10"/><circle class="marker s3" cx="186.4" cy="110.3" r="4"/></g><g><title>phase4-v1: 60% to 70%: forecast 64%, observed 70%, 23 matches</title><circle class="hit" cx="200.6" cy="78.7" r="10"/><circle class="marker s3" cx="200.6" cy="78.7" r="4"/></g><g><title>phase4-v1: 70% to 80%: forecast 76%, observed 80%, 56 matches</title><circle class="hit" cx="228.9" cy="54.3" r="10"/><circle class="marker s3" cx="228.9" cy="54.3" r="4"/></g><g><title>phase4-v1: 80% to 90%: forecast 82%, observed 65%, 23 matches</title><circle class="hit" cx="240.4" cy="88.6" r="10"/><circle class="marker s3" cx="240.4" cy="88.6" r="4"/></g></svg>
+</div>
+<div class="card">
+  <h3>Over 2.5</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration of phase4-v1, Over 2.5"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><polyline class="line s3" points="117.2,94.8 138.7,153.5 157.5,133.4 178.9,91.6 200.4,83.2 220.5,55.2 243.4,123.0"/><g><title>phase4-v1: 20% to 30%: forecast 27%, observed 62%, 8 matches</title><circle class="hit" cx="117.2" cy="94.8" r="10"/><circle class="marker s3" cx="117.2" cy="94.8" r="4"/></g><g><title>phase4-v1: 30% to 40%: forecast 37%, observed 36%, 126 matches</title><circle class="hit" cx="138.7" cy="153.5" r="10"/><circle class="marker s3" cx="138.7" cy="153.5" r="4"/></g><g><title>phase4-v1: 40% to 50%: forecast 45%, observed 45%, 249 matches</title><circle class="hit" cx="157.5" cy="133.4" r="10"/><circle class="marker s3" cx="157.5" cy="133.4" r="4"/></g><g><title>phase4-v1: 50% to 60%: forecast 54%, observed 64%, 144 matches</title><circle class="hit" cx="178.9" cy="91.6" r="10"/><circle class="marker s3" cx="178.9" cy="91.6" r="4"/></g><g><title>phase4-v1: 60% to 70%: forecast 64%, observed 68%, 68 matches</title><circle class="hit" cx="200.4" cy="83.2" r="10"/><circle class="marker s3" cx="200.4" cy="83.2" r="4"/></g><g><title>phase4-v1: 70% to 80%: forecast 73%, observed 80%, 15 matches</title><circle class="hit" cx="220.5" cy="55.2" r="10"/><circle class="marker s3" cx="220.5" cy="55.2" r="4"/></g><g><title>phase4-v1: 80% to 90%: forecast 83%, observed 50%, 2 matches</title><circle class="hit" cx="243.4" cy="123.0" r="10"/><circle class="marker s3" cx="243.4" cy="123.0" r="4"/></g></svg>
+</div>
+<div class="card">
+  <h3>Both teams score</h3>
+  <svg class="chart square" viewBox="0 0 300 276" role="img" aria-label="Calibration of phase4-v1, Both teams score"><line class="grid" x1="56" x2="282" y1="236.0" y2="236.0"/><line class="grid" x1="56.0" x2="56.0" y1="236" y2="10"/><text class="tick" x="50" y="240.0" text-anchor="end">0%</text><text class="tick" x="56.0" y="252.0" text-anchor="middle">0%</text><line class="grid" x1="56" x2="282" y1="179.5" y2="179.5"/><line class="grid" x1="112.5" x2="112.5" y1="236" y2="10"/><text class="tick" x="50" y="183.5" text-anchor="end">25%</text><text class="tick" x="112.5" y="252.0" text-anchor="middle">25%</text><line class="grid" x1="56" x2="282" y1="123.0" y2="123.0"/><line class="grid" x1="169.0" x2="169.0" y1="236" y2="10"/><text class="tick" x="50" y="127.0" text-anchor="end">50%</text><text class="tick" x="169.0" y="252.0" text-anchor="middle">50%</text><line class="grid" x1="56" x2="282" y1="66.5" y2="66.5"/><line class="grid" x1="225.5" x2="225.5" y1="236" y2="10"/><text class="tick" x="50" y="70.5" text-anchor="end">75%</text><text class="tick" x="225.5" y="252.0" text-anchor="middle">75%</text><line class="grid" x1="56" x2="282" y1="10.0" y2="10.0"/><line class="grid" x1="282.0" x2="282.0" y1="236" y2="10"/><text class="tick" x="50" y="14.0" text-anchor="end">100%</text><text class="tick" x="282.0" y="252.0" text-anchor="middle">100%</text><line class="diagonal" x1="56" y1="236" x2="282" y2="10"/><text class="axis-label" x="169.0" y="272" text-anchor="middle">forecast</text><text class="axis-label" transform="translate(12 123.0) rotate(-90)" text-anchor="middle">observed</text><polyline class="line s3" points="141.9,73.3 159.7,133.2 175.8,120.5 195.4,10.0"/><g><title>phase4-v1: 30% to 40%: forecast 38%, observed 72%, 25 matches</title><circle class="hit" cx="141.9" cy="73.3" r="10"/><circle class="marker s3" cx="141.9" cy="73.3" r="4"/></g><g><title>phase4-v1: 40% to 50%: forecast 46%, observed 46%, 411 matches</title><circle class="hit" cx="159.7" cy="133.2" r="10"/><circle class="marker s3" cx="159.7" cy="133.2" r="4"/></g><g><title>phase4-v1: 50% to 60%: forecast 53%, observed 51%, 174 matches</title><circle class="hit" cx="175.8" cy="120.5" r="10"/><circle class="marker s3" cx="175.8" cy="120.5" r="4"/></g><g><title>phase4-v1: 60% to 70%: forecast 62%, observed 100%, 2 matches</title><circle class="hit" cx="195.4" cy="10.0" r="10"/><circle class="marker s3" cx="195.4" cy="10.0" r="4"/></g></svg>
+</div>
+</div>
+<div class="card scroll"><table>
+  <caption>Expected calibration error by 1X2 outcome (lower is better).</caption>
+  <thead><tr><th class="text">Forecaster</th><th>Home win</th><th>Draw</th><th>Away win</th></tr></thead>
+  <tbody><tr><td>phase4-v1</td><td>0.0340</td><td>0.0258</td><td>0.0371</td></tr><tr><td>Closing market, no-vig (AvgC)</td><td>0.0458</td><td>0.0351</td><td>0.0498</td></tr></tbody>
+</table></div>
+
+<div class="grid2">
+<div class="card">
+  <h3>Favourites</h3>
+  <div class="scroll"><table>
+    <caption>Mean probability given to the closing market's favourite, by the market's band.</caption>
+    <thead><tr><th class="text">Market band</th><th>Matches</th><th>Market</th><th>Elo</th><th>Dixon-Coles</th><th>Won</th></tr></thead>
+    <tbody><tr><td>0% to 40%</td><td>111</td><td>37%</td><td>36%</td><td>38%</td><td>37%</td></tr><tr><td>40% to 50%</td><td>172</td><td>45%</td><td>41%</td><td>44%</td><td>50%</td></tr><tr><td>50% to 60%</td><td>108</td><td>55%</td><td>50%</td><td>53%</td><td>44%</td></tr><tr><td>60% to 70%</td><td>73</td><td>65%</td><td>67%</td><td>62%</td><td>73%</td></tr><tr><td>70% to 80%</td><td>67</td><td>75%</td><td>78%</td><td>72%</td><td>72%</td></tr><tr><td>80% to 100%</td><td>81</td><td>85%</td><td>85%</td><td>82%</td><td>90%</td></tr></tbody>
+  </table></div>
+</div>
+<div class="card">
+  <h3>Closing-line value proxy · secondary</h3>
+  <p class="note">Where the model gave an outcome more probability than the pre-closing odds: how far the market moved towards it by kick-off (positive is towards the model).</p>
+  <div class="scroll"><table>
+    <thead><tr><th class="text">Market</th><th>Matches</th><th>Outcomes</th><th>Mean move</th></tr></thead>
+    <tbody><tr><td>1X2</td><td>369</td><td>569</td><td>-0.0011<span class="ci">[-0.0034; +0.0013]</span></td></tr><tr><td>Over/under 2.5</td><td>369</td><td>369</td><td class="sig">+0.0039<span class="ci">[+0.0014; +0.0066]</span></td></tr></tbody>
+  </table></div>
+</div>
+</div>
+
+</section>
+
+<section class="block" id="method">
+<div class="head">
+  <p class="kicker">How it works</p>
+  <h2>Method</h2>
+<p>Every external datum carries the moment it became available, and a forecast only uses what existed 24 h before kick-off; an automated test fails if a feature breaks this. Models are trained walk-forward on earlier matches only. The ledger is append-only JSONL in git: a correction is a new line, never an edit. The scores above are derived from the ledger, the results and the closing odds; nothing is written back.</p>
+<p>RPS (ranked probability score) is the primary 1X2 metric because it respects the order home, draw, away; log loss and Brier are secondary. The closing market has its margin removed with the power method for 1X2 and proportionally for over/under.</p>
+</div>
+</section>
+</main>
+<footer><div class="wrap">Generated by <code>lfp-forecast dashboard build</code> from the ledger, the database rebuilt from <code>data/raw</code> and <code>reports/holdout.md</code>. Personal research project; not betting advice.</div></footer>
+</body>
+</html>
