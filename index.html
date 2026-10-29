@@ -197,6 +197,23 @@ svg .line.s3 { stroke: var(--s3); } svg .marker.s3 { fill: var(--s3); }
 svg .line.s4 { stroke: var(--s4); } svg .marker.s4 { fill: var(--s4); }
 svg .line.s5 { stroke: var(--s5); } svg .marker.s5 { fill: var(--s5); }
 
+/* Season table */
+td.chance { position: relative; }
+td.chance span { position: relative; z-index: 1; }
+td.chance::before { content: ""; position: absolute; inset: 3px 2px; border-radius: 4px;
+  background: var(--s1); opacity: calc(var(--p) * 0.45); }
+td.chance.down::before { background: var(--s2); }
+.range { position: relative; height: 8px; min-width: 110px; background: var(--grid); border-radius: 4px; margin: 4px 0 2px; }
+.range span { position: absolute; top: 0; bottom: 0; background: var(--wash); border: 1px solid color-mix(in srgb, var(--s1) 45%, transparent); border-radius: 4px; }
+.range i { position: absolute; top: -3px; width: 2px; height: 14px; background: var(--ink-2); }
+td.pts { min-width: 150px; }
+#season .short { display: none; }
+@media (max-width: 640px) {
+  #season th.pts, #season td.pts { display: none; }
+  #season th, #season td { padding: 6px 3px; font-size: 13px; letter-spacing: 0; white-space: normal; }
+  #season .long { display: none; } #season .short { display: inline; }
+}
+
 footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--ring); color: var(--muted); font-size: 13px; }
 footer p { max-width: none; }
 
@@ -216,7 +233,7 @@ footer p { max-width: none; }
 <body>
 <div class="bar"><div class="wrap">
   <a class="brand" href="#top" aria-label="Previsões da Primeira Liga, topo da página"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6.2l4.6 3.4-1.8 5.4H9.2L7.4 9.6z" fill="currentColor"/><path d="M12 1.5v4.7M16.6 9.6l4.6-1.6M14.8 15l2.8 4.2M9.2 15l-2.8 4.2M7.4 9.6L2.8 8" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span>Previsões da Primeira Liga</span></a>
-  <nav aria-label="Secções"><a href="#open">Próximos jogos</a><a href="#played">Resultados</a><a href="#trust">Dito e acontecido</a><a href="#ledger">Registo ao vivo</a><a href="#holdout">Holdout</a><a href="#method">Método</a></nav>
+  <nav aria-label="Secções"><a href="#open">Próximos jogos</a><a href="#played">Resultados</a><a href="#season">Época</a><a href="#trust">Dito e acontecido</a><a href="#ledger">Registo ao vivo</a><a href="#holdout">Holdout</a><a href="#method">Método</a></nav>
   <a class="lang" href="en/" hreflang="en" lang="en" aria-label="Read this page in English">EN</a>
 </div></div>
 <main id="top" class="wrap">
@@ -440,6 +457,212 @@ footer p { max-width: none; }
 
 </details>
 
+</section>
+
+<section class="block" id="season">
+<div class="head">
+  <p class="kicker">Época</p>
+  <h2>Época 2026/27: como a tabela pode acabar</h2>
+  <p>A tabela depois de <strong>81 resultados</strong>, com os <strong>225 jogos que faltam</strong> simulados 50 000 vezes (dados até 29/10/2026, UTC). A força de cada clube vem das odds do mercado nos seus jogos recentes e pode mudar até maio; os marcadores seguem a grelha do Dixon-Coles, e os empates as regras da Liga. Congelada no registo de época como season-s2-v1 depois de cada resultado novo.</p>
+</div>
+<div class="card scroll"><table>
+  <caption>Ordenada pelos pontos finais esperados. A barra é o intervalo central de 80% dos pontos finais e o traço a média. Play-off é o 16.º lugar; descida é o 17.º ou o 18.º.</caption>
+  <thead><tr><th class="text">#</th><th class="text">Clube</th><th><span class="long">Pontos agora</span><span class="short">Pts</span></th><th><span class="long">Campeão</span><span class="short">Título</span></th><th>Top 3</th><th><span class="long">Play-off</span><span class="short">16.º</span></th><th><span class="long">Descida</span><span class="short">Desce</span></th><th class="text pts">Pontos finais (80%)</th></tr></thead>
+  <tbody>
+  <tr>
+    <td class="text">1</td>
+    <td class="text">Porto</td>
+    <td>27</td>
+    <td class="chance" style="--p: 0.514"><span>51%</span></td>
+    <td class="chance" style="--p: 0.999"><span>&gt;99%</span></td>
+    <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="76 a 91 pontos, média 83,5"><span style="left: 78.6%; width: 21.4%"></span><i style="left: 89.3%"></i></div><span class="hint">83,5 (76–91)</span></td>
+  </tr>
+  <tr>
+    <td class="text">2</td>
+    <td class="text">Benfica</td>
+    <td>22</td>
+    <td class="chance" style="--p: 0.461"><span>46%</span></td>
+    <td class="chance" style="--p: 0.999"><span>&gt;99%</span></td>
+    <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="77 a 90 pontos, média 83,3"><span style="left: 80.0%; width: 18.6%"></span><i style="left: 89.0%"></i></div><span class="hint">83,3 (77–90)</span></td>
+  </tr>
+  <tr>
+    <td class="text">3</td>
+    <td class="text">Sporting</td>
+    <td>18</td>
+    <td class="chance" style="--p: 0.025"><span>3%</span></td>
+    <td class="chance" style="--p: 0.954"><span>95%</span></td>
+    <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="64 a 79 pontos, média 71,8"><span style="left: 61.4%; width: 21.4%"></span><i style="left: 72.5%"></i></div><span class="hint">71,8 (64–79)</span></td>
+  </tr>
+  <tr>
+    <td class="text">4</td>
+    <td class="text">Sporting de Braga</td>
+    <td>11</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.031"><span>3%</span></td>
+    <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="48 a 64 pontos, média 56,1"><span style="left: 38.6%; width: 22.9%"></span><i style="left: 50.1%"></i></div><span class="hint">56,1 (48–64)</span></td>
+  </tr>
+  <tr>
+    <td class="text">5</td>
+    <td class="text">Santa Clara</td>
+    <td>18</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.007"><span>1%</span></td>
+    <td class="chance down" style="--p: 0.001"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="43 a 59 pontos, média 50,8"><span style="left: 31.4%; width: 22.9%"></span><i style="left: 42.6%"></i></div><span class="hint">50,8 (43–59)</span></td>
+  </tr>
+  <tr>
+    <td class="text">6</td>
+    <td class="text">Académico de Viseu</td>
+    <td>17</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.003"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.003"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.002"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="40 a 56 pontos, média 47,6"><span style="left: 27.1%; width: 22.9%"></span><i style="left: 37.9%"></i></div><span class="hint">47,6 (40–56)</span></td>
+  </tr>
+  <tr>
+    <td class="text">7</td>
+    <td class="text">Gil Vicente</td>
+    <td>14</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.002"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.006"><span>1%</span></td>
+    <td class="chance down" style="--p: 0.002"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="39 a 55 pontos, média 46,8"><span style="left: 25.7%; width: 22.9%"></span><i style="left: 36.8%"></i></div><span class="hint">46,8 (39–55)</span></td>
+  </tr>
+  <tr>
+    <td class="text">8</td>
+    <td class="text">Arouca</td>
+    <td>17</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.002"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.004"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.002"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="39 a 55 pontos, média 46,8"><span style="left: 25.7%; width: 22.9%"></span><i style="left: 36.8%"></i></div><span class="hint">46,8 (39–55)</span></td>
+  </tr>
+  <tr>
+    <td class="text">9</td>
+    <td class="text">Vitória de Guimarães</td>
+    <td>8</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.007"><span>1%</span></td>
+    <td class="chance down" style="--p: 0.005"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="38 a 54 pontos, média 46,0"><span style="left: 24.3%; width: 22.9%"></span><i style="left: 35.7%"></i></div><span class="hint">46,0 (38–54)</span></td>
+  </tr>
+  <tr>
+    <td class="text">10</td>
+    <td class="text">Famalicão</td>
+    <td>10</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.008"><span>1%</span></td>
+    <td class="chance down" style="--p: 0.004"><span>&lt;1%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="37 a 53 pontos, média 45,3"><span style="left: 22.9%; width: 22.9%"></span><i style="left: 34.7%"></i></div><span class="hint">45,3 (37–53)</span></td>
+  </tr>
+  <tr>
+    <td class="text">11</td>
+    <td class="text">Alverca</td>
+    <td>11</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.028"><span>3%</span></td>
+    <td class="chance down" style="--p: 0.021"><span>2%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="34 a 50 pontos, média 41,6"><span style="left: 18.6%; width: 22.9%"></span><i style="left: 29.5%"></i></div><span class="hint">41,6 (34–50)</span></td>
+  </tr>
+  <tr>
+    <td class="text">12</td>
+    <td class="text">Estrela da Amadora</td>
+    <td>10</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.074"><span>7%</span></td>
+    <td class="chance down" style="--p: 0.077"><span>8%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="30 a 45 pontos, média 37,2"><span style="left: 12.9%; width: 21.4%"></span><i style="left: 23.2%"></i></div><span class="hint">37,2 (30–45)</span></td>
+  </tr>
+  <tr>
+    <td class="text">13</td>
+    <td class="text">Marítimo</td>
+    <td>8</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.106"><span>11%</span></td>
+    <td class="chance down" style="--p: 0.128"><span>13%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="28 a 44 pontos, média 35,6"><span style="left: 10.0%; width: 22.9%"></span><i style="left: 20.8%"></i></div><span class="hint">35,6 (28–44)</span></td>
+  </tr>
+  <tr>
+    <td class="text">14</td>
+    <td class="text">Moreirense</td>
+    <td>11</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.116"><span>12%</span></td>
+    <td class="chance down" style="--p: 0.144"><span>14%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="27 a 42 pontos, média 34,7"><span style="left: 8.6%; width: 21.4%"></span><i style="left: 19.6%"></i></div><span class="hint">34,7 (27–42)</span></td>
+  </tr>
+  <tr>
+    <td class="text">15</td>
+    <td class="text">Rio Ave</td>
+    <td>7</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.155"><span>15%</span></td>
+    <td class="chance down" style="--p: 0.269"><span>27%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="24 a 40 pontos, média 32,1"><span style="left: 4.3%; width: 22.9%"></span><i style="left: 15.9%"></i></div><span class="hint">32,1 (24–40)</span></td>
+  </tr>
+  <tr>
+    <td class="text">16</td>
+    <td class="text">Nacional</td>
+    <td>7</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.170"><span>17%</span></td>
+    <td class="chance down" style="--p: 0.388"><span>39%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="23 a 38 pontos, média 30,2"><span style="left: 2.9%; width: 21.4%"></span><i style="left: 13.1%"></i></div><span class="hint">30,2 (23–38)</span></td>
+  </tr>
+  <tr>
+    <td class="text">17</td>
+    <td class="text">Casa Pia</td>
+    <td>7</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.166"><span>17%</span></td>
+    <td class="chance down" style="--p: 0.472"><span>47%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="22 a 37 pontos, média 29,0"><span style="left: 1.4%; width: 21.4%"></span><i style="left: 11.5%"></i></div><span class="hint">29,0 (22–37)</span></td>
+  </tr>
+  <tr>
+    <td class="text">18</td>
+    <td class="text">Estoril Praia</td>
+    <td>2</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance down" style="--p: 0.157"><span>16%</span></td>
+    <td class="chance down" style="--p: 0.484"><span>48%</span></td>
+    <td class="text pts"><div class="range" role="img" aria-label="21 a 37 pontos, média 29,0"><span style="left: 0.0%; width: 22.9%"></span><i style="left: 11.4%"></i></div><span class="hint">29,0 (21–37)</span></td>
+  </tr>
+  </tbody>
+</table></div>
+<div class="grid2">
+<div class="card">
+  <h3>Hipóteses de título, resultado a resultado</h3>
+  <p class="empty">O gráfico começa com a segunda tabela congelada: por agora o registo tem uma.</p>
+</div>
+<div class="card">
+  <h3>Pode-se confiar nestes números?</h3>
+  <p>Antes de publicar, o mesmo simulador foi testado de 2017/18 a 2023/24 em seis momentos de cada época, sem tocar no holdout. Os pontos finais caíram dentro do intervalo de 80% em <strong>84%</strong> dos casos e dentro do de 90% em <strong>91%</strong>.</p>
+  <p>Aos clubes que lideravam por 3 pontos ou mais demos, em média, <strong>85%</strong> de serem campeões; <strong>88%</strong> foram (16 casos).</p>
+  <p class="note">RPS da posição final 0,0712, contra 0,0736 para a mesma simulação com o Elo (menor é melhor; a diferença está dentro do ruído de sete épocas). Uma probabilidade não é uma promessa: um clube a 50% falha metade das vezes.</p>
+</div>
+</div>
 </section>
 
 <section class="block" id="trust">
