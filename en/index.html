@@ -206,13 +206,33 @@ td.chance.down::before { background: var(--s2); }
 .range { position: relative; height: 8px; min-width: 110px; background: var(--grid); border-radius: 4px; margin: 4px 0 2px; }
 .range span { position: absolute; top: 0; bottom: 0; background: var(--wash); border: 1px solid color-mix(in srgb, var(--s1) 45%, transparent); border-radius: 4px; }
 .range i { position: absolute; top: -3px; width: 2px; height: 14px; background: var(--ink-2); }
-td.pts { min-width: 150px; }
+td.pts { min-width: 120px; }
+#season thead th { letter-spacing: 0.02em; }
+table.stakes { margin-top: 10px; font-size: 13px; width: 100%; table-layout: auto; }
+table.stakes td.text { white-space: normal; }
+table.stakes th, table.stakes td { padding: 4px 4px; }
 #season .short { display: none; }
 @media (max-width: 640px) {
   #season th.pts, #season td.pts { display: none; }
   #season th, #season td { padding: 6px 3px; font-size: 13px; letter-spacing: 0; white-space: normal; }
   #season .long { display: none; } #season .short { display: inline; }
+  #season table:not(.stakes) th:nth-child(2), #season table:not(.stakes) td:nth-child(2) { position: sticky; left: 0; z-index: 2; background: var(--surface); }
 }
+
+/* Scenario builder */
+.scn { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .scn { grid-template-columns: 1fr; } }
+.scn-table th, .scn-table td { padding-left: 6px; padding-right: 6px; }
+.scn-matches { max-height: 640px; overflow-y: auto; padding-right: 4px; }
+.scn-day { font-size: 12px; font-weight: 650; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 10px 0 4px; }
+.scn-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid var(--grid); font-size: 14px; }
+.scn-row span { min-width: 0; overflow-wrap: anywhere; }
+.scn-row .pick { display: inline-flex; gap: 4px; flex: none; }
+.scn-row button, .scn-reset { font: inherit; font-size: 13px; min-width: 32px; padding: 3px 8px; border-radius: 8px; border: 1px solid var(--ring); background: var(--raised); color: var(--ink); cursor: pointer; }
+.scn-row button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.scn-reset { margin-bottom: 8px; }
+.scn-table td.up { color: var(--good); font-weight: 650; } .scn-table td.down { color: var(--s2); font-weight: 650; }
+.scn-table small { color: var(--muted); font-weight: 400; }
 
 footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--ring); color: var(--muted); font-size: 13px; }
 footer p { max-width: none; }
@@ -466,15 +486,18 @@ footer p { max-width: none; }
   <p>The table after <strong>81 results</strong>, with the <strong>225 matches left</strong> simulated 50,000 times (data to 2026-10-29, UTC). Each club's strength comes from the market's odds on its recent matches and may drift until May; scores follow the Dixon-Coles grid, and ties the league's rules. Frozen in the season ledger as season-s2-v1 after every new result.</p>
 </div>
 <div class="card scroll"><table>
-  <caption>Ordered by expected final points. The bar is the central 80% interval of the final points and the mark its mean. Play-off is 16th place; relegation is 17th or 18th.</caption>
-  <thead><tr><th class="text">#</th><th class="text">Club</th><th><span class="long">Points now</span><span class="short">Pts</span></th><th><span class="long">Champion</span><span class="short">Title</span></th><th>Top 3</th><th><span class="long">Play-off</span><span class="short">16th</span></th><th><span class="long">Relegation</span><span class="short">Down</span></th><th class="text pts">Final points (80%)</th></tr></thead>
+  <caption>Ordered by expected final points. European places as the league allocates them, without the cup: 1st and 2nd go to the Champions, 3rd to its qualifying rounds, 4th to the Europa League and 5th to the Conference League. Play-off is 16th place; relegation is 17th or 18th. The bar is the central 80% interval of the final points and the mark its mean.</caption>
+  <thead><tr><th class="text">#</th><th class="text">Club</th><th><span class="long">Points now</span><span class="short">Pts</span></th><th><span class="long">Champion</span><span class="short">Title</span></th><th>Champions<br><small>1st–2nd</small></th><th>CL qualif.<br><small>3rd</small></th><th>Europa<br><small>4th</small></th><th>Conference<br><small>5th</small></th><th><span class="long">Play-off</span><span class="short">16th</span></th><th><span class="long">Relegation</span><span class="short">Down</span></th><th class="text pts">Final points (80%)</th></tr></thead>
   <tbody>
   <tr>
     <td class="text">1</td>
     <td class="text">Porto</td>
     <td>27</td>
     <td class="chance" style="--p: 0.514"><span>51%</span></td>
-    <td class="chance" style="--p: 0.999"><span>&gt;99%</span></td>
+    <td class="chance" style="--p: 0.926"><span>93%</span></td>
+    <td class="chance" style="--p: 0.073"><span>7%</span></td>
+    <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="76 to 91 points, mean 83.5"><span style="left: 78.6%; width: 21.4%"></span><i style="left: 89.3%"></i></div><span class="hint">83.5 (76–91)</span></td>
@@ -484,7 +507,10 @@ footer p { max-width: none; }
     <td class="text">Benfica</td>
     <td>22</td>
     <td class="chance" style="--p: 0.461"><span>46%</span></td>
-    <td class="chance" style="--p: 0.999"><span>&gt;99%</span></td>
+    <td class="chance" style="--p: 0.932"><span>93%</span></td>
+    <td class="chance" style="--p: 0.067"><span>7%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="77 to 90 points, mean 83.3"><span style="left: 80.0%; width: 18.6%"></span><i style="left: 89.0%"></i></div><span class="hint">83.3 (77–90)</span></td>
@@ -494,7 +520,10 @@ footer p { max-width: none; }
     <td class="text">Sporting</td>
     <td>18</td>
     <td class="chance" style="--p: 0.025"><span>3%</span></td>
-    <td class="chance" style="--p: 0.954"><span>95%</span></td>
+    <td class="chance" style="--p: 0.141"><span>14%</span></td>
+    <td class="chance" style="--p: 0.813"><span>81%</span></td>
+    <td class="chance" style="--p: 0.040"><span>4%</span></td>
+    <td class="chance" style="--p: 0.005"><span>1%</span></td>
     <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="64 to 79 points, mean 71.8"><span style="left: 61.4%; width: 21.4%"></span><i style="left: 72.5%"></i></div><span class="hint">71.8 (64–79)</span></td>
@@ -504,7 +533,10 @@ footer p { max-width: none; }
     <td class="text">Sporting de Braga</td>
     <td>11</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.031"><span>3%</span></td>
+    <td class="chance" style="--p: 0.485"><span>48%</span></td>
+    <td class="chance" style="--p: 0.210"><span>21%</span></td>
     <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="48 to 64 points, mean 56.1"><span style="left: 38.6%; width: 22.9%"></span><i style="left: 50.1%"></i></div><span class="hint">56.1 (48–64)</span></td>
@@ -514,7 +546,10 @@ footer p { max-width: none; }
     <td class="text">Santa Clara</td>
     <td>18</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.007"><span>1%</span></td>
+    <td class="chance" style="--p: 0.162"><span>16%</span></td>
+    <td class="chance" style="--p: 0.211"><span>21%</span></td>
     <td class="chance down" style="--p: 0.001"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="43 to 59 points, mean 50.8"><span style="left: 31.4%; width: 22.9%"></span><i style="left: 42.6%"></i></div><span class="hint">50.8 (43–59)</span></td>
@@ -524,7 +559,10 @@ footer p { max-width: none; }
     <td class="text">Académico de Viseu</td>
     <td>17</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.003"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.075"><span>7%</span></td>
+    <td class="chance" style="--p: 0.125"><span>13%</span></td>
     <td class="chance down" style="--p: 0.003"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.002"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="40 to 56 points, mean 47.6"><span style="left: 27.1%; width: 22.9%"></span><i style="left: 37.9%"></i></div><span class="hint">47.6 (40–56)</span></td>
@@ -534,7 +572,10 @@ footer p { max-width: none; }
     <td class="text">Gil Vicente</td>
     <td>14</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.002"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.066"><span>7%</span></td>
+    <td class="chance" style="--p: 0.110"><span>11%</span></td>
     <td class="chance down" style="--p: 0.006"><span>1%</span></td>
     <td class="chance down" style="--p: 0.002"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="39 to 55 points, mean 46.8"><span style="left: 25.7%; width: 22.9%"></span><i style="left: 36.8%"></i></div><span class="hint">46.8 (39–55)</span></td>
@@ -544,7 +585,10 @@ footer p { max-width: none; }
     <td class="text">Arouca</td>
     <td>17</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.002"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.061"><span>6%</span></td>
+    <td class="chance" style="--p: 0.106"><span>11%</span></td>
     <td class="chance down" style="--p: 0.004"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.002"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="39 to 55 points, mean 46.8"><span style="left: 25.7%; width: 22.9%"></span><i style="left: 36.8%"></i></div><span class="hint">46.8 (39–55)</span></td>
@@ -554,7 +598,10 @@ footer p { max-width: none; }
     <td class="text">Vitória de Guimarães</td>
     <td>8</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.052"><span>5%</span></td>
+    <td class="chance" style="--p: 0.100"><span>10%</span></td>
     <td class="chance down" style="--p: 0.007"><span>1%</span></td>
     <td class="chance down" style="--p: 0.005"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="38 to 54 points, mean 46.0"><span style="left: 24.3%; width: 22.9%"></span><i style="left: 35.7%"></i></div><span class="hint">46.0 (38–54)</span></td>
@@ -564,7 +611,10 @@ footer p { max-width: none; }
     <td class="text">Famalicão</td>
     <td>10</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.041"><span>4%</span></td>
+    <td class="chance" style="--p: 0.083"><span>8%</span></td>
     <td class="chance down" style="--p: 0.008"><span>1%</span></td>
     <td class="chance down" style="--p: 0.004"><span>&lt;1%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="37 to 53 points, mean 45.3"><span style="left: 22.9%; width: 22.9%"></span><i style="left: 34.7%"></i></div><span class="hint">45.3 (37–53)</span></td>
@@ -575,6 +625,9 @@ footer p { max-width: none; }
     <td>11</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.013"><span>1%</span></td>
+    <td class="chance" style="--p: 0.033"><span>3%</span></td>
     <td class="chance down" style="--p: 0.028"><span>3%</span></td>
     <td class="chance down" style="--p: 0.021"><span>2%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="34 to 50 points, mean 41.6"><span style="left: 18.6%; width: 22.9%"></span><i style="left: 29.5%"></i></div><span class="hint">41.6 (34–50)</span></td>
@@ -585,6 +638,9 @@ footer p { max-width: none; }
     <td>10</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.002"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.008"><span>1%</span></td>
     <td class="chance down" style="--p: 0.074"><span>7%</span></td>
     <td class="chance down" style="--p: 0.077"><span>8%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="30 to 45 points, mean 37.2"><span style="left: 12.9%; width: 21.4%"></span><i style="left: 23.2%"></i></div><span class="hint">37.2 (30–45)</span></td>
@@ -595,6 +651,9 @@ footer p { max-width: none; }
     <td>8</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.004"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.106"><span>11%</span></td>
     <td class="chance down" style="--p: 0.128"><span>13%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="28 to 44 points, mean 35.6"><span style="left: 10.0%; width: 22.9%"></span><i style="left: 20.8%"></i></div><span class="hint">35.6 (28–44)</span></td>
@@ -605,6 +664,9 @@ footer p { max-width: none; }
     <td>11</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.003"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.116"><span>12%</span></td>
     <td class="chance down" style="--p: 0.144"><span>14%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="27 to 42 points, mean 34.7"><span style="left: 8.6%; width: 21.4%"></span><i style="left: 19.6%"></i></div><span class="hint">34.7 (27–42)</span></td>
@@ -615,6 +677,9 @@ footer p { max-width: none; }
     <td>7</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.155"><span>15%</span></td>
     <td class="chance down" style="--p: 0.269"><span>27%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="24 to 40 points, mean 32.1"><span style="left: 4.3%; width: 22.9%"></span><i style="left: 15.9%"></i></div><span class="hint">32.1 (24–40)</span></td>
@@ -623,6 +688,9 @@ footer p { max-width: none; }
     <td class="text">16</td>
     <td class="text">Nacional</td>
     <td>7</td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.170"><span>17%</span></td>
@@ -635,6 +703,9 @@ footer p { max-width: none; }
     <td>7</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.166"><span>17%</span></td>
     <td class="chance down" style="--p: 0.472"><span>47%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="22 to 37 points, mean 29.0"><span style="left: 1.4%; width: 21.4%"></span><i style="left: 11.5%"></i></div><span class="hint">29.0 (22–37)</span></td>
@@ -645,15 +716,150 @@ footer p { max-width: none; }
     <td>2</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
+    <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance down" style="--p: 0.157"><span>16%</span></td>
     <td class="chance down" style="--p: 0.484"><span>48%</span></td>
     <td class="text pts"><div class="range" role="img" aria-label="21 to 37 points, mean 29.0"><span style="left: 0.0%; width: 22.9%"></span><i style="left: 11.4%"></i></div><span class="hint">29.0 (21–37)</span></td>
   </tr>
   </tbody>
 </table></div>
+<h3>What the next matches put at stake</h3>
+<p class="note">For each match of the next week, the season chances that move most with its result. They are counted again in the simulations that drew each result, so several matches stay consistent with each other; the percentages under the teams are how often the simulations drew each result.</p>
+<div class="matches">
+<article class="match stake" aria-label="Casa Pia – Sporting">
+  <div class="when"><span>2026-10-30</span></div>
+  <div class="teams"><span class="t">Casa Pia</span><span class="vs">vs</span><span class="t away">Sporting</span></div>
+  <div class="stack" role="img" aria-label="Home 8%, draw 14%, away 78%"><span class="h" style="width: 7.7%"></span><span class="d" style="width: 13.9%"></span><span class="a" style="width: 78.4%"></span></div>
+  <table class="stakes">
+    <thead><tr><th class="text"></th><th>now</th><th title="home win">1</th><th title="draw">X</th><th title="away win">2</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Casa Pia · Relegation</td><td>47%</td><td>32%</td><td>44%</td><td>49%</td></tr>
+    <tr><td class="text">Sporting · Champions (1st–2nd)</td><td>14%</td><td>8%</td><td>10%</td><td>15%</td></tr>
+    <tr><td class="text">Nacional · Relegation</td><td>39%</td><td>43%</td><td>40%</td><td>38%</td></tr>
+    </tbody>
+  </table>
+</article>
+<article class="match stake" aria-label="Moreirense – Estrela da Amadora">
+  <div class="when"><span>2026-10-31</span></div>
+  <div class="teams"><span class="t">Moreirense</span><span class="vs">vs</span><span class="t away">Estrela da Amadora</span></div>
+  <div class="stack" role="img" aria-label="Home 34%, draw 30%, away 37%"><span class="h" style="width: 33.6%"></span><span class="d" style="width: 29.6%"></span><span class="a" style="width: 36.8%"></span></div>
+  <table class="stakes">
+    <thead><tr><th class="text"></th><th>now</th><th title="home win">1</th><th title="draw">X</th><th title="away win">2</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Moreirense · Relegation</td><td>14%</td><td>9%</td><td>15%</td><td>20%</td></tr>
+    <tr><td class="text">Estrela da Amadora · Relegation</td><td>8%</td><td>11%</td><td>8%</td><td>4%</td></tr>
+    </tbody>
+  </table>
+</article>
+<article class="match stake" aria-label="Porto – Estoril Praia">
+  <div class="when"><span>2026-10-31</span></div>
+  <div class="teams"><span class="t">Porto</span><span class="vs">vs</span><span class="t away">Estoril Praia</span></div>
+  <div class="stack" role="img" aria-label="Home 83%, draw 11%, away 6%"><span class="h" style="width: 82.7%"></span><span class="d" style="width: 11.4%"></span><span class="a" style="width: 5.9%"></span></div>
+  <table class="stakes">
+    <thead><tr><th class="text"></th><th>now</th><th title="home win">1</th><th title="draw">X</th><th title="away win">2</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Porto · Title</td><td>51%</td><td>54%</td><td>43%</td><td>38%</td></tr>
+    <tr><td class="text">Estoril Praia · Relegation</td><td>48%</td><td>50%</td><td>44%</td><td>35%</td></tr>
+    <tr><td class="text">Benfica · Title</td><td>46%</td><td>44%</td><td>54%</td><td>59%</td></tr>
+    </tbody>
+  </table>
+</article>
+<article class="match stake" aria-label="Académico de Viseu – Rio Ave">
+  <div class="when"><span>2026-11-01</span></div>
+  <div class="teams"><span class="t">Académico de Viseu</span><span class="vs">vs</span><span class="t away">Rio Ave</span></div>
+  <div class="stack" role="img" aria-label="Home 48%, draw 28%, away 24%"><span class="h" style="width: 48.4%"></span><span class="d" style="width: 27.6%"></span><span class="a" style="width: 24.0%"></span></div>
+  <table class="stakes">
+    <thead><tr><th class="text"></th><th>now</th><th title="home win">1</th><th title="draw">X</th><th title="away win">2</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Rio Ave · Relegation</td><td>27%</td><td>32%</td><td>26%</td><td>18%</td></tr>
+    <tr><td class="text">Académico de Viseu · Europe (1st–5th)</td><td>20%</td><td>25%</td><td>17%</td><td>14%</td></tr>
+    <tr><td class="text">Santa Clara · Europe (1st–5th)</td><td>38%</td><td>37%</td><td>39%</td><td>40%</td></tr>
+    </tbody>
+  </table>
+</article>
+<article class="match stake" aria-label="Arouca – Nacional">
+  <div class="when"><span>2026-11-01</span></div>
+  <div class="teams"><span class="t">Arouca</span><span class="vs">vs</span><span class="t away">Nacional</span></div>
+  <div class="stack" role="img" aria-label="Home 52%, draw 26%, away 22%"><span class="h" style="width: 52.0%"></span><span class="d" style="width: 26.3%"></span><span class="a" style="width: 21.7%"></span></div>
+  <table class="stakes">
+    <thead><tr><th class="text"></th><th>now</th><th title="home win">1</th><th title="draw">X</th><th title="away win">2</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Nacional · Relegation</td><td>39%</td><td>44%</td><td>38%</td><td>29%</td></tr>
+    <tr><td class="text">Arouca · Europe (1st–5th)</td><td>17%</td><td>21%</td><td>14%</td><td>11%</td></tr>
+    <tr><td class="text">Estoril Praia · Relegation</td><td>48%</td><td>47%</td><td>48%</td><td>51%</td></tr>
+    </tbody>
+  </table>
+</article>
+<article class="match stake" aria-label="Marítimo – Santa Clara">
+  <div class="when"><span>2026-11-01</span></div>
+  <div class="teams"><span class="t">Marítimo</span><span class="vs">vs</span><span class="t away">Santa Clara</span></div>
+  <div class="stack" role="img" aria-label="Home 32%, draw 29%, away 38%"><span class="h" style="width: 32.4%"></span><span class="d" style="width: 29.4%"></span><span class="a" style="width: 38.3%"></span></div>
+  <table class="stakes">
+    <thead><tr><th class="text"></th><th>now</th><th title="home win">1</th><th title="draw">X</th><th title="away win">2</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Santa Clara · Europe (1st–5th)</td><td>38%</td><td>30%</td><td>36%</td><td>46%</td></tr>
+    <tr><td class="text">Marítimo · Relegation</td><td>13%</td><td>8%</td><td>13%</td><td>17%</td></tr>
+    <tr><td class="text">Sporting de Braga · Europe (1st–5th)</td><td>73%</td><td>74%</td><td>73%</td><td>71%</td></tr>
+    </tbody>
+  </table>
+</article>
+<article class="match stake" aria-label="Sporting de Braga – Famalicão">
+  <div class="when"><span>2026-11-01</span></div>
+  <div class="teams"><span class="t">Sporting de Braga</span><span class="vs">vs</span><span class="t away">Famalicão</span></div>
+  <div class="stack" role="img" aria-label="Home 56%, draw 25%, away 19%"><span class="h" style="width: 56.5%"></span><span class="d" style="width: 24.7%"></span><span class="a" style="width: 18.8%"></span></div>
+  <table class="stakes">
+    <thead><tr><th class="text"></th><th>now</th><th title="home win">1</th><th title="draw">X</th><th title="away win">2</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Sporting de Braga · Europe (1st–5th)</td><td>73%</td><td>78%</td><td>69%</td><td>61%</td></tr>
+    <tr><td class="text">Famalicão · Europe (1st–5th)</td><td>12%</td><td>9%</td><td>13%</td><td>21%</td></tr>
+    </tbody>
+  </table>
+</article>
+<article class="match stake" aria-label="Benfica – Alverca">
+  <div class="when"><span>2026-11-02</span></div>
+  <div class="teams"><span class="t">Benfica</span><span class="vs">vs</span><span class="t away">Alverca</span></div>
+  <div class="stack" role="img" aria-label="Home 86%, draw 9%, away 5%"><span class="h" style="width: 86.1%"></span><span class="d" style="width: 9.3%"></span><span class="a" style="width: 4.6%"></span></div>
+  <table class="stakes">
+    <thead><tr><th class="text"></th><th>now</th><th title="home win">1</th><th title="draw">X</th><th title="away win">2</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Benfica · Title</td><td>46%</td><td>48%</td><td>37%</td><td>32%</td></tr>
+    <tr><td class="text">Porto · Title</td><td>51%</td><td>50%</td><td>59%</td><td>65%</td></tr>
+    <tr><td class="text">Benfica · Champions (1st–2nd)</td><td>93%</td><td>94%</td><td>89%</td><td>88%</td></tr>
+    </tbody>
+  </table>
+</article>
+<article class="match stake" aria-label="Gil Vicente – Vitória de Guimarães">
+  <div class="when"><span>2026-11-02</span></div>
+  <div class="teams"><span class="t">Gil Vicente</span><span class="vs">vs</span><span class="t away">Vitória de Guimarães</span></div>
+  <div class="stack" role="img" aria-label="Home 34%, draw 29%, away 36%"><span class="h" style="width: 34.4%"></span><span class="d" style="width: 29.2%"></span><span class="a" style="width: 36.4%"></span></div>
+  <table class="stakes">
+    <thead><tr><th class="text"></th><th>now</th><th title="home win">1</th><th title="draw">X</th><th title="away win">2</th></tr></thead>
+    <tbody>
+    <tr><td class="text">Gil Vicente · Europe (1st–5th)</td><td>18%</td><td>24%</td><td>16%</td><td>13%</td></tr>
+    <tr><td class="text">Vitória de Guimarães · Europe (1st–5th)</td><td>15%</td><td>10%</td><td>14%</td><td>21%</td></tr>
+    </tbody>
+  </table>
+</article>
+</div>
+<div class="card" id="scenario" data-src="../scenarios" data-lang="en" data-order="[&#34;porto&#34;, &#34;benfica&#34;, &#34;sporting&#34;, &#34;sp-braga&#34;, &#34;santa-clara&#34;, &#34;academico-viseu&#34;, &#34;gil-vicente&#34;, &#34;arouca&#34;, &#34;guimaraes&#34;, &#34;famalicao&#34;, &#34;alverca&#34;, &#34;estrela-amadora&#34;, &#34;maritimo&#34;, &#34;moreirense&#34;, &#34;rio-ave&#34;, &#34;nacional&#34;, &#34;casa-pia&#34;, &#34;estoril&#34;]" data-text="{&#34;all&#34;: &#34;No result chosen: these are the chances of the {total} simulations.&#34;, &#34;away&#34;: &#34;away win&#34;, &#34;champions&#34;: &#34;Champions (1st\u20132nd)&#34;, &#34;club&#34;: &#34;Club&#34;, &#34;draw&#34;: &#34;draw&#34;, &#34;europe&#34;: &#34;Europe (1st\u20135th)&#34;, &#34;failed&#34;: &#34;The simulations could not be loaded. The builder works on the published page, not on a file opened from disk.&#34;, &#34;few&#34;: &#34;Few simulations left: read the numbers as rough.&#34;, &#34;home&#34;: &#34;home win&#34;, &#34;kept&#34;: &#34;{n} of {total} simulations drew every result chosen. Margin of error up to \u00b1{margin} points.&#34;, &#34;loading&#34;: &#34;Loading the simulations\u2026&#34;, &#34;more&#34;: &#34;All the other remaining matches ({n})&#34;, &#34;none&#34;: &#34;No simulation drew this combination: it is very unlikely.&#34;, &#34;relegation&#34;: &#34;Relegation&#34;, &#34;title&#34;: &#34;Title&#34;}">
+  <h3>Build your scenario</h3>
+  <p class="note">Pick the result of any remaining matches and the chances are counted again in the simulations that drew all of them, out of a sample of 20,000. Choices combine exactly, with no assumption that matches are independent; the fewer simulations are left, the rougher the numbers.</p>
+  <noscript><p class="empty">The scenario builder needs JavaScript; everything else on this page works without it.</p></noscript>
+  <p class="scn-status meta" aria-live="polite"></p>
+  <div class="scn" hidden>
+    <div class="scn-matches"></div>
+    <div class="scn-side"><button type="button" class="scn-reset">Clear choices</button><div class="scroll scn-table"></div></div>
+  </div>
+</div>
 <div class="grid2">
 <div class="card">
   <h3>Title chances, result by result</h3>
+  <p class="empty">The chart starts with the second frozen table: the ledger has one so far.</p>
+</div>
+<div class="card">
+  <h3>Relegation chances, result by result</h3>
   <p class="empty">The chart starts with the second frozen table: the ledger has one so far.</p>
 </div>
 <div class="card">
@@ -1038,5 +1244,132 @@ footer p { max-width: none; }
 </section>
 </main>
 <footer><div class="wrap">Generated by <code>lfp-forecast dashboard build</code> from the ledger, the database rebuilt from <code>data/raw</code> and <code>reports/holdout.md</code>. Personal research project; not betting advice.</div></footer>
+<script>
+(() => {
+  "use strict";
+  const box = document.getElementById("scenario");
+  if (!box) return;
+  const T = JSON.parse(box.dataset.text);
+  const order = JSON.parse(box.dataset.order);
+  const lang = box.dataset.lang;
+  const status = box.querySelector(".scn-status");
+  const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, k) => values[k]);
+  const pct = (p) => p < 0.005 ? "<1%" : p > 0.995 ? ">99%" : Math.round(p * 100) + "%";
+  const day = (iso) => lang === "pt" ? iso.slice(8, 10) + "/" + iso.slice(5, 7) + "/" + iso.slice(0, 4) : iso;
+  const num = (x) => lang === "pt" ? String(x).replace(".", ",") : String(x);
+  const thousands = (n) => n.toLocaleString(lang === "pt" ? "pt-PT" : "en-GB");
+  status.textContent = T.loading;
+  Promise.all([
+    fetch(box.dataset.src + ".json").then((r) => { if (!r.ok) throw r; return r.json(); }),
+    fetch(box.dataset.src + ".bin").then((r) => { if (!r.ok) throw r; return r.arrayBuffer(); }),
+  ]).then(([meta, raw]) => start(meta, new Uint8Array(raw))).catch(() => { status.textContent = T.failed; });
+
+  function start(meta, buf) {
+    const N = meta.sims, B = meta.outcome_bytes, C = meta.clubs.length, posAt = N * B;
+    if (buf.length !== N * (B + C)) { status.textContent = T.failed; return; }
+    const events = ["title", "champions", "europe", "relegation"];
+    const index = new Map(meta.clubs.map((c, i) => [c.id, i]));
+    const rows = order.filter((id) => index.has(id)).map((id) => index.get(id));
+    const choice = new Map();  // match index -> 0, 1 or 2
+
+    function count() {
+      const hits = events.map(() => new Uint32Array(C));
+      const picks = [...choice.entries()];
+      let n = 0;
+      for (let s = 0; s < N; s++) {
+        let ok = true;
+        for (const [j, k] of picks) {
+          if (((buf[s * B + (j >> 2)] >> ((j & 3) * 2)) & 3) !== k) { ok = false; break; }
+        }
+        if (!ok) continue;
+        n++;
+        for (let c = 0; c < C; c++) {
+          const p = buf[posAt + s * C + c];
+          events.forEach((e, i) => { const [lo, hi] = meta.events[e]; if (p >= lo && p <= hi) hits[i][c]++; });
+        }
+      }
+      return { n, hits };
+    }
+    const base = count();
+
+    function table(now) {
+      const head = "<thead><tr><th class=\"text\">" + T.club + "</th>" + events.map((e) => "<th>" + T[e] + "</th>").join("") + "</tr></thead>";
+      const body = rows.map((c) => {
+        const cells = events.map((e, i) => {
+          const was = base.hits[i][c] / base.n;
+          if (!now.n) return "<td>—</td>";
+          const is = now.hits[i][c] / now.n;
+          // Green when the club's season gets better: a higher chance, but a lower one to go down.
+          const better = (is > was) !== (e === "relegation");
+          const move = choice.size && Math.abs(is - was) >= 0.01 ? (better ? " class=\"up\"" : " class=\"down\"") : "";
+          const from = choice.size ? " <small>(" + pct(was) + ")</small>" : "";
+          return "<td" + move + ">" + pct(is) + from + "</td>";
+        }).join("");
+        return "<tr><td class=\"text\">" + escape(meta.clubs[c].name) + "</td>" + cells + "</tr>";
+      }).join("");
+      return "<table>" + head + "<tbody>" + body + "</tbody></table>";
+    }
+    function escape(text) {
+      const d = document.createElement("div"); d.textContent = text; return d.innerHTML;
+    }
+    function update() {
+      const now = choice.size ? count() : base;
+      if (!choice.size) status.textContent = fill(T.all, { total: thousands(N) });
+      else if (!now.n) status.textContent = T.none;
+      else {
+        const margin = num((1.96 * Math.sqrt(0.25 / now.n) * 100).toFixed(1));
+        status.textContent = fill(T.kept, { n: thousands(now.n), total: thousands(N), margin }) + (now.n < 500 ? " " + T.few : "");
+      }
+      box.querySelector(".scn-table").innerHTML = table(now);
+    }
+    function matchRow(m, j) {
+      const row = document.createElement("div");
+      row.className = "scn-row";
+      const label = document.createElement("span");
+      label.textContent = meta.clubs[m.home].name + " – " + meta.clubs[m.away].name;
+      const pick = document.createElement("span");
+      pick.className = "pick";
+      ["1", "X", "2"].forEach((mark, k) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.textContent = mark; b.title = [T.home, T.draw, T.away][k];
+        b.setAttribute("aria-pressed", "false");
+        b.addEventListener("click", () => {
+          const on = choice.get(j) === k;
+          if (on) choice.delete(j); else choice.set(j, k);
+          pick.querySelectorAll("button").forEach((x, i) => x.setAttribute("aria-pressed", String(!on && i === k)));
+          update();
+        });
+        pick.appendChild(b);
+      });
+      row.append(label, pick);
+      return row;
+    }
+    const list = box.querySelector(".scn-matches");
+    const first = meta.matches.length ? meta.matches[0].day : null;
+    const soon = (m) => (Date.parse(m.day) - Date.parse(first)) / 864e5 < 7;
+    let more = null, lastDay = null, target = list;
+    meta.matches.forEach((m, j) => {
+      if (!soon(m) && !more) {
+        more = document.createElement("details");
+        const sum = document.createElement("summary");
+        sum.textContent = fill(T.more, { n: meta.matches.filter((x) => !soon(x)).length });
+        more.appendChild(sum); list.appendChild(more); target = more; lastDay = null;
+      }
+      if (m.day !== lastDay) {
+        const d = document.createElement("div"); d.className = "scn-day"; d.textContent = day(m.day);
+        target.appendChild(d); lastDay = m.day;
+      }
+      target.appendChild(matchRow(m, j));
+    });
+    box.querySelector(".scn-reset").addEventListener("click", () => {
+      choice.clear();
+      list.querySelectorAll("button[aria-pressed]").forEach((b) => b.setAttribute("aria-pressed", "false"));
+      update();
+    });
+    box.querySelector(".scn").hidden = false;
+    update();
+  }
+})();
+</script>
 </body>
 </html>
