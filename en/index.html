@@ -277,10 +277,10 @@ footer p { max-width: none; }
 </section>
 
 <div class="tiles">
-  <div class="tile"><div class="value">0</div><div class="label">open matches, frozen and waiting</div></div>
+  <div class="tile"><div class="value">1</div><div class="label">open matches, frozen and waiting</div></div>
   <div class="tile"><div class="value">4</div><div class="label">prospective forecasts scored (the evidence)</div></div>
   <div class="tile"><div class="value">+0.0004</div><div class="label">live Δ RPS vs the market</div></div>
-  <div class="tile"><div class="value">324</div><div class="label">ledger lines, last 2026-10-29</div></div>
+  <div class="tile"><div class="value">328</div><div class="label">ledger lines, last 2026-10-29</div></div>
 </div>
 
 <section class="block" id="open">
@@ -289,7 +289,27 @@ footer p { max-width: none; }
   <h2>Open forecasts</h2>
   <p class="note">Frozen before kick-off and not played yet, soonest first. Fair odds are 1/p, with no bookmaker margin. Exact scores come from the Dixon-Coles score grid, adjusted so its 1X2, over 2.5 and both-score totals equal the numbers on the card. Kick-off in Lisbon time. One forecast per match, from phase4-v2, the current model; the other versions in the ledger are compared in the <a href="#ledger">live record</a>.</p>
 </div>
-<p class="empty">No frozen forecast is waiting for kick-off. The scheduled job freezes each match 20 to 24 h before it starts.</p>
+<div class="matches">
+<article class="match" aria-label="Casa Pia – Sporting">
+  <div class="when"><span>Fri 2026-10-30</span><b>20:15</b></div>
+  <div class="teams"><span class="t">Casa Pia</span><span class="vs">vs</span><span class="t away fav">Sporting</span></div>
+  <div class="stack" role="img" aria-label="Home 8%, draw 14%, away 78%"><span class="h" style="width: 7.7%"></span><span class="d" style="width: 14.1%"></span><span class="a" style="width: 78.2%"></span></div>
+  <div class="probs">
+    <div><span class="k"><i class="h"></i>Home</span><span class="p">8%</span><span class="o">fair 13.01</span></div>
+    <div><span class="k"><i class="d"></i>Draw</span><span class="p">14%</span><span class="o">fair 7.07</span></div>
+    <div class="top"><span class="k"><i class="a"></i>Away</span><span class="p">78%</span><span class="o">fair 1.28</span></div>
+  </div>
+  <div class="minis">
+    <div class="mini"><div class="row"><span>Over 2.5</span><b>66%</b></div><div class="meter"><span style="width: 65.9%"></span></div></div>
+    <div class="mini"><div class="row"><span>Both score</span><b>52%</b></div><div class="meter"><span style="width: 52.4%"></span></div></div>
+  </div>
+  <div class="scores">
+    <div class="row"><span>Most likely scores</span><span class="hint">top 3 together 30%</span></div>
+    <ol><li class="first"><b>0–2</b><span>12%</span><i style="width: 100.0%"></i></li><li><b>1–2</b><span>9%</span><i style="width: 81.6%"></i></li><li><b>0–3</b><span>9%</span><i style="width: 78.0%"></i></li></ol>
+    <p class="hint">Even the likeliest score comes up only about 1 time in 9.</p>
+  </div>
+</article>
+</div>
 </section>
 
 <section class="block" id="played">
