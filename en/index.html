@@ -253,7 +253,7 @@ footer p { max-width: none; }
 <body>
 <div class="bar"><div class="wrap">
   <a class="brand" href="#top" aria-label="Primeira Liga forecasts, top of the page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6.2l4.6 3.4-1.8 5.4H9.2L7.4 9.6z" fill="currentColor"/><path d="M12 1.5v4.7M16.6 9.6l4.6-1.6M14.8 15l2.8 4.2M9.2 15l-2.8 4.2M7.4 9.6L2.8 8" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span>Primeira Liga forecasts</span></a>
-  <nav aria-label="Sections"><a href="#open">Next matches</a><a href="#played">Results</a><a href="#season">Season</a><a href="#trust">Said vs happened</a><a href="#ledger">Live record</a><a href="#holdout">Holdout</a><a href="#method">Method</a></nav>
+  <nav aria-label="Sections"><a href="#open">Next matches</a><a href="#awaiting">Awaiting</a><a href="#played">Results</a><a href="#season">Season</a><a href="#trust">Said vs happened</a><a href="#ledger">Live record</a><a href="#holdout">Holdout</a><a href="#method">Method</a></nav>
   <a class="lang" href="../" hreflang="pt" lang="pt" aria-label="Read this page in English">EN</a>
 </div></div>
 <main id="top" class="wrap">
@@ -277,10 +277,10 @@ footer p { max-width: none; }
 </section>
 
 <div class="tiles">
-  <div class="tile"><div class="value">1</div><div class="label">open matches, frozen and waiting</div></div>
+  <div class="tile"><div class="value">2</div><div class="label">open matches, frozen and waiting</div></div>
   <div class="tile"><div class="value">4</div><div class="label">prospective forecasts scored (the evidence)</div></div>
   <div class="tile"><div class="value">+0.0004</div><div class="label">live Δ RPS vs the market</div></div>
-  <div class="tile"><div class="value">328</div><div class="label">ledger lines, last 2026-10-29</div></div>
+  <div class="tile"><div class="value">336</div><div class="label">ledger lines, last 2026-10-30</div></div>
 </div>
 
 <section class="block" id="open">
@@ -290,26 +290,59 @@ footer p { max-width: none; }
   <p class="note">Frozen before kick-off and not played yet, soonest first. Fair odds are 1/p, with no bookmaker margin. Exact scores come from the Dixon-Coles score grid, adjusted so its 1X2, over 2.5 and both-score totals equal the numbers on the card. Kick-off in Lisbon time. One forecast per match, from phase4-v2, the current model; the other versions in the ledger are compared in the <a href="#ledger">live record</a>.</p>
 </div>
 <div class="matches">
-<article class="match" aria-label="Casa Pia – Sporting">
-  <div class="when"><span>Fri 2026-10-30</span><b>20:15</b></div>
-  <div class="teams"><span class="t">Casa Pia</span><span class="vs">vs</span><span class="t away fav">Sporting</span></div>
-  <div class="stack" role="img" aria-label="Home 8%, draw 14%, away 78%"><span class="h" style="width: 7.7%"></span><span class="d" style="width: 14.1%"></span><span class="a" style="width: 78.2%"></span></div>
+<article class="match" aria-label="Moreirense – Estrela da Amadora">
+  <div class="when"><span>Sat 2026-10-31</span><b>15:30</b></div>
+  <div class="teams"><span class="t">Moreirense</span><span class="vs">vs</span><span class="t away fav">Estrela da Amadora</span></div>
+  <div class="stack" role="img" aria-label="Home 34%, draw 28%, away 39%"><span class="h" style="width: 33.5%"></span><span class="d" style="width: 27.9%"></span><span class="a" style="width: 38.6%"></span></div>
   <div class="probs">
-    <div><span class="k"><i class="h"></i>Home</span><span class="p">8%</span><span class="o">fair 13.01</span></div>
-    <div><span class="k"><i class="d"></i>Draw</span><span class="p">14%</span><span class="o">fair 7.07</span></div>
-    <div class="top"><span class="k"><i class="a"></i>Away</span><span class="p">78%</span><span class="o">fair 1.28</span></div>
+    <div><span class="k"><i class="h"></i>Home</span><span class="p">34%</span><span class="o">fair 2.99</span></div>
+    <div><span class="k"><i class="d"></i>Draw</span><span class="p">28%</span><span class="o">fair 3.58</span></div>
+    <div class="top"><span class="k"><i class="a"></i>Away</span><span class="p">39%</span><span class="o">fair 2.59</span></div>
   </div>
   <div class="minis">
-    <div class="mini"><div class="row"><span>Over 2.5</span><b>66%</b></div><div class="meter"><span style="width: 65.9%"></span></div></div>
-    <div class="mini"><div class="row"><span>Both score</span><b>52%</b></div><div class="meter"><span style="width: 52.4%"></span></div></div>
+    <div class="mini"><div class="row"><span>Over 2.5</span><b>49%</b></div><div class="meter"><span style="width: 49.4%"></span></div></div>
+    <div class="mini"><div class="row"><span>Both score</span><b>50%</b></div><div class="meter"><span style="width: 49.6%"></span></div></div>
   </div>
   <div class="scores">
-    <div class="row"><span>Most likely scores</span><span class="hint">top 3 together 30%</span></div>
-    <ol><li class="first"><b>0–2</b><span>12%</span><i style="width: 100.0%"></i></li><li><b>1–2</b><span>9%</span><i style="width: 81.6%"></i></li><li><b>0–3</b><span>9%</span><i style="width: 78.0%"></i></li></ol>
+    <div class="row"><span>Most likely scores</span><span class="hint">top 3 together 31%</span></div>
+    <ol><li class="first"><b>0–1</b><span>11%</span><i style="width: 100.0%"></i></li><li><b>1–1</b><span>11%</span><i style="width: 94.3%"></i></li><li><b>0–0</b><span>9%</span><i style="width: 79.0%"></i></li></ol>
     <p class="hint">Even the likeliest score comes up only about 1 time in 9.</p>
   </div>
 </article>
+<article class="match" aria-label="Porto – Estoril Praia">
+  <div class="when"><span>Sat 2026-10-31</span><b>20:30</b></div>
+  <div class="teams"><span class="t fav">Porto</span><span class="vs">vs</span><span class="t away">Estoril Praia</span></div>
+  <div class="stack" role="img" aria-label="Home 82%, draw 13%, away 5%"><span class="h" style="width: 82.1%"></span><span class="d" style="width: 12.7%"></span><span class="a" style="width: 5.1%"></span></div>
+  <div class="probs">
+    <div class="top"><span class="k"><i class="h"></i>Home</span><span class="p">82%</span><span class="o">fair 1.22</span></div>
+    <div><span class="k"><i class="d"></i>Draw</span><span class="p">13%</span><span class="o">fair 7.85</span></div>
+    <div><span class="k"><i class="a"></i>Away</span><span class="p">5%</span><span class="o">fair 19.49</span></div>
+  </div>
+  <div class="minis">
+    <div class="mini"><div class="row"><span>Over 2.5</span><b>58%</b></div><div class="meter"><span style="width: 57.6%"></span></div></div>
+    <div class="mini"><div class="row"><span>Both score</span><b>48%</b></div><div class="meter"><span style="width: 47.8%"></span></div></div>
+  </div>
+  <div class="scores">
+    <div class="row"><span>Most likely scores</span><span class="hint">top 3 together 40%</span></div>
+    <ol><li class="first"><b>2–0</b><span>16%</span><i style="width: 100.0%"></i></li><li><b>1–0</b><span>13%</span><i style="width: 83.8%"></i></li><li><b>2–1</b><span>11%</span><i style="width: 66.1%"></i></li></ol>
+    <p class="hint">Even the likeliest score comes up only about 1 time in 6.</p>
+  </div>
+</article>
 </div>
+</section>
+
+<section class="block" id="awaiting">
+<div class="head">
+  <p class="kicker">Kicked off</p>
+  <h2>Waiting for the result</h2>
+  <p class="note">These matches have started or finished, but their result is not in the data yet: results come from football-data.co.uk, which updates its file a few times a week. They are scored as soon as it arrives.</p>
+</div>
+<div class="card scroll"><table>
+  <thead><tr><th>Kick-off</th><th class="text">Match</th><th>1</th><th>X</th><th>2</th><th class="text">Most likely score</th></tr></thead>
+  <tbody>
+  <tr><td>Fri 2026-10-30 20:15</td><td class="text">Casa Pia – Sporting</td><td>8%</td><td>14%</td><td>78%</td><td class="text">0–2 (12%)</td></tr>
+  </tbody>
+</table></div>
 </section>
 
 <section class="block" id="played">

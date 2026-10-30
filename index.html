@@ -253,7 +253,7 @@ footer p { max-width: none; }
 <body>
 <div class="bar"><div class="wrap">
   <a class="brand" href="#top" aria-label="Previsões da Primeira Liga, topo da página"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 6.2l4.6 3.4-1.8 5.4H9.2L7.4 9.6z" fill="currentColor"/><path d="M12 1.5v4.7M16.6 9.6l4.6-1.6M14.8 15l2.8 4.2M9.2 15l-2.8 4.2M7.4 9.6L2.8 8" stroke="currentColor" stroke-width="1.4" fill="none"/></svg><span>Previsões da Primeira Liga</span></a>
-  <nav aria-label="Secções"><a href="#open">Próximos jogos</a><a href="#played">Resultados</a><a href="#season">Época</a><a href="#trust">Dito e acontecido</a><a href="#ledger">Registo ao vivo</a><a href="#holdout">Holdout</a><a href="#method">Método</a></nav>
+  <nav aria-label="Secções"><a href="#open">Próximos jogos</a><a href="#awaiting">À espera</a><a href="#played">Resultados</a><a href="#season">Época</a><a href="#trust">Dito e acontecido</a><a href="#ledger">Registo ao vivo</a><a href="#holdout">Holdout</a><a href="#method">Método</a></nav>
   <a class="lang" href="en/" hreflang="en" lang="en" aria-label="Read this page in English">EN</a>
 </div></div>
 <main id="top" class="wrap">
@@ -277,10 +277,10 @@ footer p { max-width: none; }
 </section>
 
 <div class="tiles">
-  <div class="tile"><div class="value">1</div><div class="label">jogos em aberto, já congelados</div></div>
+  <div class="tile"><div class="value">2</div><div class="label">jogos em aberto, já congelados</div></div>
   <div class="tile"><div class="value">4</div><div class="label">previsões prospetivas avaliadas (a prova)</div></div>
   <div class="tile"><div class="value">+0,0004</div><div class="label">Δ RPS ao vivo face ao mercado</div></div>
-  <div class="tile"><div class="value">328</div><div class="label">linhas no ledger, a última a 29/10/2026</div></div>
+  <div class="tile"><div class="value">336</div><div class="label">linhas no ledger, a última a 30/10/2026</div></div>
 </div>
 
 <section class="block" id="open">
@@ -290,26 +290,59 @@ footer p { max-width: none; }
   <p class="note">Congeladas antes do pontapé de saída e ainda por jogar, as mais próximas primeiro. As odds justas são 1/p, sem a margem das casas de apostas. Os resultados exatos vêm da grelha de resultados do Dixon-Coles, ajustada para que os totais de 1X2, mais de 2,5 e ambas marcam coincidam com os números do cartão. Hora de Lisboa. Uma previsão por jogo, do phase4-v2, o modelo atual; as outras versões do ledger comparam-se no <a href="#ledger">registo ao vivo</a>.</p>
 </div>
 <div class="matches">
-<article class="match" aria-label="Casa Pia – Sporting">
-  <div class="when"><span>sex 30/10/2026</span><b>20:15</b></div>
-  <div class="teams"><span class="t">Casa Pia</span><span class="vs">vs</span><span class="t away fav">Sporting</span></div>
-  <div class="stack" role="img" aria-label="Casa 8%, empate 14%, fora 78%"><span class="h" style="width: 7.7%"></span><span class="d" style="width: 14.1%"></span><span class="a" style="width: 78.2%"></span></div>
+<article class="match" aria-label="Moreirense – Estrela da Amadora">
+  <div class="when"><span>sáb 31/10/2026</span><b>15:30</b></div>
+  <div class="teams"><span class="t">Moreirense</span><span class="vs">vs</span><span class="t away fav">Estrela da Amadora</span></div>
+  <div class="stack" role="img" aria-label="Casa 34%, empate 28%, fora 39%"><span class="h" style="width: 33.5%"></span><span class="d" style="width: 27.9%"></span><span class="a" style="width: 38.6%"></span></div>
   <div class="probs">
-    <div><span class="k"><i class="h"></i>Casa</span><span class="p">8%</span><span class="o">justa 13,01</span></div>
-    <div><span class="k"><i class="d"></i>Empate</span><span class="p">14%</span><span class="o">justa 7,07</span></div>
-    <div class="top"><span class="k"><i class="a"></i>Fora</span><span class="p">78%</span><span class="o">justa 1,28</span></div>
+    <div><span class="k"><i class="h"></i>Casa</span><span class="p">34%</span><span class="o">justa 2,99</span></div>
+    <div><span class="k"><i class="d"></i>Empate</span><span class="p">28%</span><span class="o">justa 3,58</span></div>
+    <div class="top"><span class="k"><i class="a"></i>Fora</span><span class="p">39%</span><span class="o">justa 2,59</span></div>
   </div>
   <div class="minis">
-    <div class="mini"><div class="row"><span>Mais de 2,5</span><b>66%</b></div><div class="meter"><span style="width: 65.9%"></span></div></div>
-    <div class="mini"><div class="row"><span>Ambas marcam</span><b>52%</b></div><div class="meter"><span style="width: 52.4%"></span></div></div>
+    <div class="mini"><div class="row"><span>Mais de 2,5</span><b>49%</b></div><div class="meter"><span style="width: 49.4%"></span></div></div>
+    <div class="mini"><div class="row"><span>Ambas marcam</span><b>50%</b></div><div class="meter"><span style="width: 49.6%"></span></div></div>
   </div>
   <div class="scores">
-    <div class="row"><span>Resultados mais prováveis</span><span class="hint">os 3 primeiros somam 30%</span></div>
-    <ol><li class="first"><b>0–2</b><span>12%</span><i style="width: 100.0%"></i></li><li><b>1–2</b><span>9%</span><i style="width: 81.6%"></i></li><li><b>0–3</b><span>9%</span><i style="width: 78.0%"></i></li></ol>
+    <div class="row"><span>Resultados mais prováveis</span><span class="hint">os 3 primeiros somam 31%</span></div>
+    <ol><li class="first"><b>0–1</b><span>11%</span><i style="width: 100.0%"></i></li><li><b>1–1</b><span>11%</span><i style="width: 94.3%"></i></li><li><b>0–0</b><span>9%</span><i style="width: 79.0%"></i></li></ol>
     <p class="hint">Mesmo o resultado mais provável só sai cerca de 1 vez em 9.</p>
   </div>
 </article>
+<article class="match" aria-label="Porto – Estoril Praia">
+  <div class="when"><span>sáb 31/10/2026</span><b>20:30</b></div>
+  <div class="teams"><span class="t fav">Porto</span><span class="vs">vs</span><span class="t away">Estoril Praia</span></div>
+  <div class="stack" role="img" aria-label="Casa 82%, empate 13%, fora 5%"><span class="h" style="width: 82.1%"></span><span class="d" style="width: 12.7%"></span><span class="a" style="width: 5.1%"></span></div>
+  <div class="probs">
+    <div class="top"><span class="k"><i class="h"></i>Casa</span><span class="p">82%</span><span class="o">justa 1,22</span></div>
+    <div><span class="k"><i class="d"></i>Empate</span><span class="p">13%</span><span class="o">justa 7,85</span></div>
+    <div><span class="k"><i class="a"></i>Fora</span><span class="p">5%</span><span class="o">justa 19,49</span></div>
+  </div>
+  <div class="minis">
+    <div class="mini"><div class="row"><span>Mais de 2,5</span><b>58%</b></div><div class="meter"><span style="width: 57.6%"></span></div></div>
+    <div class="mini"><div class="row"><span>Ambas marcam</span><b>48%</b></div><div class="meter"><span style="width: 47.8%"></span></div></div>
+  </div>
+  <div class="scores">
+    <div class="row"><span>Resultados mais prováveis</span><span class="hint">os 3 primeiros somam 40%</span></div>
+    <ol><li class="first"><b>2–0</b><span>16%</span><i style="width: 100.0%"></i></li><li><b>1–0</b><span>13%</span><i style="width: 83.8%"></i></li><li><b>2–1</b><span>11%</span><i style="width: 66.1%"></i></li></ol>
+    <p class="hint">Mesmo o resultado mais provável só sai cerca de 1 vez em 6.</p>
+  </div>
+</article>
 </div>
+</section>
+
+<section class="block" id="awaiting">
+<div class="head">
+  <p class="kicker">Já começaram</p>
+  <h2>À espera do resultado</h2>
+  <p class="note">Estes jogos já começaram ou acabaram, mas o resultado ainda não está nos dados: os resultados vêm do football-data.co.uk, que atualiza o ficheiro algumas vezes por semana. São avaliados assim que chega.</p>
+</div>
+<div class="card scroll"><table>
+  <thead><tr><th>Início</th><th class="text">Jogo</th><th>1</th><th>X</th><th>2</th><th class="text">Resultado mais provável</th></tr></thead>
+  <tbody>
+  <tr><td>sex 30/10/2026 20:15</td><td class="text">Casa Pia – Sporting</td><td>8%</td><td>14%</td><td>78%</td><td class="text">0–2 (12%)</td></tr>
+  </tbody>
+</table></div>
 </section>
 
 <section class="block" id="played">
