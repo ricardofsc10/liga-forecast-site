@@ -1,0 +1,18 @@
+{
+ "files": {
+  "forecasts.json": "One forecast per match, the one the page shows, with results.",
+  "season.json": "The latest frozen season table and the head-to-head matrix."
+ },
+ "format": 1,
+ "last_ledger_line_utc": "2026-10-30T20:55:05Z",
+ "left_out": [
+  "Bookmaker odds and the market's no-vig closing probabilities: their sources' terms do not allow redistribution.",
+  "The model's internal ratings and the raw downloaded files."
+ ],
+ "licence": {
+  "attribution": "Primeira Liga forecasts, https://ricardofsc10.github.io/liga-forecast-site/",
+  "id": "CC-BY-4.0",
+  "url": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ "probabilities": "Shares from 0 to 1, rounded to 4 decimal places."
+}

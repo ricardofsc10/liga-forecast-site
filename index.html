@@ -174,6 +174,7 @@ summary { cursor: pointer; color: var(--ink-2); font-weight: 600; padding: 10px 
 details[open] > summary { margin-bottom: 8px; }
 svg.chart { width: 100%; max-width: 760px; height: auto; display: block; font-size: 13px; min-width: 520px; }
 svg.chart.square { max-width: 340px; min-width: 0; }
+svg.chart.cols { min-width: 0; }  /* 18 narrow columns still read at phone width */
 svg .grid { stroke: var(--grid); stroke-width: 1; }
 svg .zero, svg .diagonal { stroke: var(--axis); stroke-width: 1.5; }
 svg .diagonal { stroke-dasharray: 4 4; }
@@ -244,6 +245,27 @@ footer p { max-width: none; }
   section.block { padding-top: 36px; }
   .card { padding: 14px; }
 }
+/* Club pages (D-072) */
+svg .col.z0 { fill: var(--axis); } svg .col.z1 { fill: var(--s1); } svg .col.z2 { fill: color-mix(in srgb, var(--s1) 55%, var(--surface)); }
+svg .col.z3 { fill: var(--s3); } svg .col.z4 { fill: color-mix(in srgb, var(--s3) 55%, var(--surface)); }
+svg .col.z5 { fill: var(--s4); } svg .col.z6 { fill: var(--s2); }
+.zones { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--ink-2); margin: 4px 0 8px; }
+.zones span { display: inline-flex; align-items: center; gap: 6px; }
+.zones i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.zones i.z0 { background: var(--axis); } .zones i.z1 { background: var(--s1); } .zones i.z2 { background: color-mix(in srgb, var(--s1) 55%, var(--surface)); }
+.zones i.z3 { background: var(--s3); } .zones i.z4 { background: color-mix(in srgb, var(--s3) 55%, var(--surface)); }
+.zones i.z5 { background: var(--s4); } .zones i.z6 { background: var(--s2); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 0; }
+.facts div { background: var(--raised); border: 1px solid var(--ring); border-radius: 10px; padding: 10px 12px; }
+.facts dt { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.facts dd { margin: 2px 0 0; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.facts dd small { font-size: 13px; font-weight: 500; color: var(--ink-2); }
+.clubs-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.clubs-nav a { font-size: 13px; padding: 3px 8px; border: 1px solid var(--ring); border-radius: 8px; color: var(--ink-2); text-decoration: none; }
+.clubs-nav a[aria-current] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+td a.club { color: inherit; text-decoration: underline; text-decoration-color: var(--axis); text-underline-offset: 3px; }
+td a.club:hover { text-decoration-color: currentColor; }
+
 @media print {
   .bar { position: static; }
   .hero { color: var(--ink); background: none; border: 1px solid var(--ring); }
@@ -539,12 +561,12 @@ footer p { max-width: none; }
   <p>A tabela depois de <strong>81 resultados</strong>, com os <strong>225 jogos que faltam</strong> simulados 50 000 vezes (dados até 29/10/2026, UTC). A força de cada clube vem das odds do mercado nos seus jogos recentes e pode mudar até maio; os marcadores seguem a grelha do Dixon-Coles, e os empates as regras da Liga. Congelada no registo de época como season-s2-v1 depois de cada resultado novo.</p>
 </div>
 <div class="card scroll"><table>
-  <caption>Ordenada pelos pontos finais esperados. Lugares europeus como a Liga os atribui, sem contar a Taça: 1.º e 2.º vão à Champions, 3.º às pré-eliminatórias, 4.º à Liga Europa e 5.º à Liga Conferência. Play-off é o 16.º lugar; descida é o 17.º ou o 18.º. A barra é o intervalo central de 80% dos pontos finais e o traço a média.</caption>
+  <caption>Ordenada pelos pontos finais esperados. Lugares europeus como a Liga os atribui, sem contar a Taça: 1.º e 2.º vão à Champions, 3.º às pré-eliminatórias, 4.º à Liga Europa e 5.º à Liga Conferência. Play-off é o 16.º lugar; descida é o 17.º ou o 18.º. A barra é o intervalo central de 80% dos pontos finais e o traço a média. O nome de cada clube abre a sua página, com todas as posições finais e o frente a frente com cada rival.</caption>
   <thead><tr><th class="text">#</th><th class="text">Clube</th><th><span class="long">Pontos agora</span><span class="short">Pts</span></th><th><span class="long">Campeão</span><span class="short">Título</span></th><th>Champions<br><small>1.º–2.º</small></th><th>Pré-elim.<br><small>3.º</small></th><th>L. Europa<br><small>4.º</small></th><th>Conferência<br><small>5.º</small></th><th><span class="long">Play-off</span><span class="short">16.º</span></th><th><span class="long">Descida</span><span class="short">Desce</span></th><th class="text pts">Pontos finais (80%)</th></tr></thead>
   <tbody>
   <tr>
     <td class="text">1</td>
-    <td class="text">Porto</td>
+    <td class="text"><a class="club" href="clubes/porto.html">Porto</a></td>
     <td>27</td>
     <td class="chance" style="--p: 0.514"><span>51%</span></td>
     <td class="chance" style="--p: 0.926"><span>93%</span></td>
@@ -557,7 +579,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">2</td>
-    <td class="text">Benfica</td>
+    <td class="text"><a class="club" href="clubes/benfica.html">Benfica</a></td>
     <td>22</td>
     <td class="chance" style="--p: 0.461"><span>46%</span></td>
     <td class="chance" style="--p: 0.932"><span>93%</span></td>
@@ -570,7 +592,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">3</td>
-    <td class="text">Sporting</td>
+    <td class="text"><a class="club" href="clubes/sporting.html">Sporting</a></td>
     <td>18</td>
     <td class="chance" style="--p: 0.025"><span>3%</span></td>
     <td class="chance" style="--p: 0.141"><span>14%</span></td>
@@ -583,7 +605,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">4</td>
-    <td class="text">Sporting de Braga</td>
+    <td class="text"><a class="club" href="clubes/sp-braga.html">Sporting de Braga</a></td>
     <td>11</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.001"><span>&lt;1%</span></td>
@@ -596,7 +618,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">5</td>
-    <td class="text">Santa Clara</td>
+    <td class="text"><a class="club" href="clubes/santa-clara.html">Santa Clara</a></td>
     <td>18</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -609,7 +631,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">6</td>
-    <td class="text">Académico de Viseu</td>
+    <td class="text"><a class="club" href="clubes/academico-viseu.html">Académico de Viseu</a></td>
     <td>17</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -622,7 +644,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">7</td>
-    <td class="text">Gil Vicente</td>
+    <td class="text"><a class="club" href="clubes/gil-vicente.html">Gil Vicente</a></td>
     <td>14</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -635,7 +657,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">8</td>
-    <td class="text">Arouca</td>
+    <td class="text"><a class="club" href="clubes/arouca.html">Arouca</a></td>
     <td>17</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -648,7 +670,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">9</td>
-    <td class="text">Vitória de Guimarães</td>
+    <td class="text"><a class="club" href="clubes/guimaraes.html">Vitória de Guimarães</a></td>
     <td>8</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -661,7 +683,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">10</td>
-    <td class="text">Famalicão</td>
+    <td class="text"><a class="club" href="clubes/famalicao.html">Famalicão</a></td>
     <td>10</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -674,7 +696,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">11</td>
-    <td class="text">Alverca</td>
+    <td class="text"><a class="club" href="clubes/alverca.html">Alverca</a></td>
     <td>11</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -687,7 +709,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">12</td>
-    <td class="text">Estrela da Amadora</td>
+    <td class="text"><a class="club" href="clubes/estrela-amadora.html">Estrela da Amadora</a></td>
     <td>10</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -700,7 +722,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">13</td>
-    <td class="text">Marítimo</td>
+    <td class="text"><a class="club" href="clubes/maritimo.html">Marítimo</a></td>
     <td>8</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -713,7 +735,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">14</td>
-    <td class="text">Moreirense</td>
+    <td class="text"><a class="club" href="clubes/moreirense.html">Moreirense</a></td>
     <td>11</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -726,7 +748,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">15</td>
-    <td class="text">Rio Ave</td>
+    <td class="text"><a class="club" href="clubes/rio-ave.html">Rio Ave</a></td>
     <td>7</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -739,7 +761,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">16</td>
-    <td class="text">Nacional</td>
+    <td class="text"><a class="club" href="clubes/nacional.html">Nacional</a></td>
     <td>7</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -752,7 +774,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">17</td>
-    <td class="text">Casa Pia</td>
+    <td class="text"><a class="club" href="clubes/casa-pia.html">Casa Pia</a></td>
     <td>7</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -765,7 +787,7 @@ footer p { max-width: none; }
   </tr>
   <tr>
     <td class="text">18</td>
-    <td class="text">Estoril Praia</td>
+    <td class="text"><a class="club" href="clubes/estoril.html">Estoril Praia</a></td>
     <td>2</td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
     <td class="chance" style="--p: 0.000"><span>&lt;1%</span></td>
@@ -1293,6 +1315,8 @@ footer p { max-width: none; }
   <h2>Método</h2>
 <p>Cada dado externo traz o momento em que ficou disponível, e uma previsão só usa o que existia 24 h antes do início; um teste automático falha se uma feature violar isto. Os modelos treinam-se em walk-forward, só com jogos anteriores. O ledger é JSONL só de acréscimo em git: uma correção é uma linha nova, nunca uma edição. As avaliações acima derivam do ledger, dos resultados e das odds de fecho; nada é escrito de volta.</p>
 <p>O RPS (ranked probability score) é a métrica principal do 1X2 porque respeita a ordem casa, empate, fora; log loss e Brier são secundárias. Ao mercado de fecho retira-se a margem pelo método da potência no 1X2 e proporcionalmente no mais/menos.</p>
+<h3 id="open-data">Dados abertos</h3>
+<p>Os números desta página também estão publicados em JSON, de reutilização livre sob CC BY 4.0 desde que se cite este site: <a href='data/forecasts.json'>uma previsão por jogo</a>, com os resultados quando há, e <a href='data/season.json'>a tabela da época</a> com todas as posições finais e o frente a frente. O <a href='data/index.json'>index.json</a> descreve os ficheiros. As odds das casas de apostas não estão incluídas: as fontes não permitem redistribuí-las.</p>
 </div>
 </section>
 </main>
