@@ -2005,7 +2005,7 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
-   "state": "upcoming",
+   "state": "awaiting",
    "timing": "pending"
   },
   {
@@ -2064,6 +2064,27 @@
    "kickoff_utc": "2026-11-01T18:00:00Z",
    "kind": "prospective",
    "match_id": "P1-2627-maritimo-santa-clara",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Famalicão",
+   "corrected": false,
+   "forecast": {
+    "away": 0.1935,
+    "both_score": 0.4683,
+    "draw": 0.2676,
+    "home": 0.539,
+    "over_2_5": 0.4307
+   },
+   "home": "Sporting de Braga",
+   "kickoff_utc": "2026-11-01T20:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-sp-braga-famalicao",
    "model_version": "phase4-v2",
    "rps": null,
    "score": null,
