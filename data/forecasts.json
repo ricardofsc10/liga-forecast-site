@@ -1984,7 +1984,7 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
-   "state": "upcoming",
+   "state": "awaiting",
    "timing": "pending"
   },
   {
@@ -2001,6 +2001,69 @@
    "kickoff_utc": "2026-10-31T20:30:00Z",
    "kind": "prospective",
    "match_id": "P1-2627-porto-estoril",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Nacional",
+   "corrected": false,
+   "forecast": {
+    "away": 0.2193,
+    "both_score": 0.4944,
+    "draw": 0.2473,
+    "home": 0.5335,
+    "over_2_5": 0.5268
+   },
+   "home": "Arouca",
+   "kickoff_utc": "2026-11-01T15:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-arouca-nacional",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Rio Ave",
+   "corrected": false,
+   "forecast": {
+    "away": 0.2393,
+    "both_score": 0.541,
+    "draw": 0.26,
+    "home": 0.5007,
+    "over_2_5": 0.5167
+   },
+   "home": "Académico de Viseu",
+   "kickoff_utc": "2026-11-01T18:00:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-academico-viseu-rio-ave",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Santa Clara",
+   "corrected": false,
+   "forecast": {
+    "away": 0.4201,
+    "both_score": 0.5021,
+    "draw": 0.2983,
+    "home": 0.2816,
+    "over_2_5": 0.3936
+   },
+   "home": "Marítimo",
+   "kickoff_utc": "2026-11-01T18:00:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-maritimo-santa-clara",
    "model_version": "phase4-v2",
    "rps": null,
    "score": null,
