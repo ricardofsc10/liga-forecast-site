@@ -1,0 +1,3108 @@
+{
+ "algorithm": "sha256",
+ "format": 1,
+ "hashed": "Each ledger line's UTF-8 bytes, without the trailing newline.",
+ "lines": [
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 1,
+   "match_id": "P1-2627-estoril-famalicao",
+   "model_version": "phase2-v1",
+   "sha256": "613734d098eb27b8d2bb0b8bdede862e2708e42c4573397e56b77139865d292a"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 2,
+   "match_id": "P1-2627-estrela-amadora-sporting",
+   "model_version": "phase2-v1",
+   "sha256": "a7a12d79e143fac1881dfdbe5a59021652c30995c9804a1dea5d5af3125073c0"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 3,
+   "match_id": "P1-2627-guimaraes-arouca",
+   "model_version": "phase2-v1",
+   "sha256": "aa2dc74685ccd9478237ae75d664098594dec79c554dafae0bf9fa21a8b7650f"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 4,
+   "match_id": "P1-2627-maritimo-casa-pia",
+   "model_version": "phase2-v1",
+   "sha256": "9c8d2b5ebd23584296a6b93706185a0ce80c100ff0ca6cc7a6a8c4cbb617a228"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 5,
+   "match_id": "P1-2627-benfica-academico-viseu",
+   "model_version": "phase2-v1",
+   "sha256": "bff70e6bb5a617dc716af3ac03327bf5c23ccdc1c298af7825c5d2589b8ade86"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 6,
+   "match_id": "P1-2627-gil-vicente-rio-ave",
+   "model_version": "phase2-v1",
+   "sha256": "c4f4780ecae79e0ecea901044bed449510bfb74814808b30bd48241067daddf0"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 7,
+   "match_id": "P1-2627-moreirense-sp-braga",
+   "model_version": "phase2-v1",
+   "sha256": "cedbb2b0fc57c974226fef5f10fc9feb12d0ed93b7b8e67d96aaae2e7b44318c"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 8,
+   "match_id": "P1-2627-porto-alverca",
+   "model_version": "phase2-v1",
+   "sha256": "487bb5d27a7a793c3f1c7519decb4f1e8fd8a7a281815e020c800b412367f150"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 9,
+   "match_id": "P1-2627-santa-clara-nacional",
+   "model_version": "phase2-v1",
+   "sha256": "bae582c9005ccf637e9d67bef8987efb34513ff5343e77521921f61fb5f44bdd"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 10,
+   "match_id": "P1-2627-sporting-guimaraes",
+   "model_version": "phase2-v1",
+   "sha256": "e8197a305271f6d78afd9371069789c2ef107bf3011a0d8ad8586073b985ea42"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 11,
+   "match_id": "P1-2627-academico-viseu-santa-clara",
+   "model_version": "phase2-v1",
+   "sha256": "50f0094d5562451115a72abe9f95bcea331724d40d7a562bd0d05e67e5441812"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 12,
+   "match_id": "P1-2627-alverca-estrela-amadora",
+   "model_version": "phase2-v1",
+   "sha256": "d612e97415978af0c5f3a04c22c73575d718b37a60414f0868f00ea482b2c8b6"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 13,
+   "match_id": "P1-2627-rio-ave-porto",
+   "model_version": "phase2-v1",
+   "sha256": "6c0bdcb4b1fce7f1b2df16b57d906272080e54dfbab62e7924d92b36f1060ce4"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 14,
+   "match_id": "P1-2627-arouca-moreirense",
+   "model_version": "phase2-v1",
+   "sha256": "1f12583cca7a37c093538fd06ebc8bd60b8ac0b67074d6bc90d6d8c0c96d85d8"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 15,
+   "match_id": "P1-2627-famalicao-maritimo",
+   "model_version": "phase2-v1",
+   "sha256": "6ce388007e55371502493c036aee3ec81afc42737afc9b3776606b464e651d8e"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 16,
+   "match_id": "P1-2627-nacional-estoril",
+   "model_version": "phase2-v1",
+   "sha256": "1a775b05f9bd15b10451fa1874922a07c8f6edc9802cd8600ac849171334826e"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 17,
+   "match_id": "P1-2627-casa-pia-benfica",
+   "model_version": "phase2-v1",
+   "sha256": "b5c13a42b9b3e5a293936b0c37120cb359e225c37c9b5432e873f7bb33f30618"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 18,
+   "match_id": "P1-2627-estoril-rio-ave",
+   "model_version": "phase2-v1",
+   "sha256": "066041010ddd27bb5138bbaf328df552b809e70bf760737fd16dbd42664075f2"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 19,
+   "match_id": "P1-2627-maritimo-academico-viseu",
+   "model_version": "phase2-v1",
+   "sha256": "8b5a682878f732397ec1b1c453624daabf254c659b73cac67e70be91502c1955"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 20,
+   "match_id": "P1-2627-sporting-alverca",
+   "model_version": "phase2-v1",
+   "sha256": "b778a55f8d727e65b9622d2cd5d4f6f7635411532fa3cbfbab975c8538d1cef5"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 21,
+   "match_id": "P1-2627-guimaraes-nacional",
+   "model_version": "phase2-v1",
+   "sha256": "b68b30d0fc3b21724e057c4b1ddacc0875f6b515b718f6805be24e5a897d4f8e"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 22,
+   "match_id": "P1-2627-porto-arouca",
+   "model_version": "phase2-v1",
+   "sha256": "620bcd1b8dec738f615813fff689802f11878baf66351f8b2cfb2f960024e803"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 23,
+   "match_id": "P1-2627-santa-clara-famalicao",
+   "model_version": "phase2-v1",
+   "sha256": "41ae68603e2f581abf99477f33a9716925abc4fb2de215227e91fec2d2faa79f"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 24,
+   "match_id": "P1-2627-gil-vicente-casa-pia",
+   "model_version": "phase2-v1",
+   "sha256": "d1e7c8eb96e2865de3d7a40fc02b3ec90e40e56449aeb7619057334eda20f337"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 25,
+   "match_id": "P1-2627-rio-ave-sporting",
+   "model_version": "phase2-v1",
+   "sha256": "80932e9a23d86a48f49b49c1a1455a45da73d73b549c56431d3dadf3c30c490b"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 26,
+   "match_id": "P1-2627-academico-viseu-porto",
+   "model_version": "phase2-v1",
+   "sha256": "a12ccf9d97194269750baab82e796352c4533b13bf2e09b5ac45b98773d71388"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 27,
+   "match_id": "P1-2627-alverca-santa-clara",
+   "model_version": "phase2-v1",
+   "sha256": "9e6d7fbc980bdcc81fb84f47fcb41b55f35149d05437eb16e5ea2c2d7f6376e0"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 28,
+   "match_id": "P1-2627-arouca-maritimo",
+   "model_version": "phase2-v1",
+   "sha256": "1a3bb85cf84804307f058b3e8bbe9b70c2e521894a39b42013a8edf3257157a9"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 29,
+   "match_id": "P1-2627-casa-pia-moreirense",
+   "model_version": "phase2-v1",
+   "sha256": "8758c9d6cf9dee08a83fd65b564430b656211afb8adb29e6ceb24d3fb929d227"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 30,
+   "match_id": "P1-2627-famalicao-gil-vicente",
+   "model_version": "phase2-v1",
+   "sha256": "e8da5a7e9ec8c63316b190f4e4612573c36e2a8c374b5e82622d4c7fa84a4102"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 31,
+   "match_id": "P1-2627-nacional-estrela-amadora",
+   "model_version": "phase2-v1",
+   "sha256": "067043ff7723c8b4b804ef11f1cc57141d55f00a243db73b058dce06cec95d11"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 32,
+   "match_id": "P1-2627-benfica-estoril",
+   "model_version": "phase2-v1",
+   "sha256": "3a65aa7ddbb44d7bfa9eb9202082025fa13562beb8833bd350511283ed992683"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 33,
+   "match_id": "P1-2627-sp-braga-guimaraes",
+   "model_version": "phase2-v1",
+   "sha256": "19c8c798b3a7b815fb3a9b32102a60964fe8df73adfefcf479f5a6d41185b11f"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 34,
+   "match_id": "P1-2627-porto-moreirense",
+   "model_version": "phase2-v1",
+   "sha256": "87f189809d8a8e6692750240766db7f0ea63839ea59cd6a39cdfa371d4653379"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 35,
+   "match_id": "P1-2627-alverca-sp-braga",
+   "model_version": "phase2-v1",
+   "sha256": "6bf035dae0a8092bd23d4a08803b2f601ef3fb81de3a36cdc886745f8aa00ee7"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 36,
+   "match_id": "P1-2627-estrela-amadora-famalicao",
+   "model_version": "phase2-v1",
+   "sha256": "de0c92c674d93c0af698409865d4166bc1c49de6cbc1aed01f1aa311ae9a638b"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 37,
+   "match_id": "P1-2627-maritimo-benfica",
+   "model_version": "phase2-v1",
+   "sha256": "12760e1935887af02d5873a3a535d07887370d9bfff6aa980593afe85d7d99f6"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 38,
+   "match_id": "P1-2627-sporting-nacional",
+   "model_version": "phase2-v1",
+   "sha256": "f30e5111dd529a8baf4b52dd51955dc72e855582e081cc2a4d8aa41c616b21fc"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 39,
+   "match_id": "P1-2627-gil-vicente-academico-viseu",
+   "model_version": "phase2-v1",
+   "sha256": "1eb2f56577672ca8847beec61abec3b3bdbac78e2236e11ad1502001b940e83d"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 40,
+   "match_id": "P1-2627-guimaraes-casa-pia",
+   "model_version": "phase2-v1",
+   "sha256": "37cd589d33f9894ab39c194cb402e85a82b8050225aada830e7d9cdc73294ee8"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 41,
+   "match_id": "P1-2627-santa-clara-rio-ave",
+   "model_version": "phase2-v1",
+   "sha256": "cc1b5f895eeba4664f8154f8826e3e00f5138f3930bdad6d1bef8afbd59981b9"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 42,
+   "match_id": "P1-2627-estoril-arouca",
+   "model_version": "phase2-v1",
+   "sha256": "a03a29836027a59cefb440d76a3516ddaa4f238f04666cd61652c70a3f5fbfa1"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 43,
+   "match_id": "P1-2627-moreirense-benfica",
+   "model_version": "phase2-v1",
+   "sha256": "43376c20144d970dbe3fe59a74c2c7e4c9083d7b0dddc9bcba591efd5eefbcaa"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 44,
+   "match_id": "P1-2627-estrela-amadora-sp-braga",
+   "model_version": "phase2-v1",
+   "sha256": "c5a573c36e7787ac979b182c52b133862f9cbc354839462fd3f368e6f336858e"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 45,
+   "match_id": "P1-2627-academico-viseu-guimaraes",
+   "model_version": "phase2-v1",
+   "sha256": "b05249d3f7e35e48fe17fe524e4e74066f84f3c8ad0112182937cfe2773517de"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 46,
+   "match_id": "P1-2627-casa-pia-porto",
+   "model_version": "phase2-v1",
+   "sha256": "36faa5921552c305937644fe438ed645433b5ab2a57d3ff8b55c5300b27430b3"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 47,
+   "match_id": "P1-2627-nacional-alverca",
+   "model_version": "phase2-v1",
+   "sha256": "54c8e21a8664b256c51f9028bad52956dde5b855212e2672b096935aa729a273"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 48,
+   "match_id": "P1-2627-arouca-santa-clara",
+   "model_version": "phase2-v1",
+   "sha256": "b13cc6a97564bb7bafbe8b850a26fc1ea37c934fb14c502280bcf5e213b1e680"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 49,
+   "match_id": "P1-2627-benfica-gil-vicente",
+   "model_version": "phase2-v1",
+   "sha256": "c30aee5062fe2679d24ec88c9fd10b48b12ceb2c80eb2dad6917fa6c3bf6c6fc"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 50,
+   "match_id": "P1-2627-famalicao-sporting",
+   "model_version": "phase2-v1",
+   "sha256": "93a7e2f9abdec5ff339c2a8980816e8ac9287ee8e4c691bc4bfebdc5b1432ff5"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 51,
+   "match_id": "P1-2627-moreirense-maritimo",
+   "model_version": "phase2-v1",
+   "sha256": "08c6d41ced68176037c8c56364d1bc080a25b1cec917d2a9c640de0d6be9d428"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 52,
+   "match_id": "P1-2627-rio-ave-estrela-amadora",
+   "model_version": "phase2-v1",
+   "sha256": "ba6068a20990b7dcdc41c37d97c52f7c03a42a0bb987d4520e2a75f6696f6d84"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 53,
+   "match_id": "P1-2627-sp-braga-estoril",
+   "model_version": "phase2-v1",
+   "sha256": "9de434a80b42b7c953702aeefb8ff978781f060ee5d6a040e56d34697da9cc2a"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 54,
+   "match_id": "P1-2627-alverca-rio-ave",
+   "model_version": "phase2-v1",
+   "sha256": "83b5a96fbc5b41f3b9defce32a3451b216f857e6799e5826d5a473880410903e"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 55,
+   "match_id": "P1-2627-gil-vicente-maritimo",
+   "model_version": "phase2-v1",
+   "sha256": "f729e652d70286d8d35f9414ae79077c061672cea1154a462cf258bb704de054"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 56,
+   "match_id": "P1-2627-nacional-famalicao",
+   "model_version": "phase2-v1",
+   "sha256": "994864b884dccac8f56d4863c5ab9ae0f12aab09370374f4f3a52e4fc5957336"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 57,
+   "match_id": "P1-2627-sporting-arouca",
+   "model_version": "phase2-v1",
+   "sha256": "a4e0211f954eb7ff9987608157b12a1a5a7aa5848cae6ef75699119400ec03dd"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 58,
+   "match_id": "P1-2627-estoril-casa-pia",
+   "model_version": "phase2-v1",
+   "sha256": "d3c20bbe3dd9dfdd6f958da608d8fdf1ea9f3728aa653c2504adc221bffdfdb3"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 59,
+   "match_id": "P1-2627-estrela-amadora-academico-viseu",
+   "model_version": "phase2-v1",
+   "sha256": "324931922855d49d219e859e148f2b60de6aa8c687619e9b61c3a4684b2a871b"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 60,
+   "match_id": "P1-2627-guimaraes-moreirense",
+   "model_version": "phase2-v1",
+   "sha256": "eebf1e13e585207c8848865fa2aa2ac460aace7a377fbfb5f629b90a75ec12d9"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 61,
+   "match_id": "P1-2627-porto-benfica",
+   "model_version": "phase2-v1",
+   "sha256": "b11924d84b55f336902ef905ae27af9aa9f306874afdf2b95b797a2779c45201"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 62,
+   "match_id": "P1-2627-santa-clara-sp-braga",
+   "model_version": "phase2-v1",
+   "sha256": "cfaa9830206d8b7cdf21d657a562b51124a06e700a368b60cdb4f732b05c7d62"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 63,
+   "match_id": "P1-2627-moreirense-gil-vicente",
+   "model_version": "phase2-v1",
+   "sha256": "97d64e38a57ceafb218d214ccbf1c091abcd33fd8a1f52afa828f694608b8f5c"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 64,
+   "match_id": "P1-2627-sp-braga-sporting",
+   "model_version": "phase2-v1",
+   "sha256": "4d989aa73aef0036b24871d766c61f33f21433d72f436eba12d8692f7dd6b398"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 65,
+   "match_id": "P1-2627-academico-viseu-estoril",
+   "model_version": "phase2-v1",
+   "sha256": "3264050b6f431bbdc7e083f4924b319994ae6306bf5780ade4a39e2eddd4e0fc"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 66,
+   "match_id": "P1-2627-casa-pia-santa-clara",
+   "model_version": "phase2-v1",
+   "sha256": "82449272f0c01cd4ccbbcbd3c4bb48e633b0c7d75c4cd9d818c5348f3f18055e"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 67,
+   "match_id": "P1-2627-maritimo-porto",
+   "model_version": "phase2-v1",
+   "sha256": "02572f0244179a2cfec278388d155f3fa5521efd0186709598d001b868b5a3b1"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 68,
+   "match_id": "P1-2627-arouca-estrela-amadora",
+   "model_version": "phase2-v1",
+   "sha256": "091c7c19a83d1f529e762cbeea402fe1d15e2c9f9b52e6c6bb4e096b9679c09f"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 69,
+   "match_id": "P1-2627-benfica-guimaraes",
+   "model_version": "phase2-v1",
+   "sha256": "4e75499afd3b3b2290bbc8ac889f08c3d9b5f76d6ae04f9c53ff26083ae732eb"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 70,
+   "match_id": "P1-2627-rio-ave-nacional",
+   "model_version": "phase2-v1",
+   "sha256": "73c57e1313cab082ffc1b83838eefc9f8ba5b9fe3a9cd08a0ec37f8e712902ec"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 71,
+   "match_id": "P1-2627-famalicao-alverca",
+   "model_version": "phase2-v1",
+   "sha256": "6db30d37ae2b74b5575bc005bd44ae4ee0755fb0e10d5defbb98eff48a629c75"
+  },
+  {
+   "created_at": "2026-10-25T19:08:37Z",
+   "line": 72,
+   "match_id": "P1-2627-sp-braga-gil-vicente",
+   "model_version": "phase2-v1",
+   "sha256": "85a8e501ef6939d2bf4c244977c03efb09fe0e6ae4d18b178064311bd49645be"
+  },
+  {
+   "created_at": "2026-10-25T19:08:45Z",
+   "line": 73,
+   "match_id": "P1-2627-sporting-academico-viseu",
+   "model_version": "phase2-v1",
+   "sha256": "6b851888654b10493492da30b71d975e3ce40b5aff64fb79c4bd095d07d9686e"
+  },
+  {
+   "created_at": "2026-10-25T19:08:45Z",
+   "line": 74,
+   "match_id": "P1-2627-santa-clara-benfica",
+   "model_version": "phase2-v1",
+   "sha256": "ca5aa8748eab5fa143eed11d4e0d7bdd3f7ef82af9fa286ad715d880af00b346"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 75,
+   "match_id": "P1-2627-estoril-famalicao",
+   "model_version": "phase4-v1",
+   "sha256": "4b7a0b9698a9b1e908b1610f876d4b660d5c62e2e75010f9f03f414064336e85"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 76,
+   "match_id": "P1-2627-estrela-amadora-sporting",
+   "model_version": "phase4-v1",
+   "sha256": "3ffd8037680cf47c8b9e2cf8af06ed07cce42227e267425f104712844e46437b"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 77,
+   "match_id": "P1-2627-guimaraes-arouca",
+   "model_version": "phase4-v1",
+   "sha256": "f525ed54dce527c6bce81ea46b7d122e194622e02fe37d87a423c3efded61ecc"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 78,
+   "match_id": "P1-2627-maritimo-casa-pia",
+   "model_version": "phase4-v1",
+   "sha256": "451647a090d81d6991f0a548110d5204292ea42204dc2c749ef994da4b2b23a6"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 79,
+   "match_id": "P1-2627-benfica-academico-viseu",
+   "model_version": "phase4-v1",
+   "sha256": "e5224824fb94816ea485e1c14f025b0a31cb47c3da0d2b11284a74e5b3917d74"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 80,
+   "match_id": "P1-2627-gil-vicente-rio-ave",
+   "model_version": "phase4-v1",
+   "sha256": "c9be86809a89791e57a519b723e6da89c93d09c67f643e6478eaa97ee494c7b6"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 81,
+   "match_id": "P1-2627-moreirense-sp-braga",
+   "model_version": "phase4-v1",
+   "sha256": "35a905e89d06334b10d462f021795dc3c03e98985ea06962eae6fa5fe7c79dd5"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 82,
+   "match_id": "P1-2627-porto-alverca",
+   "model_version": "phase4-v1",
+   "sha256": "2834932c79a375d94009973c3e89c25d7279db8216c7e4c380b1a7f8b1b6868e"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 83,
+   "match_id": "P1-2627-santa-clara-nacional",
+   "model_version": "phase4-v1",
+   "sha256": "0a0adcd35aa54ce35c35c88a0fca6689c32cde8f1b86d18d5f80a45a567e83e7"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 84,
+   "match_id": "P1-2627-sporting-guimaraes",
+   "model_version": "phase4-v1",
+   "sha256": "ff9e7c4f318aeba0a07862f43a88caa1fa437d239536cae3eb00f9733c8ecef6"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 85,
+   "match_id": "P1-2627-academico-viseu-santa-clara",
+   "model_version": "phase4-v1",
+   "sha256": "9195705bb5657bf96fce407729836662d86a50863b141737411b4d256cf18c20"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 86,
+   "match_id": "P1-2627-alverca-estrela-amadora",
+   "model_version": "phase4-v1",
+   "sha256": "7803e660a3afec8689a764bce51ecba4e6793987788fa8bdaaf79bb19e4bc363"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 87,
+   "match_id": "P1-2627-rio-ave-porto",
+   "model_version": "phase4-v1",
+   "sha256": "e5480e5427c026ff8fc36e1ad870c91c697b6ba6e7a885cca1d8e35749dd9aaa"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 88,
+   "match_id": "P1-2627-arouca-moreirense",
+   "model_version": "phase4-v1",
+   "sha256": "3ad9332880a86807a3510dc03188ba2e7cdc4ae07a0c4675f6edce06514aa767"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 89,
+   "match_id": "P1-2627-famalicao-maritimo",
+   "model_version": "phase4-v1",
+   "sha256": "d6f8691847b16e5fb263cf6db92f421c79a8e5d8bb025ef84a911cb7f4c319bd"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 90,
+   "match_id": "P1-2627-nacional-estoril",
+   "model_version": "phase4-v1",
+   "sha256": "25864e5388cfda6ecbdf11dd30cc85702013a6beacb63e4c8bd85296173aef17"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 91,
+   "match_id": "P1-2627-casa-pia-benfica",
+   "model_version": "phase4-v1",
+   "sha256": "60bd3eb07fcb3397daae811814193bda4356e20b2b8230870333c2f1e52dc613"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 92,
+   "match_id": "P1-2627-estoril-rio-ave",
+   "model_version": "phase4-v1",
+   "sha256": "66db3cad34615e6a54c09588f51173d58d160ee506d7af2ae84de24f18ecfeb4"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 93,
+   "match_id": "P1-2627-maritimo-academico-viseu",
+   "model_version": "phase4-v1",
+   "sha256": "6633f9778b5bb10dac6f2d18790868005e68a6c048122577591b098ba879b9b2"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 94,
+   "match_id": "P1-2627-sporting-alverca",
+   "model_version": "phase4-v1",
+   "sha256": "b9ae4f86ea539a711a9f303758c3ac5c06f93faf3b4a5304ab53514f3cca249d"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 95,
+   "match_id": "P1-2627-guimaraes-nacional",
+   "model_version": "phase4-v1",
+   "sha256": "0729675a6ce2d8fe750d3c408db694a2afd6d3aba24d45aa142917ad25b84679"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 96,
+   "match_id": "P1-2627-porto-arouca",
+   "model_version": "phase4-v1",
+   "sha256": "c6017a1be13b9d37ff8caf061763021cd0e4fb7443faa8d11ccfc239acef7c1a"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 97,
+   "match_id": "P1-2627-santa-clara-famalicao",
+   "model_version": "phase4-v1",
+   "sha256": "0bedf8ac169a2aae28b8e4515f57fa1e523fbffbf5d80add43a90ea3af5c4ad0"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 98,
+   "match_id": "P1-2627-gil-vicente-casa-pia",
+   "model_version": "phase4-v1",
+   "sha256": "432eb0a6021752f617cc4d8add08d79ace56567ca318d711a10a4b6987211b7d"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 99,
+   "match_id": "P1-2627-rio-ave-sporting",
+   "model_version": "phase4-v1",
+   "sha256": "f50303c7a95dc0f1c2592ee8819775cea986264bc5a19f2fea8920767cfcb994"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 100,
+   "match_id": "P1-2627-academico-viseu-porto",
+   "model_version": "phase4-v1",
+   "sha256": "a9824170ed73f965936c8c2a08a5ba6b8db4dfecdd43cceac1f55ea885771de1"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 101,
+   "match_id": "P1-2627-alverca-santa-clara",
+   "model_version": "phase4-v1",
+   "sha256": "70b564d37f24f8850f0c56780bd13359d25e74d2a545db5762fa2d1277ca79dd"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 102,
+   "match_id": "P1-2627-arouca-maritimo",
+   "model_version": "phase4-v1",
+   "sha256": "5b951d5ee79e4158e74be5bd44c9016e6eb696512ae932438e0f1fc3e03734f6"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 103,
+   "match_id": "P1-2627-casa-pia-moreirense",
+   "model_version": "phase4-v1",
+   "sha256": "98d5582c83394d42f83ee4d513aa12d2ce0ae66d044cdc5866125a319be89daf"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 104,
+   "match_id": "P1-2627-famalicao-gil-vicente",
+   "model_version": "phase4-v1",
+   "sha256": "3d4f661d987d27b982bae094a376d844477c5cc165ab40aec4ab94fa4b8ae47b"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 105,
+   "match_id": "P1-2627-nacional-estrela-amadora",
+   "model_version": "phase4-v1",
+   "sha256": "babe607761970b1a4e2daf9417a57c335bd4b78358b8ac02f55b960cffd7d1c2"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 106,
+   "match_id": "P1-2627-benfica-estoril",
+   "model_version": "phase4-v1",
+   "sha256": "2ba55840392dda8563915096c2a95e6d5ef2c3bde3d8d5631817f19224a97de7"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 107,
+   "match_id": "P1-2627-sp-braga-guimaraes",
+   "model_version": "phase4-v1",
+   "sha256": "12a1db96ff25b7e6bb77889d2106129e175e49ea8b72b812e4b0a5c4e1e38575"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 108,
+   "match_id": "P1-2627-porto-moreirense",
+   "model_version": "phase4-v1",
+   "sha256": "6faaeb655deadce438ae8323c3ef69134986e6a62144b5b958d7e5ac5a2623c5"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 109,
+   "match_id": "P1-2627-alverca-sp-braga",
+   "model_version": "phase4-v1",
+   "sha256": "d73699352bab4790878ef06faa591f0dd2ca8e97ea911951d2bc934ee68280d2"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 110,
+   "match_id": "P1-2627-estrela-amadora-famalicao",
+   "model_version": "phase4-v1",
+   "sha256": "2cb70d465a948681e0d91dc8c8e225cc0766161004574da320ca0d2208d32ac2"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 111,
+   "match_id": "P1-2627-maritimo-benfica",
+   "model_version": "phase4-v1",
+   "sha256": "fd3adb70d345bfa3f44fbe09071f323a074c86eb85156cb8ef45efb2987a3348"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 112,
+   "match_id": "P1-2627-sporting-nacional",
+   "model_version": "phase4-v1",
+   "sha256": "7bb5504c15becdbcbc24b501ac267eede513bef15395b50f826e4ca11f8df7f8"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 113,
+   "match_id": "P1-2627-gil-vicente-academico-viseu",
+   "model_version": "phase4-v1",
+   "sha256": "bdf1fa547e1f5ed457aee3a3be711d6893f17b721856110901840fd65c653089"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 114,
+   "match_id": "P1-2627-guimaraes-casa-pia",
+   "model_version": "phase4-v1",
+   "sha256": "be9788cbbafc253bbfaa3aca4b9ae6d18b391b06bbefe0d8983ecbc307677ab0"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 115,
+   "match_id": "P1-2627-santa-clara-rio-ave",
+   "model_version": "phase4-v1",
+   "sha256": "9230cc0162c3a0dd7bb1c0cb2925e39ede62fa7847caab47a8629fc212a82fb9"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 116,
+   "match_id": "P1-2627-estoril-arouca",
+   "model_version": "phase4-v1",
+   "sha256": "b10e21d307eafd2f44d26a4924e74926ef0a4737bd01e0883d3b2c535394eb1a"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 117,
+   "match_id": "P1-2627-moreirense-benfica",
+   "model_version": "phase4-v1",
+   "sha256": "62c3b023219f5f842f77b6148cc28dab97ff39bb211b8e9c06452309683cd3aa"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 118,
+   "match_id": "P1-2627-estrela-amadora-sp-braga",
+   "model_version": "phase4-v1",
+   "sha256": "8e3ff4ef76e4e2253bfc2ea5e612caa115e7555554080dd0fc49fd37bde6bcd0"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 119,
+   "match_id": "P1-2627-academico-viseu-guimaraes",
+   "model_version": "phase4-v1",
+   "sha256": "3d12821abe52eee581d092f88b896233851f6fc4c96805d4a19372662de8a00a"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 120,
+   "match_id": "P1-2627-casa-pia-porto",
+   "model_version": "phase4-v1",
+   "sha256": "00349baf83b861f008b147f82198d0b397957b26545af63b92c27ef9fe3289bc"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 121,
+   "match_id": "P1-2627-nacional-alverca",
+   "model_version": "phase4-v1",
+   "sha256": "48bbc54b2573943dd4f2552c69ac748aa7b3598edf0749d9c3d28100aad2d03e"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 122,
+   "match_id": "P1-2627-arouca-santa-clara",
+   "model_version": "phase4-v1",
+   "sha256": "8dc7a49e05fb5e394178c27c246171fe5140aaecd3e60b54303c9f967c1ca959"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 123,
+   "match_id": "P1-2627-benfica-gil-vicente",
+   "model_version": "phase4-v1",
+   "sha256": "aac65216b926991af60a3b549d7f8bb6c01d0af3cf9868e6d61dbb4938b29878"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 124,
+   "match_id": "P1-2627-famalicao-sporting",
+   "model_version": "phase4-v1",
+   "sha256": "1796e53a723f17cb66bfd17ac3d397df60b4240e8bfc8fef4b730fd85fef487c"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 125,
+   "match_id": "P1-2627-moreirense-maritimo",
+   "model_version": "phase4-v1",
+   "sha256": "d037f5e7d78d83000023ba8247551d611c7c13c95546ed72fa5e40d6da1d45f7"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 126,
+   "match_id": "P1-2627-rio-ave-estrela-amadora",
+   "model_version": "phase4-v1",
+   "sha256": "b1d312aeeea95578c6861d24e9bb911d447729e2a7acb2a88d837d221a77fccb"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 127,
+   "match_id": "P1-2627-sp-braga-estoril",
+   "model_version": "phase4-v1",
+   "sha256": "74bc5714fe53f855ba264c4df1f7ef30d75bdacf9679b5c29e89ffb20152f24b"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 128,
+   "match_id": "P1-2627-alverca-rio-ave",
+   "model_version": "phase4-v1",
+   "sha256": "c950a5c869ac617053f4d0b7c35722ae50118c4a617de3b76b697754871675e1"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 129,
+   "match_id": "P1-2627-gil-vicente-maritimo",
+   "model_version": "phase4-v1",
+   "sha256": "893975b8e7094af7c7f7342ef6b4a16e70a576509e3d08355af7f2c72c9657cd"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 130,
+   "match_id": "P1-2627-nacional-famalicao",
+   "model_version": "phase4-v1",
+   "sha256": "d52434ada4ae4d8a640494b7fea84ee0a9930a76207680f6f4d07855071ba8e5"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 131,
+   "match_id": "P1-2627-sporting-arouca",
+   "model_version": "phase4-v1",
+   "sha256": "f6f7680ceb62a08f19e1d8ce2a9295a2feb569d87c8a88943d07cd060147bb0b"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 132,
+   "match_id": "P1-2627-estoril-casa-pia",
+   "model_version": "phase4-v1",
+   "sha256": "0acd6ab58cb55b1311aaa25150a572703de3c38caa1e4b33cf9e208f0c7495b3"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 133,
+   "match_id": "P1-2627-estrela-amadora-academico-viseu",
+   "model_version": "phase4-v1",
+   "sha256": "d6be789acfaeb151c9410514aec8476c301960637a5631004dc391750a16fb26"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 134,
+   "match_id": "P1-2627-guimaraes-moreirense",
+   "model_version": "phase4-v1",
+   "sha256": "1e9c9c4fac55d33c2767dbc6121be357cd491a2395a07550960735b0c04ba880"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 135,
+   "match_id": "P1-2627-porto-benfica",
+   "model_version": "phase4-v1",
+   "sha256": "442d68ff86798863c745cf16f3c011dd51acc52eec2bd5643431fe72864bdc46"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 136,
+   "match_id": "P1-2627-santa-clara-sp-braga",
+   "model_version": "phase4-v1",
+   "sha256": "0ae3d40f360abd83b3c93788f1b79a529d84b837efbc746e5918ab53a4d3678a"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 137,
+   "match_id": "P1-2627-moreirense-gil-vicente",
+   "model_version": "phase4-v1",
+   "sha256": "5e03dafe145f298dd40baabb1e2280d2bdca7c61339839d34c48c6da37dddb8d"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 138,
+   "match_id": "P1-2627-sp-braga-sporting",
+   "model_version": "phase4-v1",
+   "sha256": "11ac1bd57689aef5b9244bd583d45de11a9ade2d4ed5d91c3719b961988005a7"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 139,
+   "match_id": "P1-2627-academico-viseu-estoril",
+   "model_version": "phase4-v1",
+   "sha256": "6d58d5087c42bdd308ac83a4e1f3c7e82f60da7161b4f06eafc97f6884a8fe13"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 140,
+   "match_id": "P1-2627-casa-pia-santa-clara",
+   "model_version": "phase4-v1",
+   "sha256": "ead333d0dd95b0ec3eefe82dd6e1c2981962bf162377374e485f76f06e352770"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 141,
+   "match_id": "P1-2627-maritimo-porto",
+   "model_version": "phase4-v1",
+   "sha256": "3db5f187f3f89932d8e388ca068c7c3eacd1c0c79c5ef9efcfa39b9174cfcf39"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 142,
+   "match_id": "P1-2627-arouca-estrela-amadora",
+   "model_version": "phase4-v1",
+   "sha256": "b36f564bd64fe9b251f993844f246c18a2d7067a6e8f0cc5f660e031cd6d526f"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 143,
+   "match_id": "P1-2627-benfica-guimaraes",
+   "model_version": "phase4-v1",
+   "sha256": "41f5e391965772c6a1c416edd771688f87c59a6aae2875299c0325ab5d0cf2f2"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 144,
+   "match_id": "P1-2627-rio-ave-nacional",
+   "model_version": "phase4-v1",
+   "sha256": "df2831177470206778165d03b984e8e409d74232ffb89dc192f124428b6e6475"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 145,
+   "match_id": "P1-2627-famalicao-alverca",
+   "model_version": "phase4-v1",
+   "sha256": "87a2635f50cad4828ba15af464d27fd20bf3b94d41d653f1d1c1267564d8a63d"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 146,
+   "match_id": "P1-2627-sp-braga-gil-vicente",
+   "model_version": "phase4-v1",
+   "sha256": "67e11162814932137fb81b1efa5cbea707728c7456dd22235914121e1b129ab5"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 147,
+   "match_id": "P1-2627-estoril-famalicao",
+   "model_version": "phase4-v2",
+   "sha256": "0f0454089b514510b5b3065ae073b027ba2c8fbd7a757dadbf3e5d895be6be35"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 148,
+   "match_id": "P1-2627-estrela-amadora-sporting",
+   "model_version": "phase4-v2",
+   "sha256": "a34157bff2afd99d160d17bd512eb48b244dd5d71befca0921ebec208c6ff588"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 149,
+   "match_id": "P1-2627-guimaraes-arouca",
+   "model_version": "phase4-v2",
+   "sha256": "bf5efcfac59bf5ee0537f7b0e1d33a7146ebcfe890caee2680511c5e6a31b797"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 150,
+   "match_id": "P1-2627-maritimo-casa-pia",
+   "model_version": "phase4-v2",
+   "sha256": "cbe8d1416335775428d755ca8139de2e896915fc78c63d0e605cc4fb2e75fdf2"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 151,
+   "match_id": "P1-2627-benfica-academico-viseu",
+   "model_version": "phase4-v2",
+   "sha256": "434695561832dc62625f66716ca27a9f5270d68a7940d63a7237ab1a9e60584d"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 152,
+   "match_id": "P1-2627-gil-vicente-rio-ave",
+   "model_version": "phase4-v2",
+   "sha256": "c6f0a9ea5190e5a6cee5d0f99756de92b99cedc8df1df38c8f29eb504dca2ff0"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 153,
+   "match_id": "P1-2627-moreirense-sp-braga",
+   "model_version": "phase4-v2",
+   "sha256": "4f7e4e4e1b11889cff17ebc786be22707b7c7e6d6409a63e64a18f048101ddef"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 154,
+   "match_id": "P1-2627-porto-alverca",
+   "model_version": "phase4-v2",
+   "sha256": "cc33c9c7be1335f2821fe64d7d32dc87062db353c75589f3ebdd7d06bb421488"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 155,
+   "match_id": "P1-2627-santa-clara-nacional",
+   "model_version": "phase4-v2",
+   "sha256": "520d51349381034ddaf33282ecf45b350cb75575faeefe46de30d8b58a02f18d"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 156,
+   "match_id": "P1-2627-sporting-guimaraes",
+   "model_version": "phase4-v2",
+   "sha256": "2d795ece163398e7dbe57aa84e6be47935a803adb8111437976d99a98125395a"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 157,
+   "match_id": "P1-2627-academico-viseu-santa-clara",
+   "model_version": "phase4-v2",
+   "sha256": "199d370f4c2e6c054fd1ec2373d17834f5d3a54bb29b895e2cc805e545f28a16"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 158,
+   "match_id": "P1-2627-alverca-estrela-amadora",
+   "model_version": "phase4-v2",
+   "sha256": "6baa048f7067755a7ae7054dc475cda5c1eb5bc8bfd511fbabde9b6f667c5543"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 159,
+   "match_id": "P1-2627-rio-ave-porto",
+   "model_version": "phase4-v2",
+   "sha256": "99e0db788d3f9aebac590f1588e3a226c6f9b23d78432b71a0c2ca26c4284fa9"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 160,
+   "match_id": "P1-2627-arouca-moreirense",
+   "model_version": "phase4-v2",
+   "sha256": "815ce98e48ee470e543798e698e0c87066c2c3f9cfa02385aaa31183d23b10c3"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 161,
+   "match_id": "P1-2627-famalicao-maritimo",
+   "model_version": "phase4-v2",
+   "sha256": "a57bc3cd0bee6eefed66d19b9f25b6fd23f081e1eeaee3b24a92ce5d2dc50025"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 162,
+   "match_id": "P1-2627-nacional-estoril",
+   "model_version": "phase4-v2",
+   "sha256": "737b7321b9809cbef7f7aa7c694762f666d65c98bc4008e547e874aa4c4a5ec8"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 163,
+   "match_id": "P1-2627-casa-pia-benfica",
+   "model_version": "phase4-v2",
+   "sha256": "a280f4e29c98b7f5fd3e017bc3daa589207075bbf71ba0314a7ee97023882f6c"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 164,
+   "match_id": "P1-2627-estoril-rio-ave",
+   "model_version": "phase4-v2",
+   "sha256": "1347445f041e916f2ddc13e9179ecc3f2b57163754d01779ea238674bc3c73cf"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 165,
+   "match_id": "P1-2627-maritimo-academico-viseu",
+   "model_version": "phase4-v2",
+   "sha256": "71d4ab0428a7213a8bb2cb04289c89d3e6e4f10f42e4943d1d3a85a233f1de61"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 166,
+   "match_id": "P1-2627-sporting-alverca",
+   "model_version": "phase4-v2",
+   "sha256": "3faaf7caaa3d8283f3d99394f2272f359c1f22e4e56ed074a2974de72d88d3c6"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 167,
+   "match_id": "P1-2627-guimaraes-nacional",
+   "model_version": "phase4-v2",
+   "sha256": "3bb5bb80e77c242da16dfa7a9fdb0c3461b7552c329d3293cc2f0a2532ac0d91"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 168,
+   "match_id": "P1-2627-porto-arouca",
+   "model_version": "phase4-v2",
+   "sha256": "6e616f97666dae85fcb646cc74aa070587ba49a740fe4b75fb828156d7899819"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 169,
+   "match_id": "P1-2627-santa-clara-famalicao",
+   "model_version": "phase4-v2",
+   "sha256": "8434f4de239231101a93b32123260b7466c4d3de78a6b23a55eb643b1c153992"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 170,
+   "match_id": "P1-2627-gil-vicente-casa-pia",
+   "model_version": "phase4-v2",
+   "sha256": "85660180facec592e51f94f5e5b8615dc69e764ec83aaa3579b73267a3118212"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 171,
+   "match_id": "P1-2627-rio-ave-sporting",
+   "model_version": "phase4-v2",
+   "sha256": "a753dbb32176b7746461541bc2a5654276bf6b45e6a9eff7b872d5426b994eb4"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 172,
+   "match_id": "P1-2627-academico-viseu-porto",
+   "model_version": "phase4-v2",
+   "sha256": "a3cdb0bbf43bb1e8432b1282a69692080e5b58a02743d3593cf2160d80e75b40"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 173,
+   "match_id": "P1-2627-alverca-santa-clara",
+   "model_version": "phase4-v2",
+   "sha256": "5a9204ee8e5dbac779ac4ec2ed29645ff2bf7cc86835916de838ff3ce12f91d1"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 174,
+   "match_id": "P1-2627-arouca-maritimo",
+   "model_version": "phase4-v2",
+   "sha256": "d642a8313a67b3174f04c7c89a1a023bf7ab21bbfb7ac203ed2f32955bf4c0ac"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 175,
+   "match_id": "P1-2627-casa-pia-moreirense",
+   "model_version": "phase4-v2",
+   "sha256": "15185bddd70573b1be32a77ce1ed8bddc9dc20a4d557be814e701626a80b1e2a"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 176,
+   "match_id": "P1-2627-famalicao-gil-vicente",
+   "model_version": "phase4-v2",
+   "sha256": "7d299bfa00d11367e11944ec4ee96ba642fd32288f2a60162a10dfeef1d113dd"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 177,
+   "match_id": "P1-2627-nacional-estrela-amadora",
+   "model_version": "phase4-v2",
+   "sha256": "ea6f2a818cc4e5c7bff0c01635592729a565c599006d0ae840a1699dd2ed3377"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 178,
+   "match_id": "P1-2627-benfica-estoril",
+   "model_version": "phase4-v2",
+   "sha256": "ed474c2ea17c718479063051eb050caf650cf60d4607829e226fb2002624c703"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 179,
+   "match_id": "P1-2627-sp-braga-guimaraes",
+   "model_version": "phase4-v2",
+   "sha256": "4f2ab14157b21f047d4a49592dddf7435451d62ffa265deba05583539a79581e"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 180,
+   "match_id": "P1-2627-porto-moreirense",
+   "model_version": "phase4-v2",
+   "sha256": "c0f4d73e7ff51c10a1accf59ad7a604814b6dec758504765fe72d25c82b68714"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 181,
+   "match_id": "P1-2627-alverca-sp-braga",
+   "model_version": "phase4-v2",
+   "sha256": "3d5f1c460f3716ecf5d3ee2c6309ee26aee0adbd16f5ee9cde64fb25c0a69a09"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 182,
+   "match_id": "P1-2627-estrela-amadora-famalicao",
+   "model_version": "phase4-v2",
+   "sha256": "b24f5ca8435b3d728fcb795fc6ff5592921b172ebb8e3f8ce432f6e1d4d6b954"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 183,
+   "match_id": "P1-2627-maritimo-benfica",
+   "model_version": "phase4-v2",
+   "sha256": "a0f61bf8bee2979883512977ab65d845d69dd7806f1afdbab70561dc4d0376c4"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 184,
+   "match_id": "P1-2627-sporting-nacional",
+   "model_version": "phase4-v2",
+   "sha256": "18913032385cd2f11f327b2f553f519c05e9e50d4bbe3f4b3ca1060be354b7a0"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 185,
+   "match_id": "P1-2627-gil-vicente-academico-viseu",
+   "model_version": "phase4-v2",
+   "sha256": "e608198a629208463d189f3f697752fee7ed9dfdc338f15f1713272d5a0e4414"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 186,
+   "match_id": "P1-2627-guimaraes-casa-pia",
+   "model_version": "phase4-v2",
+   "sha256": "e49c54a2647f7c1389dca21c56d9aba9747a8e7174aa2a5d26eb8886587b85d0"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 187,
+   "match_id": "P1-2627-santa-clara-rio-ave",
+   "model_version": "phase4-v2",
+   "sha256": "5ac92eec67b168e7bc134aa21ed79396895ae5f603b53d845291e98506251c83"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 188,
+   "match_id": "P1-2627-estoril-arouca",
+   "model_version": "phase4-v2",
+   "sha256": "4d5ba43777494e5061ef710e750f2fd342d90dd6f0c697c9238a580f8dff9011"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 189,
+   "match_id": "P1-2627-moreirense-benfica",
+   "model_version": "phase4-v2",
+   "sha256": "7f4a909de5c0a907e762f39ddaec083a476bd06362b7c7e551ac66ffeecef71a"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 190,
+   "match_id": "P1-2627-estrela-amadora-sp-braga",
+   "model_version": "phase4-v2",
+   "sha256": "68deb523203a634c1e8772902d5fa752bad8d3170d771bc163a156d0667c8ce3"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 191,
+   "match_id": "P1-2627-academico-viseu-guimaraes",
+   "model_version": "phase4-v2",
+   "sha256": "f580451cc34c978bc4f1a0402ed7721c07b30ada2cf7fe12cc09358181de2ab5"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 192,
+   "match_id": "P1-2627-casa-pia-porto",
+   "model_version": "phase4-v2",
+   "sha256": "921692be09e3fbc587e6346277754eda3dbdaeba255663110b3d4fe9bb5dbcba"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 193,
+   "match_id": "P1-2627-nacional-alverca",
+   "model_version": "phase4-v2",
+   "sha256": "e18cdd6e55bcbaaa935b6454acf2386f046cd6159bc583a21550feea0cb44d13"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 194,
+   "match_id": "P1-2627-arouca-santa-clara",
+   "model_version": "phase4-v2",
+   "sha256": "3bd1591c36e4537264e7498758f77acc1724092f2d05d2e47f67b44ad97c7e4b"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 195,
+   "match_id": "P1-2627-benfica-gil-vicente",
+   "model_version": "phase4-v2",
+   "sha256": "b29b97c2a3a7fd12eb55aab6b66d52d7c22f86ce8376d420772b13eeb927195c"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 196,
+   "match_id": "P1-2627-famalicao-sporting",
+   "model_version": "phase4-v2",
+   "sha256": "70f833eadbe4637017030fb8ff5405087d03c4ccd47e7e3a7cb5d7c017dbaf59"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 197,
+   "match_id": "P1-2627-moreirense-maritimo",
+   "model_version": "phase4-v2",
+   "sha256": "20a1b053b19d1cdddb4c4ca5883f207a6c6f77830bc3db3e73d57cce32674150"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 198,
+   "match_id": "P1-2627-rio-ave-estrela-amadora",
+   "model_version": "phase4-v2",
+   "sha256": "8ee47b607412e8830590471a4e1769ee2594bd2cd7f78397dd1f02495bbdbd71"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 199,
+   "match_id": "P1-2627-sp-braga-estoril",
+   "model_version": "phase4-v2",
+   "sha256": "403b95439b39ca99f459b4dea616fc5162ef2f74fe16be7aa2acb0ff2b084bed"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 200,
+   "match_id": "P1-2627-alverca-rio-ave",
+   "model_version": "phase4-v2",
+   "sha256": "8b2501d6d7f7526c9f9c4145d07b9e6f9d50b88dac348524e1d9e79d520e1a0a"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 201,
+   "match_id": "P1-2627-gil-vicente-maritimo",
+   "model_version": "phase4-v2",
+   "sha256": "ea390fa520ea7b983416578f6413aae80ec502970b1e4fe844e267edac87e639"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 202,
+   "match_id": "P1-2627-nacional-famalicao",
+   "model_version": "phase4-v2",
+   "sha256": "fa4242dda5f0ce229d496a51764735f59ca91fac790b79be97ee2cbf9504ab04"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 203,
+   "match_id": "P1-2627-sporting-arouca",
+   "model_version": "phase4-v2",
+   "sha256": "342b2d5c80f3250821d0c1da79e3ddb41087d9b1d946dd4ce3374f223a7e5775"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 204,
+   "match_id": "P1-2627-estoril-casa-pia",
+   "model_version": "phase4-v2",
+   "sha256": "33c4b5857e4a5512054050baa7d406cf04f2c8da2be86d3022c19ef4618a3bd1"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 205,
+   "match_id": "P1-2627-estrela-amadora-academico-viseu",
+   "model_version": "phase4-v2",
+   "sha256": "17784525a2a911446a812b31826020be70a7b3dc1cf59bff5bbf4e8c40e8a177"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 206,
+   "match_id": "P1-2627-guimaraes-moreirense",
+   "model_version": "phase4-v2",
+   "sha256": "16ec2805042744e1d9c7c0561b616f270edb8fb626aa8aa8fc377b8b24d35d51"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 207,
+   "match_id": "P1-2627-porto-benfica",
+   "model_version": "phase4-v2",
+   "sha256": "2ca57b218cb15b456a5f1aec71b878d40f15c368c3a5050bcd6607991e00df44"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 208,
+   "match_id": "P1-2627-santa-clara-sp-braga",
+   "model_version": "phase4-v2",
+   "sha256": "c420b273515ac74544dcf3aa5c8b7814e4b22a3424c20821c30da7036b7433e3"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 209,
+   "match_id": "P1-2627-moreirense-gil-vicente",
+   "model_version": "phase4-v2",
+   "sha256": "5e0f5747bb8e97d6c54281e7fe1567eeb791043d45d35bb64760474785a089fe"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 210,
+   "match_id": "P1-2627-sp-braga-sporting",
+   "model_version": "phase4-v2",
+   "sha256": "acf92bfde7e30727a6ce496c43d36e7caa49697c2a598ce55cdc7bbc55c6bc2e"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 211,
+   "match_id": "P1-2627-academico-viseu-estoril",
+   "model_version": "phase4-v2",
+   "sha256": "dab0866158ebe01dabb9c3f17115e8211a15237cb9da1f3367c52d0ebb545730"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 212,
+   "match_id": "P1-2627-casa-pia-santa-clara",
+   "model_version": "phase4-v2",
+   "sha256": "22b4ab88d4b475398c49064e7645acc16d0e48cc365209abc76094edf0925cb3"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 213,
+   "match_id": "P1-2627-maritimo-porto",
+   "model_version": "phase4-v2",
+   "sha256": "a6bc920c8b8c03fc1d3ade82814f1b745a4193b51408d69221cd270419adb9e3"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 214,
+   "match_id": "P1-2627-arouca-estrela-amadora",
+   "model_version": "phase4-v2",
+   "sha256": "4acd2aa870e6aacee1e0dc8fa4734d0479e22ccbc78dfb11053ec6527d5668da"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 215,
+   "match_id": "P1-2627-benfica-guimaraes",
+   "model_version": "phase4-v2",
+   "sha256": "d6e7ae0fbd676d539509e615e3802b808a226602375cda4abeb4a733e2848b0d"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 216,
+   "match_id": "P1-2627-rio-ave-nacional",
+   "model_version": "phase4-v2",
+   "sha256": "e8e3044bab12c3a76a984ff381c7dd429c28e09dd6f4fc8301dafdd3fec69860"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 217,
+   "match_id": "P1-2627-famalicao-alverca",
+   "model_version": "phase4-v2",
+   "sha256": "794450ecc67c4f0c11d08600b6bbc1a879887716fb0a6c5df7c7916c6a30492c"
+  },
+  {
+   "created_at": "2026-10-26T15:18:48Z",
+   "line": 218,
+   "match_id": "P1-2627-sp-braga-gil-vicente",
+   "model_version": "phase4-v2",
+   "sha256": "01a796f700dd757eb8c9a2aefe85bfd75ffd639cddda425a70129b0adcad0dbe"
+  },
+  {
+   "created_at": "2026-10-26T15:19:14Z",
+   "line": 219,
+   "match_id": "P1-2627-santa-clara-benfica",
+   "model_version": "phase4-v1",
+   "sha256": "6dc2d25ec982f2585b22ae441bf6f8e315fba215677ec605c21e75b8f31040a2"
+  },
+  {
+   "created_at": "2026-10-26T15:19:14Z",
+   "line": 220,
+   "match_id": "P1-2627-santa-clara-benfica",
+   "model_version": "phase4-v2",
+   "sha256": "50e6fa7442ab60a009bae3428bf51898d58187cb55b68a91b59b115cd8e57c38"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 221,
+   "match_id": "P1-2627-guimaraes-maritimo",
+   "model_version": "phase2-v1",
+   "sha256": "38e0a068110abc57ad82be7b76d6b8e1d36efa94cc79f5c0992d5d80c345c780"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 222,
+   "match_id": "P1-2627-alverca-arouca",
+   "model_version": "phase2-v1",
+   "sha256": "e5fb5c8fc41665ceb2d17963b79008c6eaeea983895fcfa2e968e6a4c1c6dd49"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 223,
+   "match_id": "P1-2627-estrela-amadora-casa-pia",
+   "model_version": "phase2-v1",
+   "sha256": "626f99dd2ba5c9cfda24f54f807f6a571fbaa90ccf3e73285b86b75ad77d7ab6"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 224,
+   "match_id": "P1-2627-gil-vicente-porto",
+   "model_version": "phase2-v1",
+   "sha256": "c27b1e0fb34f2befe2ab4a9f0cc44bc56ee80ccf7c688960f0d111d2fdbeed80"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 225,
+   "match_id": "P1-2627-estoril-moreirense",
+   "model_version": "phase2-v1",
+   "sha256": "78a3b2e0ba2084f1f88d2af230c18c69cc03bca4180ea20bdf0c28b078df6081"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 226,
+   "match_id": "P1-2627-nacional-sp-braga",
+   "model_version": "phase2-v1",
+   "sha256": "a461efea674cce2dd8d66cbbf2ce238f2096b40fb5a99e6c54c627d83bcf8fd2"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 227,
+   "match_id": "P1-2627-rio-ave-famalicao",
+   "model_version": "phase2-v1",
+   "sha256": "5c4d496094da617ef3ea74e493da63e711a13510bfe50fc9b07f4b63038ce903"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 228,
+   "match_id": "P1-2627-guimaraes-maritimo",
+   "model_version": "phase4-v1",
+   "sha256": "c469abcc3fb8337c08a42c587b706219fb7f9a504bd1b5fbf04b089d7b163d04"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 229,
+   "match_id": "P1-2627-alverca-arouca",
+   "model_version": "phase4-v1",
+   "sha256": "3c2098f5e4feca07c8d4be1def36e0d5081c3c9b67742a47ffa8a6e743bac7c8"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 230,
+   "match_id": "P1-2627-estrela-amadora-casa-pia",
+   "model_version": "phase4-v1",
+   "sha256": "2912196017ccc5c41c5b52294146c8625b86d7361b3bb09ce9f9a401fc6471cc"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 231,
+   "match_id": "P1-2627-gil-vicente-porto",
+   "model_version": "phase4-v1",
+   "sha256": "38814d360f762567da5598921bb3862cc7e6e55a02b6b3b8e888beb44289f47a"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 232,
+   "match_id": "P1-2627-estoril-moreirense",
+   "model_version": "phase4-v1",
+   "sha256": "457468a44d66d50a1cddfca13830c6d8fc2fff434cd5997a370da73bcd085521"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 233,
+   "match_id": "P1-2627-nacional-sp-braga",
+   "model_version": "phase4-v1",
+   "sha256": "0c1fa02fcefa5a571fc3fb50799a305d9f122ceba5f9ed3e6b6f149acece3583"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 234,
+   "match_id": "P1-2627-rio-ave-famalicao",
+   "model_version": "phase4-v1",
+   "sha256": "9b5cf8008b508295beeca8931edfa9f43311763a0cae319c6a994f5428737b3e"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 235,
+   "match_id": "P1-2627-sporting-academico-viseu",
+   "model_version": "phase4-v1",
+   "sha256": "e896ebb29dc270761ba2d5453aa3d54c6797c199f36ef3cf45f094041c5c36dd"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 236,
+   "match_id": "P1-2627-guimaraes-maritimo",
+   "model_version": "phase4-v2",
+   "sha256": "f626f288922b766e11533e1e41f5114d01d470003bfb14131c3dff192f4107ff"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 237,
+   "match_id": "P1-2627-alverca-arouca",
+   "model_version": "phase4-v2",
+   "sha256": "a86b406e8f850597a022a1ecc54fba3a7af2e317f6118c129b9f8a15574d3de8"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 238,
+   "match_id": "P1-2627-estrela-amadora-casa-pia",
+   "model_version": "phase4-v2",
+   "sha256": "309fd9c3b8407c2ea4c9ee7b35d2aefb22d90d417ae5913db152e5ee9bf1eb72"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 239,
+   "match_id": "P1-2627-gil-vicente-porto",
+   "model_version": "phase4-v2",
+   "sha256": "a0e36698683bbd5f05a49d6395755c968bf925bf93c2e5250850bd081fc93c6f"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 240,
+   "match_id": "P1-2627-estoril-moreirense",
+   "model_version": "phase4-v2",
+   "sha256": "e4d1534100c5b582a70b4925cc9d473ed0a04835be4818603806defb82c80c9b"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 241,
+   "match_id": "P1-2627-nacional-sp-braga",
+   "model_version": "phase4-v2",
+   "sha256": "c6f71cdaca2fb4d7940529319c9d852fda7e5372d4cdb9c3e580fd196c3a2216"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 242,
+   "match_id": "P1-2627-rio-ave-famalicao",
+   "model_version": "phase4-v2",
+   "sha256": "aaab9777c6446d0be9791b32015f2b7e03859f53815a1b6304e68051db34cf2b"
+  },
+  {
+   "created_at": "2026-10-29T06:03:35Z",
+   "line": 243,
+   "match_id": "P1-2627-sporting-academico-viseu",
+   "model_version": "phase4-v2",
+   "sha256": "41e95bb82077bd4590699fe524c93ad8ae370c441d8565078c81f1998f3e64ca"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 244,
+   "match_id": "P1-2627-estoril-famalicao",
+   "model_version": "e7-xg",
+   "sha256": "6ad40c5e7614e60723ce404fef9331cc83079fca7d92a01aaf9fd14fe846c1e5"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 245,
+   "match_id": "P1-2627-estrela-amadora-sporting",
+   "model_version": "e7-xg",
+   "sha256": "96ce6c88e1e41c4e2144d778304acdae187c7f293644fe06a159cdca6ef4ef95"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 246,
+   "match_id": "P1-2627-guimaraes-arouca",
+   "model_version": "e7-xg",
+   "sha256": "73e62a55e126be249c5b8d48817a35566e0f8f45a4cc59b6be78edf1cc76015b"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 247,
+   "match_id": "P1-2627-maritimo-casa-pia",
+   "model_version": "e7-xg",
+   "sha256": "0df0e515ed47c12fc393c3db27b82ae46bf5528605a6274c4bee3efbed34e032"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 248,
+   "match_id": "P1-2627-benfica-academico-viseu",
+   "model_version": "e7-xg",
+   "sha256": "0da692e8f2517be082845168c494b35f1e3de619cc8e1e276434d881d8ae8a7e"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 249,
+   "match_id": "P1-2627-gil-vicente-rio-ave",
+   "model_version": "e7-xg",
+   "sha256": "0173e5e8b53c98fa5c191603e2284b810c39b2964f42ef4a761e3fea6eef46ef"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 250,
+   "match_id": "P1-2627-moreirense-sp-braga",
+   "model_version": "e7-xg",
+   "sha256": "6e6d183365b4c1e09abd2ba30f188be882cfc9b578344202a3b93560948febac"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 251,
+   "match_id": "P1-2627-porto-alverca",
+   "model_version": "e7-xg",
+   "sha256": "13be7ddb29b88a7bfdc4ddfb9f39912de09300ce57ed57a4979c9c645eca2689"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 252,
+   "match_id": "P1-2627-santa-clara-nacional",
+   "model_version": "e7-xg",
+   "sha256": "89f48e1d290bd4cf86125d11f07c9fbab89738f4b2297ee283ea528916d39f8b"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 253,
+   "match_id": "P1-2627-sporting-guimaraes",
+   "model_version": "e7-xg",
+   "sha256": "f74e5275ac007e8e72b3af9cf39dfaa7836916fbc4f1ebf55d68d5bcca9d366b"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 254,
+   "match_id": "P1-2627-academico-viseu-santa-clara",
+   "model_version": "e7-xg",
+   "sha256": "2b5b83b50cb59a1d15ed65122859aca5b61276eaebc2195cbc4c845016b1f599"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 255,
+   "match_id": "P1-2627-alverca-estrela-amadora",
+   "model_version": "e7-xg",
+   "sha256": "72f8b0ee65cda140db3204170d2e54cbc0c3b4fd2e08e90666459b53f04a675b"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 256,
+   "match_id": "P1-2627-rio-ave-porto",
+   "model_version": "e7-xg",
+   "sha256": "ca97f5ea5e149f21e15b39b891d44f6f8d515da070efd54c3697cf1b8303b044"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 257,
+   "match_id": "P1-2627-arouca-moreirense",
+   "model_version": "e7-xg",
+   "sha256": "8cc333f218f9ff1b1b3dbfc6b12dcdbfef54f7fd8b1d088699010f93ed4c2f32"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 258,
+   "match_id": "P1-2627-famalicao-maritimo",
+   "model_version": "e7-xg",
+   "sha256": "be47402b7038f920e39c7479f92c1613434a3b84b6e4b00176035ac3e54895e3"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 259,
+   "match_id": "P1-2627-nacional-estoril",
+   "model_version": "e7-xg",
+   "sha256": "38b66e733e923ad17c85b8c7bd9c0568c6a231e0e8ad919422b6b281ca902398"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 260,
+   "match_id": "P1-2627-casa-pia-benfica",
+   "model_version": "e7-xg",
+   "sha256": "9d39bd1ce244c6e6f012dc0b09a72fcbd67921767a95a24722880e08393b0f3e"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 261,
+   "match_id": "P1-2627-estoril-rio-ave",
+   "model_version": "e7-xg",
+   "sha256": "51f92963af70fe7204cfd05223bed7af3b14c6e2ef87eaea9b11450a83d073c2"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 262,
+   "match_id": "P1-2627-maritimo-academico-viseu",
+   "model_version": "e7-xg",
+   "sha256": "9d7c502b05f49fd2b563e71dbfbd823b4f821156b1fd9783f7d4dcbf032d0ba9"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 263,
+   "match_id": "P1-2627-sporting-alverca",
+   "model_version": "e7-xg",
+   "sha256": "f1cdc3042c7460943a18876b6f4e33a4036efefc2ce7c62a95d54fdfc07e4c51"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 264,
+   "match_id": "P1-2627-guimaraes-nacional",
+   "model_version": "e7-xg",
+   "sha256": "1657026b908c30d72caef7864ed2423f42c93395103c78921a78ff2b2b2bd55b"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 265,
+   "match_id": "P1-2627-porto-arouca",
+   "model_version": "e7-xg",
+   "sha256": "9de2adbfe6d96e2aed5f4c4ec213ecad87da67c39df853552dd65d1739458856"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 266,
+   "match_id": "P1-2627-santa-clara-famalicao",
+   "model_version": "e7-xg",
+   "sha256": "4c71c663f3a85989bc8206f821cc7cb429ac3cdc66f154ca7e16f6f03643c308"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 267,
+   "match_id": "P1-2627-gil-vicente-casa-pia",
+   "model_version": "e7-xg",
+   "sha256": "c445da4f26f2913271189354dc0305a1854b25a84c562c7b39ca97d52add6379"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 268,
+   "match_id": "P1-2627-rio-ave-sporting",
+   "model_version": "e7-xg",
+   "sha256": "139c51135bcdb5b6970cadf791bbaf2b0f69078b910322819a9f9cecc94b27ee"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 269,
+   "match_id": "P1-2627-academico-viseu-porto",
+   "model_version": "e7-xg",
+   "sha256": "5479f7b777086469d914f8a8e4df08673b4bb77ba5c4e0538a35d43992238d8d"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 270,
+   "match_id": "P1-2627-alverca-santa-clara",
+   "model_version": "e7-xg",
+   "sha256": "862e14a369c134a9ccf80c2945be65aa2062ff572d9fb630f4c459e19aca1299"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 271,
+   "match_id": "P1-2627-arouca-maritimo",
+   "model_version": "e7-xg",
+   "sha256": "36f80d90529a0c84d3a2c36d8be323eea452c3a773e648a40b9e601b2e905a84"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 272,
+   "match_id": "P1-2627-casa-pia-moreirense",
+   "model_version": "e7-xg",
+   "sha256": "d646c93b24f9bc16e07638cd6b7b800ab9cdbb5fe4e89492b920ec560ca3eb17"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 273,
+   "match_id": "P1-2627-famalicao-gil-vicente",
+   "model_version": "e7-xg",
+   "sha256": "e28bb3a170ad4dd2c16af90404628d13a3d660913b371ef13ec0b6badedd516c"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 274,
+   "match_id": "P1-2627-nacional-estrela-amadora",
+   "model_version": "e7-xg",
+   "sha256": "4e4855d947b4a6363d8cf87d0d757e8d7a7f7d8adf0e06206891a1471bee4223"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 275,
+   "match_id": "P1-2627-benfica-estoril",
+   "model_version": "e7-xg",
+   "sha256": "63c9b08b74e849ad87531765ff4c2cf8e7b77d6138add12810814d0caf38d488"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 276,
+   "match_id": "P1-2627-sp-braga-guimaraes",
+   "model_version": "e7-xg",
+   "sha256": "6eb439adc037ee0fc7e12936c2af6c12bfa8e812c006ee14a10bb46ef397b8d4"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 277,
+   "match_id": "P1-2627-porto-moreirense",
+   "model_version": "e7-xg",
+   "sha256": "eeb837f2cffa818c84e26807601043fc4ee5510eaeaa19f5541591ddbfed68ec"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 278,
+   "match_id": "P1-2627-alverca-sp-braga",
+   "model_version": "e7-xg",
+   "sha256": "9dfdde6f8af7c907dc4356c1f4590c4b6e315960d48a1eac207fd26c70bd42ac"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 279,
+   "match_id": "P1-2627-estrela-amadora-famalicao",
+   "model_version": "e7-xg",
+   "sha256": "09935c69ba1974e1edd17f5f4e1cd8e0fe9736128d018ad1e182cecb4016c06b"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 280,
+   "match_id": "P1-2627-maritimo-benfica",
+   "model_version": "e7-xg",
+   "sha256": "d60c9ba46e64a073e671f5b1ebc4c80dd46b32111e851f72ebaaaf0755596712"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 281,
+   "match_id": "P1-2627-sporting-nacional",
+   "model_version": "e7-xg",
+   "sha256": "263b23c4473655903d953cc700013b44181dbb0e51a6dedb4a0124c0ed0c54c6"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 282,
+   "match_id": "P1-2627-gil-vicente-academico-viseu",
+   "model_version": "e7-xg",
+   "sha256": "7718064eac40fc2827ba304b7fa159aa90ee65a820afb19147f308120596bb20"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 283,
+   "match_id": "P1-2627-guimaraes-casa-pia",
+   "model_version": "e7-xg",
+   "sha256": "fa8a0a2225124c1e3f2722cc02a67b745047d9fdae59cbe49ff7384bfaf386d4"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 284,
+   "match_id": "P1-2627-santa-clara-rio-ave",
+   "model_version": "e7-xg",
+   "sha256": "81be61156b52e55595f9c7987f733d9fba69c0a0b100e6547a79997580614918"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 285,
+   "match_id": "P1-2627-estoril-arouca",
+   "model_version": "e7-xg",
+   "sha256": "700d837f2617b94a09089fe1d20e53f313392fefb2e360eab382ab2024de2a97"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 286,
+   "match_id": "P1-2627-moreirense-benfica",
+   "model_version": "e7-xg",
+   "sha256": "83aa888de106a05196794b9ec84c8bef683ccef2329f057a500dfc7f150f8b5e"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 287,
+   "match_id": "P1-2627-estrela-amadora-sp-braga",
+   "model_version": "e7-xg",
+   "sha256": "70a750143de3adef1b800d15f22a6faf95a53f2ef1932cee85a1558081eec9c0"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 288,
+   "match_id": "P1-2627-academico-viseu-guimaraes",
+   "model_version": "e7-xg",
+   "sha256": "90e225260d4422d707092e8da4627f1a23576fcd5ceca3e362e3de0db3b92b8e"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 289,
+   "match_id": "P1-2627-casa-pia-porto",
+   "model_version": "e7-xg",
+   "sha256": "5fe14b485a82002262f832a1bcca08aae96f2ca5f4efbcf063dfbf49134b56ac"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 290,
+   "match_id": "P1-2627-nacional-alverca",
+   "model_version": "e7-xg",
+   "sha256": "8a2d88cd2c76c7afd82e6949bad90d52b48ec616bd88033fa7cacadc8a52d291"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 291,
+   "match_id": "P1-2627-arouca-santa-clara",
+   "model_version": "e7-xg",
+   "sha256": "0739c6983621e8dfb4016681eca838e4bd2ff21ffe719c00e761f4ba3d7f6458"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 292,
+   "match_id": "P1-2627-benfica-gil-vicente",
+   "model_version": "e7-xg",
+   "sha256": "5e5285378c64dcf03fb8ce5f66df46c461e7c88d2625a90e8448233195bbcdc8"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 293,
+   "match_id": "P1-2627-famalicao-sporting",
+   "model_version": "e7-xg",
+   "sha256": "82cffb414ec7a41ecbe4efc5e3f21495517e154e654d2efc9315aed6f142902c"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 294,
+   "match_id": "P1-2627-moreirense-maritimo",
+   "model_version": "e7-xg",
+   "sha256": "3002473069858719c56375a6be4da974c6e337a1c8b63eee786734942526e842"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 295,
+   "match_id": "P1-2627-rio-ave-estrela-amadora",
+   "model_version": "e7-xg",
+   "sha256": "b8c91595e64450c9fc971fa3d34536050a513ce7514cee686dbf9f630fa19cee"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 296,
+   "match_id": "P1-2627-sp-braga-estoril",
+   "model_version": "e7-xg",
+   "sha256": "08e3e166faf549da485df232feb3348910fa0767e87121584d76d88e5875c41a"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 297,
+   "match_id": "P1-2627-alverca-rio-ave",
+   "model_version": "e7-xg",
+   "sha256": "9fa394b55c1a1570b50902aa374579c4fefcc2f53554cbe7277b9a4023c98bf2"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 298,
+   "match_id": "P1-2627-gil-vicente-maritimo",
+   "model_version": "e7-xg",
+   "sha256": "d8e58c5795f043874555555c15829ac6e6f56efa28abe9530601420c42303e07"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 299,
+   "match_id": "P1-2627-nacional-famalicao",
+   "model_version": "e7-xg",
+   "sha256": "c12c6d1283b70caf41be1e345c0a99f41bce573b8b3c59a14a509be9179165cb"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 300,
+   "match_id": "P1-2627-sporting-arouca",
+   "model_version": "e7-xg",
+   "sha256": "05e16569d3173faeb647bfd79f78bbb8514d57a02ba55b29610641c68e9b1b55"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 301,
+   "match_id": "P1-2627-estoril-casa-pia",
+   "model_version": "e7-xg",
+   "sha256": "34b967b0c9fe97f6280b32db0b9dae84c27b8dc9b8e38a4898634da6d8b374cd"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 302,
+   "match_id": "P1-2627-estrela-amadora-academico-viseu",
+   "model_version": "e7-xg",
+   "sha256": "cc4e8e5b3e5e059cf1ad30a93e80f141b7962e440c9cb49441a8efd0a928dfaf"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 303,
+   "match_id": "P1-2627-guimaraes-moreirense",
+   "model_version": "e7-xg",
+   "sha256": "31b099bf6ea84f08bee56011594ae1a39a438d6ad2f84acdc3f40cc09da36bcb"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 304,
+   "match_id": "P1-2627-porto-benfica",
+   "model_version": "e7-xg",
+   "sha256": "09f06cfceb66f46d9382bbb2d29084f6783fa5df89045560c533c359356fd56c"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 305,
+   "match_id": "P1-2627-santa-clara-sp-braga",
+   "model_version": "e7-xg",
+   "sha256": "6723614c06fd22746747025039a57f1698df790a8601a3682e7370a0d2a94e7f"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 306,
+   "match_id": "P1-2627-moreirense-gil-vicente",
+   "model_version": "e7-xg",
+   "sha256": "7f256b2543147f507ea638138919e7ff31b7422e81a063cd6166d0b32ee00223"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 307,
+   "match_id": "P1-2627-sp-braga-sporting",
+   "model_version": "e7-xg",
+   "sha256": "194a025307934bd6f900f6e23503cf0b78a10e2da583571ab533c3f4e67cec53"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 308,
+   "match_id": "P1-2627-academico-viseu-estoril",
+   "model_version": "e7-xg",
+   "sha256": "2454e14ff9beb0f7d586b8798e4d6b6b13c10d31a259f350fa40f1936195a5a2"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 309,
+   "match_id": "P1-2627-casa-pia-santa-clara",
+   "model_version": "e7-xg",
+   "sha256": "6492a8aac6857b069c526f82cd2c660a49513ed4e884b38a6dc22cfe4cf8cdf4"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 310,
+   "match_id": "P1-2627-maritimo-porto",
+   "model_version": "e7-xg",
+   "sha256": "ea5e7f9fc36593975a5148faf41d5b4887feeebb99ea65cff9fa8977c8dfb3b6"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 311,
+   "match_id": "P1-2627-arouca-estrela-amadora",
+   "model_version": "e7-xg",
+   "sha256": "d6b72111fa011395c61f0c4b92a5226f745ce77f34abe122408ca1c52942ba3a"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 312,
+   "match_id": "P1-2627-benfica-guimaraes",
+   "model_version": "e7-xg",
+   "sha256": "71a14243f0849e03f74e2d6ec7ee50c30900e5b0eb883cbdf34745f93a7f15ef"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 313,
+   "match_id": "P1-2627-rio-ave-nacional",
+   "model_version": "e7-xg",
+   "sha256": "0577801d662c5390682d1a91dbd414685fab0f2725c896656d4de2509001abfe"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 314,
+   "match_id": "P1-2627-famalicao-alverca",
+   "model_version": "e7-xg",
+   "sha256": "a3d56d708cdf0591e784e44c723ea5a3f5a8fa2a7bc6febd6e6dec2b72c40513"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 315,
+   "match_id": "P1-2627-sp-braga-gil-vicente",
+   "model_version": "e7-xg",
+   "sha256": "ff011e6aee0328dc272bffd1fd56fda305d8c5d570bfe52e86d261c0cd5a3eb6"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 316,
+   "match_id": "P1-2627-guimaraes-maritimo",
+   "model_version": "e7-xg",
+   "sha256": "1058d8810547e903982f3bd891f97745c03d548049afb589d8af7528f1f04a35"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 317,
+   "match_id": "P1-2627-alverca-arouca",
+   "model_version": "e7-xg",
+   "sha256": "5e5a69809b29cf9a81ad9d9fb1dc7f8d7f1bd75042bae77ac78e0461b9df6ec9"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 318,
+   "match_id": "P1-2627-estrela-amadora-casa-pia",
+   "model_version": "e7-xg",
+   "sha256": "68055376754135cfbe563e36a1f7e379d3fec93a2ed1e57dc75525aea95a77c9"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 319,
+   "match_id": "P1-2627-gil-vicente-porto",
+   "model_version": "e7-xg",
+   "sha256": "1ba0be99772f3f73b7eece7aa1b1a462820a93620b8e63eb15c8458542ffa2a1"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 320,
+   "match_id": "P1-2627-estoril-moreirense",
+   "model_version": "e7-xg",
+   "sha256": "f8dd5fc9ba0ce58293d09e441bbca6360f0dcecec331ec93fe438b890f9f16c3"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 321,
+   "match_id": "P1-2627-nacional-sp-braga",
+   "model_version": "e7-xg",
+   "sha256": "faa62a11d22d60d76cac8611d091133156255241a5eebde0b6f57e31d6ffe717"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 322,
+   "match_id": "P1-2627-rio-ave-famalicao",
+   "model_version": "e7-xg",
+   "sha256": "141b0be77df22471c9c8b03f16c22917554f33b9b6bd2959a71efa37bc2f9c08"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 323,
+   "match_id": "P1-2627-sporting-academico-viseu",
+   "model_version": "e7-xg",
+   "sha256": "fdf66cdfbd76f7e96739a4b357f87f7755c3b5bb9d5d5a7abf1acbcae7cc0c94"
+  },
+  {
+   "created_at": "2026-10-29T12:00:34Z",
+   "line": 324,
+   "match_id": "P1-2627-santa-clara-benfica",
+   "model_version": "e7-xg",
+   "sha256": "cf14586bf37fa28aceb50b8bfaf9e444d723603a579c3ec68cb12a8bb98aaafc"
+  },
+  {
+   "created_at": "2026-10-29T21:16:15Z",
+   "line": 325,
+   "match_id": "P1-2627-casa-pia-sporting",
+   "model_version": "phase2-v1",
+   "sha256": "db5502e8953575950b9aa22e1d80699fa9734c94a7ef05e04b7ea341da9a0861"
+  },
+  {
+   "created_at": "2026-10-29T21:16:15Z",
+   "line": 326,
+   "match_id": "P1-2627-casa-pia-sporting",
+   "model_version": "phase4-v1",
+   "sha256": "8e201f73636f097b12c9feefbae3373b6435fdfb7c871e0f18cabf99874fa8f5"
+  },
+  {
+   "created_at": "2026-10-29T21:16:15Z",
+   "line": 327,
+   "match_id": "P1-2627-casa-pia-sporting",
+   "model_version": "phase4-v2",
+   "sha256": "c01bc13614bec7515be2cd499fa4e4e0a98930033c4da5d2e4ebb5d9b38106a5"
+  },
+  {
+   "created_at": "2026-10-29T21:16:15Z",
+   "line": 328,
+   "match_id": "P1-2627-casa-pia-sporting",
+   "model_version": "e7-xg",
+   "sha256": "743f158d71e5f3fae7ba8b865670c18b541545c8553e1d998a31682bacd4dc35"
+  },
+  {
+   "created_at": "2026-10-30T20:55:05Z",
+   "line": 329,
+   "match_id": "P1-2627-moreirense-estrela-amadora",
+   "model_version": "phase2-v1",
+   "sha256": "0acd407fec3a06f398ad767a0049abeb611c50ece6e7507597940171cc8b055a"
+  },
+  {
+   "created_at": "2026-10-30T20:55:05Z",
+   "line": 330,
+   "match_id": "P1-2627-porto-estoril",
+   "model_version": "phase2-v1",
+   "sha256": "9f097d25fef31de26bd2982111ad3936f6660fe1a92c0ff465c39000b041c978"
+  },
+  {
+   "created_at": "2026-10-30T20:55:05Z",
+   "line": 331,
+   "match_id": "P1-2627-moreirense-estrela-amadora",
+   "model_version": "phase4-v1",
+   "sha256": "6342c16376cbfdd61423317d7aa1984ff58b9735427081c6dd0abd91e8a4c48f"
+  },
+  {
+   "created_at": "2026-10-30T20:55:05Z",
+   "line": 332,
+   "match_id": "P1-2627-porto-estoril",
+   "model_version": "phase4-v1",
+   "sha256": "29b3f90986b82f4549eeb980b2350d900ba76a86aef52e6c0af373d2a7553e97"
+  },
+  {
+   "created_at": "2026-10-30T20:55:05Z",
+   "line": 333,
+   "match_id": "P1-2627-moreirense-estrela-amadora",
+   "model_version": "phase4-v2",
+   "sha256": "39bb3062f2a25e27347c6e4a48b1092d01cf41c77c2bf476d4008d68206eb78d"
+  },
+  {
+   "created_at": "2026-10-30T20:55:05Z",
+   "line": 334,
+   "match_id": "P1-2627-porto-estoril",
+   "model_version": "phase4-v2",
+   "sha256": "486f24a88a716b9ce3355494c153c78cf7c75cc07f34013f7f77461d4ddecec6"
+  },
+  {
+   "created_at": "2026-10-30T20:55:05Z",
+   "line": 335,
+   "match_id": "P1-2627-moreirense-estrela-amadora",
+   "model_version": "e7-xg",
+   "sha256": "ba0dd6017bb1d8f0142f2c3c21528229239b7ad457cf0e13f7da7c34495ad1b9"
+  },
+  {
+   "created_at": "2026-10-30T20:55:05Z",
+   "line": 336,
+   "match_id": "P1-2627-porto-estoril",
+   "model_version": "e7-xg",
+   "sha256": "7a3b6307fe9d05047266afbe7a5a32bbda4dc664a9de3f60ce12db8243f75461"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 337,
+   "match_id": "P1-2627-arouca-nacional",
+   "model_version": "phase2-v1",
+   "sha256": "c2cf3ae7cd945aad2c559fc4cc638b0ceea9bfc5fc648abba89dd4a3c580ebb8"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 338,
+   "match_id": "P1-2627-academico-viseu-rio-ave",
+   "model_version": "phase2-v1",
+   "sha256": "398045a3e9594be21715d3102e93350dfaef3d7c7c893a324803b3fe5d2f5166"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 339,
+   "match_id": "P1-2627-maritimo-santa-clara",
+   "model_version": "phase2-v1",
+   "sha256": "d61e8045fb07f53d54b90ccf9c9912b27268a6003396f9221634a3d39eacaba3"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 340,
+   "match_id": "P1-2627-arouca-nacional",
+   "model_version": "phase4-v1",
+   "sha256": "7b8c0571fe4e0cd1984930cef0995abb043e47de9878dddbd4038f1791bf6e93"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 341,
+   "match_id": "P1-2627-academico-viseu-rio-ave",
+   "model_version": "phase4-v1",
+   "sha256": "017f4974ae38fcb475f1051e394329afe82b1c137c08773a4970a41e8f7302dc"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 342,
+   "match_id": "P1-2627-maritimo-santa-clara",
+   "model_version": "phase4-v1",
+   "sha256": "69f1ff8755f0d4d182399a4e127b12d3e86981fa8d093d03d0c2ee491cb831aa"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 343,
+   "match_id": "P1-2627-arouca-nacional",
+   "model_version": "phase4-v2",
+   "sha256": "59525479302dfbef5b1ad1baafdfe8f902e94c2cefa49d8eec720ec22e17acb9"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 344,
+   "match_id": "P1-2627-academico-viseu-rio-ave",
+   "model_version": "phase4-v2",
+   "sha256": "8b9a150756f5fd623f7fe153eeee6008aa0040a2553ae963e8bcbada8b35ee9e"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 345,
+   "match_id": "P1-2627-maritimo-santa-clara",
+   "model_version": "phase4-v2",
+   "sha256": "cbf83f4f89b2810a16f8407186b605257713307c06e90e31ef9d5526ddcb5c13"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 346,
+   "match_id": "P1-2627-arouca-nacional",
+   "model_version": "e7-xg",
+   "sha256": "703764ecead1421793b409b87f584b27cd8e948f5abf217e87a8ee33ce09aa59"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 347,
+   "match_id": "P1-2627-academico-viseu-rio-ave",
+   "model_version": "e7-xg",
+   "sha256": "b51cc080c63dea5358d1a598f274d1934ebf6f30e6d681cb166480c0854a0080"
+  },
+  {
+   "created_at": "2026-10-31T20:06:59Z",
+   "line": 348,
+   "match_id": "P1-2627-maritimo-santa-clara",
+   "model_version": "e7-xg",
+   "sha256": "67350eb074603fa9c18f0e9b695a81540c448944440d3732d40243ae12b7a005"
+  },
+  {
+   "created_at": "2026-10-31T23:29:40Z",
+   "line": 349,
+   "match_id": "P1-2627-sp-braga-famalicao",
+   "model_version": "phase2-v1",
+   "sha256": "084346ff38003cac893212b32607b46d917da0f441e85ae45a06b04386953d8d"
+  },
+  {
+   "created_at": "2026-10-31T23:29:40Z",
+   "line": 350,
+   "match_id": "P1-2627-sp-braga-famalicao",
+   "model_version": "phase4-v1",
+   "sha256": "7dbcaf91a499cea980ad7a9f7d7212007709c2fd065d34c9e41010bcbddae724"
+  },
+  {
+   "created_at": "2026-10-31T23:29:40Z",
+   "line": 351,
+   "match_id": "P1-2627-sp-braga-famalicao",
+   "model_version": "phase4-v2",
+   "sha256": "c835f6458939e99601cc780b5806dd87d8bdeac9d6f9e05aba4ce892101f060e"
+  },
+  {
+   "created_at": "2026-10-31T23:29:40Z",
+   "line": 352,
+   "match_id": "P1-2627-sp-braga-famalicao",
+   "model_version": "e7-xg",
+   "sha256": "a2e217bae0b4c47523e9c230132eb8c3a3490199ee1f4aaceef7eeb513b8e5d1"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 353,
+   "match_id": "P1-2627-estoril-famalicao",
+   "model_version": "e10-dynamic",
+   "sha256": "1c1639be7e47c859d915eb75c6b9ba9158b6dcc4b22ec5bf4b19add0ff35d93a"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 354,
+   "match_id": "P1-2627-estrela-amadora-sporting",
+   "model_version": "e10-dynamic",
+   "sha256": "0bec31b603a19c5feb765eb1f1f41461644a8ab1dc1009ff221e79a5a7835e2d"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 355,
+   "match_id": "P1-2627-guimaraes-arouca",
+   "model_version": "e10-dynamic",
+   "sha256": "bb975202b50c466c307a0b7d7bc0f2430df9fd7a598c95eaa94b07a10896a252"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 356,
+   "match_id": "P1-2627-maritimo-casa-pia",
+   "model_version": "e10-dynamic",
+   "sha256": "d3b4b8a6d9e5f35d18b1ef6d1939145a85edea301e9ed14f5798d383043fd914"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 357,
+   "match_id": "P1-2627-benfica-academico-viseu",
+   "model_version": "e10-dynamic",
+   "sha256": "5cf762b204cc117a504b5efba7ed900c2e9e78d1d378fff41a076806763c3135"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 358,
+   "match_id": "P1-2627-gil-vicente-rio-ave",
+   "model_version": "e10-dynamic",
+   "sha256": "8887a5b864bf860a6276967defdf4e307909b6a327f01da6aa1af8ae97f86e97"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 359,
+   "match_id": "P1-2627-moreirense-sp-braga",
+   "model_version": "e10-dynamic",
+   "sha256": "cb2fd60632d0dd16d67766fdc4ea8bee9b08ab55e6daf12b4aad9344a1b72cbe"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 360,
+   "match_id": "P1-2627-porto-alverca",
+   "model_version": "e10-dynamic",
+   "sha256": "de0aa006521e32d59a4db238623d997392bcb02a985539df9eb514db72b4d7d5"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 361,
+   "match_id": "P1-2627-santa-clara-nacional",
+   "model_version": "e10-dynamic",
+   "sha256": "258f09817e70b812e237f0fb77fc378aa319442d8bf7e97d37460be7774251e9"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 362,
+   "match_id": "P1-2627-sporting-guimaraes",
+   "model_version": "e10-dynamic",
+   "sha256": "9b4079f32b5db148b4ccbe4f298cdd42f8326e928084f9f7645df667a859b076"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 363,
+   "match_id": "P1-2627-academico-viseu-santa-clara",
+   "model_version": "e10-dynamic",
+   "sha256": "d1b293bba400b8f78d27bd9d77a1cca8504e68189e4591e60dd77389b4c8a7e7"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 364,
+   "match_id": "P1-2627-alverca-estrela-amadora",
+   "model_version": "e10-dynamic",
+   "sha256": "dc7d23a43deba5358ac21c8b27c95fd7f088ed36afd705f872dbca3bddcf667f"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 365,
+   "match_id": "P1-2627-rio-ave-porto",
+   "model_version": "e10-dynamic",
+   "sha256": "138cae5cc06d582d02d00aba2a959b04669f0c0c168dea5dfeeb9f6c432d81bd"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 366,
+   "match_id": "P1-2627-arouca-moreirense",
+   "model_version": "e10-dynamic",
+   "sha256": "35ebd0025884856f3ee845d7ce4128e148c2179e5625ebfd2b3a82d0910a10da"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 367,
+   "match_id": "P1-2627-famalicao-maritimo",
+   "model_version": "e10-dynamic",
+   "sha256": "339373a59610d7aaec4ad3813097084078d6e2f18824d6bbe85ab4944ab80c78"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 368,
+   "match_id": "P1-2627-nacional-estoril",
+   "model_version": "e10-dynamic",
+   "sha256": "25c4ac97c8099a969610b47fc3df9a7444c030a01a8866cadad2e1b5eb6bf524"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 369,
+   "match_id": "P1-2627-casa-pia-benfica",
+   "model_version": "e10-dynamic",
+   "sha256": "e8e25ee0405d4b4e4b4da64c6b21e50177646f0f4b0e009ab5ef90025190242a"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 370,
+   "match_id": "P1-2627-estoril-rio-ave",
+   "model_version": "e10-dynamic",
+   "sha256": "e462b6cd056f10ece1c1c5d8184d3870aa3d00660cc87361fae824267d8045c2"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 371,
+   "match_id": "P1-2627-maritimo-academico-viseu",
+   "model_version": "e10-dynamic",
+   "sha256": "811cefbef5623ffb185bee6798fe300c22d671a30efdc247b22b91da88f679eb"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 372,
+   "match_id": "P1-2627-sporting-alverca",
+   "model_version": "e10-dynamic",
+   "sha256": "0bd2eccd75ee30d649697f2ca0a320a3fd135440df3c9166fc8c14e009c24531"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 373,
+   "match_id": "P1-2627-guimaraes-nacional",
+   "model_version": "e10-dynamic",
+   "sha256": "143d10c442a740ca4cd2a3048eeb8e2cb1d4bbafcf4200b988a8310498d9bf03"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 374,
+   "match_id": "P1-2627-porto-arouca",
+   "model_version": "e10-dynamic",
+   "sha256": "2acc7ab0d2110f6d5978aac7e4fb2b3b9f5b65552b0369578650c07aaa6d6b87"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 375,
+   "match_id": "P1-2627-santa-clara-famalicao",
+   "model_version": "e10-dynamic",
+   "sha256": "e53ed895b773c93c2b731d8405c8a16e15fe0ecd5ee87c1e9f098f5e1a9a8c6b"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 376,
+   "match_id": "P1-2627-gil-vicente-casa-pia",
+   "model_version": "e10-dynamic",
+   "sha256": "97c44801abd43463461223fb88d65d958e8bc5c5ecac4094fa9a49c954ba2bff"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 377,
+   "match_id": "P1-2627-rio-ave-sporting",
+   "model_version": "e10-dynamic",
+   "sha256": "b623087687263685e64c5dc8923ba8562a4c18fe4f43bba97beb4cec1ecd7549"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 378,
+   "match_id": "P1-2627-academico-viseu-porto",
+   "model_version": "e10-dynamic",
+   "sha256": "3eb2ab0d73fa7063064eeb09b9a4f06d3a6330f5ff2039dec0a97438305122eb"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 379,
+   "match_id": "P1-2627-alverca-santa-clara",
+   "model_version": "e10-dynamic",
+   "sha256": "96f6ab34d60247055e1bae646c07c065e25a997061d96b20b364747dfa8b3b70"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 380,
+   "match_id": "P1-2627-arouca-maritimo",
+   "model_version": "e10-dynamic",
+   "sha256": "a1ca248d7aeedeaecf904d67239ea947805cbf8f52e95ae2a382248e8cf069cd"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 381,
+   "match_id": "P1-2627-casa-pia-moreirense",
+   "model_version": "e10-dynamic",
+   "sha256": "6df12c5b65461a09fc3bd9770203079aae93570ae9ec01140ea88aed17d99ad6"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 382,
+   "match_id": "P1-2627-famalicao-gil-vicente",
+   "model_version": "e10-dynamic",
+   "sha256": "de5b127a5cc191fc9c557e02bf5f06a6252ac99c177db741639d6a3ec2c5c630"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 383,
+   "match_id": "P1-2627-nacional-estrela-amadora",
+   "model_version": "e10-dynamic",
+   "sha256": "32cf7ec619dc5cf7a8fec3277050c5fb8e4c91179b09d2862bc296b2d319451c"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 384,
+   "match_id": "P1-2627-benfica-estoril",
+   "model_version": "e10-dynamic",
+   "sha256": "83a6103131fa5a2cf925622dc47a3a2e1b2317ef8d658ce9927f370dab58ca34"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 385,
+   "match_id": "P1-2627-sp-braga-guimaraes",
+   "model_version": "e10-dynamic",
+   "sha256": "69d0e3d632206205af39306229012960a504a95fd923c260eb0b3cff5fa22f56"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 386,
+   "match_id": "P1-2627-porto-moreirense",
+   "model_version": "e10-dynamic",
+   "sha256": "5cd17e6f9c6a9bee7bbfcbab8288411c77c8dadbd1892be8e2d7705cab982029"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 387,
+   "match_id": "P1-2627-alverca-sp-braga",
+   "model_version": "e10-dynamic",
+   "sha256": "1eedc785afc4ba06346b1cdc9529b11912ba444e214cc1e2152f7d6d8948f7ce"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 388,
+   "match_id": "P1-2627-estrela-amadora-famalicao",
+   "model_version": "e10-dynamic",
+   "sha256": "79afedcccb43570e4bb60681e26702b0279f727de77926ee4a7300394bc79745"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 389,
+   "match_id": "P1-2627-maritimo-benfica",
+   "model_version": "e10-dynamic",
+   "sha256": "1d9ce0b2b207ee13d916e1359ffb16bd61ce9451f57739a7717b78a9cef87ecb"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 390,
+   "match_id": "P1-2627-sporting-nacional",
+   "model_version": "e10-dynamic",
+   "sha256": "d7190082d21c5bbc90b5515dea7a197dc642af547328c96188b8af9cc70e284b"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 391,
+   "match_id": "P1-2627-gil-vicente-academico-viseu",
+   "model_version": "e10-dynamic",
+   "sha256": "1d4730a80cf28126897a75761dcdb58564a770b04205ea40c612fd536e46599b"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 392,
+   "match_id": "P1-2627-guimaraes-casa-pia",
+   "model_version": "e10-dynamic",
+   "sha256": "43a8d542e7e7030d8922242d8eb955bd59bba392d3f3bc450b71428f0d0d9df6"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 393,
+   "match_id": "P1-2627-santa-clara-rio-ave",
+   "model_version": "e10-dynamic",
+   "sha256": "4fbdb541ba601d3f91ff16934c67363d68458560eb72684569c8c77f341a824f"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 394,
+   "match_id": "P1-2627-estoril-arouca",
+   "model_version": "e10-dynamic",
+   "sha256": "0c962ee394ed7a2dec1f3c5e6795a7ff5daf7736bade1a5f93211dabce549158"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 395,
+   "match_id": "P1-2627-moreirense-benfica",
+   "model_version": "e10-dynamic",
+   "sha256": "c3bc96509830a3077f799ff3b7b8535d21554f7e7a236e6458625ed3642dd708"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 396,
+   "match_id": "P1-2627-estrela-amadora-sp-braga",
+   "model_version": "e10-dynamic",
+   "sha256": "873c6fe8ac84d41802afe807fa37c08264f0ed79bdd647dfb9d0c39a70b5ec79"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 397,
+   "match_id": "P1-2627-academico-viseu-guimaraes",
+   "model_version": "e10-dynamic",
+   "sha256": "bf98a81c8ae86f75dc46d21a0d223f750ac0cdbb30941791855de4a3add1e788"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 398,
+   "match_id": "P1-2627-casa-pia-porto",
+   "model_version": "e10-dynamic",
+   "sha256": "9b70f2191831f9ffc4171293313c73fa0ee758c519fc9ad9de01a9d6b7ebfcd1"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 399,
+   "match_id": "P1-2627-nacional-alverca",
+   "model_version": "e10-dynamic",
+   "sha256": "fecfad98bb6db12e0151dd001be424b9ede064f1aa3c8a5911a2e24b0e5c21f7"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 400,
+   "match_id": "P1-2627-arouca-santa-clara",
+   "model_version": "e10-dynamic",
+   "sha256": "3b7fe815171fd1e260bb909ba566e7e4e43b9970b1ca975af0e68bf09291b08e"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 401,
+   "match_id": "P1-2627-benfica-gil-vicente",
+   "model_version": "e10-dynamic",
+   "sha256": "14a6286ef152eea6734302c0b18157cdabc0abb4440c3c4a6d7ea31f9fca0d1f"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 402,
+   "match_id": "P1-2627-famalicao-sporting",
+   "model_version": "e10-dynamic",
+   "sha256": "28dd39d9e96cf1142b794aa15cde7030ac7edc34db4a575567a390aae769c6a7"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 403,
+   "match_id": "P1-2627-moreirense-maritimo",
+   "model_version": "e10-dynamic",
+   "sha256": "be18ab1b51fc43fc0406c343d343a32ed3ce5e1c1567dfa3783184ec126bef49"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 404,
+   "match_id": "P1-2627-rio-ave-estrela-amadora",
+   "model_version": "e10-dynamic",
+   "sha256": "459f5f1245d0e03fb1a38397fddb642622d3b9af8f227f2c6e2a14d130ce3dc0"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 405,
+   "match_id": "P1-2627-sp-braga-estoril",
+   "model_version": "e10-dynamic",
+   "sha256": "1345a80ff30494e50e0956e89cd2652cbfbbb350169a2ab0efac217250e040a4"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 406,
+   "match_id": "P1-2627-alverca-rio-ave",
+   "model_version": "e10-dynamic",
+   "sha256": "267a27ad905e600ff4bf17342c394612c0ea2878ce724a16b2c1e69087fa47cf"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 407,
+   "match_id": "P1-2627-gil-vicente-maritimo",
+   "model_version": "e10-dynamic",
+   "sha256": "ede0bfb5684824878df332a779b455c372734d3921ad1d6eab85eb55848473da"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 408,
+   "match_id": "P1-2627-nacional-famalicao",
+   "model_version": "e10-dynamic",
+   "sha256": "c4bcce6af61a964580651a7338d51f2c4336ac467bcc92670b69af2df89b81aa"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 409,
+   "match_id": "P1-2627-sporting-arouca",
+   "model_version": "e10-dynamic",
+   "sha256": "6c1e7715b9897e9eb3fff301de4fb8648d3728e09e37c247a828f2453bfb26f1"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 410,
+   "match_id": "P1-2627-estoril-casa-pia",
+   "model_version": "e10-dynamic",
+   "sha256": "63bedda26b6a3c39a56452f935c862f2af8c70552a1336f9069ec030f7ea33ac"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 411,
+   "match_id": "P1-2627-estrela-amadora-academico-viseu",
+   "model_version": "e10-dynamic",
+   "sha256": "ba19d8a94820a52ce82aa16a341336dae34817cac63e3db9a11811e4036128bd"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 412,
+   "match_id": "P1-2627-guimaraes-moreirense",
+   "model_version": "e10-dynamic",
+   "sha256": "bd72bcf396cf15e9e65e560c8075b9042709cec8957f57bf4ac84078d1155334"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 413,
+   "match_id": "P1-2627-porto-benfica",
+   "model_version": "e10-dynamic",
+   "sha256": "f999941677ecd61b3ea1af64f4a5414a9f39b6a60371eb87b668cda50e26aae7"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 414,
+   "match_id": "P1-2627-santa-clara-sp-braga",
+   "model_version": "e10-dynamic",
+   "sha256": "6ef0a972c9a845c105daf6b8f08381cdecb1aa723bed32e506ed8add04d946c0"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 415,
+   "match_id": "P1-2627-moreirense-gil-vicente",
+   "model_version": "e10-dynamic",
+   "sha256": "09446ac5971309c1444a40bba56a6170138e5b6eb3ab13377cad69de75562d29"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 416,
+   "match_id": "P1-2627-sp-braga-sporting",
+   "model_version": "e10-dynamic",
+   "sha256": "24481bfa07bc58da996bc4cc81e462c514291f8458ec1f848f2fbc90a6f3e3f0"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 417,
+   "match_id": "P1-2627-academico-viseu-estoril",
+   "model_version": "e10-dynamic",
+   "sha256": "87ad655ed7d6867aede859eaffd2d5cc558ddb0c78c06e74ca1a6a46f6b6a58e"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 418,
+   "match_id": "P1-2627-casa-pia-santa-clara",
+   "model_version": "e10-dynamic",
+   "sha256": "e8f38830552bce60b7310605ab3ccb3ba183d9f6b4a6a2009252140cacb40715"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 419,
+   "match_id": "P1-2627-maritimo-porto",
+   "model_version": "e10-dynamic",
+   "sha256": "b07f7beeed1e06c7adfa95ede5c1efd59cda372ad67569e58230e242e453383a"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 420,
+   "match_id": "P1-2627-arouca-estrela-amadora",
+   "model_version": "e10-dynamic",
+   "sha256": "564a1708e39042a0896689b6201b9e8b7e39acde7e148307170612e14c2a175b"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 421,
+   "match_id": "P1-2627-benfica-guimaraes",
+   "model_version": "e10-dynamic",
+   "sha256": "907dc1815d8b3c5b68e73b1539f41c290016a4462c8d914ccc2ee178b73136d6"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 422,
+   "match_id": "P1-2627-rio-ave-nacional",
+   "model_version": "e10-dynamic",
+   "sha256": "e7cab4a64bc2ec1a47aed652139f9abb6318394063c832605ec2ce5681e4fcf0"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 423,
+   "match_id": "P1-2627-famalicao-alverca",
+   "model_version": "e10-dynamic",
+   "sha256": "b797737ce8ea7361d1cc0a300aff08cd095117d3b4bc0fde1a8b5edb92611e34"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 424,
+   "match_id": "P1-2627-sp-braga-gil-vicente",
+   "model_version": "e10-dynamic",
+   "sha256": "cfef2f4aa7ccf0b6636652a8e5cb17ac56444d6922a670713769087e1ec2b59c"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 425,
+   "match_id": "P1-2627-guimaraes-maritimo",
+   "model_version": "e10-dynamic",
+   "sha256": "ab259121ff65eb1724efbed27a0af37359acb0247d478afce6a2e585e9d615cd"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 426,
+   "match_id": "P1-2627-alverca-arouca",
+   "model_version": "e10-dynamic",
+   "sha256": "5c5bb0c29ee40d1bf265ff03cf6066c0a621b21b0110dc4ae54a5dd20c4d7595"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 427,
+   "match_id": "P1-2627-estrela-amadora-casa-pia",
+   "model_version": "e10-dynamic",
+   "sha256": "749e6baedc29b26b715cd149edb9850d96a336171d323eb909aa190be6912a58"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 428,
+   "match_id": "P1-2627-gil-vicente-porto",
+   "model_version": "e10-dynamic",
+   "sha256": "278938a4d1fc353f90c48ad0d77afed45c9008fb8f041b10ef0c292ecc24f2ae"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 429,
+   "match_id": "P1-2627-estoril-moreirense",
+   "model_version": "e10-dynamic",
+   "sha256": "0759482726d2fb64882541659c40a2cf021ec7e0a7f8dd5a23064ec7a495f83f"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 430,
+   "match_id": "P1-2627-nacional-sp-braga",
+   "model_version": "e10-dynamic",
+   "sha256": "f8194707fc95ee5be27e22fa45031c43cd0add2f1565818999fcc484dbad3f5f"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 431,
+   "match_id": "P1-2627-rio-ave-famalicao",
+   "model_version": "e10-dynamic",
+   "sha256": "1f142f17aa5ae133aa86797b048ab5407133d69f7219fe69ffee4c9bddfbd929"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 432,
+   "match_id": "P1-2627-sporting-academico-viseu",
+   "model_version": "e10-dynamic",
+   "sha256": "16060f5657fccdbd8316d9fb401ea1a6303c35afb07bba544f1c9aa21acc222f"
+  },
+  {
+   "created_at": "2026-11-01T20:37:54Z",
+   "line": 433,
+   "match_id": "P1-2627-santa-clara-benfica",
+   "model_version": "e10-dynamic",
+   "sha256": "454b264fb982c091e3f53ca36e55083b62fffcf5763ea87db95249cd6ea9bb6a"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 434,
+   "match_id": "P1-2627-benfica-alverca",
+   "model_version": "phase2-v1",
+   "sha256": "1144a9075de310c88aeb050f91f5661bb477c2ad396df1b09cdafdccfaf2df88"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 435,
+   "match_id": "P1-2627-gil-vicente-guimaraes",
+   "model_version": "phase2-v1",
+   "sha256": "251fb65726fe7a2718fb0d9f6c9e5d08011be09b99971398bae7d29590d314f3"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 436,
+   "match_id": "P1-2627-benfica-alverca",
+   "model_version": "phase4-v1",
+   "sha256": "9577c0ee0c8cdabf97ea807796ddf0f5184a4686fd70beedf9364434912ebd35"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 437,
+   "match_id": "P1-2627-gil-vicente-guimaraes",
+   "model_version": "phase4-v1",
+   "sha256": "9c7f8419d97ad98335bf4be166a419f375edc7a5d5d201eff23b9180fb88c14d"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 438,
+   "match_id": "P1-2627-benfica-alverca",
+   "model_version": "phase4-v2",
+   "sha256": "aaebfa331a6cf72758e335cdbe4e615bbcdea8dd1ed16be032d461b13b933c16"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 439,
+   "match_id": "P1-2627-gil-vicente-guimaraes",
+   "model_version": "phase4-v2",
+   "sha256": "6f1759ef3edadd2996c86d36c5909b33136d5eabd18ad75281bb63f6f5a78524"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 440,
+   "match_id": "P1-2627-benfica-alverca",
+   "model_version": "e7-xg",
+   "sha256": "2fecc9e5bc07f0d66d1148bbfe7bf3ca7de81d29491e45229b39c36ed5b480be"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 441,
+   "match_id": "P1-2627-gil-vicente-guimaraes",
+   "model_version": "e7-xg",
+   "sha256": "b974e9f6108b38311498e3d4fb45b166299ba34f0c240453e46cf01e6366c2bc"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 442,
+   "match_id": "P1-2627-benfica-alverca",
+   "model_version": "e10-dynamic",
+   "sha256": "b428158ce1478013d480186352c80db6e3c0d9c86069feb54126b09271ab3186"
+  },
+  {
+   "created_at": "2026-11-01T20:38:21Z",
+   "line": 443,
+   "match_id": "P1-2627-gil-vicente-guimaraes",
+   "model_version": "e10-dynamic",
+   "sha256": "eaf62ace57f5457d93550745ef85863c0585f3aa85062269af89150cc460b03a"
+  }
+ ]
+}

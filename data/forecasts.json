@@ -2026,7 +2026,7 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
-   "state": "upcoming",
+   "state": "awaiting",
    "timing": "pending"
   },
   {
@@ -2047,7 +2047,7 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
-   "state": "upcoming",
+   "state": "awaiting",
    "timing": "pending"
   },
   {
@@ -2068,7 +2068,7 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
-   "state": "upcoming",
+   "state": "awaiting",
    "timing": "pending"
   },
   {
@@ -2085,6 +2085,48 @@
    "kickoff_utc": "2026-11-01T20:30:00Z",
    "kind": "prospective",
    "match_id": "P1-2627-sp-braga-famalicao",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "awaiting",
+   "timing": "pending"
+  },
+  {
+   "away": "Alverca",
+   "corrected": false,
+   "forecast": {
+    "away": 0.0522,
+    "both_score": 0.4988,
+    "draw": 0.104,
+    "home": 0.8438,
+    "over_2_5": 0.6934
+   },
+   "home": "Benfica",
+   "kickoff_utc": "2026-11-02T20:15:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-benfica-alverca",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Vitória de Guimarães",
+   "corrected": false,
+   "forecast": {
+    "away": 0.3787,
+    "both_score": 0.4377,
+    "draw": 0.292,
+    "home": 0.3293,
+    "over_2_5": 0.4303
+   },
+   "home": "Gil Vicente",
+   "kickoff_utc": "2026-11-02T20:15:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-gil-vicente-guimaraes",
    "model_version": "phase4-v2",
    "rps": null,
    "score": null,
