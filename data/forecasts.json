@@ -2128,11 +2128,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-benfica-alverca",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.0136,
+   "score": [
+    1,
+    0
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   },
   {
    "away": "Vitória de Guimarães",
@@ -2149,11 +2152,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-gil-vicente-guimaraes",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.1259,
+   "score": [
+    0,
+    0
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   }
  ]
 }
