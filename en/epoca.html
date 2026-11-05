@@ -1,0 +1,1331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Season 2026/27 · Contas da Bola</title>
+<meta name="description" content="How the Primeira Liga may finish: the likely table, where each club ends up, and a simulator where you pick the results yourself.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 19'%3E%3Crect width='19' height='19' rx='3' fill='%23202328'/%3E%3Cg fill='%23ece9e2'%3E%3Crect x='3' y='4' width='3' height='4'/%3E%3Crect x='13' y='4' width='3' height='4'/%3E%3Crect x='8' y='11' width='3' height='4'/%3E%3C/g%3E%3Cg fill='%23ffb000'%3E%3Crect x='8' y='4' width='3' height='4'/%3E%3Crect x='3' y='11' width='3' height='4'/%3E%3Crect x='13' y='11' width='3' height='4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preload" href="../static/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+(function () { var d = document.documentElement; d.classList.add("js"); try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") d.dataset.theme = t; } catch (e) {} })();
+</script>
+<style>
+/* Contas da Bola: the stand-mosaic world (D-092). Concrete ground, card-white ink, one
+   floodlight amber for actions; club colours appear only as cards. Flat: no gradients, no
+   shadows, 2px corners. */
+@font-face { font-family: "Archivo"; src: url("../static/fonts/archivo.woff2") format("woff2");
+  font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
+:root {
+  color-scheme: light;
+  --delta-share: 45%; --delta-share-mine: 40%; --focus: #1b1d21;
+  --page: #e4e5e3; --surface: #f2f2f0; --raised: #fafaf8; --ink: #1b1d21; --ink-2: #3d4148; --muted: #5a5f67;
+  --grid: #d0d2cf; --axis: #9a9ea3; --ring: #c4c7c4;
+  --amber: #ffb000; --amber-ink: #1b1c1f; --amber-text: #8a5800;
+  --s1: #1f5fc4; --s2: #c8452a; --s3: #12804e; --s4: #a86b00; --s5: #b0417a;
+  --draw: #9a9ea3; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
+  --good: #12804e; --good-wash: rgba(18,128,78,0.14); --wash: rgba(31,95,196,0.12);
+  --card-other: #8f939a; --card-empty: #d0d2cf; --bw-edge: rgba(0,0,0,0.45);
+  --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
+  --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
+  --z-conference: #b9a63a; --z-conference-ink: #161300; --z-middle: #b7c4cb; --z-middle-ink: #14242c;
+  --z-playoff: #a8201f; --z-playoff-ink: #ffffff; --z-relegation: #ff4d4d; --z-relegation-ink: #240303;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {   color-scheme: dark;
+  --delta-share: 50%; --delta-share-mine: 35%; --focus: #ffb000;
+  --page: #202328; --surface: #2a2e34; --raised: #31353c; --ink: #ece9e2; --ink-2: #c9c6be; --muted: #a9a69e;
+  --grid: #3a3f46; --axis: #5d636b; --ring: #3a3f46;
+  --amber: #ffb000; --amber-ink: #1b1c1f; --amber-text: #ffb000;
+  --s1: #5b93f0; --s2: #f07a5a; --s3: #4cc283; --s4: #ffb000; --s5: #e889b5;
+  --draw: #8f939a; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
+  --good: #4cc283; --good-wash: rgba(76,194,131,0.16); --wash: rgba(91,147,240,0.16);
+  --card-other: #5d636b; --card-empty: #31353c; --bw-edge: rgba(255,255,255,0.55);
+  --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
+  --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
+  --z-conference: #b9a63a; --z-conference-ink: #161300; --z-middle: #34515f; --z-middle-ink: #eef6f9;
+  --z-playoff: #a8201f; --z-playoff-ink: #ffffff; --z-relegation: #ff4d4d; --z-relegation-ink: #240303;
+ } }
+:root[data-theme="dark"] {   color-scheme: dark;
+  --delta-share: 50%; --delta-share-mine: 35%; --focus: #ffb000;
+  --page: #202328; --surface: #2a2e34; --raised: #31353c; --ink: #ece9e2; --ink-2: #c9c6be; --muted: #a9a69e;
+  --grid: #3a3f46; --axis: #5d636b; --ring: #3a3f46;
+  --amber: #ffb000; --amber-ink: #1b1c1f; --amber-text: #ffb000;
+  --s1: #5b93f0; --s2: #f07a5a; --s3: #4cc283; --s4: #ffb000; --s5: #e889b5;
+  --draw: #8f939a; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
+  --good: #4cc283; --good-wash: rgba(76,194,131,0.16); --wash: rgba(91,147,240,0.16);
+  --card-other: #5d636b; --card-empty: #31353c; --bw-edge: rgba(255,255,255,0.55);
+  --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
+  --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
+  --z-conference: #b9a63a; --z-conference-ink: #161300; --z-middle: #34515f; --z-middle-ink: #eef6f9;
+  --z-playoff: #a8201f; --z-playoff-ink: #ffffff; --z-relegation: #ff4d4d; --z-relegation-ink: #240303;
+ }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; scrollbar-gutter: stable; }
+body { margin: 0; background: var(--page); color: var(--ink);
+  font: 16px/1.55 "Archivo", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif; font-stretch: 100%;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: var(--amber); color: var(--amber-ink); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.skip { position: absolute; left: 8px; top: -60px; z-index: 30; padding: 10px 14px; font-weight: 700; background: var(--amber); color: var(--amber-ink); border-radius: 2px; }
+.skip:focus { top: 8px; }
+.skip:hover { color: var(--amber-ink); }
+code { font: 0.92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+main { padding: 24px 0 64px; }
+h1, h2, h3 { font-stretch: 72%; font-weight: 850; letter-spacing: -0.005em; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 72px); line-height: 0.95; margin: 0 0 14px; }
+h2 { font-size: clamp(30px, 4.4vw, 40px); line-height: 1; margin: 0 0 8px; }
+h3 { font-size: 22px; line-height: 1.1; margin: 28px 0 8px; }
+p { margin: 6px 0; max-width: 68ch; }
+a { color: inherit; text-decoration-color: var(--amber); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { color: var(--amber-text); }
+.lede { color: var(--ink-2); font-size: 18px; max-width: 60ch; }
+.meta, .note, caption { color: var(--muted); font-size: 14px; }
+.kicker { font-size: 14px; font-weight: 600; color: var(--muted); margin: 0 0 6px; }
+.num, td, .tile .value { font-variant-numeric: tabular-nums; }
+
+/* Top bar */
+.bar { position: sticky; top: 0; z-index: 10; background: var(--page); border-bottom: 1px solid var(--ring); }
+.bar .wrap { display: flex; align-items: center; gap: 16px; height: 56px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; white-space: nowrap;
+  font-stretch: 72%; font-weight: 850; font-size: 22px; text-transform: uppercase; letter-spacing: 0.01em; }
+.brand svg { width: 19px; height: 12px; flex: none; }
+.brand svg rect { fill: var(--ink); } .brand svg rect.lit { fill: var(--amber); }
+.bar nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; margin-left: auto; }
+.bar nav::-webkit-scrollbar { display: none; }
+.bar nav a { color: var(--ink-2); text-decoration: none; font-size: 15px; font-weight: 600; padding: 6px 10px; white-space: nowrap; }
+.bar nav a:hover, .bar nav a[aria-current] { color: var(--ink); box-shadow: inset 0 -2px var(--amber); }
+.bar nav a:focus-visible { outline-offset: -2px; }  /* the nav scrolls, so it would clip a ring outside */
+.bar a.lang, .bar .theme { flex: none; font: inherit; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none;
+  padding: 5px 10px; border: 1px solid var(--axis); border-radius: 2px; background: none; cursor: pointer; }
+.bar a.lang:hover, .bar .theme:hover { border-color: var(--amber); color: var(--ink); }
+.bar .theme { display: none; } .js .bar .theme { display: inline-flex; align-items: center; }
+.bar .theme svg { width: 16px; height: 16px; }
+
+/* Club cards (D-090): a small card with the club's two colours */
+.club-card { display: inline-block; width: 9px; height: 16px; border-radius: 1px; flex: none; vertical-align: -2px;
+  background: linear-gradient(90deg, var(--a) 50%, var(--b) 50%); box-shadow: 0 0 0 1px var(--ring); margin-right: 8px; }
+.club-card { --a: #8f939a; --b: #ece9e2; }
+.card-academico-viseu { --a: #1b1b1b; --b: #ffffff; }
+.card-alverca { --a: #1f4fa3; --b: #d6202f; }
+.card-arouca { --a: #f2c200; --b: #1d3d8f; }
+.card-benfica { --a: #d6202f; --b: #ffffff; }
+.card-casa-pia { --a: #1b1b1b; --b: #ffffff; }
+.card-estoril { --a: #f2c200; --b: #1d5fbf; }
+.card-estrela-amadora { --a: #d6202f; --b: #138a4a; }
+.card-famalicao { --a: #1d3f8f; --b: #ffffff; }
+.card-gil-vicente { --a: #d6202f; --b: #1f4fa3; }
+.card-guimaraes { --a: #ffffff; --b: #1b1b1b; }
+.card-maritimo { --a: #138a4a; --b: #d6202f; }
+.card-moreirense { --a: #138a4a; --b: #ffffff; }
+.card-nacional { --a: #1b1b1b; --b: #ffffff; }
+.card-porto { --a: #1f4fa3; --b: #ffffff; }
+.card-rio-ave { --a: #138a4a; --b: #ffffff; }
+.card-santa-clara { --a: #d6202f; --b: #ffffff; }
+.card-sp-braga { --a: #d22630; --b: #ffffff; }
+.card-sporting { --a: #0b8a52; --b: #ffffff; }
+
+/* Intro and hero */
+.intro { padding: 32px 0 20px; }
+.hero { margin: 8px 0 16px; border-radius: 2px; padding: 28px; color: var(--ink); background: var(--surface);
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.hero p.verdict { color: var(--ink); font-stretch: 72%; font-size: clamp(28px, 3.6vw, 40px); font-weight: 850; line-height: 1.02; margin: 4px 0 12px; }
+.hero p { color: var(--ink-2); }
+.hero p strong { color: var(--ink); }
+.hero .figure { background: var(--raised); border: 1px solid var(--ring); border-radius: 2px; padding: 12px 14px 8px; }
+.hero .figure .figcap { font-size: 13px; color: var(--muted); margin: 0 0 4px; }
+.strip { width: 100%; height: auto; display: block; font-size: 12px; }
+.strip .tick { fill: var(--muted); }
+.strip .grid { stroke: var(--grid); stroke-width: 1; }
+.strip .zero { stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.strip .band-good { fill: var(--good-wash); }
+.strip .whisker { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+.strip .dot { fill: var(--surface); stroke: var(--ink); stroke-width: 2.5; }
+.strip .dot.solid { fill: var(--ink); }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.pill { font-size: 13px; padding: 3px 10px; border-radius: 2px; background: var(--raised); color: var(--ink-2); border: 1px solid var(--ring); }
+
+/* Tiles */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 3px; margin: 0 0 8px; }
+.tile { background: var(--surface); border-radius: 2px; padding: 14px 16px; }
+.tile .value { font-stretch: 72%; font-size: 34px; font-weight: 850; line-height: 1.1; }
+.tile .label { color: var(--ink-2); font-size: 14px; }
+
+/* Sections */
+section.block { padding: 52px 0 0; }
+.head { margin: 0 0 16px; }
+.card { background: var(--surface); border-radius: 2px; padding: 18px; margin: 12px 0; overflow-x: auto; }
+.card > h3:first-child { margin-top: 0; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.grid2 > .card { margin: 0; }
+.grid2 + .card, .card + .grid2, .grid2 + .grid2 { margin-top: 12px; }
+.empty { background: var(--surface); border: 1px dashed var(--axis); border-radius: 2px; padding: 18px; color: var(--ink-2); }
+
+/* Match cards */
+.matches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 12px; }
+.match { background: var(--surface); border-radius: 2px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.match .when { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 14px; color: var(--muted); }
+.match .when b { color: var(--ink); font-weight: 650; font-size: 15px; }
+.teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.teams .t { font-weight: 700; font-size: 18px; line-height: 1.25; }
+.teams .t.away { text-align: right; }
+.teams .vs { color: var(--muted); font-size: 14px; }
+.teams .t.fav::after { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 1px; background: var(--amber); margin: 0 0 3px 6px; vertical-align: middle; }
+.stack { display: flex; gap: 2px; height: 12px; border-radius: 2px; overflow: hidden; }
+.stack span { display: block; min-width: 2px; }
+.stack .h { background: var(--s1); } .stack .d { background: var(--draw); } .stack .a { background: var(--s2); }
+.probs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.probs div { display: flex; flex-direction: column; }
+.probs div:nth-child(2) { text-align: center; } .probs div:nth-child(3) { text-align: right; }
+.probs .p { font-stretch: 72%; font-size: 28px; font-weight: 850; line-height: 1; font-variant-numeric: tabular-nums; }
+.probs .o { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.probs .k { font-size: 13px; color: var(--ink-2); }
+.probs .k i.h { background: var(--s1); } .probs .k i.d { background: var(--draw); } .probs .k i.a { background: var(--s2); }
+.probs .k i { display: inline-block; width: 8px; height: 8px; border-radius: 1px; margin-right: 5px; vertical-align: 0; }
+.probs .top .p { color: var(--ink); } .probs div:not(.top) .p { color: var(--ink-2); }
+.minis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 12px; border-top: 1px solid var(--grid); }
+.mini .row { display: flex; justify-content: space-between; font-size: 14px; color: var(--ink-2); }
+.mini .row b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.meter { height: 6px; border-radius: 1px; background: var(--grid); margin-top: 6px; overflow: hidden; }
+.meter span { display: block; height: 100%; background: var(--amber); }
+.scores { padding-top: 12px; border-top: 1px solid var(--grid); }
+.scores .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 14px; color: var(--ink-2); }
+.scores .hint { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
+.scores .row .hint { margin: 0; }
+.scores ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.scores li { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 8px 6px 10px; border-radius: 2px; background: var(--raised); }
+.scores li b { font-stretch: 72%; font-size: 22px; font-weight: 850; font-variant-numeric: tabular-nums; }
+.scores li span { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.scores li.first span { color: var(--ink-2); font-weight: 600; }
+.scores li i { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--amber); }
+.match .foot { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); }
+
+/* Tables */
+.scroll { position: relative; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+caption { text-align: left; padding: 0 0 8px; }
+th, td { padding: 8px 8px; border-bottom: 1px solid var(--grid); text-align: right; white-space: nowrap; }
+thead th { color: var(--muted); font-weight: 600; font-size: 13px; border-bottom-color: var(--axis); }
+tbody tr:hover td { background: var(--raised); }
+th:first-child, td:first-child, td.text, th.text { text-align: left; }
+td .ci { display: block; color: var(--muted); font-size: 13px; font-weight: 400; }
+td.hit { background: var(--wash); font-weight: 650; }
+tbody tr:hover td.hit { background: var(--wash); }
+td.score { font-weight: 700; }
+td.better { color: var(--good); font-weight: 650; }
+thead th.group { text-align: center; border-bottom: 1px solid var(--grid); }
+.sig { font-weight: 650; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 2px; border: 1px solid var(--ring); background: var(--raised); color: var(--ink-2); font-size: 13px; font-weight: 500; }
+
+/* Charts */
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; color: var(--ink-2); margin: 4px 0 8px; }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 1px; vertical-align: middle; margin-right: 6px; }
+.k1 { background: var(--s1); } .k2 { background: var(--s2); } .k3 { background: var(--s3); }
+.k4 { background: var(--s4); } .k5 { background: var(--s5); }
+.kd { background: var(--axis); }
+.kb { background: var(--wash); height: 10px !important; border: 1px solid color-mix(in srgb, var(--s1) 35%, transparent); }
+.ke { background: var(--ink-2); width: 2px !important; height: 12px !important; }
+.kg { background: var(--good); }
+details { margin: 14px 0; }
+summary { cursor: pointer; color: var(--ink); font-weight: 700; padding: 10px 14px; border: 1px solid var(--ring); border-radius: 2px; background: var(--surface); list-style-position: inside; }
+summary:hover { border-color: var(--amber); }
+details[open] > summary { margin-bottom: 8px; }
+svg.chart { width: 100%; max-width: 760px; height: auto; display: block; font-size: 13px; min-width: 520px; font-family: "Archivo", sans-serif; }
+svg.chart.square { max-width: 340px; min-width: 0; }
+svg.chart.cols { min-width: 0; }  /* 18 narrow columns still read at phone width */
+svg .grid { stroke: var(--grid); stroke-width: 1; }
+svg .zero, svg .diagonal { stroke: var(--axis); stroke-width: 1.5; }
+svg .diagonal { stroke-dasharray: 4 4; }
+svg .tick, svg .axis-label { fill: var(--muted); }
+svg .label { fill: var(--ink-2); }
+svg .hit { fill: transparent; }
+svg g:hover .hit { fill: var(--wash); }
+svg .whisker { stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round; }
+svg .dot { fill: var(--surface); stroke: var(--s1); stroke-width: 2; }
+svg .dot.solid { fill: var(--s1); }
+svg .line { fill: none; stroke-width: 2; stroke-linejoin: round; }
+svg line.band { stroke: var(--wash); stroke-width: 14; stroke-linecap: round; }
+svg rect.band { fill: var(--wash); stroke: var(--s1); stroke-opacity: 0.35; }
+svg .expected { stroke: var(--ink-2); stroke-width: 2; }
+svg .bar.better { fill: var(--good); } svg .bar.worse { fill: var(--axis); }
+td.out { color: var(--s2); font-weight: 650; }
+svg .marker { stroke: var(--surface); stroke-width: 2; }
+svg .line.s1 { stroke: var(--s1); } svg .marker.s1 { fill: var(--s1); }
+svg .line.s2 { stroke: var(--s2); } svg .marker.s2 { fill: var(--s2); }
+svg .line.s3 { stroke: var(--s3); } svg .marker.s3 { fill: var(--s3); }
+svg .line.s4 { stroke: var(--s4); } svg .marker.s4 { fill: var(--s4); }
+svg .line.s5 { stroke: var(--s5); } svg .marker.s5 { fill: var(--s5); }
+
+/* Season table */
+td.chance { position: relative; }
+td.chance span { position: relative; z-index: 1; }
+td.chance::before { content: ""; position: absolute; inset: 3px 2px; border-radius: 2px;
+  background: var(--amber); opacity: calc(var(--p) * 0.6); }
+td.chance.down::before { background: var(--s2); }
+.range { position: relative; height: 8px; min-width: 110px; background: var(--grid); border-radius: 1px; margin: 4px 0 2px; }
+.range span { position: absolute; top: 0; bottom: 0; background: var(--wash); border: 1px solid color-mix(in srgb, var(--s1) 45%, transparent); border-radius: 1px; }
+.range i { position: absolute; top: -3px; width: 2px; height: 14px; background: var(--ink-2); }
+td.pts { min-width: 120px; }
+table.stakes { margin-top: 10px; font-size: 14px; width: 100%; table-layout: auto; }
+table.stakes td.text { white-space: normal; }
+table.stakes th, table.stakes td { padding: 4px 4px; }
+#season .short { display: none; }
+@media (max-width: 640px) {
+  #season th.pts, #season td.pts { display: none; }
+  #season th, #season td { padding: 6px 3px; font-size: 14px; white-space: normal; }
+  #season .long { display: none; } #season .short { display: inline; }
+  #season td.text:has(.club-card) { white-space: nowrap; }
+  #season table:not(.stakes) th:nth-child(2), #season table:not(.stakes) td:nth-child(2) { position: sticky; left: 0; z-index: 2; background: var(--surface); }
+}
+
+/* Scenario builder */
+.scn { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) {
+  .scn { grid-template-columns: minmax(0, 1fr); }
+}
+.scn-matches, .scn-side { min-width: 0; }
+.scn-day { font-size: 13px; font-weight: 700; color: var(--muted); margin: 12px 0 4px; }
+.scn-day:first-child { margin-top: 0; }
+.scn-day b { color: var(--ink); font-weight: 750; }
+.scn-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid var(--grid); font-size: 15px; }
+.scn-row span { min-width: 0; overflow-wrap: anywhere; }
+.scn-row small { display: block; margin-top: 1px; font-size: 12.5px; font-weight: 500; color: var(--muted); }
+.scn-row .pick { display: inline-flex; gap: 3px; flex: none; }
+.scn-row button, .scn-reset { font: inherit; font-size: 14px; font-weight: 700; min-width: 34px; padding: 4px 8px; border-radius: 2px; border: 1px solid var(--axis); background: var(--raised); color: var(--ink); cursor: pointer; }
+.scn-row button:hover, .scn-reset:hover { border-color: var(--amber); }
+.scn-row button[aria-pressed="true"] { background: var(--amber); color: var(--amber-ink); border-color: var(--amber); }
+.scn-reset { margin-bottom: 8px; }
+
+footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--ring); color: var(--muted); font-size: 14px; }
+footer p { max-width: none; }
+
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; padding: 22px 18px; }
+  .bar .wrap { gap: 10px; }
+  .bar nav { margin-left: 0; }
+  section.block { padding-top: 40px; }
+  .card { padding: 14px; }
+}
+/* Club pages (D-072) */
+svg .col.z0 { fill: var(--axis); } svg .col.z1 { fill: var(--z-second); } svg .col.z2 { fill: var(--z-champions_playoff); }
+svg .col.z3 { fill: var(--z-europa); } svg .col.z4 { fill: var(--z-conference); }
+svg .col.z5 { fill: var(--z-playoff); } svg .col.z6 { fill: var(--z-relegation); }
+.zones { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; color: var(--ink-2); margin: 4px 0 8px; }
+.zones span { display: inline-flex; align-items: center; gap: 6px; }
+.zones i { width: 10px; height: 10px; border-radius: 1px; display: inline-block; }
+.zones i.z0 { background: var(--axis); } .zones i.z1 { background: var(--z-second); } .zones i.z2 { background: var(--z-champions_playoff); }
+.zones i.z3 { background: var(--z-europa); } .zones i.z4 { background: var(--z-conference); }
+.zones i.z5 { background: var(--z-playoff); } .zones i.z6 { background: var(--z-relegation); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 3px; margin: 0; }
+.facts div { background: var(--surface); border-radius: 2px; padding: 12px 14px; }
+.facts dt { font-size: 13px; color: var(--muted); font-weight: 600; }
+.facts dd { margin: 2px 0 0; font-stretch: 72%; font-size: 30px; font-weight: 850; font-variant-numeric: tabular-nums; }
+.facts dd small { font-family: "Archivo", sans-serif; font-stretch: 100%; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+.clubs-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.clubs-nav a { display: inline-flex; align-items: center; font-size: 14px; font-weight: 600; padding: 4px 10px; border: 1px solid var(--ring); border-radius: 2px; color: var(--ink-2); text-decoration: none; }
+.clubs-nav a:hover { border-color: var(--amber); color: var(--ink); }
+.clubs-nav a[aria-current] { background: var(--amber); color: var(--amber-ink); border-color: var(--amber); }
+/* Club names: no lines, the name lights up on hover. */
+a.club { color: inherit; text-decoration: none; }
+a.club:hover { color: var(--amber-text); }
+
+/* Front page (D-088, D-092): mosaics of 100 cards */
+.hello { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 64px; padding: 20px 0 32px; border-bottom: 1px solid var(--ring); }
+.hello p { margin: 0; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.38; max-width: 34ch; }
+.hello p.aside { font-size: 17px; color: var(--muted); max-width: 42ch; }
+.aside-box { align-self: end; display: grid; gap: 4px; }
+.mosaic, .strip { display: grid; gap: 3px; }
+.mosaic { grid-template-columns: repeat(10, 1fr); }
+.mosaic i, .strip i { display: block; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.10); }
+.mosaic i { aspect-ratio: 1; }
+.strip { grid-template-columns: repeat(50, minmax(0, 1fr)); gap: 2px; margin: 8px 0 6px; min-width: 0; }
+.strip i { aspect-ratio: 1 / 1.5; border-radius: 1px; }
+.lead { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: 56px; align-items: center; padding: 40px 0 48px; border-bottom: 1px solid var(--ring); }
+.lead h1 { font-size: clamp(42px, 5.4vw, 80px); text-transform: uppercase; margin: 0; overflow-wrap: break-word; }
+.lead h1 .x { color: var(--amber); font-size: 0.6em; vertical-align: 0.16em; }
+.lead .meta { font-size: 16px; margin: 12px 0 0; }
+.trio-big { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 40px; margin: 28px 0 18px; }
+.trio-big b { display: block; font-stretch: 72%; font-weight: 850; font-size: clamp(56px, 6vw, 84px); line-height: 0.9; }
+.trio-big small { display: block; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--muted); }
+.say { font-size: clamp(18px, 1.8vw, 22px); line-height: 1.4; max-width: 36ch; margin: 0 0 24px; }
+.say strong { color: var(--amber-text); font-weight: 700; }
+.lead-more { margin: -12px 0 20px; font-weight: 700; }
+.lead .lead-more { order: 6; }
+.cta { display: inline-flex; align-items: center; gap: 20px; background: var(--amber); color: var(--amber-ink); text-decoration: none;
+  font-stretch: 80%; font-weight: 800; font-size: 21px; padding: 14px 18px; border-radius: 2px; }
+.cta:hover { color: var(--amber-ink); background: color-mix(in srgb, var(--amber) 88%, var(--ink)); }
+.cta svg { width: 22px; height: 22px; flex: none; transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1); }
+.cta:hover svg { transform: translateX(4px); }
+.key { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 12px 0 0; font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.key li, .legend-cards li { display: inline-flex; align-items: center; gap: 8px; }
+.key i, .legend-cards i { width: 12px; height: 12px; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
+.home-cols { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 56px; padding-top: 48px; }
+.home-cols h2 { margin-bottom: 6px; }
+.home-cols .lede { font-size: 16px; margin-bottom: 12px; }
+.games, .drop { list-style: none; padding: 0; margin: 0; }
+.games li { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; padding: 14px 0; border-bottom: 1px solid var(--grid); }
+.teams-line { font-weight: 700; font-size: 17px; }
+.teams-line .vs { color: var(--muted); font-weight: 500; }
+.teams-line .team { white-space: nowrap; }
+@media (max-width: 400px) { .teams-line .team { white-space: normal; } .results li { gap: 8px; } }
+.teams-line .club-card { margin-right: 6px; }
+.teams-line .vs { margin: 0 3px; }
+.games .when { font-size: 13px; color: var(--muted); text-align: right; }
+.games .strip, .games .trio { grid-column: 1 / -1; }
+.trio { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--muted); }
+.trio b { color: var(--ink); font-size: 16px; }
+.more { display: inline-block; margin-top: 16px; font-weight: 700; }
+.legend-cards { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; padding: 0; margin: 14px 0 0; font-weight: 600; }
+.legend-cards b { margin-left: auto; font-stretch: 72%; font-weight: 850; font-size: 22px; }
+.drop li { padding: 12px 0; border-bottom: 1px solid var(--grid); }
+.drop .row { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; }
+.drop .row b { font-stretch: 72%; font-weight: 850; font-size: 24px; }
+.record { margin-top: 28px; padding: 20px; background: var(--surface); border-radius: 2px; }
+.record p { margin: 0; font-size: 17px; line-height: 1.45; }
+.record p.aside { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.stakes-box { display: grid; gap: 14px; }
+.stake-row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 0 12px; }
+.stake-row .lbl { font-weight: 700; font-size: 17px; }
+.stake-row .lbl small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
+.stake-row .was { color: var(--muted); font-size: 0.62em; font-weight: 700; margin-right: 4px; white-space: nowrap; }
+.stake-row b { font-stretch: 72%; font-weight: 850; font-size: 34px; line-height: 1; }
+.stake-row .strip { grid-column: 1 / -1; margin: 4px 0 0; }
+.lead .note { margin: -8px 0 22px; }
+.recap { padding: 40px 0 8px; border-bottom: 1px solid var(--ring); }
+.results { list-style: none; padding: 0; margin: 8px 0 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 40px; }
+.results li { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--grid); }
+.results .sc { font-stretch: 72%; font-weight: 850; font-size: 28px; }
+.results .txt small { display: block; color: var(--muted); font-size: 14px; }
+.results .tag { font-size: 13px; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
+.results .tag.hit { background: var(--amber); color: var(--amber-ink); }
+.results .tag.miss { border: 1px solid var(--axis); color: var(--ink-2); }
+.games li.pending .trio { color: var(--muted); font-size: 13px; }
+/* Matches and match pages (D-088) */
+.page-head { padding: 24px 0 8px; }
+.page-head h1 { margin-bottom: 8px; }
+.club-filter { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; font-weight: 600; }
+.club-filter { display: none; } .js .club-filter { display: inline-flex; }
+.club-filter select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--axis); border-radius: 2px; padding: 6px 10px; }
+.list-block { padding-top: 32px; }
+.list-block h3 { margin: 18px 0 2px; font-size: 20px; color: var(--ink-2); }
+.list-block .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 40px; }
+.list-block .results { margin-bottom: 0; }
+.match-link { display: contents; color: inherit; text-decoration: none; }
+.match-link:hover .teams-line { color: var(--amber-text); }
+[hidden] { display: none !important; }
+.tests { margin-top: 40px; }
+.match-page { padding-top: 12px; }
+.match-head h1 { font-size: clamp(38px, 5.4vw, 72px); text-transform: uppercase; margin: 12px 0 0; }
+.match-head .x { color: var(--amber); font-size: 0.6em; vertical-align: 0.16em; }
+.match-head .final { color: var(--amber-text); white-space: nowrap; }
+.match-head .meta { margin: 10px 0 0; font-size: 16px; }
+.notice { margin: 16px 0 0; padding: 10px 14px; border: 1px solid var(--axis); border-radius: 2px; color: var(--ink-2); max-width: none; }
+.said { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 18px 0 0; font-size: 19px; max-width: none; }
+.tag { display: inline-block; font-size: 13px; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
+.tag.hit { background: var(--amber); color: var(--amber-ink); }
+.tag.miss { border: 1px solid var(--axis); color: var(--ink-2); }
+.match-x12 { display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 48px; align-items: center; padding: 28px 0 36px; border-bottom: 1px solid var(--ring); }
+.match-x12 .trio-big { margin-top: 0; }
+.match-x12 .say { margin: 16px 0 0; }
+.match-extras { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 40px 56px; padding: 32px 0; }
+.likely { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 0; margin: 12px 0; }
+.likely li { display: flex; flex-direction: column; align-items: center; padding: 12px 6px; background: var(--surface); border-radius: 2px; }
+.likely b { font-stretch: 72%; font-weight: 850; font-size: 30px; line-height: 1.05; }
+.likely span { font-size: 14px; color: var(--muted); }
+.market { max-width: 72ch; }
+@media (max-width: 720px) { .match-x12 { grid-template-columns: 1fr; gap: 20px; } }
+/* How it works (D-097) */
+.idea-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 3px; margin-top: 14px; }
+.idea-grid > div { background: var(--surface); padding: 18px; border-radius: 2px; }
+.idea-grid h3 { margin: 0 0 8px; font-size: 24px; }
+.idea-grid p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 0 48px; margin: 12px 0 0; }
+.glossary > div { padding: 14px 0; border-bottom: 1px solid var(--grid); }
+.glossary dt { font-weight: 800; font-size: 17px; }
+.glossary dd { margin: 4px 0 0; color: var(--ink-2); font-size: 15px; max-width: 62ch; }
+.fold { margin: 3px 0; }
+.fold > summary { font-stretch: 80%; font-size: 19px; padding: 14px 16px; }
+.fold[open] { padding-bottom: 24px; }
+.fold section.block { padding-top: 20px; }
+
+/* Clubs (D-096) and the fan's club (D-089) */
+.club-picker select { min-width: 190px; }
+/* The highlight is one clean block: it brings its own margin, and the rule lines around it go. */
+.mine, tr.mine td, tr.mine th { background-color: color-mix(in srgb, var(--amber) 14%, var(--page)); }
+li.mine { margin-inline: -8px; padding-inline: 8px; border-radius: 2px; --bar-gap: color-mix(in srgb, var(--amber) 14%, var(--page)); }
+.games li.mine, .results li.mine, .zone-rows > li.mine, .drop li.mine, li:has(+ li.mine) { border-bottom-color: transparent; }
+tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bottom-color: transparent; }
+.sim li.mine { background-color: color-mix(in srgb, var(--amber) 14%, var(--surface)); --bar-gap: color-mix(in srgb, var(--amber) 14%, var(--surface)); }
+.heat tr.mine th.text { background-color: color-mix(in srgb, var(--amber) 14%, var(--page)); }
+.heat tr.mine td { background-color: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
+.heat tr.mine td.hot { background-color: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
+.club-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 3px; padding: 0; margin: 28px 0 0; }
+.club-grid li { background-color: var(--surface); border-radius: 2px; }
+.club-grid li.mine { background-color: color-mix(in srgb, var(--amber) 22%, var(--surface)); }
+.club-grid a { display: block; padding: 16px; text-decoration: none; color: inherit; }
+.club-grid a:hover { box-shadow: inset 0 0 0 2px var(--amber); color: inherit; }
+.club-grid .name { display: block; font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; }
+.club-grid .facts-line { display: block; margin-top: 6px; font-size: 14px; color: var(--muted); }
+.club-grid .facts-line b { color: var(--ink); }
+.club-head { padding: 24px 0 4px; }
+.club-head h1 { display: flex; align-items: center; gap: 4px; font-size: clamp(48px, 7vw, 88px); text-transform: uppercase; margin: 0 0 14px; }
+.club-head h1 .club-card { width: 0.26em; height: 0.56em; margin-right: 0.2em; }
+.fav { display: none; align-items: center; gap: 8px; font: inherit; font-size: 15px; font-weight: 700; color: var(--ink); padding: 8px 12px; background: none; border: 1px solid var(--axis); border-radius: 2px; cursor: pointer; }
+.js .fav { display: inline-flex; }
+.fav svg { width: 16px; height: 16px; fill: none; stroke: var(--amber-text); stroke-width: 2; }
+.fav:hover { border-color: var(--amber); }
+.fav[aria-pressed="true"] { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
+.fav[aria-pressed="true"] svg { fill: var(--amber-ink); stroke: var(--amber-ink); }
+.club-head .say { margin: 20px 0 4px; max-width: 44ch; }
+.club-map { display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 16px; }
+.legend-cards.one { grid-template-columns: 1fr; margin: 0 0 18px; max-width: 280px; }
+.games.two { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 40px; }
+@media (max-width: 720px) { .club-map { grid-template-columns: minmax(0, 1fr); gap: 18px; } }
+
+/* Bars of 100 (D-099): each club's seasons, split by where it finishes */
+.z-title { background: var(--z-title); color: var(--z-title-ink); }
+.z-second { background: var(--z-second); color: var(--z-second-ink); }
+.z-champions_playoff { background: var(--z-champions_playoff); color: var(--z-champions_playoff-ink); }
+.z-europa { background: var(--z-europa); color: var(--z-europa-ink); }
+.z-conference { background: var(--z-conference); color: var(--z-conference-ink); }
+.z-middle { background: var(--z-middle); color: var(--z-middle-ink); }
+.z-playoff { background: var(--z-playoff); color: var(--z-playoff-ink); }
+.z-relegation { background: var(--z-relegation); color: var(--z-relegation-ink); }
+/* Colour-blind readers lose Europe against relegation: the two relegation places also carry a
+   pattern, and their numbers keep a halo of their own colour so the stripes never cross them. */
+.z-relegation, .mosaic i[style*="--z-relegation"], .strip i[style*="--z-relegation"], .legend-cards i[style*="--z-relegation"] { background-image: repeating-linear-gradient(45deg, rgba(0,0,0,.3) 0 2px, transparent 2px 6px) !important; }
+.z-playoff, .mosaic i[style*="--z-playoff"], .strip i[style*="--z-playoff"], .legend-cards i[style*="--z-playoff"] { background-image: repeating-linear-gradient(-45deg, rgba(0,0,0,.42) 0 2px, transparent 2px 6px) !important; }
+.z-relegation { text-shadow: 0 0 3px var(--z-relegation), 0 0 3px var(--z-relegation), 0 0 2px var(--z-relegation); }
+.z-playoff { text-shadow: 0 0 3px var(--z-playoff), 0 0 3px var(--z-playoff), 0 0 2px var(--z-playoff); }
+.zone-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 0; margin: 10px 0 14px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.zone-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.zone-legend small { font-weight: 500; color: var(--muted); }
+.zone-rows { list-style: none; margin: 0; padding: 0; }
+.zone-rows > li { border-bottom: 1px solid var(--grid); }
+.zone-bar { display: flex; height: 26px; min-width: 0; border-radius: 2px; overflow: hidden; }
+.zone-bar i { display: flex; align-items: center; justify-content: center; flex: 0 0 0; min-width: 0; overflow: hidden; font-style: normal; font-size: 13px; font-weight: 800;
+  box-shadow: inset -2px 0 0 var(--bar-gap, var(--page)); transition: flex-grow 520ms cubic-bezier(0.16, 1, 0.3, 1); }
+.zone-rows summary { display: grid; grid-template-columns: 24px 190px 58px minmax(0, 1fr); align-items: center; gap: 0 10px; padding: 7px 0; border: 0; background: none; border-radius: 0; font-weight: 400; color: inherit; list-style: none; }
+.zone-rows summary::-webkit-details-marker { display: none; }
+.zone-rows summary:hover .who { color: var(--amber-text); }
+.zone-rows details { margin: 0; }
+.zone-rows details[open] > summary { margin: 0; }
+.zone-rows .pos { color: var(--muted); font-size: 14px; }
+.zone-rows .who { font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.zone-rows .pts { font-size: 13px; color: var(--muted); text-align: right; white-space: nowrap; }
+.zone-detail { margin: 0 0 8px; padding-left: 34px; font-size: 14px; color: var(--ink-2); max-width: none; }
+.zone-detail b { color: var(--ink); }
+.scn-table { --bar-gap: var(--surface); }
+.scn-table .zone-bar i { font-size: 12px; }
+.scn { align-items: stretch; }
+.scn-matches { display: flex; flex-direction: column; }
+/* One round at a time. Every round sits in the same cell, so the cell is as tall as the tallest
+   and nothing below moves when the fan changes round; a round with fewer dates spreads its rows. */
+.scn-rounds { display: grid; }
+.scn-page { grid-area: 1 / 1; display: flex; flex-direction: column; min-width: 0; }
+.scn-page:not(.on) { visibility: hidden; }
+.scn-page .scn-row { flex: 1 0 auto; }
+.scn-big { margin-top: 20px; }
+.scn-big[hidden], .scn-nav[hidden] { display: none; }
+.scn-big h3 { margin: 0 0 14px; font-size: 15px; font-weight: 750; font-stretch: 100%; font-family: inherit; letter-spacing: 0; }
+.scn-row.locked button { cursor: default; opacity: 0.32; }
+.scn-row.locked button:hover { border-color: var(--axis); }
+.scn-row.locked button.res { opacity: 1; background: var(--axis); border-color: var(--axis); }
+.scn-nav { margin-top: 10px; }
+.scn-nav-head { display: grid; grid-template-columns: 42px minmax(0, 1fr) 42px; align-items: center; gap: 6px; text-align: center; font-size: 15px; font-weight: 750; }
+.scn-nav-head small { display: block; font-size: 12.5px; font-weight: 500; color: var(--muted); }
+.scn-nav button { font: inherit; font-weight: 700; padding: 0; border: 1px solid var(--axis); border-radius: 2px; background: var(--raised); color: var(--ink); cursor: pointer; }
+.scn-nav button:hover:not(:disabled) { border-color: var(--amber); }
+.scn-nav-head button { display: grid; place-items: center; height: 42px; }
+.scn-nav-head button:disabled { opacity: 0.35; cursor: default; }
+.scn-nav-head svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5; }
+.scn-strip { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; margin-top: 8px; }
+.scn-strip button { height: 26px; font-size: 12px; font-variant-numeric: tabular-nums; }
+/* The fan's matches: stronger, with the same small mark as elsewhere, and no wash over the row. */
+.scn-row.mine { background: none; }
+.scn-row.mine > span:first-child { font-weight: 750; }
+.scn-row.mine > span:first-child::after { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 1px; background: var(--amber); margin: 0 0 3px 6px; vertical-align: middle; }
+.scn-strip button.has { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
+.scn-strip button[aria-current] { box-shadow: inset 0 0 0 2px var(--ink); }
+.scn-strip button.has[aria-current] { box-shadow: inset 0 0 0 2px var(--amber-ink); }
+@media (max-width: 860px) {
+  /* First on the page and one scrolling line: three rows of numbers pushed the matches off screen. */
+  .scn-nav { margin: 0 0 14px; scroll-margin-top: 110px; }
+  .scn-strip { display: flex; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .scn-strip::-webkit-scrollbar { display: none; }
+  .scn-strip button { flex: 0 0 44px; height: 40px; font-size: 13px; }
+}
+@media (min-width: 861px) {
+  .scn-narrow { display: none; }
+  .scn-key { grid-column: 1 / -1; }
+  .scn-key .zone-legend { margin: 0; gap: 6px 14px; font-size: 12.5px; }
+  .scn-big { margin-bottom: 18px; }
+  .scn-matches > .scn-reset { align-self: flex-start; margin: auto 0 0; }
+  /* Both columns end together: the club rows share whatever height the matches take. */
+  .scn-side { display: flex; flex-direction: column; }
+  .scn-table { flex: 1; display: flex; flex-direction: column; }
+  .scn-table > li { flex: 1 0 auto; display: flex; align-items: center; }
+  .scn-table > li > details { width: 100%; }
+}
+@media (max-width: 860px) {
+  .scn-wide { display: none; }
+  .scn-side { align-self: start; }
+}
+@media (max-width: 640px) {
+  .zone-rows summary { grid-template-columns: 22px minmax(0, 1fr) auto; gap: 5px 6px; padding: 10px 0; }
+  .zone-rows summary .zone-bar { grid-column: 1 / -1; }
+  .zone-detail { padding-left: 0; }
+}
+/* The name above its bar, the change at the end of the name's line: no room waits empty. */
+.zone-rows.scn-table summary { grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px; padding: 3px 0; }
+.scn-table .who { grid-area: 1 / 1; align-self: end; font-size: 14px; line-height: 1.15; }
+.scn-table .delta { grid-area: 1 / 2; align-self: end; min-height: 15px; font-size: 12.5px; font-weight: 750; line-height: 1.2; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* The change keeps its place's colour as far as it stays readable: the fan's club has a warmer,
+   lighter ground, so its text takes more ink there. Lowest contrast measured: 4.5:1. */
+.scn-table li.mine { --delta-share: var(--delta-share-mine); }
+.scn-table .zone-bar { grid-area: 2 / 1 / 2 / 3; height: 22px; margin-top: 2px; }
+.scn-table .zone-bar.ghost { grid-area: 3 / 1 / 3 / 3; height: 4px; margin-top: 1px; opacity: 0; transition: opacity 300ms; }
+.scn-table.has-choice .zone-bar.ghost { opacity: 0.38; }
+.scn-table .zone-detail { padding-left: 0; }
+/* The page must not move while a fan picks results: the line under the title keeps its space. */
+.sim .scn-status { min-height: 4.7em; max-width: 72ch; margin-bottom: 10px; }
+.scn-table.too-few .zone-bar:not(.ghost), .scn-table.too-few .who { opacity: 0.35; }
+.zone-extra:empty { display: none; }
+.zone-extra span + span::before { content: " · "; }
+.phone-only { display: none; }
+/* Black and white cards need an edge: black alone vanishes on a dark page, white on a light one. */
+.mosaic i[style*="linear-gradient"], .strip i[style*="linear-gradient"], .key i[style*="linear-gradient"], .legend-cards i[style*="linear-gradient"] { box-shadow: inset 0 0 0 1px var(--bw-edge); }
+@media (max-width: 640px) {
+  .zone-bar i.small { font-size: 0; }
+  .sim .scn-status { min-height: 7.8em; }
+  .phone-only { display: inline; }
+  .zone-extra span.phone-only + span::before, .zone-extra span + span.phone-only::before { content: " · "; }
+  .zone-rows.scn-table summary { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 8px 0; }
+  .scn-table .who { grid-area: 1 / 1; }
+  .scn-table .delta { grid-area: 2 / 1; margin-bottom: 3px; text-align: left; }
+  .scn-table .zone-bar { grid-area: 3 / 1; height: 20px; margin-top: 0; }
+  .scn-table .zone-bar.ghost { grid-area: 4 / 1; height: 6px; margin-top: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { .zone-bar i { transition: none; } }
+
+/* Season page (D-095, D-098) */
+.scn-fx { display: none; }
+.scn-sample { margin: 14px 0 0; }
+th.zone { white-space: normal; min-width: 62px; max-width: 86px; line-height: 1.15; vertical-align: bottom; }
+th.zone small { display: block; font-weight: 500; margin-top: 2px; }
+.whatif { grid-column: 1 / -1; max-width: 620px; margin: 20px 0 0; padding: 16px 18px; background: var(--surface); border-radius: 2px; }
+.whatif h2 { margin: 0 0 4px; font-size: 22px; line-height: 1.1; }
+.whatif p { margin: 0 0 12px; color: var(--ink-2); }
+.whatif .opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.whatif .opts a { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 6px; text-align: center; font-weight: 700; text-decoration: none; color: var(--ink); background: var(--raised); border: 1px solid var(--axis); border-radius: 2px; }
+.whatif .opts a:hover { border-color: var(--amber); color: var(--ink); }
+.sim-line { grid-column: 1 / -1; margin: 14px 0 0; font-weight: 700; }
+.points-line { margin: 0 0 8px; font-weight: 600; }
+.points-line b { font-stretch: 72%; font-weight: 850; font-size: 28px; }
+.points-line small { color: var(--muted); font-size: 14px; }
+.sure-line { margin: 14px 0 0; color: var(--ink-2); max-width: 72ch; }
+@media (max-width: 860px) {
+  .scn-side { scroll-margin-top: 110px; }
+  /* The effect comes to the fan: at the thumb, only once there is an effect to show (D-122). */
+  .scn-fx:not([hidden]) { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 8; width: 100%; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); font: inherit; color: var(--ink); text-align: left; cursor: pointer; background: var(--raised); border: 0; border-top: 2px solid var(--amber); }
+  .scn-fx .line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0 12px; }
+  .scn-fx .what { font-size: 15px; font-weight: 650; }
+  .scn-fx .nums { font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; white-space: nowrap; }
+  .scn-fx .nums b { color: var(--amber-text); font-weight: 850; }
+  .scn-fx .status-line { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 13px; color: var(--ink-2); }
+  .scn-fx .meter { display: inline-flex; gap: 2px; flex: none; }
+  .scn-fx .meter i { width: 7px; height: 12px; border-radius: 1px; background: var(--amber); }
+  .scn-fx .meter i.gone { background: var(--axis); }
+  .scn-fx .go { margin-left: auto; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  /* Room for the bar from the start, so the page keeps its height when the bar appears. */
+  main:has(.scn-fx) { padding-bottom: 110px; }
+  html:has(.scn-fx:not([hidden])) { scroll-padding-bottom: 96px; }
+}
+.sim { padding: 24px; background: var(--surface); border-radius: 2px; }
+.sim .scn-row button { min-width: 42px; min-height: 42px; }
+@media (max-width: 640px) { .sim { padding: 16px; margin: 0 -8px; } }
+table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
+.heat th, .heat td { border: 0; padding: 0; text-align: center; }
+.heat thead th { font-size: 13px; padding: 0 0 4px; min-width: 34px; }
+.heat th.text { text-align: left; padding-right: 12px; font-size: 15px; font-weight: 700; color: var(--ink); position: sticky; left: 0; background: var(--page); z-index: 1; }
+.heat td { width: 34px; height: 30px; font-size: 12px; font-weight: 700; color: var(--ink); border-radius: 2px;
+  background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
+.heat tbody tr:hover td { background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
+.heat td.hot, .heat tbody tr:hover td.hot { color: var(--amber-ink); background: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.two-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; }
+.two-charts h2 { font-size: 28px; }
+@media (max-width: 960px) {
+  .lead { display: flex; flex-direction: column; gap: 0; padding-top: 24px; }
+  .lead-text { display: contents; }
+  .lead h1 { order: 1; } .lead .meta { order: 2; } .lead-mosaic { order: 3; margin-top: 20px; }
+  .lead .trio-big { order: 4; } .lead .say { order: 5; } .lead .note { order: 6; } .lead .cta { order: 7; }
+  /* What the numbers count comes before the numbers (D-122). */
+  .lead.has-stake .say { order: 3; margin-top: 16px; }
+  .lead.has-stake .stakes-box { order: 4; width: 100%; margin: 0 0 24px; }
+  .lead.has-stake .note { margin-top: 0; }
+  .home-cols { grid-template-columns: 1fr; gap: 8px; padding-top: 32px; }
+  .home-cols .col { padding-top: 24px; }
+}
+@media (max-width: 640px) {
+  .bar .wrap { flex-wrap: wrap; height: auto; padding-top: 10px; row-gap: 4px; }
+  .bar .brand { margin-right: auto; }
+  .bar nav { order: 3; flex-basis: 100%; margin: 0 -8px; }
+  .bar nav a { padding: 6px 8px; font-size: 14px; }
+  .hello { grid-template-columns: 1fr; gap: 10px; padding-bottom: 22px; }
+  .trio-big { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .trio-big div:nth-child(2) { text-align: center; } .trio-big div:nth-child(3) { text-align: right; }
+  .cta { display: flex; justify-content: space-between; font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) { .cta svg { transition: none; } }
+
+@media print {
+  .bar { position: static; }
+  .bar .theme { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#top">Skip to the content</a>
+<div class="bar"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 19 12" aria-hidden="true"><rect x="0" y="0" width="5" height="5" rx="1"/><rect class="lit" x="7" y="0" width="5" height="5" rx="1"/><rect x="14" y="0" width="5" height="5" rx="1"/><rect class="lit" x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/><rect x="14" y="7" width="5" height="5" rx="1"/></svg><span>Contas da Bola</span></a>
+  <nav aria-label="Sections"><a href="index.html">Front page</a>
+<a href="jogos.html">Matches</a>
+<a href="epoca.html" aria-current="page">Season</a>
+<a href="clubes.html">Clubs</a>
+<a href="como-funciona.html">How it works</a>
+</nav>
+  <button class="theme" type="button" aria-label="Switch between light and dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+  <a class="lang" href="../epoca.html" hreflang="pt" lang="pt" aria-label="Read this page in English">EN</a>
+</div></div>
+<main id="top" class="wrap">
+<section class="page-head">
+  <h1>Season 2026/27</h1>
+  <p class="lede">90 results in, 216 matches to go. We played out the rest of the season 50,000 times to see where each club may finish.</p>
+</section>
+
+<section class="list-block" aria-labelledby="scenario-title">
+  <div class="sim" id="scenario" data-src="../scenarios" data-lang="en" data-order="[&#34;porto&#34;, &#34;benfica&#34;, &#34;sporting&#34;, &#34;sp-braga&#34;, &#34;santa-clara&#34;, &#34;academico-viseu&#34;, &#34;arouca&#34;, &#34;guimaraes&#34;, &#34;gil-vicente&#34;, &#34;famalicao&#34;, &#34;alverca&#34;, &#34;moreirense&#34;, &#34;estrela-amadora&#34;, &#34;maritimo&#34;, &#34;rio-ave&#34;, &#34;casa-pia&#34;, &#34;nacional&#34;, &#34;estoril&#34;]" data-text="{&#34;all&#34;: &#34;We played out the rest of the season {total} times for this simulator. Each result you pick keeps only the seasons where it happened.&#34;, &#34;away&#34;: &#34;away win&#34;, &#34;club&#34;: &#34;Club&#34;, &#34;draw&#34;: &#34;draw&#34;, &#34;failed&#34;: &#34;The simulations could not be loaded. The builder works on the published page, not on a file opened from disk.&#34;, &#34;few&#34;: &#34;Few simulations left: read the numbers as rough.&#34;, &#34;finished&#34;: &#34;Finished {home} \u2013 {away}&#34;, &#34;fx_same&#34;: &#34;The numbers barely move&#34;, &#34;fx_stay&#34;: &#34;The numbers stay as they were&#34;, &#34;fx_what&#34;: {&#34;europe&#34;: &#34;{club} in Europe&#34;, &#34;relegation&#34;: &#34;{club} go down&#34;, &#34;title&#34;: &#34;{club} champions&#34;}, &#34;go_bars&#34;: &#34;See the bars \u2193&#34;, &#34;go_games&#34;: &#34;\u2191 Back to the matches&#34;, &#34;home&#34;: &#34;home win&#34;, &#34;in_100&#34;: &#34;in 100&#34;, &#34;kept&#34;: &#34;{n} of the {total} simulated seasons have these results.&#34;, &#34;loading&#34;: &#34;Loading the simulations\u2026&#34;, &#34;meanings&#34;: {&#34;europe&#34;: &#34;Europe&#34;, &#34;relegation&#34;: &#34;Relegation&#34;, &#34;title&#34;: &#34;Title&#34;}, &#34;mover_relegation&#34;: &#34;{club} go down: {low} to {high} in 100&#34;, &#34;mover_title&#34;: &#34;{club} champions: {low} to {high} in 100&#34;, &#34;none&#34;: &#34;None of the {total} simulated seasons has all of this.&#34;, &#34;room_last&#34;: &#34;Almost at the limit&#34;, &#34;room_over&#34;: &#34;Too many results: take one out&#34;, &#34;room_plenty&#34;: &#34;Still room for more&#34;, &#34;room_two&#34;: &#34;One or two more at most&#34;, &#34;round&#34;: &#34;Round {n}&#34;, &#34;round_last&#34;: &#34;the last one&#34;, &#34;round_next&#34;: &#34;the next one&#34;, &#34;round_next_label&#34;: &#34;Next round&#34;, &#34;round_now&#34;: &#34;in progress&#34;, &#34;round_of&#34;: &#34;Round {n} of {total}&#34;, &#34;round_picks&#34;: &#34;has results you chose&#34;, &#34;round_prev_label&#34;: &#34;Previous round&#34;, &#34;rounds_left&#34;: &#34;{n} rounds to go&#34;, &#34;see_club&#34;: &#34;See the club&#34;, &#34;take_out&#34;: &#34;The least likely is the {mark} in {home} \u2013 {away}: take that out.&#34;, &#34;too_few&#34;: &#34;Only {n} of the {total} simulated seasons have all of this. That is too few to say anything.&#34;, &#34;zones&#34;: {&#34;champions_playoff&#34;: [&#34;Champions play-off&#34;, &#34;3rd&#34;], &#34;conference&#34;: [&#34;Conference League&#34;, &#34;5th&#34;], &#34;europa&#34;: [&#34;Europa League&#34;, &#34;4th&#34;], &#34;middle&#34;: [&#34;Mid-table&#34;, &#34;6th\u201315th&#34;], &#34;playoff&#34;: [&#34;Relegation play-off&#34;, &#34;16th&#34;], &#34;relegation&#34;: [&#34;Relegation&#34;, &#34;17th\u201318th&#34;], &#34;second&#34;: [&#34;Champions&#34;, &#34;2nd&#34;], &#34;title&#34;: [&#34;Champion&#34;, &#34;1st&#34;]}}" data-plan="{&#34;movers&#34;: [{&#34;club&#34;: 3, &#34;event&#34;: &#34;title&#34;, &#34;high&#34;: 59, &#34;low&#34;: 23, &#34;match&#34;: 119}, {&#34;club&#34;: 3, &#34;event&#34;: &#34;title&#34;, &#34;high&#34;: 54, &#34;low&#34;: 35, &#34;match&#34;: 206}, {&#34;club&#34;: 12, &#34;event&#34;: &#34;relegation&#34;, &#34;high&#34;: 62, &#34;low&#34;: 35, &#34;match&#34;: 131}, {&#34;club&#34;: 5, &#34;event&#34;: &#34;relegation&#34;, &#34;high&#34;: 62, &#34;low&#34;: 38, &#34;match&#34;: 120}], &#34;rounds&#34;: [{&#34;matches&#34;: [0, 1, 2, 3, 4, 5, 6, 7, 8], &#34;no&#34;: 11, &#34;played&#34;: []}, {&#34;matches&#34;: [9, 10, 11, 12, 13, 14, 15, 16, 17], &#34;no&#34;: 12, &#34;played&#34;: []}, {&#34;matches&#34;: [18, 19, 20, 21, 22, 23, 24, 25, 26], &#34;no&#34;: 13, &#34;played&#34;: []}, {&#34;matches&#34;: [27, 28, 29, 30, 31, 32, 33, 34, 35], &#34;no&#34;: 14, &#34;played&#34;: []}, {&#34;matches&#34;: [36, 37, 38, 39, 40, 41, 42, 43, 44], &#34;no&#34;: 15, &#34;played&#34;: []}, {&#34;matches&#34;: [45, 46, 47, 48, 49, 50, 51, 52, 53], &#34;no&#34;: 16, &#34;played&#34;: []}, {&#34;matches&#34;: [54, 55, 56, 57, 58, 59, 60, 61, 62], &#34;no&#34;: 17, &#34;played&#34;: []}, {&#34;matches&#34;: [63, 64, 65, 66, 67, 68, 69, 70, 71], &#34;no&#34;: 18, &#34;played&#34;: []}, {&#34;matches&#34;: [72, 73, 74, 75, 76, 77, 78, 79, 80], &#34;no&#34;: 19, &#34;played&#34;: []}, {&#34;matches&#34;: [81, 82, 83, 84, 85, 86, 87, 88, 89], &#34;no&#34;: 20, &#34;played&#34;: []}, {&#34;matches&#34;: [90, 91, 92, 93, 94, 95, 96, 97, 98], &#34;no&#34;: 21, &#34;played&#34;: []}, {&#34;matches&#34;: [99, 100, 101, 102, 103, 104, 105, 106, 107], &#34;no&#34;: 22, &#34;played&#34;: []}, {&#34;matches&#34;: [108, 109, 110, 111, 112, 113, 114, 115, 116], &#34;no&#34;: 23, &#34;played&#34;: []}, {&#34;matches&#34;: [117, 118, 119, 120, 121, 122, 123, 124, 125], &#34;no&#34;: 24, &#34;played&#34;: []}, {&#34;matches&#34;: [126, 127, 128, 129, 130, 131, 132, 133, 134], &#34;no&#34;: 25, &#34;played&#34;: []}, {&#34;matches&#34;: [135, 136, 137, 138, 139, 140, 141, 142, 143], &#34;no&#34;: 26, &#34;played&#34;: []}, {&#34;matches&#34;: [144, 145, 146, 147, 148, 149, 150, 151, 152], &#34;no&#34;: 27, &#34;played&#34;: []}, {&#34;matches&#34;: [153, 154, 155, 156, 157, 158, 159, 160, 161], &#34;no&#34;: 28, &#34;played&#34;: []}, {&#34;matches&#34;: [162, 163, 164, 165, 166, 167, 168, 169, 170], &#34;no&#34;: 29, &#34;played&#34;: []}, {&#34;matches&#34;: [171, 172, 173, 174, 175, 176, 177, 178, 179], &#34;no&#34;: 30, &#34;played&#34;: []}, {&#34;matches&#34;: [180, 181, 182, 183, 184, 185, 186, 187, 188], &#34;no&#34;: 31, &#34;played&#34;: []}, {&#34;matches&#34;: [189, 190, 191, 192, 193, 194, 195, 196, 197], &#34;no&#34;: 32, &#34;played&#34;: []}, {&#34;matches&#34;: [198, 199, 200, 201, 202, 203, 204, 205, 206], &#34;no&#34;: 33, &#34;played&#34;: []}, {&#34;matches&#34;: [207, 208, 209, 210, 211, 212, 213, 214, 215], &#34;no&#34;: 34, &#34;played&#34;: []}], &#34;total&#34;: 34}">
+    <h2 id="scenario-title">What if…? You pick the results</h2>
+    <p class="lede">Choose the result of a match and see what happens to the title, Europe and relegation. Combine about 5: beyond that it almost never happens in the simulations.</p>
+    <noscript><p class="empty">The simulator needs JavaScript; everything else on this page works without it.</p></noscript>
+    <p class="scn-status meta" aria-live="polite"></p>
+    <p class="sr scn-live" aria-live="polite"></p>
+    <div class="scn" hidden>
+      <div class="scn-wide scn-key"><ul class="zone-legend"><li><i class="z-title"></i>Champion <small>1st</small></li><li><i class="z-second"></i>Champions <small>2nd</small></li><li><i class="z-champions_playoff"></i>Champions play-off <small>3rd</small></li><li><i class="z-europa"></i>Europa League <small>4th</small></li><li><i class="z-conference"></i>Conference League <small>5th</small></li><li><i class="z-middle"></i>Mid-table <small>6th–15th</small></li><li><i class="z-playoff"></i>Relegation play-off <small>16th</small></li><li><i class="z-relegation"></i>Relegation <small>17th–18th</small></li></ul></div>
+      <div class="scn-matches">
+        <div class="scn-rounds"></div>
+        <div class="scn-big" hidden><h3>The matches that move the numbers most</h3></div>
+        <button type="button" class="scn-reset scn-wide">Clear choices</button>
+        <div class="scn-nav" hidden></div>
+      </div>
+      <button type="button" class="scn-fx" hidden><span class="line"><span class="what"></span><span class="nums num"></span></span><span class="status-line"><span class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="room-text"></span><span class="go"></span></span></button>
+      <div class="scn-side" id="scn-results"><button type="button" class="scn-reset scn-narrow">Clear choices</button><div class="scn-narrow"><ul class="zone-legend"><li><i class="z-title"></i>Champion <small>1st</small></li><li><i class="z-second"></i>Champions <small>2nd</small></li><li><i class="z-champions_playoff"></i>Champions play-off <small>3rd</small></li><li><i class="z-europa"></i>Europa League <small>4th</small></li><li><i class="z-conference"></i>Conference League <small>5th</small></li><li><i class="z-middle"></i>Mid-table <small>6th–15th</small></li><li><i class="z-playoff"></i>Relegation play-off <small>16th</small></li><li><i class="z-relegation"></i>Relegation <small>17th–18th</small></li></ul></div><ol class="zone-rows num scn-table"></ol></div>
+    </div>
+<p class="note scn-sample">This simulator uses 20,000 of the 50,000 simulations, so a number can differ by 1 or 2 from the rest of the site.</p>  </div>
+</section>
+
+<section class="list-block" aria-labelledby="table-title">
+  <h2 id="table-title">Where each club ends up</h2>
+  <p class="lede">Each bar is 100 simulated seasons, split by where the club finishes. Tap a club for the small numbers and its points.</p>
+  <ul class="zone-legend"><li><i class="z-title"></i>Champion <small>1st</small></li><li><i class="z-second"></i>Champions <small>2nd</small></li><li><i class="z-champions_playoff"></i>Champions play-off <small>3rd</small></li><li><i class="z-europa"></i>Europa League <small>4th</small></li><li><i class="z-conference"></i>Conference League <small>5th</small></li><li><i class="z-middle"></i>Mid-table <small>6th–15th</small></li><li><i class="z-playoff"></i>Relegation play-off <small>16th</small></li><li><i class="z-relegation"></i>Relegation <small>17th–18th</small></li></ul>
+  <ol class="zone-rows num">
+    <li data-clubs="porto"><details>
+      <summary><span class="pos">1</span><span class="who"><i class="club-card card-porto"></i>Porto</span><span class="pts">85 pts</span><span class="zone-bar" role="img" aria-label="Champion 53, Champions 42, Champions play-off 5"><i class="z-title" style="flex-grow: 53" title="Champion: 53">53</i><i class="z-second" style="flex-grow: 42" title="Champions: 42">42</i><i class="z-champions_playoff small" style="flex-grow: 5" title="Champions play-off: 5">5</i></span></summary>
+      <p class="zone-detail zone-extra"><span class="phone-only">Champions play-off <b>5</b></span></p>
+      <p class="zone-detail">30 points now, 78 to 91 at the end. <a href="clubes/porto.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="benfica"><details>
+      <summary><span class="pos">2</span><span class="who"><i class="club-card card-benfica"></i>Benfica</span><span class="pts">84 pts</span><span class="zone-bar" role="img" aria-label="Champion 45, Champions 50, Champions play-off 5"><i class="z-title" style="flex-grow: 45" title="Champion: 45">45</i><i class="z-second" style="flex-grow: 50" title="Champions: 50">50</i><i class="z-champions_playoff small" style="flex-grow: 5" title="Champions play-off: 5">5</i></span></summary>
+      <p class="zone-detail zone-extra"><span class="phone-only">Champions play-off <b>5</b></span></p>
+      <p class="zone-detail">25 points now, 78 to 90 at the end. <a href="clubes/benfica.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="sporting"><details>
+      <summary><span class="pos">3</span><span class="who"><i class="club-card card-sporting"></i>Sporting</span><span class="pts">72 pts</span><span class="zone-bar" role="img" aria-label="Champion 1, Champions 8, Champions play-off 85, Europa League 5, Conference League 1"><i class="z-title small" style="flex-grow: 1" title="Champion: 1"></i><i class="z-second small" style="flex-grow: 8" title="Champions: 8">8</i><i class="z-champions_playoff" style="flex-grow: 85" title="Champions play-off: 85">85</i><i class="z-europa small" style="flex-grow: 5" title="Europa League: 5">5</i><i class="z-conference small" style="flex-grow: 1" title="Conference League: 1"></i></span></summary>
+      <p class="zone-detail zone-extra"><span>Champion <b>1</b></span><span class="phone-only">Champions <b>8</b></span><span class="phone-only">Europa League <b>5</b></span><span>Conference League <b>1</b></span></p>
+      <p class="zone-detail">21 points now, 64 to 79 at the end. <a href="clubes/sporting.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="sp-braga"><details>
+      <summary><span class="pos">4</span><span class="who"><i class="club-card card-sp-braga"></i>Sporting de Braga</span><span class="pts">56 pts</span><span class="zone-bar" role="img" aria-label="Champions play-off 3, Europa League 45, Conference League 23, Mid-table 29"><i class="z-champions_playoff small" style="flex-grow: 3" title="Champions play-off: 3"></i><i class="z-europa" style="flex-grow: 45" title="Europa League: 45">45</i><i class="z-conference" style="flex-grow: 23" title="Conference League: 23">23</i><i class="z-middle" style="flex-grow: 29" title="Mid-table: 29">29</i></span></summary>
+      <p class="zone-detail zone-extra"><span>Champions play-off <b>3</b></span></p>
+      <p class="zone-detail">14 points now, 49 to 64 at the end. <a href="clubes/sp-braga.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="santa-clara"><details>
+      <summary><span class="pos">5</span><span class="who"><i class="club-card card-santa-clara"></i>Santa Clara</span><span class="pts">53 pts</span><span class="zone-bar" role="img" aria-label="Champions play-off 1, Europa League 23, Conference League 25, Mid-table 51"><i class="z-champions_playoff small" style="flex-grow: 1" title="Champions play-off: 1"></i><i class="z-europa" style="flex-grow: 23" title="Europa League: 23">23</i><i class="z-conference" style="flex-grow: 25" title="Conference League: 25">25</i><i class="z-middle" style="flex-grow: 51" title="Mid-table: 51">51</i></span></summary>
+      <p class="zone-detail zone-extra"><span>Champions play-off <b>1</b></span></p>
+      <p class="zone-detail">21 points now, 45 to 61 at the end. <a href="clubes/santa-clara.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="academico-viseu"><details>
+      <summary><span class="pos">6</span><span class="who"><i class="club-card card-academico-viseu"></i>Académico de Viseu</span><span class="pts">49 pts</span><span class="zone-bar" role="img" aria-label="Europa League 9, Conference League 13, Mid-table 78"><i class="z-europa small" style="flex-grow: 9" title="Europa League: 9">9</i><i class="z-conference" style="flex-grow: 13" title="Conference League: 13">13</i><i class="z-middle" style="flex-grow: 78" title="Mid-table: 78">78</i></span></summary>
+      <p class="zone-detail zone-extra"><span class="phone-only">Europa League <b>9</b></span></p>
+      <p class="zone-detail">20 points now, 41 to 57 at the end. <a href="clubes/academico-viseu.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="arouca"><details>
+      <summary><span class="pos">7</span><span class="who"><i class="club-card card-arouca"></i>Arouca</span><span class="pts">49 pts</span><span class="zone-bar" role="img" aria-label="Champions play-off 1, Europa League 8, Conference League 13, Mid-table 78"><i class="z-champions_playoff small" style="flex-grow: 1" title="Champions play-off: 1"></i><i class="z-europa small" style="flex-grow: 8" title="Europa League: 8">8</i><i class="z-conference" style="flex-grow: 13" title="Conference League: 13">13</i><i class="z-middle" style="flex-grow: 78" title="Mid-table: 78">78</i></span></summary>
+      <p class="zone-detail zone-extra"><span>Champions play-off <b>1</b></span><span class="phone-only">Europa League <b>8</b></span></p>
+      <p class="zone-detail">20 points now, 41 to 57 at the end. <a href="clubes/arouca.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="guimaraes"><details>
+      <summary><span class="pos">8</span><span class="who"><i class="club-card card-guimaraes"></i>Vitória SC</span><span class="pts">46 pts</span><span class="zone-bar" role="img" aria-label="Europa League 4, Conference League 8, Mid-table 87, Relegation play-off 1"><i class="z-europa small" style="flex-grow: 4" title="Europa League: 4"></i><i class="z-conference small" style="flex-grow: 8" title="Conference League: 8">8</i><i class="z-middle" style="flex-grow: 87" title="Mid-table: 87">87</i><i class="z-playoff small" style="flex-grow: 1" title="Relegation play-off: 1"></i></span></summary>
+      <p class="zone-detail zone-extra"><span>Europa League <b>4</b></span><span class="phone-only">Conference League <b>8</b></span><span>Relegation play-off <b>1</b></span></p>
+      <p class="zone-detail">9 points now, 38 to 54 at the end. <a href="clubes/guimaraes.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="gil-vicente"><details>
+      <summary><span class="pos">9</span><span class="who"><i class="club-card card-gil-vicente"></i>Gil Vicente</span><span class="pts">46 pts</span><span class="zone-bar" role="img" aria-label="Europa League 4, Conference League 8, Mid-table 87, Relegation play-off 1"><i class="z-europa small" style="flex-grow: 4" title="Europa League: 4"></i><i class="z-conference small" style="flex-grow: 8" title="Conference League: 8">8</i><i class="z-middle" style="flex-grow: 87" title="Mid-table: 87">87</i><i class="z-playoff small" style="flex-grow: 1" title="Relegation play-off: 1"></i></span></summary>
+      <p class="zone-detail zone-extra"><span>Europa League <b>4</b></span><span class="phone-only">Conference League <b>8</b></span><span>Relegation play-off <b>1</b></span></p>
+      <p class="zone-detail">15 points now, 38 to 54 at the end. <a href="clubes/gil-vicente.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="famalicao"><details>
+      <summary><span class="pos">10</span><span class="who"><i class="club-card card-famalicao"></i>Famalicão</span><span class="pts">44 pts</span><span class="zone-bar" role="img" aria-label="Europa League 2, Conference League 5, Mid-table 92, Relegation play-off 1"><i class="z-europa small" style="flex-grow: 2" title="Europa League: 2"></i><i class="z-conference small" style="flex-grow: 5" title="Conference League: 5">5</i><i class="z-middle" style="flex-grow: 92" title="Mid-table: 92">92</i><i class="z-playoff small" style="flex-grow: 1" title="Relegation play-off: 1"></i></span></summary>
+      <p class="zone-detail zone-extra"><span>Europa League <b>2</b></span><span class="phone-only">Conference League <b>5</b></span><span>Relegation play-off <b>1</b></span></p>
+      <p class="zone-detail">10 points now, 36 to 52 at the end. <a href="clubes/famalicao.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="alverca"><details>
+      <summary><span class="pos">11</span><span class="who"><i class="club-card card-alverca"></i>Alverca</span><span class="pts">41 pts</span><span class="zone-bar" role="img" aria-label="Europa League 1, Conference League 2, Mid-table 93, Relegation play-off 2, Relegation 2"><i class="z-europa small" style="flex-grow: 1" title="Europa League: 1"></i><i class="z-conference small" style="flex-grow: 2" title="Conference League: 2"></i><i class="z-middle" style="flex-grow: 93" title="Mid-table: 93">93</i><i class="z-playoff small" style="flex-grow: 2" title="Relegation play-off: 2"></i><i class="z-relegation small" style="flex-grow: 2" title="Relegation: 2"></i></span></summary>
+      <p class="zone-detail zone-extra"><span>Europa League <b>1</b></span><span>Conference League <b>2</b></span><span>Relegation play-off <b>2</b></span><span>Relegation <b>2</b></span></p>
+      <p class="zone-detail">11 points now, 33 to 49 at the end. <a href="clubes/alverca.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="moreirense"><details>
+      <summary><span class="pos">12</span><span class="who"><i class="club-card card-moreirense"></i>Moreirense</span><span class="pts">36 pts</span><span class="zone-bar" role="img" aria-label="Mid-table 85, Relegation play-off 8, Relegation 7"><i class="z-middle" style="flex-grow: 85" title="Mid-table: 85">85</i><i class="z-playoff small" style="flex-grow: 8" title="Relegation play-off: 8">8</i><i class="z-relegation small" style="flex-grow: 7" title="Relegation: 7">7</i></span></summary>
+      <p class="zone-detail zone-extra"><span class="phone-only">Relegation play-off <b>8</b></span><span class="phone-only">Relegation <b>7</b></span></p>
+      <p class="zone-detail">14 points now, 29 to 44 at the end. <a href="clubes/moreirense.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="estrela-amadora"><details>
+      <summary><span class="pos">13</span><span class="who"><i class="club-card card-estrela-amadora"></i>Estrela da Amadora</span><span class="pts">36 pts</span><span class="zone-bar" role="img" aria-label="Mid-table 84, Relegation play-off 8, Relegation 8"><i class="z-middle" style="flex-grow: 84" title="Mid-table: 84">84</i><i class="z-playoff small" style="flex-grow: 8" title="Relegation play-off: 8">8</i><i class="z-relegation small" style="flex-grow: 8" title="Relegation: 8">8</i></span></summary>
+      <p class="zone-detail zone-extra"><span class="phone-only">Relegation play-off <b>8</b></span><span class="phone-only">Relegation <b>8</b></span></p>
+      <p class="zone-detail">10 points now, 29 to 44 at the end. <a href="clubes/estrela-amadora.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="maritimo"><details>
+      <summary><span class="pos">14</span><span class="who"><i class="club-card card-maritimo"></i>Marítimo</span><span class="pts">35 pts</span><span class="zone-bar" role="img" aria-label="Mid-table 75, Relegation play-off 11, Relegation 14"><i class="z-middle" style="flex-grow: 75" title="Mid-table: 75">75</i><i class="z-playoff" style="flex-grow: 11" title="Relegation play-off: 11">11</i><i class="z-relegation" style="flex-grow: 14" title="Relegation: 14">14</i></span></summary>
+      <p class="zone-detail zone-extra"></p>
+      <p class="zone-detail">8 points now, 27 to 42 at the end. <a href="clubes/maritimo.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="rio-ave"><details>
+      <summary><span class="pos">15</span><span class="who"><i class="club-card card-rio-ave"></i>Rio Ave</span><span class="pts">30 pts</span><span class="zone-bar" role="img" aria-label="Mid-table 51, Relegation play-off 17, Relegation 32"><i class="z-middle" style="flex-grow: 51" title="Mid-table: 51">51</i><i class="z-playoff" style="flex-grow: 17" title="Relegation play-off: 17">17</i><i class="z-relegation" style="flex-grow: 32" title="Relegation: 32">32</i></span></summary>
+      <p class="zone-detail zone-extra"></p>
+      <p class="zone-detail">7 points now, 23 to 38 at the end. <a href="clubes/rio-ave.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="casa-pia"><details>
+      <summary><span class="pos">16</span><span class="who"><i class="club-card card-casa-pia"></i>Casa Pia</span><span class="pts">30 pts</span><span class="zone-bar" role="img" aria-label="Mid-table 44, Relegation play-off 18, Relegation 38"><i class="z-middle" style="flex-grow: 44" title="Mid-table: 44">44</i><i class="z-playoff" style="flex-grow: 18" title="Relegation play-off: 18">18</i><i class="z-relegation" style="flex-grow: 38" title="Relegation: 38">38</i></span></summary>
+      <p class="zone-detail zone-extra"></p>
+      <p class="zone-detail">7 points now, 22 to 37 at the end. <a href="clubes/casa-pia.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="nacional"><details>
+      <summary><span class="pos">17</span><span class="who"><i class="club-card card-nacional"></i>Nacional</span><span class="pts">28 pts</span><span class="zone-bar" role="img" aria-label="Mid-table 34, Relegation play-off 17, Relegation 49"><i class="z-middle" style="flex-grow: 34" title="Mid-table: 34">34</i><i class="z-playoff" style="flex-grow: 17" title="Relegation play-off: 17">17</i><i class="z-relegation" style="flex-grow: 49" title="Relegation: 49">49</i></span></summary>
+      <p class="zone-detail zone-extra"></p>
+      <p class="zone-detail">7 points now, 21 to 35 at the end. <a href="clubes/nacional.html">See the club →</a></p>
+    </details></li>
+    <li data-clubs="estoril"><details>
+      <summary><span class="pos">18</span><span class="who"><i class="club-card card-estoril"></i>Estoril Praia</span><span class="pts">28 pts</span><span class="zone-bar" role="img" aria-label="Mid-table 34, Relegation play-off 16, Relegation 50"><i class="z-middle" style="flex-grow: 34" title="Mid-table: 34">34</i><i class="z-playoff" style="flex-grow: 16" title="Relegation play-off: 16">16</i><i class="z-relegation" style="flex-grow: 50" title="Relegation: 50">50</i></span></summary>
+      <p class="zone-detail zone-extra"></p>
+      <p class="zone-detail">2 points now, 20 to 36 at the end. <a href="clubes/estoril.html">See the club →</a></p>
+    </details></li>
+  </ol>
+</section>
+
+<section class="list-block" aria-labelledby="map-title">
+  <h2 id="map-title">Place by place</h2>
+  <p class="lede">Out of 100 simulated seasons, how many times each club finishes in each place. The brighter the card, the more likely.</p>
+  <div class="scroll"><table class="heat num">
+    <thead><tr><th class="text">Club</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th></tr></thead>
+    <tbody>
+      <tr data-clubs="porto"><th class="text" scope="row"><a class="club" href="clubes/porto.html">Porto</a></th><td class="hot" style="--p: 0.533">53</td><td class="hot" style="--p: 0.418">42</td><td style="--p: 0.049">5</td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
+      <tr data-clubs="benfica"><th class="text" scope="row"><a class="club" href="clubes/benfica.html">Benfica</a></th><td class="hot" style="--p: 0.452">45</td><td class="hot" style="--p: 0.499">50</td><td style="--p: 0.049">5</td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
+      <tr data-clubs="sporting"><th class="text" scope="row"><a class="club" href="clubes/sporting.html">Sporting</a></th><td style="--p: 0.015"><span class="sr">2</span></td><td style="--p: 0.083">8</td><td class="hot" style="--p: 0.847">85</td><td style="--p: 0.046">5</td><td style="--p: 0.007"><span class="sr">1</span></td><td style="--p: 0.002"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
+      <tr data-clubs="sp-braga"><th class="text" scope="row"><a class="club" href="clubes/sp-braga.html">Sporting de Braga</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.029"><span class="sr">3</span></td><td class="hot" style="--p: 0.449">45</td><td style="--p: 0.233">23</td><td style="--p: 0.129">13</td><td style="--p: 0.073">7</td><td style="--p: 0.042"><span class="sr">4</span></td><td style="--p: 0.023"><span class="sr">2</span></td><td style="--p: 0.012"><span class="sr">1</span></td><td style="--p: 0.006"><span class="sr">1</span></td><td style="--p: 0.002"></td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
+      <tr data-clubs="santa-clara"><th class="text" scope="row"><a class="club" href="clubes/santa-clara.html">Santa Clara</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.016"><span class="sr">2</span></td><td style="--p: 0.226">23</td><td style="--p: 0.251">25</td><td style="--p: 0.179">18</td><td style="--p: 0.124">12</td><td style="--p: 0.084">8</td><td style="--p: 0.056">6</td><td style="--p: 0.033"><span class="sr">3</span></td><td style="--p: 0.018"><span class="sr">2</span></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.003"></td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
+      <tr data-clubs="academico-viseu"><th class="text" scope="row"><a class="club" href="clubes/academico-viseu.html">Académico de Viseu</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.004"></td><td style="--p: 0.086">9</td><td style="--p: 0.134">13</td><td style="--p: 0.163">16</td><td style="--p: 0.158">16</td><td style="--p: 0.141">14</td><td style="--p: 0.114">11</td><td style="--p: 0.086">9</td><td style="--p: 0.055">5</td><td style="--p: 0.031"><span class="sr">3</span></td><td style="--p: 0.016"><span class="sr">2</span></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.003"></td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
+      <tr data-clubs="arouca"><th class="text" scope="row"><a class="club" href="clubes/arouca.html">Arouca</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.003"></td><td style="--p: 0.081">8</td><td style="--p: 0.133">13</td><td style="--p: 0.159">16</td><td style="--p: 0.159">16</td><td style="--p: 0.143">14</td><td style="--p: 0.118">12</td><td style="--p: 0.088">9</td><td style="--p: 0.056">6</td><td style="--p: 0.032"><span class="sr">3</span></td><td style="--p: 0.016"><span class="sr">2</span></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.003"></td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
+      <tr data-clubs="guimaraes"><th class="text" scope="row"><a class="club" href="clubes/guimaraes.html">Vitória SC</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.040"><span class="sr">4</span></td><td style="--p: 0.085">8</td><td style="--p: 0.114">11</td><td style="--p: 0.136">14</td><td style="--p: 0.147">15</td><td style="--p: 0.136">14</td><td style="--p: 0.118">12</td><td style="--p: 0.090">9</td><td style="--p: 0.059">6</td><td style="--p: 0.037"><span class="sr">4</span></td><td style="--p: 0.021"><span class="sr">2</span></td><td style="--p: 0.010"><span class="sr">1</span></td><td style="--p: 0.005"></td><td style="--p: 0.001"></td><td style="--p: 0.001"></td></tr>
+      <tr data-clubs="gil-vicente"><th class="text" scope="row"><a class="club" href="clubes/gil-vicente.html">Gil Vicente</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.042"><span class="sr">4</span></td><td style="--p: 0.079">8</td><td style="--p: 0.112">11</td><td style="--p: 0.131">13</td><td style="--p: 0.141">14</td><td style="--p: 0.141">14</td><td style="--p: 0.125">12</td><td style="--p: 0.095">10</td><td style="--p: 0.060">6</td><td style="--p: 0.037"><span class="sr">4</span></td><td style="--p: 0.019"><span class="sr">2</span></td><td style="--p: 0.010"><span class="sr">1</span></td><td style="--p: 0.004"></td><td style="--p: 0.002"></td><td style="--p: 0.000"></td></tr>
+      <tr data-clubs="famalicao"><th class="text" scope="row"><a class="club" href="clubes/famalicao.html">Famalicão</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.020"><span class="sr">2</span></td><td style="--p: 0.049">5</td><td style="--p: 0.078">8</td><td style="--p: 0.107">11</td><td style="--p: 0.129">13</td><td style="--p: 0.144">14</td><td style="--p: 0.141">14</td><td style="--p: 0.123">12</td><td style="--p: 0.088">9</td><td style="--p: 0.059">6</td><td style="--p: 0.032"><span class="sr">3</span></td><td style="--p: 0.017"><span class="sr">2</span></td><td style="--p: 0.009"><span class="sr">1</span></td><td style="--p: 0.004"></td><td style="--p: 0.001"></td></tr>
+      <tr data-clubs="alverca"><th class="text" scope="row"><a class="club" href="clubes/alverca.html">Alverca</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.023"><span class="sr">2</span></td><td style="--p: 0.041"><span class="sr">4</span></td><td style="--p: 0.065">6</td><td style="--p: 0.087">9</td><td style="--p: 0.115">11</td><td style="--p: 0.138">14</td><td style="--p: 0.148">15</td><td style="--p: 0.129">13</td><td style="--p: 0.095">10</td><td style="--p: 0.068">7</td><td style="--p: 0.044"><span class="sr">4</span></td><td style="--p: 0.024"><span class="sr">2</span></td><td style="--p: 0.012"><span class="sr">1</span></td><td style="--p: 0.005"></td></tr>
+      <tr data-clubs="moreirense"><th class="text" scope="row"><a class="club" href="clubes/moreirense.html">Moreirense</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.003"></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.016"><span class="sr">2</span></td><td style="--p: 0.029"><span class="sr">3</span></td><td style="--p: 0.048">5</td><td style="--p: 0.079">8</td><td style="--p: 0.114">11</td><td style="--p: 0.147">15</td><td style="--p: 0.159">16</td><td style="--p: 0.139">14</td><td style="--p: 0.109">11</td><td style="--p: 0.077">8</td><td style="--p: 0.047">5</td><td style="--p: 0.021"><span class="sr">2</span></td></tr>
+      <tr data-clubs="estrela-amadora"><th class="text" scope="row"><a class="club" href="clubes/estrela-amadora.html">Estrela da Amadora</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.003"></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.017"><span class="sr">2</span></td><td style="--p: 0.028"><span class="sr">3</span></td><td style="--p: 0.048">5</td><td style="--p: 0.072">7</td><td style="--p: 0.113">11</td><td style="--p: 0.144">14</td><td style="--p: 0.152">15</td><td style="--p: 0.142">14</td><td style="--p: 0.113">11</td><td style="--p: 0.082">8</td><td style="--p: 0.053">5</td><td style="--p: 0.025"><span class="sr">3</span></td></tr>
+      <tr data-clubs="maritimo"><th class="text" scope="row"><a class="club" href="clubes/maritimo.html">Marítimo</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.002"></td><td style="--p: 0.004"></td><td style="--p: 0.010"><span class="sr">1</span></td><td style="--p: 0.018"><span class="sr">2</span></td><td style="--p: 0.034"><span class="sr">3</span></td><td style="--p: 0.056">6</td><td style="--p: 0.083">8</td><td style="--p: 0.119">12</td><td style="--p: 0.142">14</td><td style="--p: 0.150">15</td><td style="--p: 0.134">13</td><td style="--p: 0.112">11</td><td style="--p: 0.084">8</td><td style="--p: 0.052">5</td></tr>
+      <tr data-clubs="rio-ave"><th class="text" scope="row"><a class="club" href="clubes/rio-ave.html">Rio Ave</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.002"></td><td style="--p: 0.004"></td><td style="--p: 0.009"><span class="sr">1</span></td><td style="--p: 0.018"><span class="sr">2</span></td><td style="--p: 0.035"><span class="sr">3</span></td><td style="--p: 0.064">6</td><td style="--p: 0.092">9</td><td style="--p: 0.125">12</td><td style="--p: 0.156">16</td><td style="--p: 0.175">17</td><td style="--p: 0.173">17</td><td style="--p: 0.148">15</td></tr>
+      <tr data-clubs="casa-pia"><th class="text" scope="row"><a class="club" href="clubes/casa-pia.html">Casa Pia</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.001"></td><td style="--p: 0.004"></td><td style="--p: 0.007"><span class="sr">1</span></td><td style="--p: 0.014"><span class="sr">1</span></td><td style="--p: 0.027"><span class="sr">3</span></td><td style="--p: 0.049">5</td><td style="--p: 0.079">8</td><td style="--p: 0.113">11</td><td style="--p: 0.149">15</td><td style="--p: 0.178">18</td><td style="--p: 0.187">19</td><td style="--p: 0.190">19</td></tr>
+      <tr data-clubs="nacional"><th class="text" scope="row"><a class="club" href="clubes/nacional.html">Nacional</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.001"></td><td style="--p: 0.003"></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.017"><span class="sr">2</span></td><td style="--p: 0.033"><span class="sr">3</span></td><td style="--p: 0.055">5</td><td style="--p: 0.089">9</td><td style="--p: 0.130">13</td><td style="--p: 0.173">17</td><td style="--p: 0.226">23</td><td style="--p: 0.264">26</td></tr>
+      <tr data-clubs="estoril"><th class="text" scope="row"><a class="club" href="clubes/estoril.html">Estoril Praia</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.002"></td><td style="--p: 0.005"></td><td style="--p: 0.010"><span class="sr">1</span></td><td style="--p: 0.021"><span class="sr">2</span></td><td style="--p: 0.034"><span class="sr">3</span></td><td style="--p: 0.058">6</td><td style="--p: 0.086">9</td><td style="--p: 0.119">12</td><td style="--p: 0.160">16</td><td style="--p: 0.211">21</td><td style="--p: 0.293">29</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="list-block two-charts">
+  <div>
+    <h2>The title race so far</h2>
+    <div class="legend"><span><i class="k1"></i>Porto</span><span><i class="k2"></i>Benfica</span><span><i class="k3"></i>Sporting</span></div>
+    <div class="scroll"><svg class="chart" viewBox="0 0 720 240" role="img" aria-label="chance of winning the league"><line class="grid" x1="48" x2="704" y1="196.0" y2="196.0"/><text class="tick" x="40" y="200.0" text-anchor="end">0%</text><line class="grid" x1="48" x2="704" y1="150.0" y2="150.0"/><text class="tick" x="40" y="154.0" text-anchor="end">25%</text><line class="grid" x1="48" x2="704" y1="104.0" y2="104.0"/><text class="tick" x="40" y="108.0" text-anchor="end">50%</text><line class="grid" x1="48" x2="704" y1="58.0" y2="58.0"/><text class="tick" x="40" y="62.0" text-anchor="end">75%</text><line class="grid" x1="48" x2="704" y1="12.0" y2="12.0"/><text class="tick" x="40" y="16.0" text-anchor="end">100%</text><text class="tick" x="120.9" y="212" text-anchor="middle">82</text><text class="tick" x="266.7" y="212" text-anchor="middle">84</text><text class="tick" x="412.4" y="212" text-anchor="middle">86</text><text class="tick" x="558.2" y="212" text-anchor="middle">88</text><text class="tick" x="704.0" y="212" text-anchor="middle">90</text><text class="axis-label" x="376.0" y="234" text-anchor="middle">results in the table</text><polyline class="line s1" points="48.0,101.5 558.2,92.8 704.0,97.9"/><g><title>Porto: 51% after 81 results (to 2026-10-29)</title><circle class="hit" cx="48.0" cy="101.5" r="9"/><circle class="marker s1" cx="48.0" cy="101.5" r="3"/></g><g><title>Porto: 56% after 88 results (to 2026-11-02)</title><circle class="hit" cx="558.2" cy="92.8" r="9"/><circle class="marker s1" cx="558.2" cy="92.8" r="3"/></g><g><title>Porto: 53% after 90 results (to 2026-11-03)</title><circle class="hit" cx="704.0" cy="97.9" r="9"/><circle class="marker s1" cx="704.0" cy="97.9" r="3"/></g><polyline class="line s2" points="48.0,111.2 558.2,118.2 704.0,112.9"/><g><title>Benfica: 46% after 81 results (to 2026-10-29)</title><circle class="hit" cx="48.0" cy="111.2" r="9"/><circle class="marker s2" cx="48.0" cy="111.2" r="3"/></g><g><title>Benfica: 42% after 88 results (to 2026-11-02)</title><circle class="hit" cx="558.2" cy="118.2" r="9"/><circle class="marker s2" cx="558.2" cy="118.2" r="3"/></g><g><title>Benfica: 45% after 90 results (to 2026-11-03)</title><circle class="hit" cx="704.0" cy="112.9" r="9"/><circle class="marker s2" cx="704.0" cy="112.9" r="3"/></g><polyline class="line s3" points="48.0,191.4 558.2,193.0 704.0,193.2"/><g><title>Sporting: 3% after 81 results (to 2026-10-29)</title><circle class="hit" cx="48.0" cy="191.4" r="9"/><circle class="marker s3" cx="48.0" cy="191.4" r="3"/></g><g><title>Sporting: 2% after 88 results (to 2026-11-02)</title><circle class="hit" cx="558.2" cy="193.0" r="9"/><circle class="marker s3" cx="558.2" cy="193.0" r="3"/></g><g><title>Sporting: 2% after 90 results (to 2026-11-03)</title><circle class="hit" cx="704.0" cy="193.2" r="9"/><circle class="marker s3" cx="704.0" cy="193.2" r="3"/></g></svg></div>
+  </div>
+  <div>
+    <h2>The relegation fight so far</h2>
+    <div class="legend"><span><i class="k1"></i>Estoril Praia</span><span><i class="k2"></i>Nacional</span><span><i class="k3"></i>Casa Pia</span><span><i class="k4"></i>Rio Ave</span><span><i class="k5"></i>Marítimo</span></div>
+    <div class="scroll"><svg class="chart" viewBox="0 0 720 240" role="img" aria-label="chance of going down"><line class="grid" x1="48" x2="704" y1="196.0" y2="196.0"/><text class="tick" x="40" y="200.0" text-anchor="end">0%</text><line class="grid" x1="48" x2="704" y1="150.0" y2="150.0"/><text class="tick" x="40" y="154.0" text-anchor="end">25%</text><line class="grid" x1="48" x2="704" y1="104.0" y2="104.0"/><text class="tick" x="40" y="108.0" text-anchor="end">50%</text><line class="grid" x1="48" x2="704" y1="58.0" y2="58.0"/><text class="tick" x="40" y="62.0" text-anchor="end">75%</text><line class="grid" x1="48" x2="704" y1="12.0" y2="12.0"/><text class="tick" x="40" y="16.0" text-anchor="end">100%</text><text class="tick" x="120.9" y="212" text-anchor="middle">82</text><text class="tick" x="266.7" y="212" text-anchor="middle">84</text><text class="tick" x="412.4" y="212" text-anchor="middle">86</text><text class="tick" x="558.2" y="212" text-anchor="middle">88</text><text class="tick" x="704.0" y="212" text-anchor="middle">90</text><text class="axis-label" x="376.0" y="234" text-anchor="middle">results in the table</text><polyline class="line s1" points="48.0,107.0 558.2,103.7 704.0,103.4"/><g><title>Estoril Praia: 48% after 81 results (to 2026-10-29)</title><circle class="hit" cx="48.0" cy="107.0" r="9"/><circle class="marker s1" cx="48.0" cy="107.0" r="3"/></g><g><title>Estoril Praia: 50% after 88 results (to 2026-11-02)</title><circle class="hit" cx="558.2" cy="103.7" r="9"/><circle class="marker s1" cx="558.2" cy="103.7" r="3"/></g><g><title>Estoril Praia: 50% after 90 results (to 2026-11-03)</title><circle class="hit" cx="704.0" cy="103.4" r="9"/><circle class="marker s1" cx="704.0" cy="103.4" r="3"/></g><polyline class="line s2" points="48.0,124.5 558.2,106.9 704.0,105.9"/><g><title>Nacional: 39% after 81 results (to 2026-10-29)</title><circle class="hit" cx="48.0" cy="124.5" r="9"/><circle class="marker s2" cx="48.0" cy="124.5" r="3"/></g><g><title>Nacional: 48% after 88 results (to 2026-11-02)</title><circle class="hit" cx="558.2" cy="106.9" r="9"/><circle class="marker s2" cx="558.2" cy="106.9" r="3"/></g><g><title>Nacional: 49% after 90 results (to 2026-11-03)</title><circle class="hit" cx="704.0" cy="105.9" r="9"/><circle class="marker s2" cx="704.0" cy="105.9" r="3"/></g><polyline class="line s3" points="48.0,109.1 558.2,125.6 704.0,126.5"/><g><title>Casa Pia: 47% after 81 results (to 2026-10-29)</title><circle class="hit" cx="48.0" cy="109.1" r="9"/><circle class="marker s3" cx="48.0" cy="109.1" r="3"/></g><g><title>Casa Pia: 38% after 88 results (to 2026-11-02)</title><circle class="hit" cx="558.2" cy="125.6" r="9"/><circle class="marker s3" cx="558.2" cy="125.6" r="3"/></g><g><title>Casa Pia: 38% after 90 results (to 2026-11-03)</title><circle class="hit" cx="704.0" cy="126.5" r="9"/><circle class="marker s3" cx="704.0" cy="126.5" r="3"/></g><polyline class="line s4" points="48.0,146.5 558.2,138.1 704.0,137.0"/><g><title>Rio Ave: 27% after 81 results (to 2026-10-29)</title><circle class="hit" cx="48.0" cy="146.5" r="9"/><circle class="marker s4" cx="48.0" cy="146.5" r="3"/></g><g><title>Rio Ave: 31% after 88 results (to 2026-11-02)</title><circle class="hit" cx="558.2" cy="138.1" r="9"/><circle class="marker s4" cx="558.2" cy="138.1" r="3"/></g><g><title>Rio Ave: 32% after 90 results (to 2026-11-03)</title><circle class="hit" cx="704.0" cy="137.0" r="9"/><circle class="marker s4" cx="704.0" cy="137.0" r="3"/></g><polyline class="line s5" points="48.0,172.5 558.2,169.7 704.0,171.0"/><g><title>Marítimo: 13% after 81 results (to 2026-10-29)</title><circle class="hit" cx="48.0" cy="172.5" r="9"/><circle class="marker s5" cx="48.0" cy="172.5" r="3"/></g><g><title>Marítimo: 14% after 88 results (to 2026-11-02)</title><circle class="hit" cx="558.2" cy="169.7" r="9"/><circle class="marker s5" cx="558.2" cy="169.7" r="3"/></g><g><title>Marítimo: 14% after 90 results (to 2026-11-03)</title><circle class="hit" cx="704.0" cy="171.0" r="9"/><circle class="marker s5" cx="704.0" cy="171.0" r="3"/></g></svg></div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap">Personal project. Forecasts are chances, not promises, and nothing here is betting advice. <a href="../en/como-funciona.html">How it works</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></div></footer>
+<script>
+(function () {
+  var d = document.documentElement, b = document.querySelector(".bar .theme");
+  b.addEventListener("click", function () {
+    var dark = d.dataset.theme ? d.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    d.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("theme", d.dataset.theme); } catch (e) {}
+  });
+})();
+</script>
+<script>
+(function () {
+  // The fan's club (D-089): kept in this browser only. Adds to the page, never required by it.
+  var KEY = "club", club = null;
+  try { club = localStorage.getItem(KEY); } catch (e) {}
+
+  function save(value) {
+    club = value || null;
+    try { if (club) localStorage.setItem(KEY, club); else localStorage.removeItem(KEY); } catch (e) {}
+    apply();
+  }
+
+  function apply() {
+    document.documentElement.dataset.club = club || "";
+    document.querySelectorAll("[data-clubs]").forEach(function (el) {
+      el.classList.toggle("mine", !!club && el.dataset.clubs.split(" ").indexOf(club) >= 0);
+    });
+    // The club's match follows the big three's in the week's list (D-088).
+    document.querySelectorAll("[data-reorder]").forEach(function (list) {
+      var mine = list.querySelector("li.mine:not([data-big])");
+      if (!mine) return;
+      var big = list.querySelectorAll("li[data-big]");
+      list.insertBefore(mine, big.length ? big[big.length - 1].nextSibling : list.firstChild);
+    });
+    document.querySelectorAll("[data-club-pick]").forEach(function (select) { select.value = club || ""; });
+    document.querySelectorAll("[data-club-toggle]").forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.dataset.clubToggle === club));
+    });
+  }
+
+  document.querySelectorAll("[data-club-pick]").forEach(function (select) {
+    select.addEventListener("change", function () { save(select.value); });
+  });
+  document.querySelectorAll("[data-club-toggle]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      save(button.dataset.clubToggle === club ? null : button.dataset.clubToggle);
+    });
+  });
+  window.markMyClub = apply;  // the simulator redraws its table and marks it again
+  apply();
+})();
+</script>
+<script>
+(() => {
+  "use strict";
+  const box = document.getElementById("scenario");
+  if (!box) return;
+  const T = JSON.parse(box.dataset.text);
+  const order = JSON.parse(box.dataset.order);
+  const lang = box.dataset.lang;
+  const status = box.querySelector(".scn-status");
+  const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, k) => values[k]);
+  const pct = (p) => p < 0.005 ? "<1%" : p > 0.995 ? ">99%" : Math.round(p * 100) + "%";
+  const day = (iso) => lang === "pt" ? iso.slice(8, 10) + "/" + iso.slice(5, 7) + "/" + iso.slice(0, 4) : iso;
+  const thousands = (n) => n.toLocaleString(lang === "pt" ? "pt-PT" : "en-GB");
+  // A link from a club's page names the club and, sometimes, a result to start from (D-122).
+  const params = new URLSearchParams(location.search);
+  status.textContent = T.loading;
+  Promise.all([
+    fetch(box.dataset.src + ".json").then((r) => { if (!r.ok) throw r; return r.json(); }),
+    fetch(box.dataset.src + ".bin").then((r) => { if (!r.ok) throw r; return r.arrayBuffer(); }),
+  ]).then(([meta, raw]) => start(meta, new Uint8Array(raw))).catch(() => { status.textContent = T.failed; });
+
+  function start(meta, buf) {
+    const N = meta.sims, B = meta.outcome_bytes, C = meta.clubs.length, posAt = N * B;
+    if (buf.length !== N * (B + C)) { status.textContent = T.failed; return; }
+    // Every place once, as the league allocates it (D-098): [key, best, worst]. They add up to 100.
+    const events = [["title", 1, 1], ["second", 2, 2], ["champions_playoff", 3, 3], ["europa", 4, 4],
+      ["conference", 5, 5], ["middle", 6, C - 3], ["playoff", C - 2, C - 2], ["relegation", C - 1, C]];
+    const index = new Map(meta.clubs.map((c, i) => [c.id, i]));
+    const rows = order.filter((id) => index.has(id)).map((id) => index.get(id));
+    const choice = new Map();  // match index -> 0, 1 or 2
+
+    function count() {
+      const hits = events.map(() => new Uint32Array(C));
+      const picks = [...choice.entries()];
+      let n = 0;
+      for (let s = 0; s < N; s++) {
+        let ok = true;
+        for (const [j, k] of picks) {
+          if (((buf[s * B + (j >> 2)] >> ((j & 3) * 2)) & 3) !== k) { ok = false; break; }
+        }
+        if (!ok) continue;
+        n++;
+        for (let c = 0; c < C; c++) {
+          const p = buf[posAt + s * C + c];
+          events.forEach(([, lo, hi], i) => { if (p >= lo && p <= hi) hits[i][c]++; });
+        }
+      }
+      return { n, hits };
+    }
+    const base = count();
+    // Below this, a club can reach 100% just because the handful of simulations left agree (D-124).
+    const MIN_SIMS = 100;
+
+    // Whole cards out of 100 by the largest remainder, as on the rest of the site (D-092).
+    function cards(counts, total) {
+      const exact = counts.map((x) => x / total * 100);
+      const out = exact.map(Math.floor);
+      const left = 100 - out.reduce((a, b) => a + b, 0);
+      exact.map((x, i) => [x - out[i], i]).sort((a, b) => b[0] - a[0] || a[1] - b[1])
+        .slice(0, left).forEach(([, i]) => { out[i]++; });
+      return out;
+    }
+    const clubCounts = (state, c) => events.map((_, i) => state.hits[i][c]);
+    // What the places mean to a fan, in the order a tie is settled. The middle of the table means
+    // nothing to anyone, so it is in none of them (D-122).
+    const MEANINGS = [["title", ["title"], "title"],
+      ["europe", ["second", "champions_playoff", "europa", "conference"], "europa"],
+      ["relegation", ["playoff", "relegation"], "relegation"]];
+    function biggestChange(was, is) {
+      let top = null;
+      MEANINGS.forEach(([key, places, colour]) => {
+        const sum = (a) => events.reduce((t, [e], i) => t + (places.includes(e) ? a[i] : 0), 0);
+        const from = sum(was), to = sum(is);
+        if (Math.abs(to - from) > (top ? Math.abs(top.to - top.from) : 0)) top = { key, colour, from, to };
+      });
+      return top;
+    }
+    const list = box.querySelector(".scn-table");
+    const bars = new Map();  // club -> {segments, delta}: drawn once, so the widths can animate
+    rows.forEach((c) => {
+      const li = document.createElement("li");
+      li.dataset.clubs = meta.clubs[c].id;
+      const fold = document.createElement("details");
+      const head = document.createElement("summary");
+      const name = document.createElement("span");
+      name.className = "who"; name.textContent = meta.clubs[c].name;
+      const delta = document.createElement("span");
+      delta.className = "delta";
+      const bar = document.createElement("span");
+      bar.className = "zone-bar"; bar.setAttribute("role", "img");
+      const segments = events.map(([e]) => {
+        const seg = document.createElement("i");
+        seg.className = "z-" + e; seg.style.flexGrow = "0";
+        bar.appendChild(seg);
+        return seg;
+      });
+      // The shadow: how the club stood before any choice, under the bar that moves.
+      const ghost = document.createElement("span");
+      ghost.className = "zone-bar ghost"; ghost.setAttribute("aria-hidden", "true");
+      cards(clubCounts(base, c), base.n).forEach((n, i) => {
+        const seg = document.createElement("i");
+        seg.className = "z-" + events[i][0]; seg.style.flexGrow = String(n);
+        ghost.appendChild(seg);
+      });
+      const detail = document.createElement("p");
+      detail.className = "zone-detail zone-extra";
+      const more = document.createElement("p");
+      more.className = "zone-detail";
+      const link = document.createElement("a");
+      link.href = "clubes/" + meta.clubs[c].id + ".html";
+      link.textContent = T.see_club + " \u2192";
+      more.appendChild(link);
+      head.append(name, delta, bar, ghost);
+      fold.append(head, detail, more);
+      li.appendChild(fold);
+      list.appendChild(li);
+      bars.set(c, { segments, delta, bar, detail });
+    });
+    function table(now) {
+      const tooFew = choice.size > 0 && now.n < MIN_SIMS;
+      list.classList.toggle("has-choice", choice.size > 0 && !tooFew);
+      list.classList.toggle("too-few", tooFew);
+      rows.forEach((c) => {
+        const { segments, delta, bar, detail } = bars.get(c);
+        const was = cards(clubCounts(base, c), base.n);
+        const is = tooFew ? was : cards(clubCounts(now, c), now.n);
+        segments.forEach((seg, i) => {
+          seg.style.flexGrow = String(is[i]);
+          seg.textContent = is[i] >= 5 ? is[i] : "";
+          seg.classList.toggle("small", is[i] < 10);
+          seg.title = T.zones[events[i][0]][0] + ": " + is[i];
+        });
+        const all = events.map(([e], i) => T.zones[e][0] + " " + is[i]).filter((_, i) => is[i]);
+        bar.setAttribute("aria-label", all.join(", "));
+        // What the bar does not say: the numbers too small to fit and, after a choice, the before.
+        detail.textContent = "";
+        events.forEach(([e], i) => {
+          const changed = choice.size && !tooFew && is[i] !== was[i];
+          if (!changed && (!is[i] || is[i] >= 10)) return;
+          const part = document.createElement("span");
+          if (!changed && is[i] >= 5) part.className = "phone-only";
+          const number = document.createElement("b");
+          number.textContent = changed ? was[i] + " \u2192 " + is[i] : is[i];
+          part.append(T.zones[e][0] + " ", number);
+          detail.appendChild(part);
+        });
+        // The biggest change in what the places mean to a fan, in the colour of that meaning.
+        const top = biggestChange(was, is);
+        delta.textContent = "";
+        if (choice.size && !tooFew && top) {
+          delta.textContent = T.meanings[top.key] + " " + (top.to > top.from ? "+" : "\u2212") + Math.abs(top.to - top.from);
+          delta.style.color = "color-mix(in srgb, var(--z-" + top.colour + ") var(--delta-share), var(--ink))";
+        }
+      });
+    }
+    // The club a fan is reading about: the one the link named, or the one they chose as theirs.
+    const focusClub = () => params.get("club") || document.documentElement.dataset.club || "";
+    function pinClub() {
+      const id = focusClub();
+      if (!index.has(id)) return;
+      const li = list.querySelector('li[data-clubs="' + id + '"]');
+      if (list.firstElementChild !== li) list.prepend(li);
+      if (params.get("club")) box.querySelectorAll("[data-clubs]").forEach((el) => {
+        if (el.dataset.clubs.split(" ").includes(id)) el.classList.add("mine");
+      });
+    }
+    // What the last choices did, in one line: to the fan's club if it moved, else to whoever moved most.
+    function headline(now) {
+      const change = (c) => biggestChange(cards(clubCounts(base, c), base.n), cards(clubCounts(now, c), now.n));
+      const mine = index.has(focusClub()) ? index.get(focusClub()) : null;
+      let who = mine, top = mine === null ? null : change(mine);
+      if (!top) rows.forEach((c) => {
+        const t = change(c);
+        if (t && (!top || Math.abs(t.to - t.from) > Math.abs(top.to - top.from))) { top = t; who = c; }
+      });
+      return top && { name: meta.clubs[who].name, ...top };
+    }
+    // Five cards that run out as the simulations do: on a log scale, because each result divides them.
+    function room(now) {
+      if (now.n < MIN_SIMS) return { left: 0, text: T.room_over };
+      const left = Math.max(1, Math.min(5, Math.ceil(Math.log(now.n / MIN_SIMS) / Math.log(N / MIN_SIMS) * 5)));
+      return { left, text: left >= 3 ? T.room_plenty : left === 2 ? T.room_two : T.room_last };
+    }
+    const fx = box.querySelector(".scn-fx");
+    const fxWhat = fx.querySelector(".what"), fxNums = fx.querySelector(".nums");
+    const fxCards = [...fx.querySelectorAll(".meter i")], fxRoom = fx.querySelector(".room-text"), fxGo = fx.querySelector(".go");
+    const live = box.querySelector(".scn-live");
+    const side = box.querySelector(".scn-side");
+    let inBars = false;
+    function effect(now) {
+      fx.hidden = !choice.size;
+      fxGo.textContent = inBars ? T.go_games : T.go_bars;
+      if (!choice.size) { live.textContent = ""; return; }
+      const space = room(now), top = now.n < MIN_SIMS ? null : headline(now);
+      fxCards.forEach((card, i) => card.classList.toggle("gone", i >= space.left));
+      fxRoom.textContent = space.text;
+      fxNums.textContent = "";
+      if (!top) {
+        fxWhat.textContent = now.n < MIN_SIMS ? T.fx_stay : T.fx_same;
+        live.textContent = fxWhat.textContent;
+        return;
+      }
+      fxWhat.textContent = fill(T.fx_what[top.key], { club: top.name });
+      const to = document.createElement("b");
+      to.textContent = top.to;
+      fxNums.append(top.from + " \u2192 ", to, " " + T.in_100);
+      live.textContent = fxWhat.textContent + ": " + top.from + " \u2192 " + top.to + " " + T.in_100;
+    }
+    new IntersectionObserver((seen) => { inBars = seen[0].isIntersecting; fxGo.textContent = inBars ? T.go_games : T.go_bars; }, { rootMargin: "-40% 0px -40% 0px" }).observe(side);
+    fx.addEventListener("click", () => (inBars ? box.querySelector(".scn-nav") : side).scrollIntoView({ block: "start" }));
+    // The result that cost the most simulations: the one to take out when too few are left.
+    function leastLikely() {
+      let worst = null;
+      choice.forEach((k, j) => {
+        let n = 0;
+        for (let s = 0; s < N; s++) if (((buf[s * B + (j >> 2)] >> ((j & 3) * 2)) & 3) === k) n++;
+        if (!worst || n < worst.n) worst = { n, j, k };
+      });
+      const m = meta.matches[worst.j];
+      return fill(T.take_out, { mark: ["1", "X", "2"][worst.k], home: meta.clubs[m.home].name, away: meta.clubs[m.away].name });
+    }
+    function escape(text) {
+      const d = document.createElement("div"); d.textContent = text; return d.innerHTML;
+    }
+    function update() {
+      const now = choice.size ? count() : base;
+      if (!choice.size) status.textContent = fill(T.all, { total: thousands(N) });
+      else if (!now.n) status.textContent = fill(T.none, { total: thousands(N) }) + " " + leastLikely();
+      else if (now.n < MIN_SIMS) status.textContent = fill(T.too_few, { n: thousands(now.n), total: thousands(N) }) + " " + leastLikely();
+      else status.textContent = fill(T.kept, { n: thousands(now.n), total: thousands(N) }) + (now.n < 500 ? " " + T.few : "");
+      table(now);
+      if (window.markMyClub) window.markMyClub();
+      pinClub();
+      effect(now);
+    }
+    // A match can be on the page twice (its round and the big matches): every copy shows the choice.
+    const pickers = new Map();  // match index -> the rows of buttons that choose it
+    function choose(j, k) {
+      if (choice.get(j) === k) choice.delete(j); else choice.set(j, k);
+      pickers.get(j).forEach((list) => list.forEach((b, i) => b.setAttribute("aria-pressed", String(choice.get(j) === i))));
+      update();
+      marks();
+    }
+    function buttons(game, onPick) {
+      const pick = document.createElement("span");
+      pick.className = "pick";
+      const list = ["1", "X", "2"].map((mark, k) => {
+        const b = document.createElement("button");
+        const what = [T.home, T.draw, T.away][k];
+        b.type = "button"; b.textContent = mark; b.title = what;
+        b.setAttribute("aria-label", game + ": " + what);
+        if (onPick) b.addEventListener("click", () => onPick(k));
+        pick.appendChild(b);
+        return b;
+      });
+      return { pick, list };
+    }
+    function matchRow(m, j, note) {
+      const row = document.createElement("div");
+      row.className = "scn-row";
+      const game = meta.clubs[m.home].name + " – " + meta.clubs[m.away].name;
+      row.setAttribute("role", "group"); row.setAttribute("aria-label", game);
+      row.dataset.clubs = meta.clubs[m.home].id + " " + meta.clubs[m.away].id;
+      const label = document.createElement("span");
+      label.textContent = game;
+      if (note) { const small = document.createElement("small"); small.textContent = note; label.appendChild(small); }
+      const { pick, list } = buttons(game, (k) => choose(j, k));
+      list.forEach((b) => b.setAttribute("aria-pressed", "false"));
+      if (!pickers.has(j)) pickers.set(j, []);
+      pickers.get(j).push(list);
+      row.append(label, pick);
+      return row;
+    }
+    // A game of this round already played: there is nothing to choose, so it stays on its result.
+    function playedRow(g) {
+      const row = document.createElement("div");
+      row.className = "scn-row locked";
+      const label = document.createElement("span");
+      label.textContent = g.home + " – " + g.away;
+      const small = document.createElement("small");
+      small.textContent = fill(T.finished, { home: g.score[0], away: g.score[1] });
+      label.appendChild(small);
+      const { pick, list } = buttons(g.home + " – " + g.away, null);
+      const won = g.score[0] > g.score[1] ? 0 : g.score[0] === g.score[1] ? 1 : 2;
+      list.forEach((b, k) => { b.disabled = true; b.classList.toggle("res", k === won); });
+      row.append(label, pick);
+      return row;
+    }
+    function roundPage(round) {
+      const page = document.createElement("div");
+      page.className = "scn-page";
+      const items = [
+        ...round.played.map((g) => ({ day: g.day, row: playedRow(g) })),
+        ...round.matches.map((j) => ({ day: meta.matches[j].day, row: matchRow(meta.matches[j], j) })),
+      ].sort((a, b) => (a.day < b.day ? -1 : a.day > b.day ? 1 : 0));
+      let last = null;
+      items.forEach(({ day: d, row }) => {
+        if (d !== last) {
+          const head = document.createElement("div");
+          head.className = "scn-day"; head.textContent = day(d);
+          if (last === null && round.no) {
+            const no = document.createElement("b");
+            no.textContent = fill(T.round, { n: round.no });
+            head.append(" – ", no);
+          }
+          page.appendChild(head);
+          last = d;
+        }
+        page.appendChild(row);
+      });
+      return page;
+    }
+    const plan = JSON.parse(box.dataset.plan);
+    let marks = () => {};
+    const pages = plan.rounds.map(roundPage);
+    box.querySelector(".scn-rounds").append(...pages);
+    const bigBox = box.querySelector(".scn-big");
+    plan.movers.forEach((b) => {
+      const note = fill(b.event === "title" ? T.mover_title : T.mover_relegation, { club: meta.clubs[b.club].name, low: b.low, high: b.high });
+      bigBox.appendChild(matchRow(meta.matches[b.match], b.match, note));
+    });
+    bigBox.hidden = !plan.movers.length;
+    // The way through the rounds: arrows, and a strip that shows where the choices are.
+    const nav = box.querySelector(".scn-nav");
+    let current = 0;
+    function arrow(path, label, step) {
+      const b = document.createElement("button");
+      b.type = "button"; b.setAttribute("aria-label", label);
+      b.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="' + path + '"/></svg>';
+      b.addEventListener("click", () => show(current + step));
+      return b;
+    }
+    const prev = arrow("M10 3 5 8l5 5", T.round_prev_label, -1);
+    const next = arrow("m6 3 5 5-5 5", T.round_next_label, 1);
+    const title = document.createElement("div");
+    title.setAttribute("aria-live", "polite");
+    const strip = document.createElement("div");
+    strip.className = "scn-strip";
+    const cells = plan.total ? plan.rounds.map((round, i) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.textContent = round.no;
+      b.addEventListener("click", () => show(i));
+      strip.appendChild(b);
+      return b;
+    }) : [];
+    function roundName(i) {
+      const round = plan.rounds[i];
+      if (round.no) return fill(T.round_of, { n: round.no, total: plan.total });
+      const days = [...round.played.map((g) => g.day), ...round.matches.map((j) => meta.matches[j].day)].sort();
+      return day(days[0]) + (days[0] === days[days.length - 1] ? "" : " – " + day(days[days.length - 1]));
+    }
+    function show(i) {
+      current = i;
+      pages.forEach((p, k) => p.classList.toggle("on", k === i));
+      prev.disabled = i === 0;
+      next.disabled = i === plan.rounds.length - 1;
+      const left = plan.rounds.length - i;
+      const small = document.createElement("small");
+      if (plan.total) small.textContent = i === 0 ? (plan.rounds[0].played.length ? T.round_now : T.round_next) : left === 1 ? T.round_last : fill(T.rounds_left, { n: left });
+      title.replaceChildren(roundName(i), small);
+      cells.forEach((c, k) => { if (k === i) c.setAttribute("aria-current", "true"); else c.removeAttribute("aria-current"); });
+      // On a phone the strip is one scrolling line: the current round stays in view.
+      if (cells[i] && strip.scrollWidth > strip.clientWidth) strip.scrollLeft = cells[i].offsetLeft - strip.offsetLeft - (strip.clientWidth - cells[i].offsetWidth) / 2;
+    }
+    marks = () => cells.forEach((c, i) => {
+      const has = plan.rounds[i].matches.some((j) => choice.has(j));
+      c.classList.toggle("has", has);
+      c.setAttribute("aria-label", fill(T.round, { n: plan.rounds[i].no }) + (has ? ", " + T.round_picks : ""));
+    });
+    if (plan.rounds.length) show(0);
+    if (plan.rounds.length > 1) {
+      const head = document.createElement("div");
+      head.className = "scn-nav-head";
+      head.append(prev, title, next);
+      nav.append(head);
+      if (cells.length) nav.append(strip);
+      nav.hidden = false;
+    }
+    // On a phone the way through the rounds comes first, where the thumb and the list are. It moves
+    // in the document, not just on screen, so the Tab order follows what the fan sees.
+    const narrow = matchMedia("(max-width: 860px)");
+    const placeNav = () => {
+      if (narrow.matches) box.querySelector(".scn-rounds").before(nav);
+      else box.querySelector(".scn-matches > .scn-reset").after(nav);
+    };
+    narrow.addEventListener("change", placeNav);
+    placeNav();
+    marks();
+    box.querySelectorAll(".scn-reset").forEach((clear) => clear.addEventListener("click", () => {
+      choice.clear();
+      box.querySelectorAll(".scn-matches button[aria-pressed]").forEach((b) => b.setAttribute("aria-pressed", "false"));
+      update();
+      marks();
+    }));
+    box.querySelector(".scn").hidden = false;
+    update();
+    // A result the link asks for: chosen, with its round on show. Anything it does not recognise
+    // (a match already played, a date changed) is left out, and the simulator opens as usual.
+    const asked = meta.matches.findIndex((m) => meta.clubs[m.home].id === params.get("home") && meta.clubs[m.away].id === params.get("away"));
+    const result = ["0", "1", "2"].indexOf(params.get("result"));
+    if (pickers.has(asked) && result >= 0) {
+      choose(asked, result);
+      const round = plan.rounds.findIndex((r) => r.matches.includes(asked));
+      if (round >= 0) show(round);
+    }
+  }
+})();
+</script>
+<script data-goatcounter="https://contasdabola.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body>
+</html>

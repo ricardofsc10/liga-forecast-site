@@ -59,7 +59,7 @@
     "home": 0.5461,
     "over_2_5": 0.5698
    },
-   "home": "Vitória de Guimarães",
+   "home": "Vitória SC",
    "kickoff_utc": "2026-08-08T17:00:00Z",
    "kind": "retrospective",
    "match_id": "P1-2627-guimaraes-arouca",
@@ -218,7 +218,7 @@
    "timing": "retrospective"
   },
   {
-   "away": "Vitória de Guimarães",
+   "away": "Vitória SC",
    "corrected": false,
    "forecast": {
     "away": 0.067,
@@ -491,7 +491,7 @@
     "home": 0.5702,
     "over_2_5": 0.5045
    },
-   "home": "Vitória de Guimarães",
+   "home": "Vitória SC",
    "kickoff_utc": "2026-08-23T14:30:00Z",
    "kind": "retrospective",
    "match_id": "P1-2627-guimaraes-nacional",
@@ -770,7 +770,7 @@
    "timing": "retrospective"
   },
   {
-   "away": "Vitória de Guimarães",
+   "away": "Vitória SC",
    "corrected": false,
    "forecast": {
     "away": 0.1922,
@@ -947,7 +947,7 @@
     "home": 0.6416,
     "over_2_5": 0.4827
    },
-   "home": "Vitória de Guimarães",
+   "home": "Vitória SC",
    "kickoff_utc": "2026-09-06T17:00:00Z",
    "kind": "retrospective",
    "match_id": "P1-2627-guimaraes-casa-pia",
@@ -1106,7 +1106,7 @@
    "timing": "retrospective"
   },
   {
-   "away": "Vitória de Guimarães",
+   "away": "Vitória SC",
    "corrected": false,
    "forecast": {
     "away": 0.4709,
@@ -1403,7 +1403,7 @@
     "home": 0.639,
     "over_2_5": 0.4964
    },
-   "home": "Vitória de Guimarães",
+   "home": "Vitória SC",
    "kickoff_utc": "2026-09-20T14:30:00Z",
    "kind": "retrospective",
    "match_id": "P1-2627-guimaraes-moreirense",
@@ -1634,7 +1634,7 @@
    "timing": "retrospective"
   },
   {
-   "away": "Vitória de Guimarães",
+   "away": "Vitória SC",
    "corrected": false,
    "forecast": {
     "away": 0.0635,
@@ -1739,7 +1739,7 @@
     "home": 0.573,
     "over_2_5": 0.4671
    },
-   "home": "Vitória de Guimarães",
+   "home": "Vitória SC",
    "kickoff_utc": "2026-10-23T19:45:00Z",
    "kind": "retrospective",
    "match_id": "P1-2627-guimaraes-maritimo",
@@ -2138,7 +2138,7 @@
    "timing": "valid"
   },
   {
-   "away": "Vitória de Guimarães",
+   "away": "Vitória SC",
    "corrected": false,
    "forecast": {
     "away": 0.3787,
