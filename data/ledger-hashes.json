@@ -3152,6 +3152,41 @@
    "match_id": "P1-2627-sp-braga-famalicao",
    "model_version": "e10-dynamic",
    "sha256": "0a9165b81e6d08dbe50e3aa027a93c05d8b563429fe6d934e9147c1335264884"
+  },
+  {
+   "created_at": "2026-11-05T22:08:50Z",
+   "line": 451,
+   "match_id": "P1-2627-famalicao-arouca",
+   "model_version": "phase2-v1",
+   "sha256": "6bbef18da2d6deaa74480d598beceda6fd660d836fb1200de2880dafc46eec52"
+  },
+  {
+   "created_at": "2026-11-05T22:08:50Z",
+   "line": 452,
+   "match_id": "P1-2627-famalicao-arouca",
+   "model_version": "phase4-v1",
+   "sha256": "f56e40a2a3e4d741b7a11ef7f6f49714db15b6d38fa4f67664d28ca41b1723bd"
+  },
+  {
+   "created_at": "2026-11-05T22:08:50Z",
+   "line": 453,
+   "match_id": "P1-2627-famalicao-arouca",
+   "model_version": "phase4-v2",
+   "sha256": "61f5a6402f08afaf856c7e7fe9cbe1ea6dae53e5fb088f61ebd331c699e20606"
+  },
+  {
+   "created_at": "2026-11-05T22:08:50Z",
+   "line": 454,
+   "match_id": "P1-2627-famalicao-arouca",
+   "model_version": "e7-xg",
+   "sha256": "fa9cc92075c19641c43662baf27eea9aced15936910776d2351e1bd72b885e88"
+  },
+  {
+   "created_at": "2026-11-05T22:08:50Z",
+   "line": 455,
+   "match_id": "P1-2627-famalicao-arouca",
+   "model_version": "e10-dynamic",
+   "sha256": "e938098fe5e5c1fdb6663cceff411e3b7eb867de056af18bf65a68d801286a52"
   }
  ]
 }

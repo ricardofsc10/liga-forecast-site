@@ -2160,6 +2160,27 @@
    "season": "2026/27",
    "state": "played",
    "timing": "valid"
+  },
+  {
+   "away": "Arouca",
+   "corrected": false,
+   "forecast": {
+    "away": 0.2246,
+    "both_score": 0.4736,
+    "draw": 0.267,
+    "home": 0.5084,
+    "over_2_5": 0.4493
+   },
+   "home": "Famalicão",
+   "kickoff_utc": "2026-11-06T20:45:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-famalicao-arouca",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
   }
  ]
 }
