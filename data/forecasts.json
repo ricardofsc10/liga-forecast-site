@@ -2179,6 +2179,69 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
+   "state": "awaiting",
+   "timing": "pending"
+  },
+  {
+   "away": "Académico de Viseu",
+   "corrected": false,
+   "forecast": {
+    "away": 0.394,
+    "both_score": 0.5201,
+    "draw": 0.2906,
+    "home": 0.3154,
+    "over_2_5": 0.4458
+   },
+   "home": "Nacional",
+   "kickoff_utc": "2026-11-07T15:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-nacional-academico-viseu",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Casa Pia",
+   "corrected": false,
+   "forecast": {
+    "away": 0.1941,
+    "both_score": 0.4558,
+    "draw": 0.2516,
+    "home": 0.5543,
+    "over_2_5": 0.4128
+   },
+   "home": "Alverca",
+   "kickoff_utc": "2026-11-07T18:00:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-alverca-casa-pia",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Moreirense",
+   "corrected": false,
+   "forecast": {
+    "away": 0.0505,
+    "both_score": 0.5091,
+    "draw": 0.1003,
+    "home": 0.8492,
+    "over_2_5": 0.7061
+   },
+   "home": "Sporting",
+   "kickoff_utc": "2026-11-07T20:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-sporting-moreirense",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
    "state": "upcoming",
    "timing": "pending"
   }

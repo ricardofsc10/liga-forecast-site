@@ -3187,6 +3187,111 @@
    "match_id": "P1-2627-famalicao-arouca",
    "model_version": "e10-dynamic",
    "sha256": "e938098fe5e5c1fdb6663cceff411e3b7eb867de056af18bf65a68d801286a52"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 456,
+   "match_id": "P1-2627-nacional-academico-viseu",
+   "model_version": "phase2-v1",
+   "sha256": "0a66e88f8879cd539988ae597523904c6c9a6524016fb967ba99c179a97ac89c"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 457,
+   "match_id": "P1-2627-alverca-casa-pia",
+   "model_version": "phase2-v1",
+   "sha256": "7d0183a2aca63dac698ed69d9bf239ca650e400d06045013318b920981818331"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 458,
+   "match_id": "P1-2627-sporting-moreirense",
+   "model_version": "phase2-v1",
+   "sha256": "2a06dc9e717425f14abe6e13d434aefc23316562b2462641083553e222c37ccd"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 459,
+   "match_id": "P1-2627-nacional-academico-viseu",
+   "model_version": "phase4-v1",
+   "sha256": "650aa8255ae5f27777bd408659e274ecb6a5456d95b787e5b44bf59129065d4b"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 460,
+   "match_id": "P1-2627-alverca-casa-pia",
+   "model_version": "phase4-v1",
+   "sha256": "79caea61f1368f4f50c0908cf66d196e281fcc5f34cee170a976fdc8467fb690"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 461,
+   "match_id": "P1-2627-sporting-moreirense",
+   "model_version": "phase4-v1",
+   "sha256": "cee5df7662db9ed666403d8cedd68fb7e8e2c52114ab7c3464c727e400701d9d"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 462,
+   "match_id": "P1-2627-nacional-academico-viseu",
+   "model_version": "phase4-v2",
+   "sha256": "8f34cd8534412a1b16a63cad5b51342c178776858d1e844f3bd2565cc3fb49e3"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 463,
+   "match_id": "P1-2627-alverca-casa-pia",
+   "model_version": "phase4-v2",
+   "sha256": "81542ac8dd1a83512b772020bf4a85aa1197dcafb147c425c5c9557d4640e5bc"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 464,
+   "match_id": "P1-2627-sporting-moreirense",
+   "model_version": "phase4-v2",
+   "sha256": "79819df1dfb58269f136a4cb6fa531bd2e598bb20e4f54013c74e6ca7e6ec0ae"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 465,
+   "match_id": "P1-2627-nacional-academico-viseu",
+   "model_version": "e7-xg",
+   "sha256": "5f234eb73b3c41ee3ef24971c924e4ecd27654405b67384d4392f64ccd4b9e4f"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 466,
+   "match_id": "P1-2627-alverca-casa-pia",
+   "model_version": "e7-xg",
+   "sha256": "abf9a7fb26015be97c4648ebc6fab04024e50eaf1a13f30ad4cc4183343a8549"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 467,
+   "match_id": "P1-2627-sporting-moreirense",
+   "model_version": "e7-xg",
+   "sha256": "9a497361f10826be129148e01864545344a4cdd817f4aae4b4fa3b5c424c4aa6"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 468,
+   "match_id": "P1-2627-nacional-academico-viseu",
+   "model_version": "e10-dynamic",
+   "sha256": "4c1d4364b8a1276b28e0a3dc3e62a0cf8a8b98d15027362f72b86efda70283f0"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 469,
+   "match_id": "P1-2627-alverca-casa-pia",
+   "model_version": "e10-dynamic",
+   "sha256": "cb9f97de8afcc885c6b69dc7d2ff117ef728870398f2418e06ad4d9b4649e4f2"
+  },
+  {
+   "created_at": "2026-11-06T20:57:50Z",
+   "line": 470,
+   "match_id": "P1-2627-sporting-moreirense",
+   "model_version": "e10-dynamic",
+   "sha256": "3fb0ff656f5b5d4f758b8c9ab9824319d21884265d75997c8ea9a212e611f71e"
   }
  ]
 }
