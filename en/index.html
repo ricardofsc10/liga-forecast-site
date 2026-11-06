@@ -385,12 +385,11 @@ a.club:hover { color: var(--amber-text); }
 .record p { margin: 0; font-size: 17px; line-height: 1.45; }
 .record p.aside { margin-top: 10px; font-size: 15px; color: var(--muted); }
 .stakes-box { display: grid; gap: 14px; }
-.stake-row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 0 12px; }
-.stake-row .lbl { font-weight: 700; font-size: 17px; }
-.stake-row .lbl small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
-.stake-row .was { color: var(--muted); font-size: 0.62em; font-weight: 700; margin-right: 4px; white-space: nowrap; }
-.stake-row b { font-stretch: 72%; font-weight: 850; font-size: 34px; line-height: 1; }
-.stake-row .strip { grid-column: 1 / -1; margin: 4px 0 0; }
+.stake-row .lbl { display: block; font-weight: 700; font-size: 17px; }
+.stake-row.today .lbl { color: var(--amber-text); }
+.stake-row .parts { display: block; margin-top: 2px; font-size: 14px; color: var(--ink-2); }
+.stake-row .parts b { color: var(--ink); font-weight: 800; }
+.stake-row .strip { margin: 6px 0 0; }
 .lead .note { margin: -8px 0 22px; }
 .recap { padding: 40px 0 8px; border-bottom: 1px solid var(--ring); }
 .results { list-style: none; padding: 0; margin: 8px 0 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 40px; }
@@ -461,9 +460,11 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 .heat tr.mine td { background-color: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
 .heat tr.mine td.hot { background-color: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
 .club-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 3px; padding: 0; margin: 28px 0 0; }
-.club-grid li { background-color: var(--surface); border-radius: 2px; }
-.club-grid li.mine { background-color: color-mix(in srgb, var(--amber) 22%, var(--surface)); }
-.club-grid a { display: block; padding: 16px; text-decoration: none; color: inherit; }
+/* The link fills its cell: a neighbour's longer line makes the whole row taller, and the hover
+   outline has to follow the card. A fan's club keeps the grid's edges, not the list's margin. */
+.club-grid li { display: flex; background-color: var(--surface); border-radius: 2px; }
+.club-grid li.mine { margin-inline: 0; padding-inline: 0; background-color: color-mix(in srgb, var(--amber) 22%, var(--surface)); }
+.club-grid a { display: block; flex: 1; min-width: 0; padding: 16px; text-decoration: none; color: inherit; }
 .club-grid a:hover { box-shadow: inset 0 0 0 2px var(--amber); color: inherit; }
 .club-grid .name { display: block; font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; }
 .club-grid .facts-line { display: block; margin-top: 6px; font-size: 14px; color: var(--muted); }
@@ -580,6 +581,9 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 /* The name above its bar, the change at the end of the name's line: no room waits empty. */
 .zone-rows.scn-table summary { grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px; padding: 3px 0; }
 .scn-table .who { grid-area: 1 / 1; align-self: end; font-size: 14px; line-height: 1.15; }
+/* The club's place in the table the fan is building, and how far it moved from where it stood. */
+.scn-table .rank { display: inline-block; min-width: 1.5em; color: var(--muted); font-weight: 650; }
+.scn-table .moved { margin-left: 6px; color: var(--muted); font-size: 12px; font-weight: 700; white-space: nowrap; }
 .scn-table .delta { grid-area: 1 / 2; align-self: end; min-height: 15px; font-size: 12.5px; font-weight: 750; line-height: 1.2; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* The change keeps its place's colour as far as it stays readable: the fan's club has a warmer,
    lighter ground, so its text takes more ink there. Lowest contrast measured: 4.5:1. */
@@ -590,7 +594,6 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 .scn-table .zone-detail { padding-left: 0; }
 /* The page must not move while a fan picks results: the line under the title keeps its space. */
 .sim .scn-status { min-height: 4.7em; max-width: 72ch; margin-bottom: 10px; }
-.scn-table.too-few .zone-bar:not(.ghost), .scn-table.too-few .who { opacity: 0.35; }
 .zone-extra:empty { display: none; }
 .zone-extra span + span::before { content: " · "; }
 .phone-only { display: none; }
@@ -620,6 +623,19 @@ th.zone small { display: block; font-weight: 500; margin-top: 2px; }
 .whatif .opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
 .whatif .opts a { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 6px; text-align: center; font-weight: 700; text-decoration: none; color: var(--ink); background: var(--raised); border: 1px solid var(--axis); border-radius: 2px; }
 .whatif .opts a:hover { border-color: var(--amber); color: var(--ink); }
+.whatif .opts a[aria-pressed="true"] { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
+.whatif-out { margin-top: 14px; }
+.whatif-rows { list-style: none; margin: 0; padding: 0; }
+.whatif-rows li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--grid); font-size: 15px; color: var(--ink-2); }
+.whatif-rows li.moved { color: var(--ink); font-weight: 650; }
+.whatif-rows i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 8px; vertical-align: -1px; }
+.whatif-rows .value { white-space: nowrap; }
+.whatif-rows b { font-stretch: 72%; font-weight: 850; font-size: 20px; }
+.whatif-out .sim-more { margin: 12px 0 0; font-weight: 700; }
+.whatif-tag { margin: 0 0 8px; font-size: 14px; color: var(--ink-2); }
+.whatif-tag b { color: var(--amber-text); }
+.mosaic i { transition: background-color 300ms; }
+@media (prefers-reduced-motion: reduce) { .mosaic i { transition: none; } }
 .sim-line { grid-column: 1 / -1; margin: 14px 0 0; font-weight: 700; }
 .points-line { margin: 0 0 8px; font-weight: 600; }
 .points-line b { font-stretch: 72%; font-weight: 850; font-size: 28px; }
@@ -634,9 +650,6 @@ th.zone small { display: block; font-weight: 500; margin-top: 2px; }
   .scn-fx .nums { font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; white-space: nowrap; }
   .scn-fx .nums b { color: var(--amber-text); font-weight: 850; }
   .scn-fx .status-line { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 13px; color: var(--ink-2); }
-  .scn-fx .meter { display: inline-flex; gap: 2px; flex: none; }
-  .scn-fx .meter i { width: 7px; height: 12px; border-radius: 1px; background: var(--amber); }
-  .scn-fx .meter i.gone { background: var(--axis); }
   .scn-fx .go { margin-left: auto; font-weight: 700; color: var(--ink); white-space: nowrap; }
   /* Room for the bar from the start, so the page keeps its height when the bar appears. */
   main:has(.scn-fx) { padding-bottom: 110px; }
@@ -653,6 +666,18 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
 .heat tbody tr:hover td { background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
 .heat td.hot, .heat tbody tr:hover td.hot { color: var(--amber-ink); background: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
+@media (max-width: 860px) {
+  /* The whole map at once, with no sideways scroll: the name above its 18 cells (D-128). */
+  table.heat, .heat thead, .heat tbody { display: block; width: 100%; }
+  .heat tr { display: grid; grid-template-columns: repeat(18, minmax(0, 1fr)); gap: 2px; margin-bottom: 7px; }
+  .heat thead th { min-width: 0; padding: 0; font-size: 11px; visibility: hidden; }
+  .heat thead th.text { display: none; }
+  .heat thead th:nth-child(2), .heat thead th:nth-child(6), .heat thead th:nth-child(11), .heat thead th:nth-child(16), .heat thead th:last-child { visibility: visible; }
+  .heat tbody th.text { grid-column: 1 / -1; position: static; padding: 0 0 2px; font-size: 14px; background: none; }
+  .heat td { width: auto; height: 24px; font-size: 10.5px; display: flex; align-items: center; justify-content: center; letter-spacing: -0.02em; }
+  .heat td.low { font-size: 0; }
+  .heat tr.mine { padding: 4px; margin-inline: -4px; border-radius: 2px; }
+}
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .two-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; }
 .two-charts h2 { font-size: 28px; }
@@ -776,7 +801,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
     <li><span class="row"><span><i class="club-card card-casa-pia"></i>Casa Pia</span><b>38</b></span><div class="strip" role="img" aria-label="Casa Pia goes down in 38 of 100"><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--z-relegation)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i><i style="background: var(--card-empty)"></i></div></li>
   </ul>
   <div class="record">
-    <p>Since the start we have forecast 11 matches and our favourite won <strong>8</strong>. If our numbers are right, that lands between 4 and 9 nine times out of ten.</p>
+    <p>Since the start we have forecast 11 matches and our favourite won <strong>8</strong>. By our own numbers it should have won between 4 and 9, so that is what we expected.</p>
     <p class="aside">So far the bookmakers' closing odds are doing better than us. <a href="como-funciona.html#trust">How we measure it →</a></p>
   </div>
 </section>

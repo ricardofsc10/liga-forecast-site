@@ -385,12 +385,11 @@ a.club:hover { color: var(--amber-text); }
 .record p { margin: 0; font-size: 17px; line-height: 1.45; }
 .record p.aside { margin-top: 10px; font-size: 15px; color: var(--muted); }
 .stakes-box { display: grid; gap: 14px; }
-.stake-row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 0 12px; }
-.stake-row .lbl { font-weight: 700; font-size: 17px; }
-.stake-row .lbl small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
-.stake-row .was { color: var(--muted); font-size: 0.62em; font-weight: 700; margin-right: 4px; white-space: nowrap; }
-.stake-row b { font-stretch: 72%; font-weight: 850; font-size: 34px; line-height: 1; }
-.stake-row .strip { grid-column: 1 / -1; margin: 4px 0 0; }
+.stake-row .lbl { display: block; font-weight: 700; font-size: 17px; }
+.stake-row.today .lbl { color: var(--amber-text); }
+.stake-row .parts { display: block; margin-top: 2px; font-size: 14px; color: var(--ink-2); }
+.stake-row .parts b { color: var(--ink); font-weight: 800; }
+.stake-row .strip { margin: 6px 0 0; }
 .lead .note { margin: -8px 0 22px; }
 .recap { padding: 40px 0 8px; border-bottom: 1px solid var(--ring); }
 .results { list-style: none; padding: 0; margin: 8px 0 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 40px; }
@@ -461,9 +460,11 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 .heat tr.mine td { background-color: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
 .heat tr.mine td.hot { background-color: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
 .club-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 3px; padding: 0; margin: 28px 0 0; }
-.club-grid li { background-color: var(--surface); border-radius: 2px; }
-.club-grid li.mine { background-color: color-mix(in srgb, var(--amber) 22%, var(--surface)); }
-.club-grid a { display: block; padding: 16px; text-decoration: none; color: inherit; }
+/* The link fills its cell: a neighbour's longer line makes the whole row taller, and the hover
+   outline has to follow the card. A fan's club keeps the grid's edges, not the list's margin. */
+.club-grid li { display: flex; background-color: var(--surface); border-radius: 2px; }
+.club-grid li.mine { margin-inline: 0; padding-inline: 0; background-color: color-mix(in srgb, var(--amber) 22%, var(--surface)); }
+.club-grid a { display: block; flex: 1; min-width: 0; padding: 16px; text-decoration: none; color: inherit; }
 .club-grid a:hover { box-shadow: inset 0 0 0 2px var(--amber); color: inherit; }
 .club-grid .name { display: block; font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; }
 .club-grid .facts-line { display: block; margin-top: 6px; font-size: 14px; color: var(--muted); }
@@ -580,6 +581,9 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 /* The name above its bar, the change at the end of the name's line: no room waits empty. */
 .zone-rows.scn-table summary { grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px; padding: 3px 0; }
 .scn-table .who { grid-area: 1 / 1; align-self: end; font-size: 14px; line-height: 1.15; }
+/* The club's place in the table the fan is building, and how far it moved from where it stood. */
+.scn-table .rank { display: inline-block; min-width: 1.5em; color: var(--muted); font-weight: 650; }
+.scn-table .moved { margin-left: 6px; color: var(--muted); font-size: 12px; font-weight: 700; white-space: nowrap; }
 .scn-table .delta { grid-area: 1 / 2; align-self: end; min-height: 15px; font-size: 12.5px; font-weight: 750; line-height: 1.2; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* The change keeps its place's colour as far as it stays readable: the fan's club has a warmer,
    lighter ground, so its text takes more ink there. Lowest contrast measured: 4.5:1. */
@@ -590,7 +594,6 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 .scn-table .zone-detail { padding-left: 0; }
 /* The page must not move while a fan picks results: the line under the title keeps its space. */
 .sim .scn-status { min-height: 4.7em; max-width: 72ch; margin-bottom: 10px; }
-.scn-table.too-few .zone-bar:not(.ghost), .scn-table.too-few .who { opacity: 0.35; }
 .zone-extra:empty { display: none; }
 .zone-extra span + span::before { content: " · "; }
 .phone-only { display: none; }
@@ -620,6 +623,19 @@ th.zone small { display: block; font-weight: 500; margin-top: 2px; }
 .whatif .opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
 .whatif .opts a { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 6px; text-align: center; font-weight: 700; text-decoration: none; color: var(--ink); background: var(--raised); border: 1px solid var(--axis); border-radius: 2px; }
 .whatif .opts a:hover { border-color: var(--amber); color: var(--ink); }
+.whatif .opts a[aria-pressed="true"] { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
+.whatif-out { margin-top: 14px; }
+.whatif-rows { list-style: none; margin: 0; padding: 0; }
+.whatif-rows li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--grid); font-size: 15px; color: var(--ink-2); }
+.whatif-rows li.moved { color: var(--ink); font-weight: 650; }
+.whatif-rows i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 8px; vertical-align: -1px; }
+.whatif-rows .value { white-space: nowrap; }
+.whatif-rows b { font-stretch: 72%; font-weight: 850; font-size: 20px; }
+.whatif-out .sim-more { margin: 12px 0 0; font-weight: 700; }
+.whatif-tag { margin: 0 0 8px; font-size: 14px; color: var(--ink-2); }
+.whatif-tag b { color: var(--amber-text); }
+.mosaic i { transition: background-color 300ms; }
+@media (prefers-reduced-motion: reduce) { .mosaic i { transition: none; } }
 .sim-line { grid-column: 1 / -1; margin: 14px 0 0; font-weight: 700; }
 .points-line { margin: 0 0 8px; font-weight: 600; }
 .points-line b { font-stretch: 72%; font-weight: 850; font-size: 28px; }
@@ -634,9 +650,6 @@ th.zone small { display: block; font-weight: 500; margin-top: 2px; }
   .scn-fx .nums { font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; white-space: nowrap; }
   .scn-fx .nums b { color: var(--amber-text); font-weight: 850; }
   .scn-fx .status-line { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 13px; color: var(--ink-2); }
-  .scn-fx .meter { display: inline-flex; gap: 2px; flex: none; }
-  .scn-fx .meter i { width: 7px; height: 12px; border-radius: 1px; background: var(--amber); }
-  .scn-fx .meter i.gone { background: var(--axis); }
   .scn-fx .go { margin-left: auto; font-weight: 700; color: var(--ink); white-space: nowrap; }
   /* Room for the bar from the start, so the page keeps its height when the bar appears. */
   main:has(.scn-fx) { padding-bottom: 110px; }
@@ -653,6 +666,18 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
 .heat tbody tr:hover td { background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
 .heat td.hot, .heat tbody tr:hover td.hot { color: var(--amber-ink); background: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
+@media (max-width: 860px) {
+  /* The whole map at once, with no sideways scroll: the name above its 18 cells (D-128). */
+  table.heat, .heat thead, .heat tbody { display: block; width: 100%; }
+  .heat tr { display: grid; grid-template-columns: repeat(18, minmax(0, 1fr)); gap: 2px; margin-bottom: 7px; }
+  .heat thead th { min-width: 0; padding: 0; font-size: 11px; visibility: hidden; }
+  .heat thead th.text { display: none; }
+  .heat thead th:nth-child(2), .heat thead th:nth-child(6), .heat thead th:nth-child(11), .heat thead th:nth-child(16), .heat thead th:last-child { visibility: visible; }
+  .heat tbody th.text { grid-column: 1 / -1; position: static; padding: 0 0 2px; font-size: 14px; background: none; }
+  .heat td { width: auto; height: 24px; font-size: 10.5px; display: flex; align-items: center; justify-content: center; letter-spacing: -0.02em; }
+  .heat td.low { font-size: 0; }
+  .heat tr.mine { padding: 4px; margin-inline: -4px; border-radius: 2px; }
+}
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .two-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; }
 .two-charts h2 { font-size: 28px; }
@@ -706,7 +731,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <button type="button" class="fav" data-club-toggle="sp-braga" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>O meu clube</button>
   <p class="say">Em 100 épocas simuladas, <strong>o Sporting de Braga vai à Europa em 71</strong>.</p>
   <p class="meta">14 pontos, com 90 resultados na tabela.</p>
-  <aside class="whatif" aria-labelledby="whatif-title">
+  <aside class="whatif" aria-labelledby="whatif-title" data-whatif="{&#34;labels&#34;: {&#34;champions_playoff&#34;: &#34;Play-off Champions&#34;, &#34;conference&#34;: &#34;Liga Confer\u00eancia&#34;, &#34;europa&#34;: &#34;Liga Europa&#34;, &#34;middle&#34;: &#34;A meio da tabela&#34;, &#34;playoff&#34;: &#34;Play-off de descida&#34;, &#34;relegation&#34;: &#34;Descida&#34;, &#34;second&#34;: &#34;Champions&#34;, &#34;title&#34;: &#34;Campe\u00e3o&#34;}, &#34;now&#34;: {&#34;buckets&#34;: [[&#34;champions_playoff&#34;, 3], [&#34;europa&#34;, 45], [&#34;conference&#34;, 23], [&#34;middle&#34;, 29]], &#34;mean&#34;: &#34;56,4&#34;, &#34;range&#34;: &#34;(49\u201364)&#34;}, &#34;order&#34;: [&#34;title&#34;, &#34;second&#34;, &#34;champions_playoff&#34;, &#34;europa&#34;, &#34;conference&#34;, &#34;middle&#34;, &#34;playoff&#34;, &#34;relegation&#34;], &#34;outcomes&#34;: [{&#34;buckets&#34;: [[&#34;champions_playoff&#34;, 4], [&#34;europa&#34;, 49], [&#34;conference&#34;, 23], [&#34;middle&#34;, 24]], &#34;mean&#34;: &#34;57,4&#34;, &#34;range&#34;: &#34;(50\u201365)&#34;}, {&#34;buckets&#34;: [[&#34;champions_playoff&#34;, 2], [&#34;europa&#34;, 40], [&#34;conference&#34;, 24], [&#34;middle&#34;, 34]], &#34;mean&#34;: &#34;55,3&#34;, &#34;range&#34;: &#34;(48\u201363)&#34;}, {&#34;buckets&#34;: [[&#34;champions_playoff&#34;, 2], [&#34;europa&#34;, 36], [&#34;conference&#34;, 23], [&#34;middle&#34;, 39]], &#34;mean&#34;: &#34;54,3&#34;, &#34;range&#34;: &#34;(47\u201362)&#34;}]}">
     <h2 id="whatif-title">E se o Sporting de Braga ganhar o próximo?</h2>
     <p>Próximo jogo: Rio Ave – Sporting de Braga. Escolhe o resultado e vê o que muda na época.</p>
     <div class="opts">
@@ -714,13 +739,16 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
       <a href="../epoca.html?club=sp-braga&amp;home=rio-ave&amp;away=sp-braga&amp;result=1#scenario">Empate</a>
       <a href="../epoca.html?club=sp-braga&amp;home=rio-ave&amp;away=sp-braga&amp;result=0#scenario">Sporting de Braga perde</a>
     </div>
-  </aside>
+<div class="whatif-out" aria-live="polite" hidden>
+      <ul class="whatif-rows num"></ul>
+      <p class="sim-more"><a href="#">Combina com outros jogos no simulador →</a></p>
+    </div>  </aside>
 </section>
 
 <section class="block" id="positions">
   <h2>Onde o Sporting de Braga pode acabar</h2>
   <div class="club-map">
-    <div class="mosaic" role="img" aria-label="Play-off Champions 3, Liga Europa 45, Liga Conferência 23, A meio da tabela 29"><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i></div>
+    <div><p class="whatif-tag" hidden>Se isto acontecer: <b></b></p><div class="mosaic" role="img" aria-label="Play-off Champions 3, Liga Europa 45, Liga Conferência 23, A meio da tabela 29"><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-conference)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i><i style="background: var(--z-middle)"></i></div></div>
     <div>
       <ul class="legend-cards num one">
 <li><i style="background: var(--z-champions_playoff)"></i>Play-off Champions<b>3</b></li><li><i style="background: var(--z-europa)"></i>Liga Europa<b>45</b></li><li><i style="background: var(--z-conference)"></i>Liga Conferência<b>23</b></li><li><i style="background: var(--z-middle)"></i>A meio da tabela<b>29</b></li>      </ul>
@@ -831,6 +859,89 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   });
   window.markMyClub = apply;  // the simulator redraws its table and marks it again
   apply();
+})();
+</script>
+<script>
+(() => {
+  "use strict";
+  // Answers "what if?" on the club's page (D-127): the numbers came with the page, so the fan stays
+  // here and nothing is downloaded. Without this script the links open the simulator, as before.
+  const box = document.querySelector(".whatif[data-whatif]");
+  if (!box) return;
+  const data = JSON.parse(box.dataset.whatif);
+  const links = [...box.querySelectorAll(".opts a")];
+  const out = box.querySelector(".whatif-out");
+  const rows = out.querySelector(".whatif-rows");
+  const more = out.querySelector(".sim-more a");
+  const section = document.getElementById("positions");
+  const mosaic = section.querySelector(".mosaic");
+  const legend = section.querySelector(".legend-cards.one");
+  const tag = section.querySelector(".whatif-tag");
+  const mean = section.querySelector(".points-line b");
+  const range = section.querySelector(".points-line small");
+  const cells = [...mosaic.children];
+  const before = new Map(data.now.buckets);
+
+  function paint(season) {
+    let cell = 0;
+    season.buckets.forEach(([key, n]) => {
+      for (let i = 0; i < n; i++) cells[cell++].setAttribute("style", "background: var(--z-" + key + ")");
+    });
+    mosaic.setAttribute("aria-label", season.buckets.map(([key, n]) => data.labels[key] + " " + n).join(", "));
+    legend.replaceChildren(...season.buckets.map(([key, n]) => {
+      const li = document.createElement("li");
+      const swatch = document.createElement("i");
+      swatch.setAttribute("style", "background: var(--z-" + key + ")");
+      const number = document.createElement("b");
+      number.textContent = n;
+      li.append(swatch, data.labels[key], number);
+      return li;
+    }));
+    mean.textContent = season.mean;
+    range.textContent = season.range;
+  }
+  function compare(season) {
+    const after = new Map(season.buckets);
+    rows.replaceChildren(...data.order.filter((key) => before.has(key) || after.has(key)).map((key) => {
+      const from = before.get(key) || 0, to = after.get(key) || 0;
+      const li = document.createElement("li");
+      const swatch = document.createElement("i");
+      swatch.className = "z-" + key;
+      const name = document.createElement("span");
+      name.append(swatch, data.labels[key]);
+      const value = document.createElement("span");
+      value.className = "value";
+      const number = document.createElement("b");
+      number.textContent = to;
+      if (from === to) value.append(number);
+      else value.append(from + " \u2192 ", number);
+      if (from !== to) li.className = "moved";
+      li.append(name, value);
+      return li;
+    }));
+  }
+  let chosen = -1;
+  links.forEach((link, i) => {
+    link.setAttribute("role", "button");
+    link.setAttribute("aria-pressed", "false");
+    // As a button it answers to the space bar too; Enter already clicks a link.
+    link.addEventListener("keydown", (event) => { if (event.key === " ") { event.preventDefault(); link.click(); } });
+    link.addEventListener("click", (event) => {
+      // A modified click still opens the simulator, like any link.
+      if (event.metaKey || event.ctrlKey || event.shiftKey) return;
+      event.preventDefault();
+      chosen = chosen === i ? -1 : i;
+      links.forEach((other, k) => other.setAttribute("aria-pressed", String(k === chosen)));
+      out.hidden = chosen < 0;
+      if (tag) tag.hidden = chosen < 0;
+      if (chosen < 0) { paint(data.now); return; }
+      const season = data.outcomes[chosen];
+      paint(season);
+      compare(season);
+      more.href = link.getAttribute("href");
+      if (tag) tag.querySelector("b").textContent = link.textContent;
+    });
+  });
 })();
 </script>
 <script data-goatcounter="https://contasdabola.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body>

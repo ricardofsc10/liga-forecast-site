@@ -385,12 +385,11 @@ a.club:hover { color: var(--amber-text); }
 .record p { margin: 0; font-size: 17px; line-height: 1.45; }
 .record p.aside { margin-top: 10px; font-size: 15px; color: var(--muted); }
 .stakes-box { display: grid; gap: 14px; }
-.stake-row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 0 12px; }
-.stake-row .lbl { font-weight: 700; font-size: 17px; }
-.stake-row .lbl small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
-.stake-row .was { color: var(--muted); font-size: 0.62em; font-weight: 700; margin-right: 4px; white-space: nowrap; }
-.stake-row b { font-stretch: 72%; font-weight: 850; font-size: 34px; line-height: 1; }
-.stake-row .strip { grid-column: 1 / -1; margin: 4px 0 0; }
+.stake-row .lbl { display: block; font-weight: 700; font-size: 17px; }
+.stake-row.today .lbl { color: var(--amber-text); }
+.stake-row .parts { display: block; margin-top: 2px; font-size: 14px; color: var(--ink-2); }
+.stake-row .parts b { color: var(--ink); font-weight: 800; }
+.stake-row .strip { margin: 6px 0 0; }
 .lead .note { margin: -8px 0 22px; }
 .recap { padding: 40px 0 8px; border-bottom: 1px solid var(--ring); }
 .results { list-style: none; padding: 0; margin: 8px 0 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 40px; }
@@ -461,9 +460,11 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 .heat tr.mine td { background-color: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
 .heat tr.mine td.hot { background-color: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
 .club-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 3px; padding: 0; margin: 28px 0 0; }
-.club-grid li { background-color: var(--surface); border-radius: 2px; }
-.club-grid li.mine { background-color: color-mix(in srgb, var(--amber) 22%, var(--surface)); }
-.club-grid a { display: block; padding: 16px; text-decoration: none; color: inherit; }
+/* The link fills its cell: a neighbour's longer line makes the whole row taller, and the hover
+   outline has to follow the card. A fan's club keeps the grid's edges, not the list's margin. */
+.club-grid li { display: flex; background-color: var(--surface); border-radius: 2px; }
+.club-grid li.mine { margin-inline: 0; padding-inline: 0; background-color: color-mix(in srgb, var(--amber) 22%, var(--surface)); }
+.club-grid a { display: block; flex: 1; min-width: 0; padding: 16px; text-decoration: none; color: inherit; }
 .club-grid a:hover { box-shadow: inset 0 0 0 2px var(--amber); color: inherit; }
 .club-grid .name { display: block; font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; }
 .club-grid .facts-line { display: block; margin-top: 6px; font-size: 14px; color: var(--muted); }
@@ -580,6 +581,9 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 /* The name above its bar, the change at the end of the name's line: no room waits empty. */
 .zone-rows.scn-table summary { grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px; padding: 3px 0; }
 .scn-table .who { grid-area: 1 / 1; align-self: end; font-size: 14px; line-height: 1.15; }
+/* The club's place in the table the fan is building, and how far it moved from where it stood. */
+.scn-table .rank { display: inline-block; min-width: 1.5em; color: var(--muted); font-weight: 650; }
+.scn-table .moved { margin-left: 6px; color: var(--muted); font-size: 12px; font-weight: 700; white-space: nowrap; }
 .scn-table .delta { grid-area: 1 / 2; align-self: end; min-height: 15px; font-size: 12.5px; font-weight: 750; line-height: 1.2; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* The change keeps its place's colour as far as it stays readable: the fan's club has a warmer,
    lighter ground, so its text takes more ink there. Lowest contrast measured: 4.5:1. */
@@ -590,7 +594,6 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 .scn-table .zone-detail { padding-left: 0; }
 /* The page must not move while a fan picks results: the line under the title keeps its space. */
 .sim .scn-status { min-height: 4.7em; max-width: 72ch; margin-bottom: 10px; }
-.scn-table.too-few .zone-bar:not(.ghost), .scn-table.too-few .who { opacity: 0.35; }
 .zone-extra:empty { display: none; }
 .zone-extra span + span::before { content: " · "; }
 .phone-only { display: none; }
@@ -620,6 +623,19 @@ th.zone small { display: block; font-weight: 500; margin-top: 2px; }
 .whatif .opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
 .whatif .opts a { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 6px; text-align: center; font-weight: 700; text-decoration: none; color: var(--ink); background: var(--raised); border: 1px solid var(--axis); border-radius: 2px; }
 .whatif .opts a:hover { border-color: var(--amber); color: var(--ink); }
+.whatif .opts a[aria-pressed="true"] { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
+.whatif-out { margin-top: 14px; }
+.whatif-rows { list-style: none; margin: 0; padding: 0; }
+.whatif-rows li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--grid); font-size: 15px; color: var(--ink-2); }
+.whatif-rows li.moved { color: var(--ink); font-weight: 650; }
+.whatif-rows i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 8px; vertical-align: -1px; }
+.whatif-rows .value { white-space: nowrap; }
+.whatif-rows b { font-stretch: 72%; font-weight: 850; font-size: 20px; }
+.whatif-out .sim-more { margin: 12px 0 0; font-weight: 700; }
+.whatif-tag { margin: 0 0 8px; font-size: 14px; color: var(--ink-2); }
+.whatif-tag b { color: var(--amber-text); }
+.mosaic i { transition: background-color 300ms; }
+@media (prefers-reduced-motion: reduce) { .mosaic i { transition: none; } }
 .sim-line { grid-column: 1 / -1; margin: 14px 0 0; font-weight: 700; }
 .points-line { margin: 0 0 8px; font-weight: 600; }
 .points-line b { font-stretch: 72%; font-weight: 850; font-size: 28px; }
@@ -634,9 +650,6 @@ th.zone small { display: block; font-weight: 500; margin-top: 2px; }
   .scn-fx .nums { font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; white-space: nowrap; }
   .scn-fx .nums b { color: var(--amber-text); font-weight: 850; }
   .scn-fx .status-line { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 13px; color: var(--ink-2); }
-  .scn-fx .meter { display: inline-flex; gap: 2px; flex: none; }
-  .scn-fx .meter i { width: 7px; height: 12px; border-radius: 1px; background: var(--amber); }
-  .scn-fx .meter i.gone { background: var(--axis); }
   .scn-fx .go { margin-left: auto; font-weight: 700; color: var(--ink); white-space: nowrap; }
   /* Room for the bar from the start, so the page keeps its height when the bar appears. */
   main:has(.scn-fx) { padding-bottom: 110px; }
@@ -653,6 +666,18 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
 .heat tbody tr:hover td { background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
 .heat td.hot, .heat tbody tr:hover td.hot { color: var(--amber-ink); background: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
+@media (max-width: 860px) {
+  /* The whole map at once, with no sideways scroll: the name above its 18 cells (D-128). */
+  table.heat, .heat thead, .heat tbody { display: block; width: 100%; }
+  .heat tr { display: grid; grid-template-columns: repeat(18, minmax(0, 1fr)); gap: 2px; margin-bottom: 7px; }
+  .heat thead th { min-width: 0; padding: 0; font-size: 11px; visibility: hidden; }
+  .heat thead th.text { display: none; }
+  .heat thead th:nth-child(2), .heat thead th:nth-child(6), .heat thead th:nth-child(11), .heat thead th:nth-child(16), .heat thead th:last-child { visibility: visible; }
+  .heat tbody th.text { grid-column: 1 / -1; position: static; padding: 0 0 2px; font-size: 14px; background: none; }
+  .heat td { width: auto; height: 24px; font-size: 10.5px; display: flex; align-items: center; justify-content: center; letter-spacing: -0.02em; }
+  .heat td.low { font-size: 0; }
+  .heat tr.mine { padding: 4px; margin-inline: -4px; border-radius: 2px; }
+}
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .two-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; }
 .two-charts h2 { font-size: 28px; }
@@ -707,9 +732,9 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 </section>
 
 <section class="list-block" aria-labelledby="scenario-title">
-  <div class="sim" id="scenario" data-src="scenarios" data-lang="pt" data-order="[&#34;porto&#34;, &#34;benfica&#34;, &#34;sporting&#34;, &#34;sp-braga&#34;, &#34;santa-clara&#34;, &#34;academico-viseu&#34;, &#34;arouca&#34;, &#34;guimaraes&#34;, &#34;gil-vicente&#34;, &#34;famalicao&#34;, &#34;alverca&#34;, &#34;moreirense&#34;, &#34;estrela-amadora&#34;, &#34;maritimo&#34;, &#34;rio-ave&#34;, &#34;casa-pia&#34;, &#34;nacional&#34;, &#34;estoril&#34;]" data-text="{&#34;all&#34;: &#34;Jog\u00e1mos o resto da \u00e9poca {total} vezes para este simulador. Cada resultado que escolhes fica s\u00f3 com as \u00e9pocas em que ele aconteceu.&#34;, &#34;away&#34;: &#34;vit\u00f3ria fora&#34;, &#34;club&#34;: &#34;Clube&#34;, &#34;draw&#34;: &#34;empate&#34;, &#34;failed&#34;: &#34;N\u00e3o foi poss\u00edvel carregar as simula\u00e7\u00f5es. O construtor funciona na p\u00e1gina publicada, n\u00e3o num ficheiro aberto do disco.&#34;, &#34;few&#34;: &#34;Sobram poucas simula\u00e7\u00f5es: l\u00ea os n\u00fameros como aproximados.&#34;, &#34;finished&#34;: &#34;Terminou {home} \u2013 {away}&#34;, &#34;fx_same&#34;: &#34;As contas quase n\u00e3o mexem&#34;, &#34;fx_stay&#34;: &#34;As contas ficam como estavam&#34;, &#34;fx_what&#34;: {&#34;europe&#34;: &#34;{club} na Europa&#34;, &#34;relegation&#34;: &#34;{club} desce&#34;, &#34;title&#34;: &#34;{club} campe\u00e3o&#34;}, &#34;go_bars&#34;: &#34;Ver as barras \u2193&#34;, &#34;go_games&#34;: &#34;\u2191 Voltar aos jogos&#34;, &#34;home&#34;: &#34;vit\u00f3ria da casa&#34;, &#34;in_100&#34;: &#34;em 100&#34;, &#34;kept&#34;: &#34;{n} das {total} \u00e9pocas simuladas t\u00eam estes resultados.&#34;, &#34;loading&#34;: &#34;A carregar as simula\u00e7\u00f5es\u2026&#34;, &#34;meanings&#34;: {&#34;europe&#34;: &#34;Europa&#34;, &#34;relegation&#34;: &#34;Descida&#34;, &#34;title&#34;: &#34;T\u00edtulo&#34;}, &#34;mover_relegation&#34;: &#34;{club} desce: {low} a {high} em 100&#34;, &#34;mover_title&#34;: &#34;{club} campe\u00e3o: {low} a {high} em 100&#34;, &#34;none&#34;: &#34;Nenhuma das {total} \u00e9pocas simuladas tem tudo isto.&#34;, &#34;room_last&#34;: &#34;Quase no limite&#34;, &#34;room_over&#34;: &#34;Demasiados resultados: tira um&#34;, &#34;room_plenty&#34;: &#34;Ainda h\u00e1 margem&#34;, &#34;room_two&#34;: &#34;Mais um ou dois, no m\u00e1ximo&#34;, &#34;round&#34;: &#34;Jornada {n}&#34;, &#34;round_last&#34;: &#34;a \u00faltima&#34;, &#34;round_next&#34;: &#34;a pr\u00f3xima&#34;, &#34;round_next_label&#34;: &#34;Jornada seguinte&#34;, &#34;round_now&#34;: &#34;a decorrer&#34;, &#34;round_of&#34;: &#34;Jornada {n} de {total}&#34;, &#34;round_picks&#34;: &#34;tem resultados escolhidos&#34;, &#34;round_prev_label&#34;: &#34;Jornada anterior&#34;, &#34;rounds_left&#34;: &#34;faltam {n} jornadas&#34;, &#34;see_club&#34;: &#34;Ver o clube&#34;, &#34;take_out&#34;: &#34;O mais improv\u00e1vel \u00e9 o {mark} em {home} \u2013 {away}: tira esse.&#34;, &#34;too_few&#34;: &#34;S\u00f3 {n} das {total} \u00e9pocas simuladas t\u00eam tudo isto. S\u00e3o poucas para dizer alguma coisa.&#34;, &#34;zones&#34;: {&#34;champions_playoff&#34;: [&#34;Play-off Champions&#34;, &#34;3.\u00ba&#34;], &#34;conference&#34;: [&#34;Liga Confer\u00eancia&#34;, &#34;5.\u00ba&#34;], &#34;europa&#34;: [&#34;Liga Europa&#34;, &#34;4.\u00ba&#34;], &#34;middle&#34;: [&#34;A meio da tabela&#34;, &#34;6.\u00ba\u201315.\u00ba&#34;], &#34;playoff&#34;: [&#34;Play-off de descida&#34;, &#34;16.\u00ba&#34;], &#34;relegation&#34;: [&#34;Descida&#34;, &#34;17.\u00ba\u201318.\u00ba&#34;], &#34;second&#34;: [&#34;Champions&#34;, &#34;2.\u00ba&#34;], &#34;title&#34;: [&#34;Campe\u00e3o&#34;, &#34;1.\u00ba&#34;]}}" data-plan="{&#34;movers&#34;: [{&#34;club&#34;: 3, &#34;event&#34;: &#34;title&#34;, &#34;high&#34;: 59, &#34;low&#34;: 23, &#34;match&#34;: 119}, {&#34;club&#34;: 3, &#34;event&#34;: &#34;title&#34;, &#34;high&#34;: 54, &#34;low&#34;: 35, &#34;match&#34;: 206}, {&#34;club&#34;: 12, &#34;event&#34;: &#34;relegation&#34;, &#34;high&#34;: 62, &#34;low&#34;: 35, &#34;match&#34;: 131}, {&#34;club&#34;: 5, &#34;event&#34;: &#34;relegation&#34;, &#34;high&#34;: 62, &#34;low&#34;: 38, &#34;match&#34;: 120}], &#34;rounds&#34;: [{&#34;matches&#34;: [0, 1, 2, 3, 4, 5, 6, 7, 8], &#34;no&#34;: 11, &#34;played&#34;: []}, {&#34;matches&#34;: [9, 10, 11, 12, 13, 14, 15, 16, 17], &#34;no&#34;: 12, &#34;played&#34;: []}, {&#34;matches&#34;: [18, 19, 20, 21, 22, 23, 24, 25, 26], &#34;no&#34;: 13, &#34;played&#34;: []}, {&#34;matches&#34;: [27, 28, 29, 30, 31, 32, 33, 34, 35], &#34;no&#34;: 14, &#34;played&#34;: []}, {&#34;matches&#34;: [36, 37, 38, 39, 40, 41, 42, 43, 44], &#34;no&#34;: 15, &#34;played&#34;: []}, {&#34;matches&#34;: [45, 46, 47, 48, 49, 50, 51, 52, 53], &#34;no&#34;: 16, &#34;played&#34;: []}, {&#34;matches&#34;: [54, 55, 56, 57, 58, 59, 60, 61, 62], &#34;no&#34;: 17, &#34;played&#34;: []}, {&#34;matches&#34;: [63, 64, 65, 66, 67, 68, 69, 70, 71], &#34;no&#34;: 18, &#34;played&#34;: []}, {&#34;matches&#34;: [72, 73, 74, 75, 76, 77, 78, 79, 80], &#34;no&#34;: 19, &#34;played&#34;: []}, {&#34;matches&#34;: [81, 82, 83, 84, 85, 86, 87, 88, 89], &#34;no&#34;: 20, &#34;played&#34;: []}, {&#34;matches&#34;: [90, 91, 92, 93, 94, 95, 96, 97, 98], &#34;no&#34;: 21, &#34;played&#34;: []}, {&#34;matches&#34;: [99, 100, 101, 102, 103, 104, 105, 106, 107], &#34;no&#34;: 22, &#34;played&#34;: []}, {&#34;matches&#34;: [108, 109, 110, 111, 112, 113, 114, 115, 116], &#34;no&#34;: 23, &#34;played&#34;: []}, {&#34;matches&#34;: [117, 118, 119, 120, 121, 122, 123, 124, 125], &#34;no&#34;: 24, &#34;played&#34;: []}, {&#34;matches&#34;: [126, 127, 128, 129, 130, 131, 132, 133, 134], &#34;no&#34;: 25, &#34;played&#34;: []}, {&#34;matches&#34;: [135, 136, 137, 138, 139, 140, 141, 142, 143], &#34;no&#34;: 26, &#34;played&#34;: []}, {&#34;matches&#34;: [144, 145, 146, 147, 148, 149, 150, 151, 152], &#34;no&#34;: 27, &#34;played&#34;: []}, {&#34;matches&#34;: [153, 154, 155, 156, 157, 158, 159, 160, 161], &#34;no&#34;: 28, &#34;played&#34;: []}, {&#34;matches&#34;: [162, 163, 164, 165, 166, 167, 168, 169, 170], &#34;no&#34;: 29, &#34;played&#34;: []}, {&#34;matches&#34;: [171, 172, 173, 174, 175, 176, 177, 178, 179], &#34;no&#34;: 30, &#34;played&#34;: []}, {&#34;matches&#34;: [180, 181, 182, 183, 184, 185, 186, 187, 188], &#34;no&#34;: 31, &#34;played&#34;: []}, {&#34;matches&#34;: [189, 190, 191, 192, 193, 194, 195, 196, 197], &#34;no&#34;: 32, &#34;played&#34;: []}, {&#34;matches&#34;: [198, 199, 200, 201, 202, 203, 204, 205, 206], &#34;no&#34;: 33, &#34;played&#34;: []}, {&#34;matches&#34;: [207, 208, 209, 210, 211, 212, 213, 214, 215], &#34;no&#34;: 34, &#34;played&#34;: []}], &#34;total&#34;: 34}">
+  <div class="sim" id="scenario" data-src="scenarios" data-lang="pt" data-order="[&#34;porto&#34;, &#34;benfica&#34;, &#34;sporting&#34;, &#34;sp-braga&#34;, &#34;santa-clara&#34;, &#34;academico-viseu&#34;, &#34;arouca&#34;, &#34;guimaraes&#34;, &#34;gil-vicente&#34;, &#34;famalicao&#34;, &#34;alverca&#34;, &#34;moreirense&#34;, &#34;estrela-amadora&#34;, &#34;maritimo&#34;, &#34;rio-ave&#34;, &#34;casa-pia&#34;, &#34;nacional&#34;, &#34;estoril&#34;]" data-points="[84.73, 84.21, 71.54, 56.4, 53.21, 49.04, 48.82, 46.22, 46.18, 44.16, 41.2, 36.38, 36.21, 34.52, 30.41, 29.58, 28.04, 27.96]" data-text="{&#34;all&#34;: &#34;Jog\u00e1mos o resto da \u00e9poca {total} vezes para este simulador. Um resultado que escolhes fica fixo em todas elas; os outros jogos continuam em aberto.&#34;, &#34;away&#34;: &#34;vit\u00f3ria fora&#34;, &#34;chosen&#34;: &#34;Resultados escolhidos: {n}. Ficam fixos nas {total} \u00e9pocas; os outros jogos continuam em aberto.&#34;, &#34;club&#34;: &#34;Clube&#34;, &#34;draw&#34;: &#34;empate&#34;, &#34;failed&#34;: &#34;N\u00e3o foi poss\u00edvel carregar as simula\u00e7\u00f5es. O construtor funciona na p\u00e1gina publicada, n\u00e3o num ficheiro aberto do disco.&#34;, &#34;finished&#34;: &#34;Terminou {home} \u2013 {away}&#34;, &#34;fx_same&#34;: &#34;As contas quase n\u00e3o mexem&#34;, &#34;fx_what&#34;: {&#34;europe&#34;: &#34;{club} na Europa&#34;, &#34;relegation&#34;: &#34;{club} desce&#34;, &#34;title&#34;: &#34;{club} campe\u00e3o&#34;}, &#34;go_bars&#34;: &#34;Ver as barras \u2193&#34;, &#34;go_games&#34;: &#34;\u2191 Voltar aos jogos&#34;, &#34;home&#34;: &#34;vit\u00f3ria da casa&#34;, &#34;in_100&#34;: &#34;em 100&#34;, &#34;loading&#34;: &#34;A carregar as simula\u00e7\u00f5es\u2026&#34;, &#34;meanings&#34;: {&#34;europe&#34;: &#34;Europa&#34;, &#34;relegation&#34;: &#34;Descida&#34;, &#34;title&#34;: &#34;T\u00edtulo&#34;}, &#34;moved_down&#34;: &#34;desce {n}&#34;, &#34;moved_up&#34;: &#34;sobe {n}&#34;, &#34;mover_relegation&#34;: &#34;{club} desce: {low} a {high} em 100&#34;, &#34;mover_title&#34;: &#34;{club} campe\u00e3o: {low} a {high} em 100&#34;, &#34;round&#34;: &#34;Jornada {n}&#34;, &#34;round_last&#34;: &#34;a \u00faltima&#34;, &#34;round_next&#34;: &#34;a pr\u00f3xima&#34;, &#34;round_next_label&#34;: &#34;Jornada seguinte&#34;, &#34;round_now&#34;: &#34;a decorrer&#34;, &#34;round_of&#34;: &#34;Jornada {n} de {total}&#34;, &#34;round_picks&#34;: &#34;tem resultados escolhidos&#34;, &#34;round_prev_label&#34;: &#34;Jornada anterior&#34;, &#34;rounds_left&#34;: &#34;faltam {n} jornadas&#34;, &#34;see_club&#34;: &#34;Ver o clube&#34;, &#34;zones&#34;: {&#34;champions_playoff&#34;: [&#34;Play-off Champions&#34;, &#34;3.\u00ba&#34;], &#34;conference&#34;: [&#34;Liga Confer\u00eancia&#34;, &#34;5.\u00ba&#34;], &#34;europa&#34;: [&#34;Liga Europa&#34;, &#34;4.\u00ba&#34;], &#34;middle&#34;: [&#34;A meio da tabela&#34;, &#34;6.\u00ba\u201315.\u00ba&#34;], &#34;playoff&#34;: [&#34;Play-off de descida&#34;, &#34;16.\u00ba&#34;], &#34;relegation&#34;: [&#34;Descida&#34;, &#34;17.\u00ba\u201318.\u00ba&#34;], &#34;second&#34;: [&#34;Champions&#34;, &#34;2.\u00ba&#34;], &#34;title&#34;: [&#34;Campe\u00e3o&#34;, &#34;1.\u00ba&#34;]}}" data-plan="{&#34;movers&#34;: [{&#34;club&#34;: 3, &#34;event&#34;: &#34;title&#34;, &#34;high&#34;: 59, &#34;low&#34;: 23, &#34;match&#34;: 119}, {&#34;club&#34;: 3, &#34;event&#34;: &#34;title&#34;, &#34;high&#34;: 54, &#34;low&#34;: 35, &#34;match&#34;: 206}, {&#34;club&#34;: 12, &#34;event&#34;: &#34;relegation&#34;, &#34;high&#34;: 62, &#34;low&#34;: 37, &#34;match&#34;: 184}, {&#34;club&#34;: 5, &#34;event&#34;: &#34;relegation&#34;, &#34;high&#34;: 65, &#34;low&#34;: 41, &#34;match&#34;: 73}], &#34;rounds&#34;: [{&#34;matches&#34;: [0, 1, 2, 3, 4, 5, 6, 7, 8], &#34;no&#34;: 11, &#34;played&#34;: []}, {&#34;matches&#34;: [9, 10, 11, 12, 13, 14, 15, 16, 17], &#34;no&#34;: 12, &#34;played&#34;: []}, {&#34;matches&#34;: [18, 19, 20, 21, 22, 23, 24, 25, 26], &#34;no&#34;: 13, &#34;played&#34;: []}, {&#34;matches&#34;: [27, 28, 29, 30, 31, 32, 33, 34, 35], &#34;no&#34;: 14, &#34;played&#34;: []}, {&#34;matches&#34;: [36, 37, 38, 39, 40, 41, 42, 43, 44], &#34;no&#34;: 15, &#34;played&#34;: []}, {&#34;matches&#34;: [45, 46, 47, 48, 49, 50, 51, 52, 53], &#34;no&#34;: 16, &#34;played&#34;: []}, {&#34;matches&#34;: [54, 55, 56, 57, 58, 59, 60, 61, 62], &#34;no&#34;: 17, &#34;played&#34;: []}, {&#34;matches&#34;: [63, 64, 65, 66, 67, 68, 69, 70, 71], &#34;no&#34;: 18, &#34;played&#34;: []}, {&#34;matches&#34;: [72, 73, 74, 75, 76, 77, 78, 79, 80], &#34;no&#34;: 19, &#34;played&#34;: []}, {&#34;matches&#34;: [81, 82, 83, 84, 85, 86, 87, 88, 89], &#34;no&#34;: 20, &#34;played&#34;: []}, {&#34;matches&#34;: [90, 91, 92, 93, 94, 95, 96, 97, 98], &#34;no&#34;: 21, &#34;played&#34;: []}, {&#34;matches&#34;: [99, 100, 101, 102, 103, 104, 105, 106, 107], &#34;no&#34;: 22, &#34;played&#34;: []}, {&#34;matches&#34;: [108, 109, 110, 111, 112, 113, 114, 115, 116], &#34;no&#34;: 23, &#34;played&#34;: []}, {&#34;matches&#34;: [117, 118, 119, 120, 121, 122, 123, 124, 125], &#34;no&#34;: 24, &#34;played&#34;: []}, {&#34;matches&#34;: [126, 127, 128, 129, 130, 131, 132, 133, 134], &#34;no&#34;: 25, &#34;played&#34;: []}, {&#34;matches&#34;: [135, 136, 137, 138, 139, 140, 141, 142, 143], &#34;no&#34;: 26, &#34;played&#34;: []}, {&#34;matches&#34;: [144, 145, 146, 147, 148, 149, 150, 151, 152], &#34;no&#34;: 27, &#34;played&#34;: []}, {&#34;matches&#34;: [153, 154, 155, 156, 157, 158, 159, 160, 161], &#34;no&#34;: 28, &#34;played&#34;: []}, {&#34;matches&#34;: [162, 163, 164, 165, 166, 167, 168, 169, 170], &#34;no&#34;: 29, &#34;played&#34;: []}, {&#34;matches&#34;: [171, 172, 173, 174, 175, 176, 177, 178, 179], &#34;no&#34;: 30, &#34;played&#34;: []}, {&#34;matches&#34;: [180, 181, 182, 183, 184, 185, 186, 187, 188], &#34;no&#34;: 31, &#34;played&#34;: []}, {&#34;matches&#34;: [189, 190, 191, 192, 193, 194, 195, 196, 197], &#34;no&#34;: 32, &#34;played&#34;: []}, {&#34;matches&#34;: [198, 199, 200, 201, 202, 203, 204, 205, 206], &#34;no&#34;: 33, &#34;played&#34;: []}, {&#34;matches&#34;: [207, 208, 209, 210, 211, 212, 213, 214, 215], &#34;no&#34;: 34, &#34;played&#34;: []}], &#34;total&#34;: 34}">
     <h2 id="scenario-title">E se…? Escolhe tu os resultados</h2>
-    <p class="lede">Escolhe o resultado de um jogo e vê o que acontece ao título, à Europa e à descida. Combina uns 5: mais do que isso já quase nunca acontece nas simulações.</p>
+    <p class="lede">Escolhe o resultado de um jogo, de uma jornada ou da época toda, e vê o que acontece ao título, à Europa e à descida.</p>
     <noscript><p class="empty">O simulador precisa de JavaScript; tudo o resto nesta página funciona sem ele.</p></noscript>
     <p class="scn-status meta" aria-live="polite"></p>
     <p class="sr scn-live" aria-live="polite"></p>
@@ -721,10 +746,10 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
         <button type="button" class="scn-reset scn-wide">Limpar escolhas</button>
         <div class="scn-nav" hidden></div>
       </div>
-      <button type="button" class="scn-fx" hidden><span class="line"><span class="what"></span><span class="nums num"></span></span><span class="status-line"><span class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="room-text"></span><span class="go"></span></span></button>
+      <button type="button" class="scn-fx" hidden><span class="line"><span class="what"></span><span class="nums num"></span></span><span class="status-line"><span class="go"></span></span></button>
       <div class="scn-side" id="scn-results"><button type="button" class="scn-reset scn-narrow">Limpar escolhas</button><div class="scn-narrow"><ul class="zone-legend"><li><i class="z-title"></i>Campeão <small>1.º</small></li><li><i class="z-second"></i>Champions <small>2.º</small></li><li><i class="z-champions_playoff"></i>Play-off Champions <small>3.º</small></li><li><i class="z-europa"></i>Liga Europa <small>4.º</small></li><li><i class="z-conference"></i>Liga Conferência <small>5.º</small></li><li><i class="z-middle"></i>A meio da tabela <small>6.º–15.º</small></li><li><i class="z-playoff"></i>Play-off de descida <small>16.º</small></li><li><i class="z-relegation"></i>Descida <small>17.º–18.º</small></li></ul></div><ol class="zone-rows num scn-table"></ol></div>
     </div>
-<p class="note scn-sample">Este simulador usa 20 000 das 50 000 simulações, por isso um número pode diferir em 1 ou 2 do resto do site.</p>  </div>
+<p class="note scn-sample">Este simulador usa 10 000 das 50 000 simulações, por isso um número pode diferir em 1 ou 2 do resto do site.</p>  </div>
 </section>
 
 <section class="list-block" aria-labelledby="table-title">
@@ -828,27 +853,27 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <section class="list-block" aria-labelledby="map-title">
   <h2 id="map-title">Lugar a lugar</h2>
   <p class="lede">Em 100 épocas simuladas, quantas vezes cada clube acaba em cada lugar. Quanto mais aceso o cartão, mais provável.</p>
-  <div class="scroll"><table class="heat num">
-    <thead><tr><th class="text">Clube</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th></tr></thead>
-    <tbody>
-      <tr data-clubs="porto"><th class="text" scope="row"><a class="club" href="clubes/porto.html">Porto</a></th><td class="hot" style="--p: 0.533">53</td><td class="hot" style="--p: 0.418">42</td><td style="--p: 0.049">5</td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
-      <tr data-clubs="benfica"><th class="text" scope="row"><a class="club" href="clubes/benfica.html">Benfica</a></th><td class="hot" style="--p: 0.452">45</td><td class="hot" style="--p: 0.499">50</td><td style="--p: 0.049">5</td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
-      <tr data-clubs="sporting"><th class="text" scope="row"><a class="club" href="clubes/sporting.html">Sporting</a></th><td style="--p: 0.015"><span class="sr">2</span></td><td style="--p: 0.083">8</td><td class="hot" style="--p: 0.847">85</td><td style="--p: 0.046">5</td><td style="--p: 0.007"><span class="sr">1</span></td><td style="--p: 0.002"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
-      <tr data-clubs="sp-braga"><th class="text" scope="row"><a class="club" href="clubes/sp-braga.html">Sporting de Braga</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.029"><span class="sr">3</span></td><td class="hot" style="--p: 0.449">45</td><td style="--p: 0.233">23</td><td style="--p: 0.129">13</td><td style="--p: 0.073">7</td><td style="--p: 0.042"><span class="sr">4</span></td><td style="--p: 0.023"><span class="sr">2</span></td><td style="--p: 0.012"><span class="sr">1</span></td><td style="--p: 0.006"><span class="sr">1</span></td><td style="--p: 0.002"></td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
-      <tr data-clubs="santa-clara"><th class="text" scope="row"><a class="club" href="clubes/santa-clara.html">Santa Clara</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.016"><span class="sr">2</span></td><td style="--p: 0.226">23</td><td style="--p: 0.251">25</td><td style="--p: 0.179">18</td><td style="--p: 0.124">12</td><td style="--p: 0.084">8</td><td style="--p: 0.056">6</td><td style="--p: 0.033"><span class="sr">3</span></td><td style="--p: 0.018"><span class="sr">2</span></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.003"></td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
-      <tr data-clubs="academico-viseu"><th class="text" scope="row"><a class="club" href="clubes/academico-viseu.html">Académico de Viseu</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.004"></td><td style="--p: 0.086">9</td><td style="--p: 0.134">13</td><td style="--p: 0.163">16</td><td style="--p: 0.158">16</td><td style="--p: 0.141">14</td><td style="--p: 0.114">11</td><td style="--p: 0.086">9</td><td style="--p: 0.055">5</td><td style="--p: 0.031"><span class="sr">3</span></td><td style="--p: 0.016"><span class="sr">2</span></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.003"></td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
-      <tr data-clubs="arouca"><th class="text" scope="row"><a class="club" href="clubes/arouca.html">Arouca</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.003"></td><td style="--p: 0.081">8</td><td style="--p: 0.133">13</td><td style="--p: 0.159">16</td><td style="--p: 0.159">16</td><td style="--p: 0.143">14</td><td style="--p: 0.118">12</td><td style="--p: 0.088">9</td><td style="--p: 0.056">6</td><td style="--p: 0.032"><span class="sr">3</span></td><td style="--p: 0.016"><span class="sr">2</span></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.003"></td><td style="--p: 0.001"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td></tr>
-      <tr data-clubs="guimaraes"><th class="text" scope="row"><a class="club" href="clubes/guimaraes.html">Vitória SC</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.040"><span class="sr">4</span></td><td style="--p: 0.085">8</td><td style="--p: 0.114">11</td><td style="--p: 0.136">14</td><td style="--p: 0.147">15</td><td style="--p: 0.136">14</td><td style="--p: 0.118">12</td><td style="--p: 0.090">9</td><td style="--p: 0.059">6</td><td style="--p: 0.037"><span class="sr">4</span></td><td style="--p: 0.021"><span class="sr">2</span></td><td style="--p: 0.010"><span class="sr">1</span></td><td style="--p: 0.005"></td><td style="--p: 0.001"></td><td style="--p: 0.001"></td></tr>
-      <tr data-clubs="gil-vicente"><th class="text" scope="row"><a class="club" href="clubes/gil-vicente.html">Gil Vicente</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.042"><span class="sr">4</span></td><td style="--p: 0.079">8</td><td style="--p: 0.112">11</td><td style="--p: 0.131">13</td><td style="--p: 0.141">14</td><td style="--p: 0.141">14</td><td style="--p: 0.125">12</td><td style="--p: 0.095">10</td><td style="--p: 0.060">6</td><td style="--p: 0.037"><span class="sr">4</span></td><td style="--p: 0.019"><span class="sr">2</span></td><td style="--p: 0.010"><span class="sr">1</span></td><td style="--p: 0.004"></td><td style="--p: 0.002"></td><td style="--p: 0.000"></td></tr>
-      <tr data-clubs="famalicao"><th class="text" scope="row"><a class="club" href="clubes/famalicao.html">Famalicão</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.020"><span class="sr">2</span></td><td style="--p: 0.049">5</td><td style="--p: 0.078">8</td><td style="--p: 0.107">11</td><td style="--p: 0.129">13</td><td style="--p: 0.144">14</td><td style="--p: 0.141">14</td><td style="--p: 0.123">12</td><td style="--p: 0.088">9</td><td style="--p: 0.059">6</td><td style="--p: 0.032"><span class="sr">3</span></td><td style="--p: 0.017"><span class="sr">2</span></td><td style="--p: 0.009"><span class="sr">1</span></td><td style="--p: 0.004"></td><td style="--p: 0.001"></td></tr>
-      <tr data-clubs="alverca"><th class="text" scope="row"><a class="club" href="clubes/alverca.html">Alverca</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.023"><span class="sr">2</span></td><td style="--p: 0.041"><span class="sr">4</span></td><td style="--p: 0.065">6</td><td style="--p: 0.087">9</td><td style="--p: 0.115">11</td><td style="--p: 0.138">14</td><td style="--p: 0.148">15</td><td style="--p: 0.129">13</td><td style="--p: 0.095">10</td><td style="--p: 0.068">7</td><td style="--p: 0.044"><span class="sr">4</span></td><td style="--p: 0.024"><span class="sr">2</span></td><td style="--p: 0.012"><span class="sr">1</span></td><td style="--p: 0.005"></td></tr>
-      <tr data-clubs="moreirense"><th class="text" scope="row"><a class="club" href="clubes/moreirense.html">Moreirense</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.003"></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.016"><span class="sr">2</span></td><td style="--p: 0.029"><span class="sr">3</span></td><td style="--p: 0.048">5</td><td style="--p: 0.079">8</td><td style="--p: 0.114">11</td><td style="--p: 0.147">15</td><td style="--p: 0.159">16</td><td style="--p: 0.139">14</td><td style="--p: 0.109">11</td><td style="--p: 0.077">8</td><td style="--p: 0.047">5</td><td style="--p: 0.021"><span class="sr">2</span></td></tr>
-      <tr data-clubs="estrela-amadora"><th class="text" scope="row"><a class="club" href="clubes/estrela-amadora.html">Estrela da Amadora</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.003"></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.017"><span class="sr">2</span></td><td style="--p: 0.028"><span class="sr">3</span></td><td style="--p: 0.048">5</td><td style="--p: 0.072">7</td><td style="--p: 0.113">11</td><td style="--p: 0.144">14</td><td style="--p: 0.152">15</td><td style="--p: 0.142">14</td><td style="--p: 0.113">11</td><td style="--p: 0.082">8</td><td style="--p: 0.053">5</td><td style="--p: 0.025"><span class="sr">3</span></td></tr>
-      <tr data-clubs="maritimo"><th class="text" scope="row"><a class="club" href="clubes/maritimo.html">Marítimo</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.002"></td><td style="--p: 0.004"></td><td style="--p: 0.010"><span class="sr">1</span></td><td style="--p: 0.018"><span class="sr">2</span></td><td style="--p: 0.034"><span class="sr">3</span></td><td style="--p: 0.056">6</td><td style="--p: 0.083">8</td><td style="--p: 0.119">12</td><td style="--p: 0.142">14</td><td style="--p: 0.150">15</td><td style="--p: 0.134">13</td><td style="--p: 0.112">11</td><td style="--p: 0.084">8</td><td style="--p: 0.052">5</td></tr>
-      <tr data-clubs="rio-ave"><th class="text" scope="row"><a class="club" href="clubes/rio-ave.html">Rio Ave</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.002"></td><td style="--p: 0.004"></td><td style="--p: 0.009"><span class="sr">1</span></td><td style="--p: 0.018"><span class="sr">2</span></td><td style="--p: 0.035"><span class="sr">3</span></td><td style="--p: 0.064">6</td><td style="--p: 0.092">9</td><td style="--p: 0.125">12</td><td style="--p: 0.156">16</td><td style="--p: 0.175">17</td><td style="--p: 0.173">17</td><td style="--p: 0.148">15</td></tr>
-      <tr data-clubs="casa-pia"><th class="text" scope="row"><a class="club" href="clubes/casa-pia.html">Casa Pia</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.001"></td><td style="--p: 0.004"></td><td style="--p: 0.007"><span class="sr">1</span></td><td style="--p: 0.014"><span class="sr">1</span></td><td style="--p: 0.027"><span class="sr">3</span></td><td style="--p: 0.049">5</td><td style="--p: 0.079">8</td><td style="--p: 0.113">11</td><td style="--p: 0.149">15</td><td style="--p: 0.178">18</td><td style="--p: 0.187">19</td><td style="--p: 0.190">19</td></tr>
-      <tr data-clubs="nacional"><th class="text" scope="row"><a class="club" href="clubes/nacional.html">Nacional</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.001"></td><td style="--p: 0.003"></td><td style="--p: 0.008"><span class="sr">1</span></td><td style="--p: 0.017"><span class="sr">2</span></td><td style="--p: 0.033"><span class="sr">3</span></td><td style="--p: 0.055">5</td><td style="--p: 0.089">9</td><td style="--p: 0.130">13</td><td style="--p: 0.173">17</td><td style="--p: 0.226">23</td><td style="--p: 0.264">26</td></tr>
-      <tr data-clubs="estoril"><th class="text" scope="row"><a class="club" href="clubes/estoril.html">Estoril Praia</a></th><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.000"></td><td style="--p: 0.001"></td><td style="--p: 0.002"></td><td style="--p: 0.005"></td><td style="--p: 0.010"><span class="sr">1</span></td><td style="--p: 0.021"><span class="sr">2</span></td><td style="--p: 0.034"><span class="sr">3</span></td><td style="--p: 0.058">6</td><td style="--p: 0.086">9</td><td style="--p: 0.119">12</td><td style="--p: 0.160">16</td><td style="--p: 0.211">21</td><td style="--p: 0.293">29</td></tr>
+  <div class="scroll"><table class="heat num" role="table">
+    <thead role="rowgroup"><tr role="row"><th class="text" role="columnheader">Clube</th><th role="columnheader">1</th><th role="columnheader">2</th><th role="columnheader">3</th><th role="columnheader">4</th><th role="columnheader">5</th><th role="columnheader">6</th><th role="columnheader">7</th><th role="columnheader">8</th><th role="columnheader">9</th><th role="columnheader">10</th><th role="columnheader">11</th><th role="columnheader">12</th><th role="columnheader">13</th><th role="columnheader">14</th><th role="columnheader">15</th><th role="columnheader">16</th><th role="columnheader">17</th><th role="columnheader">18</th></tr></thead>
+    <tbody role="rowgroup">
+      <tr data-clubs="porto" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/porto.html">Porto</a></th><td role="cell" class="hot" style="--p: 0.533">53</td><td role="cell" class="hot" style="--p: 0.418">42</td><td role="cell" class="low" style="--p: 0.049">5</td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
+      <tr data-clubs="benfica" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/benfica.html">Benfica</a></th><td role="cell" class="hot" style="--p: 0.452">45</td><td role="cell" class="hot" style="--p: 0.499">50</td><td role="cell" class="low" style="--p: 0.049">5</td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
+      <tr data-clubs="sporting" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/sporting.html">Sporting</a></th><td role="cell" class="low" style="--p: 0.015"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.083">8</td><td role="cell" class="hot" style="--p: 0.847">85</td><td role="cell" class="low" style="--p: 0.046">5</td><td role="cell" class="low" style="--p: 0.007"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.002"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
+      <tr data-clubs="sp-braga" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/sp-braga.html">Sporting de Braga</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.029"><span class="sr">3</span></td><td role="cell" class="hot" style="--p: 0.449">45</td><td role="cell" style="--p: 0.233">23</td><td role="cell" style="--p: 0.129">13</td><td role="cell" class="low" style="--p: 0.073">7</td><td role="cell" class="low" style="--p: 0.042"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.023"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.012"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.006"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.002"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
+      <tr data-clubs="santa-clara" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/santa-clara.html">Santa Clara</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.016"><span class="sr">2</span></td><td role="cell" style="--p: 0.226">23</td><td role="cell" style="--p: 0.251">25</td><td role="cell" style="--p: 0.179">18</td><td role="cell" style="--p: 0.124">12</td><td role="cell" class="low" style="--p: 0.084">8</td><td role="cell" class="low" style="--p: 0.056">6</td><td role="cell" class="low" style="--p: 0.033"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.018"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
+      <tr data-clubs="academico-viseu" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/academico-viseu.html">Académico de Viseu</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.004"></td><td role="cell" class="low" style="--p: 0.086">9</td><td role="cell" style="--p: 0.134">13</td><td role="cell" style="--p: 0.163">16</td><td role="cell" style="--p: 0.158">16</td><td role="cell" style="--p: 0.141">14</td><td role="cell" style="--p: 0.114">11</td><td role="cell" class="low" style="--p: 0.086">9</td><td role="cell" class="low" style="--p: 0.055">5</td><td role="cell" class="low" style="--p: 0.031"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.016"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
+      <tr data-clubs="arouca" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/arouca.html">Arouca</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.081">8</td><td role="cell" style="--p: 0.133">13</td><td role="cell" style="--p: 0.159">16</td><td role="cell" style="--p: 0.159">16</td><td role="cell" style="--p: 0.143">14</td><td role="cell" style="--p: 0.118">12</td><td role="cell" class="low" style="--p: 0.088">9</td><td role="cell" class="low" style="--p: 0.056">6</td><td role="cell" class="low" style="--p: 0.032"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.016"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
+      <tr data-clubs="guimaraes" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/guimaraes.html">Vitória SC</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.040"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.085">8</td><td role="cell" style="--p: 0.114">11</td><td role="cell" style="--p: 0.136">14</td><td role="cell" style="--p: 0.147">15</td><td role="cell" style="--p: 0.136">14</td><td role="cell" style="--p: 0.118">12</td><td role="cell" class="low" style="--p: 0.090">9</td><td role="cell" class="low" style="--p: 0.059">6</td><td role="cell" class="low" style="--p: 0.037"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.021"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.010"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.005"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.001"></td></tr>
+      <tr data-clubs="gil-vicente" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/gil-vicente.html">Gil Vicente</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.042"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.079">8</td><td role="cell" style="--p: 0.112">11</td><td role="cell" style="--p: 0.131">13</td><td role="cell" style="--p: 0.141">14</td><td role="cell" style="--p: 0.141">14</td><td role="cell" style="--p: 0.125">12</td><td role="cell" style="--p: 0.095">10</td><td role="cell" class="low" style="--p: 0.060">6</td><td role="cell" class="low" style="--p: 0.037"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.019"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.010"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.004"></td><td role="cell" class="low" style="--p: 0.002"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
+      <tr data-clubs="famalicao" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/famalicao.html">Famalicão</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.020"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.049">5</td><td role="cell" class="low" style="--p: 0.078">8</td><td role="cell" style="--p: 0.107">11</td><td role="cell" style="--p: 0.129">13</td><td role="cell" style="--p: 0.144">14</td><td role="cell" style="--p: 0.141">14</td><td role="cell" style="--p: 0.123">12</td><td role="cell" class="low" style="--p: 0.088">9</td><td role="cell" class="low" style="--p: 0.059">6</td><td role="cell" class="low" style="--p: 0.032"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.017"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.009"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.004"></td><td role="cell" class="low" style="--p: 0.001"></td></tr>
+      <tr data-clubs="alverca" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/alverca.html">Alverca</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.023"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.041"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.065">6</td><td role="cell" class="low" style="--p: 0.087">9</td><td role="cell" style="--p: 0.115">11</td><td role="cell" style="--p: 0.138">14</td><td role="cell" style="--p: 0.148">15</td><td role="cell" style="--p: 0.129">13</td><td role="cell" style="--p: 0.095">10</td><td role="cell" class="low" style="--p: 0.068">7</td><td role="cell" class="low" style="--p: 0.044"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.024"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.012"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.005"></td></tr>
+      <tr data-clubs="moreirense" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/moreirense.html">Moreirense</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.016"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.029"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.048">5</td><td role="cell" class="low" style="--p: 0.079">8</td><td role="cell" style="--p: 0.114">11</td><td role="cell" style="--p: 0.147">15</td><td role="cell" style="--p: 0.159">16</td><td role="cell" style="--p: 0.139">14</td><td role="cell" style="--p: 0.109">11</td><td role="cell" class="low" style="--p: 0.077">8</td><td role="cell" class="low" style="--p: 0.047">5</td><td role="cell" class="low" style="--p: 0.021"><span class="sr">2</span></td></tr>
+      <tr data-clubs="estrela-amadora" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/estrela-amadora.html">Estrela da Amadora</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.017"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.028"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.048">5</td><td role="cell" class="low" style="--p: 0.072">7</td><td role="cell" style="--p: 0.113">11</td><td role="cell" style="--p: 0.144">14</td><td role="cell" style="--p: 0.152">15</td><td role="cell" style="--p: 0.142">14</td><td role="cell" style="--p: 0.113">11</td><td role="cell" class="low" style="--p: 0.082">8</td><td role="cell" class="low" style="--p: 0.053">5</td><td role="cell" class="low" style="--p: 0.025"><span class="sr">3</span></td></tr>
+      <tr data-clubs="maritimo" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/maritimo.html">Marítimo</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.002"></td><td role="cell" class="low" style="--p: 0.004"></td><td role="cell" class="low" style="--p: 0.010"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.018"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.034"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.056">6</td><td role="cell" class="low" style="--p: 0.083">8</td><td role="cell" style="--p: 0.119">12</td><td role="cell" style="--p: 0.142">14</td><td role="cell" style="--p: 0.150">15</td><td role="cell" style="--p: 0.134">13</td><td role="cell" style="--p: 0.112">11</td><td role="cell" class="low" style="--p: 0.084">8</td><td role="cell" class="low" style="--p: 0.052">5</td></tr>
+      <tr data-clubs="rio-ave" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/rio-ave.html">Rio Ave</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.002"></td><td role="cell" class="low" style="--p: 0.004"></td><td role="cell" class="low" style="--p: 0.009"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.018"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.035"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.064">6</td><td role="cell" class="low" style="--p: 0.092">9</td><td role="cell" style="--p: 0.125">12</td><td role="cell" style="--p: 0.156">16</td><td role="cell" style="--p: 0.175">17</td><td role="cell" style="--p: 0.173">17</td><td role="cell" style="--p: 0.148">15</td></tr>
+      <tr data-clubs="casa-pia" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/casa-pia.html">Casa Pia</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.004"></td><td role="cell" class="low" style="--p: 0.007"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.014"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.027"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.049">5</td><td role="cell" class="low" style="--p: 0.079">8</td><td role="cell" style="--p: 0.113">11</td><td role="cell" style="--p: 0.149">15</td><td role="cell" style="--p: 0.178">18</td><td role="cell" style="--p: 0.187">19</td><td role="cell" style="--p: 0.190">19</td></tr>
+      <tr data-clubs="nacional" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/nacional.html">Nacional</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.017"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.033"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.055">5</td><td role="cell" class="low" style="--p: 0.089">9</td><td role="cell" style="--p: 0.130">13</td><td role="cell" style="--p: 0.173">17</td><td role="cell" style="--p: 0.226">23</td><td role="cell" style="--p: 0.264">26</td></tr>
+      <tr data-clubs="estoril" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/estoril.html">Estoril Praia</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.002"></td><td role="cell" class="low" style="--p: 0.005"></td><td role="cell" class="low" style="--p: 0.010"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.021"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.034"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.058">6</td><td role="cell" class="low" style="--p: 0.086">9</td><td role="cell" style="--p: 0.119">12</td><td role="cell" style="--p: 0.160">16</td><td role="cell" style="--p: 0.211">21</td><td role="cell" style="--p: 0.293">29</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -920,12 +945,139 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 })();
 </script>
 <script>
+// The simulator's engine (D-126): fix results in every simulation and rank each table again.
+// The same order as models.season.rank_tables, the regulation's art. 17.º: points; among clubs
+// level on points, points and goal difference between them; then goal difference, wins and goals
+// scored. A test runs this file against the Python. No page, no browser: only numbers go in and out.
+function scenarioEngine(meta, scores) {
+  "use strict";
+  const N = meta.sims, C = meta.clubs.length, M = meta.matches.length;
+  const homes = Int16Array.from(meta.matches, (m) => m.home);
+  const aways = Int16Array.from(meta.matches, (m) => m.away);
+  // Between two clubs, their matches: results already in the table, then matches still to play.
+  const between = Array.from({ length: C * C }, () => ({ fixed: [], open: [] }));
+  const known = new Int32Array(C * 4);
+  // Four numbers per club, side by side: points, goal difference, wins and goals scored.
+  function add(table, at, home, away, x, y, sign) {
+    const h = at + home * 4, a = at + away * 4;
+    table[h] += sign * (x > y ? 3 : x === y ? 1 : 0);
+    table[a] += sign * (y > x ? 3 : x === y ? 1 : 0);
+    table[h + 1] += sign * (x - y); table[a + 1] += sign * (y - x);
+    table[h + 2] += sign * (x > y ? 1 : 0); table[a + 2] += sign * (y > x ? 1 : 0);
+    table[h + 3] += sign * x; table[a + 3] += sign * y;
+  }
+  (meta.played || []).forEach(([h, a, x, y]) => {
+    add(known, 0, h, a, x, y, 1);
+    between[h * C + a].fixed.push(h, x, y);
+    between[a * C + h].fixed.push(h, x, y);
+  });
+  for (let j = 0; j < M; j++) {
+    between[homes[j] * C + aways[j]].open.push(j);
+    between[aways[j] * C + homes[j]].open.push(j);
+  }
+  // Each simulation's totals without any choice: worked out once.
+  const totals = new Int16Array(N * C * 4);
+  for (let s = 0; s < N; s++) {
+    const at = s * C * 4;
+    totals.set(known, at);
+    for (let j = 0; j < M; j++) {
+      const b = scores[s * M + j];
+      add(totals, at, homes[j], aways[j], b >> 4, b & 15, 1);
+    }
+  }
+  const outcome = (b) => { const x = b >> 4, y = b & 15; return x > y ? 0 : x === y ? 1 : 2; };
+  // The score of a result a simulation did not draw comes from the simulations that did: goals
+  // depend only on the match and its outcome, so it has the model's own distribution.
+  const donors = new Map();
+  function donorsOf(j, k) {
+    const key = j * 3 + k;
+    if (!donors.has(key)) {
+      const list = [];
+      for (let s = 0; s < N; s++) {
+        const b = scores[s * M + j];
+        if (outcome(b) === k) list.push(b);
+      }
+      // A result no simulation drew still has to count: the plainest score of that outcome.
+      donors.set(key, list.length ? Uint8Array.from(list) : Uint8Array.of([0x10, 0x11, 0x01][k]));
+    }
+    return donors.get(key);
+  }
+  // A tie that survives everything is a play-off in the regulation: settled by a fixed draw for
+  // each simulation, so that the same choices always give the same numbers.
+  function draw(s, c) {
+    let h = Math.imul(s + 1, 0x9e3779b1) ^ Math.imul(c + 1, 0x85ebca6b);
+    h = Math.imul(h ^ (h >>> 15), 0x2c1b3c6d);
+    return (h ^ (h >>> 13)) >>> 0;
+  }
+  const now = new Int32Array(C * 4);
+  const h2hPts = new Int32Array(C), h2hGd = new Int32Array(C), order = new Int32Array(C);
+  const scoreNow = new Int16Array(M).fill(-1);  // this simulation's replaced scores
+  function ahead(s, a, b) {  // does a finish above b?
+    const x = a * 4, y = b * 4;
+    if (now[x] !== now[y]) return now[x] > now[y];
+    if (h2hPts[a] !== h2hPts[b]) return h2hPts[a] > h2hPts[b];
+    if (h2hGd[a] !== h2hGd[b]) return h2hGd[a] > h2hGd[b];
+    if (now[x + 1] !== now[y + 1]) return now[x + 1] > now[y + 1];
+    if (now[x + 2] !== now[y + 2]) return now[x + 2] > now[y + 2];
+    if (now[x + 3] !== now[y + 3]) return now[x + 3] > now[y + 3];
+    return draw(s, a) > draw(s, b);
+  }
+  function credit(a, b, home, x, y) {
+    const mine = home === a ? x : y, theirs = home === a ? y : x;
+    h2hPts[a] += mine > theirs ? 3 : mine === theirs ? 1 : 0;
+    h2hPts[b] += theirs > mine ? 3 : mine === theirs ? 1 : 0;
+    h2hGd[a] += mine - theirs; h2hGd[b] += theirs - mine;
+  }
+  function headToHead(s) {
+    h2hPts.fill(0); h2hGd.fill(0);
+    for (let a = 0; a < C; a++) for (let b = a + 1; b < C; b++) {
+      if (now[a * 4] !== now[b * 4]) continue;
+      const { fixed, open } = between[a * C + b];
+      for (let i = 0; i < fixed.length; i += 3) credit(a, b, fixed[i], fixed[i + 1], fixed[i + 2]);
+      for (let i = 0; i < open.length; i++) {
+        const j = open[i], v = scoreNow[j] >= 0 ? scoreNow[j] : scores[s * M + j];
+        credit(a, b, homes[j], v >> 4, v & 15);
+      }
+    }
+  }
+  // choice: Map of match index -> 0 home win, 1 draw, 2 away win.
+  // Returns places[c * C + p]: simulations with club c in place p + 1, and each club's mean points.
+  function run(choice) {
+    const picks = [...choice].map(([j, k]) => [j, k, donorsOf(j, k)]);
+    const places = new Uint32Array(C * C), sum = new Float64Array(C);
+    for (let s = 0; s < N; s++) {
+      const at = s * C * 4;
+      for (let i = 0; i < C * 4; i++) now[i] = totals[at + i];
+      for (let i = 0; i < picks.length; i++) {
+        const j = picks[i][0], b = scores[s * M + j];
+        if (outcome(b) === picks[i][1]) continue;
+        const list = picks[i][2], v = list[s % list.length];
+        scoreNow[j] = v;
+        add(now, 0, homes[j], aways[j], b >> 4, b & 15, -1);
+        add(now, 0, homes[j], aways[j], v >> 4, v & 15, 1);
+      }
+      headToHead(s);
+      for (let i = 0; i < C; i++) {  // insertion sort: 18 clubs
+        let p = i;
+        while (p > 0 && ahead(s, i, order[p - 1])) { order[p] = order[p - 1]; p--; }
+        order[p] = i;
+      }
+      for (let p = 0; p < C; p++) places[order[p] * C + p]++;
+      for (let c = 0; c < C; c++) sum[c] += now[c * 4];
+      for (let i = 0; i < picks.length; i++) scoreNow[picks[i][0]] = -1;
+    }
+    return { n: N, places, points: sum.map((x) => x / N) };
+  }
+  return { run, clubs: C, sims: N };
+}
+if (typeof module !== "undefined") module.exports = scenarioEngine;
 (() => {
   "use strict";
   const box = document.getElementById("scenario");
   if (!box) return;
   const T = JSON.parse(box.dataset.text);
   const order = JSON.parse(box.dataset.order);
+  const standing = JSON.parse(box.dataset.points);  // each club's expected points, as on the rest of the page
   const lang = box.dataset.lang;
   const status = box.querySelector(".scn-status");
   const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, k) => values[k]);
@@ -941,8 +1093,9 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   ]).then(([meta, raw]) => start(meta, new Uint8Array(raw))).catch(() => { status.textContent = T.failed; });
 
   function start(meta, buf) {
-    const N = meta.sims, B = meta.outcome_bytes, C = meta.clubs.length, posAt = N * B;
-    if (buf.length !== N * (B + C)) { status.textContent = T.failed; return; }
+    const N = meta.sims, C = meta.clubs.length;
+    if (buf.length !== N * meta.matches.length) { status.textContent = T.failed; return; }
+    const engine = scenarioEngine(meta, buf);
     // Every place once, as the league allocates it (D-098): [key, best, worst]. They add up to 100.
     const events = [["title", 1, 1], ["second", 2, 2], ["champions_playoff", 3, 3], ["europa", 4, 4],
       ["conference", 5, 5], ["middle", 6, C - 3], ["playoff", C - 2, C - 2], ["relegation", C - 1, C]];
@@ -951,26 +1104,15 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
     const choice = new Map();  // match index -> 0, 1 or 2
 
     function count() {
-      const hits = events.map(() => new Uint32Array(C));
-      const picks = [...choice.entries()];
-      let n = 0;
-      for (let s = 0; s < N; s++) {
-        let ok = true;
-        for (const [j, k] of picks) {
-          if (((buf[s * B + (j >> 2)] >> ((j & 3) * 2)) & 3) !== k) { ok = false; break; }
-        }
-        if (!ok) continue;
-        n++;
-        for (let c = 0; c < C; c++) {
-          const p = buf[posAt + s * C + c];
-          events.forEach(([, lo, hi], i) => { if (p >= lo && p <= hi) hits[i][c]++; });
-        }
-      }
-      return { n, hits };
+      const { n, places, points } = engine.run(choice);
+      const hits = events.map(([, lo, hi]) => {
+        const out = new Uint32Array(C);
+        for (let c = 0; c < C; c++) for (let p = lo; p <= hi; p++) out[c] += places[c * C + p - 1];
+        return out;
+      });
+      return { n, hits, points };
     }
     const base = count();
-    // Below this, a club can reach 100% just because the handful of simulations left agree (D-124).
-    const MIN_SIMS = 100;
 
     // Whole cards out of 100 by the largest remainder, as on the rest of the site (D-092).
     function cards(counts, total) {
@@ -1004,7 +1146,14 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
       const fold = document.createElement("details");
       const head = document.createElement("summary");
       const name = document.createElement("span");
-      name.className = "who"; name.textContent = meta.clubs[c].name;
+      name.className = "who";
+      const rank = document.createElement("span");
+      rank.className = "rank num";
+      const moved = document.createElement("span");
+      moved.className = "moved num"; moved.setAttribute("aria-hidden", "true");
+      const movedSaid = document.createElement("span");
+      movedSaid.className = "sr";
+      name.append(rank, meta.clubs[c].name, moved, movedSaid);
       const delta = document.createElement("span");
       delta.className = "delta";
       const bar = document.createElement("span");
@@ -1035,16 +1184,43 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
       fold.append(head, detail, more);
       li.appendChild(fold);
       list.appendChild(li);
-      bars.set(c, { segments, delta, bar, detail });
+      bars.set(c, { segments, delta, bar, detail, rank, moved, movedSaid, li });
     });
+    // The table the fan is building: the page's expected points, moved by what the choices changed.
+    // Measured against the sample's own start, so a club that nothing touched stays where it stood.
+    const expected = new Map(rows.map((c) => [c, standing[order.indexOf(meta.clubs[c].id)] - base.points[c]]));
+    const start = new Map(rows.map((c, i) => [c, i]));
+    let drawn = [...rows];
+    const calm = matchMedia("(prefers-reduced-motion: reduce)");
+    function place(now) {
+      const next = [...rows].sort((a, b) => (expected.get(b) + now.points[b]) - (expected.get(a) + now.points[a]) || start.get(a) - start.get(b));
+      const same = next.every((c, i) => c === drawn[i]);
+      const before = new Map(rows.map((c) => [c, bars.get(c).li.getBoundingClientRect().top]));
+      next.forEach((c, i) => {
+        const { rank, moved, movedSaid } = bars.get(c);
+        rank.textContent = i + 1;
+        const up = start.get(c) - i;
+        moved.textContent = up > 0 ? "\u25B2" + up : up < 0 ? "\u25BC" + -up : "";
+        movedSaid.textContent = up ? ", " + fill(up > 0 ? T.moved_up : T.moved_down, { n: Math.abs(up) }) : "";
+      });
+      if (!same) {
+        next.forEach((c) => list.appendChild(bars.get(c).li));
+        drawn = next;
+      }
+      pinClub();
+      if (calm.matches) return;
+      rows.forEach((c) => {
+        const { li } = bars.get(c);
+        const dy = before.get(c) - li.getBoundingClientRect().top;
+        if (dy) li.animate([{ transform: "translateY(" + dy + "px)" }, { transform: "none" }], { duration: 520, easing: "cubic-bezier(0.16, 1, 0.3, 1)" });
+      });
+    }
     function table(now) {
-      const tooFew = choice.size > 0 && now.n < MIN_SIMS;
-      list.classList.toggle("has-choice", choice.size > 0 && !tooFew);
-      list.classList.toggle("too-few", tooFew);
+      list.classList.toggle("has-choice", choice.size > 0);
       rows.forEach((c) => {
         const { segments, delta, bar, detail } = bars.get(c);
         const was = cards(clubCounts(base, c), base.n);
-        const is = tooFew ? was : cards(clubCounts(now, c), now.n);
+        const is = cards(clubCounts(now, c), now.n);
         segments.forEach((seg, i) => {
           seg.style.flexGrow = String(is[i]);
           seg.textContent = is[i] >= 5 ? is[i] : "";
@@ -1056,7 +1232,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
         // What the bar does not say: the numbers too small to fit and, after a choice, the before.
         detail.textContent = "";
         events.forEach(([e], i) => {
-          const changed = choice.size && !tooFew && is[i] !== was[i];
+          const changed = choice.size && is[i] !== was[i];
           if (!changed && (!is[i] || is[i] >= 10)) return;
           const part = document.createElement("span");
           if (!changed && is[i] >= 5) part.className = "phone-only";
@@ -1068,7 +1244,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
         // The biggest change in what the places mean to a fan, in the colour of that meaning.
         const top = biggestChange(was, is);
         delta.textContent = "";
-        if (choice.size && !tooFew && top) {
+        if (choice.size && top) {
           delta.textContent = T.meanings[top.key] + " " + (top.to > top.from ? "+" : "\u2212") + Math.abs(top.to - top.from);
           delta.style.color = "color-mix(in srgb, var(--z-" + top.colour + ") var(--delta-share), var(--ink))";
         }
@@ -1096,15 +1272,9 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
       });
       return top && { name: meta.clubs[who].name, ...top };
     }
-    // Five cards that run out as the simulations do: on a log scale, because each result divides them.
-    function room(now) {
-      if (now.n < MIN_SIMS) return { left: 0, text: T.room_over };
-      const left = Math.max(1, Math.min(5, Math.ceil(Math.log(now.n / MIN_SIMS) / Math.log(N / MIN_SIMS) * 5)));
-      return { left, text: left >= 3 ? T.room_plenty : left === 2 ? T.room_two : T.room_last };
-    }
     const fx = box.querySelector(".scn-fx");
     const fxWhat = fx.querySelector(".what"), fxNums = fx.querySelector(".nums");
-    const fxCards = [...fx.querySelectorAll(".meter i")], fxRoom = fx.querySelector(".room-text"), fxGo = fx.querySelector(".go");
+    const fxGo = fx.querySelector(".go");
     const live = box.querySelector(".scn-live");
     const side = box.querySelector(".scn-side");
     let inBars = false;
@@ -1112,12 +1282,10 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
       fx.hidden = !choice.size;
       fxGo.textContent = inBars ? T.go_games : T.go_bars;
       if (!choice.size) { live.textContent = ""; return; }
-      const space = room(now), top = now.n < MIN_SIMS ? null : headline(now);
-      fxCards.forEach((card, i) => card.classList.toggle("gone", i >= space.left));
-      fxRoom.textContent = space.text;
+      const top = headline(now);
       fxNums.textContent = "";
       if (!top) {
-        fxWhat.textContent = now.n < MIN_SIMS ? T.fx_stay : T.fx_same;
+        fxWhat.textContent = T.fx_same;
         live.textContent = fxWhat.textContent;
         return;
       }
@@ -1129,29 +1297,12 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
     }
     new IntersectionObserver((seen) => { inBars = seen[0].isIntersecting; fxGo.textContent = inBars ? T.go_games : T.go_bars; }, { rootMargin: "-40% 0px -40% 0px" }).observe(side);
     fx.addEventListener("click", () => (inBars ? box.querySelector(".scn-nav") : side).scrollIntoView({ block: "start" }));
-    // The result that cost the most simulations: the one to take out when too few are left.
-    function leastLikely() {
-      let worst = null;
-      choice.forEach((k, j) => {
-        let n = 0;
-        for (let s = 0; s < N; s++) if (((buf[s * B + (j >> 2)] >> ((j & 3) * 2)) & 3) === k) n++;
-        if (!worst || n < worst.n) worst = { n, j, k };
-      });
-      const m = meta.matches[worst.j];
-      return fill(T.take_out, { mark: ["1", "X", "2"][worst.k], home: meta.clubs[m.home].name, away: meta.clubs[m.away].name });
-    }
-    function escape(text) {
-      const d = document.createElement("div"); d.textContent = text; return d.innerHTML;
-    }
     function update() {
       const now = choice.size ? count() : base;
-      if (!choice.size) status.textContent = fill(T.all, { total: thousands(N) });
-      else if (!now.n) status.textContent = fill(T.none, { total: thousands(N) }) + " " + leastLikely();
-      else if (now.n < MIN_SIMS) status.textContent = fill(T.too_few, { n: thousands(now.n), total: thousands(N) }) + " " + leastLikely();
-      else status.textContent = fill(T.kept, { n: thousands(now.n), total: thousands(N) }) + (now.n < 500 ? " " + T.few : "");
+      status.textContent = choice.size ? fill(T.chosen, { n: choice.size, total: thousands(N) }) : fill(T.all, { total: thousands(N) });
       table(now);
       if (window.markMyClub) window.markMyClub();
-      pinClub();
+      place(now);
       effect(now);
     }
     // A match can be on the page twice (its round and the big matches): every copy shows the choice.
