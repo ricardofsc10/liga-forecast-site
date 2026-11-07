@@ -3397,6 +3397,76 @@
    "match_id": "P1-2627-guimaraes-porto",
    "model_version": "e10-dynamic",
    "sha256": "2f3b53d4fd7b3a7acc745668bed8c7b05fe9509ef3cba1ed45522674dcc03c37"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 486,
+   "match_id": "P1-2627-estrela-amadora-benfica",
+   "model_version": "phase2-v1",
+   "sha256": "cc12c9e90ae24f248fd367f393e5740f3c68feeb4d3aee9a964064c488aaf39e"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 487,
+   "match_id": "P1-2627-rio-ave-sp-braga",
+   "model_version": "phase2-v1",
+   "sha256": "279c2560cf6fda4cd333918ee2c1fa7d39586554a9c221edfca97d7b3ecaf43b"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 488,
+   "match_id": "P1-2627-estrela-amadora-benfica",
+   "model_version": "phase4-v1",
+   "sha256": "be443912754bfb0798a684a39ab73d19dd5c1031f2d7d7549a33913ffa9a41f1"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 489,
+   "match_id": "P1-2627-rio-ave-sp-braga",
+   "model_version": "phase4-v1",
+   "sha256": "fe8c9be34091adb7bfd0872b736f57b1e32955a6e23fa203c492e3ff7bee4aed"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 490,
+   "match_id": "P1-2627-estrela-amadora-benfica",
+   "model_version": "phase4-v2",
+   "sha256": "56506e76792408295028fcdd1819d82d8abdb877f9b6df9609a4bc7a0b3ca1f8"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 491,
+   "match_id": "P1-2627-rio-ave-sp-braga",
+   "model_version": "phase4-v2",
+   "sha256": "b9c7d959753ec2235886c9f57bd0cfde60be5fc5c77a94a5ee9090db4c8b20e1"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 492,
+   "match_id": "P1-2627-estrela-amadora-benfica",
+   "model_version": "e7-xg",
+   "sha256": "60736c13ce74a45d3bac1eb8c470260b6782b0b94bbda4bd7dcbb8f23820ef8c"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 493,
+   "match_id": "P1-2627-rio-ave-sp-braga",
+   "model_version": "e7-xg",
+   "sha256": "0bf82f046379092bc9dc918d3a4b1fa2cf9cafa2b6480e53c59ab0904b825a5a"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 494,
+   "match_id": "P1-2627-estrela-amadora-benfica",
+   "model_version": "e10-dynamic",
+   "sha256": "56af4dfdeb852d92a12e737b1217df5b532c925f00bafbf4affb9e93bc731fbd"
+  },
+  {
+   "created_at": "2026-11-07T21:04:01Z",
+   "line": 495,
+   "match_id": "P1-2627-rio-ave-sp-braga",
+   "model_version": "e10-dynamic",
+   "sha256": "a654c38965db9f3c97d2d36b185d3e1ac59c1dcebea20cbc46aaf058354c3106"
   }
  ]
 }

@@ -2242,7 +2242,7 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
-   "state": "upcoming",
+   "state": "awaiting",
    "timing": "pending"
   },
   {
@@ -2301,6 +2301,48 @@
    "kickoff_utc": "2026-11-08T18:00:00Z",
    "kind": "prospective",
    "match_id": "P1-2627-guimaraes-porto",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Benfica",
+   "corrected": false,
+   "forecast": {
+    "away": 0.7863,
+    "both_score": 0.5355,
+    "draw": 0.1352,
+    "home": 0.0785,
+    "over_2_5": 0.6754
+   },
+   "home": "Estrela da Amadora",
+   "kickoff_utc": "2026-11-08T20:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-estrela-amadora-benfica",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Sporting de Braga",
+   "corrected": false,
+   "forecast": {
+    "away": 0.6337,
+    "both_score": 0.5133,
+    "draw": 0.215,
+    "home": 0.1513,
+    "over_2_5": 0.5388
+   },
+   "home": "Rio Ave",
+   "kickoff_utc": "2026-11-08T20:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-rio-ave-sp-braga",
    "model_version": "phase4-v2",
    "rps": null,
    "score": null,

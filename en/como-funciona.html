@@ -792,10 +792,10 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 </section>
 
 <div class="tiles">
-  <div class="tile"><div class="value">4</div><div class="label">open matches, frozen and waiting</div></div>
+  <div class="tile"><div class="value">5</div><div class="label">open matches, frozen and waiting</div></div>
   <div class="tile"><div class="value">42</div><div class="label">prospective forecasts scored (the evidence)</div></div>
   <div class="tile"><div class="value">+0.0048</div><div class="label">live Δ RPS vs the market</div></div>
-  <div class="tile"><div class="value">485</div><div class="label">ledger lines, last 2026-11-07</div></div>
+  <div class="tile"><div class="value">495</div><div class="label">ledger lines, last 2026-11-07</div></div>
 </div>
 
 </section>
@@ -1195,25 +1195,6 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <p class="note">Frozen before kick-off and not played yet, soonest first. Fair odds are 1/p, with no bookmaker margin. Exact scores come from the Dixon-Coles score grid, adjusted so its 1X2, over 2.5 and both-score totals equal the numbers on the card. Kick-off in Lisbon time. One forecast per match, from phase4-v2, the current model; the other versions in the ledger are compared in the <a href="#ledger">live record</a>.</p>
 </div>
 <div class="matches">
-<article class="match" aria-label="Sporting – Moreirense">
-  <div class="when"><span>Sat 2026-11-07</span><b>20:30</b></div>
-  <div class="teams"><span class="t fav"><i class="club-card card-sporting"></i>Sporting</span><span class="vs">vs</span><span class="t away"><i class="club-card card-moreirense"></i>Moreirense</span></div>
-  <div class="stack" role="img" aria-label="Home 85%, draw 10%, away 5%"><span class="h" style="width: 84.9%"></span><span class="d" style="width: 10.0%"></span><span class="a" style="width: 5.0%"></span></div>
-  <div class="probs">
-    <div class="top"><span class="k"><i class="h"></i>Home</span><span class="p">85%</span><span class="o">fair 1.18</span></div>
-    <div><span class="k"><i class="d"></i>Draw</span><span class="p">10%</span><span class="o">fair 9.97</span></div>
-    <div><span class="k"><i class="a"></i>Away</span><span class="p">5%</span><span class="o">fair 19.80</span></div>
-  </div>
-  <div class="minis">
-    <div class="mini"><div class="row"><span>Over 2.5</span><b>71%</b></div><div class="meter"><span style="width: 70.6%"></span></div></div>
-    <div class="mini"><div class="row"><span>Both score</span><b>51%</b></div><div class="meter"><span style="width: 50.9%"></span></div></div>
-  </div>
-  <div class="scores">
-    <div class="row"><span>Most likely scores</span><span class="hint">top 3 together 31%</span></div>
-    <ol><li class="first"><b>2–0</b><span>12%</span><i style="width: 100.0%"></i></li><li><b>3–0</b><span>10%</span><i style="width: 83.2%"></i></li><li><b>2–1</b><span>9%</span><i style="width: 75.4%"></i></li></ol>
-    <p class="hint">Even the likeliest score comes up only about 1 time in 8.</p>
-  </div>
-</article>
 <article class="match" aria-label="Estoril Praia – Marítimo">
   <div class="when"><span>Sun 2026-11-08</span><b>15:30</b></div>
   <div class="teams"><span class="t fav"><i class="club-card card-estoril"></i>Estoril Praia</span><span class="vs">vs</span><span class="t away"><i class="club-card card-maritimo"></i>Marítimo</span></div>
@@ -1271,6 +1252,44 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
     <p class="hint">Even the likeliest score comes up only about 1 time in 8.</p>
   </div>
 </article>
+<article class="match" aria-label="Estrela da Amadora – Benfica">
+  <div class="when"><span>Sun 2026-11-08</span><b>20:30</b></div>
+  <div class="teams"><span class="t"><i class="club-card card-estrela-amadora"></i>Estrela da Amadora</span><span class="vs">vs</span><span class="t away fav"><i class="club-card card-benfica"></i>Benfica</span></div>
+  <div class="stack" role="img" aria-label="Home 8%, draw 14%, away 79%"><span class="h" style="width: 7.8%"></span><span class="d" style="width: 13.5%"></span><span class="a" style="width: 78.6%"></span></div>
+  <div class="probs">
+    <div><span class="k"><i class="h"></i>Home</span><span class="p">8%</span><span class="o">fair 12.75</span></div>
+    <div><span class="k"><i class="d"></i>Draw</span><span class="p">14%</span><span class="o">fair 7.39</span></div>
+    <div class="top"><span class="k"><i class="a"></i>Away</span><span class="p">79%</span><span class="o">fair 1.27</span></div>
+  </div>
+  <div class="minis">
+    <div class="mini"><div class="row"><span>Over 2.5</span><b>68%</b></div><div class="meter"><span style="width: 67.5%"></span></div></div>
+    <div class="mini"><div class="row"><span>Both score</span><b>54%</b></div><div class="meter"><span style="width: 53.5%"></span></div></div>
+  </div>
+  <div class="scores">
+    <div class="row"><span>Most likely scores</span><span class="hint">top 3 together 30%</span></div>
+    <ol><li class="first"><b>0–2</b><span>11%</span><i style="width: 100.0%"></i></li><li><b>1–2</b><span>10%</span><i style="width: 85.7%"></i></li><li><b>0–3</b><span>9%</span><i style="width: 80.2%"></i></li></ol>
+    <p class="hint">Even the likeliest score comes up only about 1 time in 9.</p>
+  </div>
+</article>
+<article class="match" aria-label="Rio Ave – Sporting de Braga">
+  <div class="when"><span>Sun 2026-11-08</span><b>20:30</b></div>
+  <div class="teams"><span class="t"><i class="club-card card-rio-ave"></i>Rio Ave</span><span class="vs">vs</span><span class="t away fav"><i class="club-card card-sp-braga"></i>Sporting de Braga</span></div>
+  <div class="stack" role="img" aria-label="Home 15%, draw 21%, away 63%"><span class="h" style="width: 15.1%"></span><span class="d" style="width: 21.5%"></span><span class="a" style="width: 63.4%"></span></div>
+  <div class="probs">
+    <div><span class="k"><i class="h"></i>Home</span><span class="p">15%</span><span class="o">fair 6.61</span></div>
+    <div><span class="k"><i class="d"></i>Draw</span><span class="p">21%</span><span class="o">fair 4.65</span></div>
+    <div class="top"><span class="k"><i class="a"></i>Away</span><span class="p">63%</span><span class="o">fair 1.58</span></div>
+  </div>
+  <div class="minis">
+    <div class="mini"><div class="row"><span>Over 2.5</span><b>54%</b></div><div class="meter"><span style="width: 53.9%"></span></div></div>
+    <div class="mini"><div class="row"><span>Both score</span><b>51%</b></div><div class="meter"><span style="width: 51.3%"></span></div></div>
+  </div>
+  <div class="scores">
+    <div class="row"><span>Most likely scores</span><span class="hint">top 3 together 34%</span></div>
+    <ol><li class="first"><b>0–1</b><span>12%</span><i style="width: 100.0%"></i></li><li><b>0–2</b><span>11%</span><i style="width: 93.8%"></i></li><li><b>1–1</b><span>10%</span><i style="width: 86.1%"></i></li></ol>
+    <p class="hint">Even the likeliest score comes up only about 1 time in 8.</p>
+  </div>
+</article>
 </div>
 </section>
 
@@ -1282,6 +1301,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <div class="card scroll"><table>
   <thead><tr><th>Kick-off</th><th class="text">Match</th><th>1</th><th>X</th><th>2</th><th class="text">Most likely score</th></tr></thead>
   <tbody>
+  <tr><td>Sat 2026-11-07 20:30</td><td class="text">Sporting – Moreirense</td><td>85%</td><td>10%</td><td>5%</td><td class="text">2–0 (12%)</td></tr>
   <tr><td>Sat 2026-11-07 18:00</td><td class="text">Alverca – Casa Pia</td><td>55%</td><td>25%</td><td>19%</td><td class="text">1–0 (16%)</td></tr>
   <tr><td>Sat 2026-11-07 15:30</td><td class="text">Nacional – Académico de Viseu</td><td>32%</td><td>29%</td><td>39%</td><td class="text">1–1 (15%)</td></tr>
   <tr><td>Fri 2026-11-06 20:45</td><td class="text">Famalicão – Arouca</td><td>51%</td><td>27%</td><td>22%</td><td class="text">1–0 (14%)</td></tr>
