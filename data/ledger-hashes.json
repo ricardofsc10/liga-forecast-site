@@ -3292,6 +3292,111 @@
    "match_id": "P1-2627-sporting-moreirense",
    "model_version": "e10-dynamic",
    "sha256": "3fb0ff656f5b5d4f758b8c9ab9824319d21884265d75997c8ea9a212e611f71e"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 471,
+   "match_id": "P1-2627-estoril-maritimo",
+   "model_version": "phase2-v1",
+   "sha256": "d350b135a633c4fad6546b8e5a68117263fa6804b18c2c7f3918afd46705e807"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 472,
+   "match_id": "P1-2627-santa-clara-gil-vicente",
+   "model_version": "phase2-v1",
+   "sha256": "e84c934531d7372fcbf9651209d987263e9fc1a84e26ca063a170fa5a17c30cf"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 473,
+   "match_id": "P1-2627-guimaraes-porto",
+   "model_version": "phase2-v1",
+   "sha256": "86299fa07b1ea11aaf3a1e04914d982aa30b3aab3f2448c92b079822fb33b860"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 474,
+   "match_id": "P1-2627-estoril-maritimo",
+   "model_version": "phase4-v1",
+   "sha256": "5bb598782ed92a59d47e095a953007e0892ec38e5f2a2bf5ca4a9db206ac51ec"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 475,
+   "match_id": "P1-2627-santa-clara-gil-vicente",
+   "model_version": "phase4-v1",
+   "sha256": "68d7c73ceb86d17796db4a094f864f99d81d271348a9610f85d4eff00e8abd62"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 476,
+   "match_id": "P1-2627-guimaraes-porto",
+   "model_version": "phase4-v1",
+   "sha256": "74560af1513288cb2d81c119d136a80d97cb5c318b436ce96abd47c25b334f91"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 477,
+   "match_id": "P1-2627-estoril-maritimo",
+   "model_version": "phase4-v2",
+   "sha256": "462df690eefba6b24b811a3b93cc2c4f3c25330e868bc4635feaa4bf2c3d6f86"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 478,
+   "match_id": "P1-2627-santa-clara-gil-vicente",
+   "model_version": "phase4-v2",
+   "sha256": "5f66c23994398cac3b008c72ab29f51bdf76bcbd24ce83ff0a201257c82171b7"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 479,
+   "match_id": "P1-2627-guimaraes-porto",
+   "model_version": "phase4-v2",
+   "sha256": "945ffcee9fda953f76aa07e378adaaa942190110af46541860ea068301042e10"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 480,
+   "match_id": "P1-2627-estoril-maritimo",
+   "model_version": "e7-xg",
+   "sha256": "2cd3aadc40fd973dc85b5177ba302afe45c52052f66d5855dd4c1b4e21aa8fd1"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 481,
+   "match_id": "P1-2627-santa-clara-gil-vicente",
+   "model_version": "e7-xg",
+   "sha256": "087a0ae06c7ad89f42a1db76ee532ec4c2fedc8e20389b5466cbc6e95287327b"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 482,
+   "match_id": "P1-2627-guimaraes-porto",
+   "model_version": "e7-xg",
+   "sha256": "c6dbae20e241a3f1372da650bbe605b870234e262a7c76cf06bbb66bd00e44d8"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 483,
+   "match_id": "P1-2627-estoril-maritimo",
+   "model_version": "e10-dynamic",
+   "sha256": "84a09179e87b4a58bebfc94123f01589ab81cf23ee70c64db7f79648b80e462e"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 484,
+   "match_id": "P1-2627-santa-clara-gil-vicente",
+   "model_version": "e10-dynamic",
+   "sha256": "3a39ff506dfa7d8d25d513fd8ed7dbb84dcd6dbd3f5b7707f1869081e7b1656d"
+  },
+  {
+   "created_at": "2026-11-07T18:54:49Z",
+   "line": 485,
+   "match_id": "P1-2627-guimaraes-porto",
+   "model_version": "e10-dynamic",
+   "sha256": "2f3b53d4fd7b3a7acc745668bed8c7b05fe9509ef3cba1ed45522674dcc03c37"
   }
  ]
 }

@@ -2200,7 +2200,7 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
-   "state": "upcoming",
+   "state": "awaiting",
    "timing": "pending"
   },
   {
@@ -2221,7 +2221,7 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
-   "state": "upcoming",
+   "state": "awaiting",
    "timing": "pending"
   },
   {
@@ -2238,6 +2238,69 @@
    "kickoff_utc": "2026-11-07T20:30:00Z",
    "kind": "prospective",
    "match_id": "P1-2627-sporting-moreirense",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Marítimo",
+   "corrected": false,
+   "forecast": {
+    "away": 0.2713,
+    "both_score": 0.5682,
+    "draw": 0.2653,
+    "home": 0.4634,
+    "over_2_5": 0.5171
+   },
+   "home": "Estoril Praia",
+   "kickoff_utc": "2026-11-08T15:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-estoril-maritimo",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Gil Vicente",
+   "corrected": false,
+   "forecast": {
+    "away": 0.2712,
+    "both_score": 0.3956,
+    "draw": 0.301,
+    "home": 0.4279,
+    "over_2_5": 0.376
+   },
+   "home": "Santa Clara",
+   "kickoff_utc": "2026-11-08T15:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-santa-clara-gil-vicente",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending"
+  },
+  {
+   "away": "Porto",
+   "corrected": false,
+   "forecast": {
+    "away": 0.5881,
+    "both_score": 0.4634,
+    "draw": 0.2312,
+    "home": 0.1807,
+    "over_2_5": 0.5208
+   },
+   "home": "Vitória SC",
+   "kickoff_utc": "2026-11-08T18:00:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-guimaraes-porto",
    "model_version": "phase4-v2",
    "rps": null,
    "score": null,

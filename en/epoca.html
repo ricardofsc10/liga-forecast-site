@@ -190,6 +190,16 @@ section.block { padding: 52px 0 0; }
 .meter { height: 6px; border-radius: 1px; background: var(--grid); margin-top: 6px; overflow: hidden; }
 .meter span { display: block; height: 100%; background: var(--amber); }
 .scores { padding-top: 12px; border-top: 1px solid var(--grid); }
+/* Expected goals: two bars from the middle on a 4-goal scale (D-134). */
+.xg-duel { width: 100%; margin: 4px 0 18px; }
+.xg-duel .lbl { display: block; font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.xg-row { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+.xg-row b { font-stretch: 72%; font-size: 28px; font-weight: 850; line-height: 1; }
+.xg-row .bar { display: flex; height: 12px; border-radius: 1px; background: var(--card-empty); }
+.xg-row .bar.l { justify-content: flex-end; }
+.xg-row .bar i { display: block; height: 100%; background: var(--amber); }
+.xg-names { display: flex; justify-content: space-between; gap: 12px; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.lead .xg-duel { order: 4; max-width: 520px; }
 .scores .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 14px; color: var(--ink-2); }
 .scores .hint { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
 .scores .row .hint { margin: 0; }
@@ -398,7 +408,7 @@ a.club:hover { color: var(--amber-text); }
 .results .txt small { display: block; color: var(--muted); font-size: 14px; }
 .results .tag { font-size: 13px; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
 .results .tag.hit { background: var(--amber); color: var(--amber-ink); }
-.results .tag.miss { border: 1px solid var(--axis); color: var(--ink-2); }
+.results .tag.miss { background: var(--ink); color: var(--surface); }  /* as heavy as Right (D-135) */
 .games li.pending .trio { color: var(--muted); font-size: 13px; }
 /* Matches and match pages (D-088) */
 .page-head { padding: 24px 0 8px; }
@@ -423,7 +433,7 @@ a.club:hover { color: var(--amber-text); }
 .said { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 18px 0 0; font-size: 19px; max-width: none; }
 .tag { display: inline-block; font-size: 13px; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
 .tag.hit { background: var(--amber); color: var(--amber-ink); }
-.tag.miss { border: 1px solid var(--axis); color: var(--ink-2); }
+.tag.miss { background: var(--ink); color: var(--surface); }
 .match-x12 { display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 48px; align-items: center; padding: 28px 0 36px; border-bottom: 1px solid var(--ring); }
 .match-x12 .trio-big { margin-top: 0; }
 .match-x12 .say { margin: 16px 0 0; }
@@ -555,7 +565,11 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
   .scn-nav { margin: 0 0 14px; scroll-margin-top: 110px; }
   .scn-strip { display: flex; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
   .scn-strip::-webkit-scrollbar { display: none; }
-  .scn-strip button { flex: 0 0 44px; height: 40px; font-size: 13px; }
+  .scn-strip button { flex: 0 0 44px; height: 44px; font-size: 13px; }
+  /* Every control a finger can hit: 44 px in both directions (D-135). */
+  .scn-row button { min-width: 44px; min-height: 44px; font-size: 15px; }
+  .scn-nav-head { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .scn-nav-head button { height: 44px; }
 }
 @media (min-width: 861px) {
   .scn-narrow { display: none; }
@@ -749,7 +763,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
       <button type="button" class="scn-fx" hidden><span class="line"><span class="what"></span><span class="nums num"></span></span><span class="status-line"><span class="go"></span></span></button>
       <div class="scn-side" id="scn-results"><button type="button" class="scn-reset scn-narrow">Clear choices</button><div class="scn-narrow"><ul class="zone-legend"><li><i class="z-title"></i>Champion <small>1st</small></li><li><i class="z-second"></i>Champions <small>2nd</small></li><li><i class="z-champions_playoff"></i>Champions play-off <small>3rd</small></li><li><i class="z-europa"></i>Europa League <small>4th</small></li><li><i class="z-conference"></i>Conference League <small>5th</small></li><li><i class="z-middle"></i>Mid-table <small>6th–15th</small></li><li><i class="z-playoff"></i>Relegation play-off <small>16th</small></li><li><i class="z-relegation"></i>Relegation <small>17th–18th</small></li></ul></div><ol class="zone-rows num scn-table"></ol></div>
     </div>
-<p class="note scn-sample">This simulator uses 10,000 of the 50,000 simulations, so a number can differ by 1 or 2 from the rest of the site.</p>  </div>
+<p class="note scn-sample">This simulator uses 20,000 of the 50,000 simulations, so a number can differ by 1 or 2 from the rest of the site.</p>  </div>
 </section>
 
 <section class="list-block" aria-labelledby="table-title">
@@ -795,7 +809,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
     <li data-clubs="guimaraes"><details>
       <summary><span class="pos">8</span><span class="who"><i class="club-card card-guimaraes"></i>Vitória SC</span><span class="pts">46 pts</span><span class="zone-bar" role="img" aria-label="Europa League 4, Conference League 8, Mid-table 87, Relegation play-off 1"><i class="z-europa small" style="flex-grow: 4" title="Europa League: 4"></i><i class="z-conference small" style="flex-grow: 8" title="Conference League: 8">8</i><i class="z-middle" style="flex-grow: 87" title="Mid-table: 87">87</i><i class="z-playoff small" style="flex-grow: 1" title="Relegation play-off: 1"></i></span></summary>
       <p class="zone-detail zone-extra"><span>Europa League <b>4</b></span><span class="phone-only">Conference League <b>8</b></span><span>Relegation play-off <b>1</b></span></p>
-      <p class="zone-detail">9 points now, 38 to 54 at the end. <a href="clubes/guimaraes.html">See the club →</a></p>
+      <p class="zone-detail">9 points now, 38 to 54 at the end. <a href="clubes/vitoria-sc.html">See the club →</a></p>
     </details></li>
     <li data-clubs="gil-vicente"><details>
       <summary><span class="pos">9</span><span class="who"><i class="club-card card-gil-vicente"></i>Gil Vicente</span><span class="pts">46 pts</span><span class="zone-bar" role="img" aria-label="Europa League 4, Conference League 8, Mid-table 87, Relegation play-off 1"><i class="z-europa small" style="flex-grow: 4" title="Europa League: 4"></i><i class="z-conference small" style="flex-grow: 8" title="Conference League: 8">8</i><i class="z-middle" style="flex-grow: 87" title="Mid-table: 87">87</i><i class="z-playoff small" style="flex-grow: 1" title="Relegation play-off: 1"></i></span></summary>
@@ -863,7 +877,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
       <tr data-clubs="santa-clara" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/santa-clara.html">Santa Clara</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.016"><span class="sr">2</span></td><td role="cell" style="--p: 0.226">23</td><td role="cell" style="--p: 0.251">25</td><td role="cell" style="--p: 0.179">18</td><td role="cell" style="--p: 0.124">12</td><td role="cell" class="low" style="--p: 0.084">8</td><td role="cell" class="low" style="--p: 0.056">6</td><td role="cell" class="low" style="--p: 0.033"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.018"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
       <tr data-clubs="academico-viseu" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/academico-viseu.html">Académico de Viseu</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.004"></td><td role="cell" class="low" style="--p: 0.086">9</td><td role="cell" style="--p: 0.134">13</td><td role="cell" style="--p: 0.163">16</td><td role="cell" style="--p: 0.158">16</td><td role="cell" style="--p: 0.141">14</td><td role="cell" style="--p: 0.114">11</td><td role="cell" class="low" style="--p: 0.086">9</td><td role="cell" class="low" style="--p: 0.055">5</td><td role="cell" class="low" style="--p: 0.031"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.016"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
       <tr data-clubs="arouca" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/arouca.html">Arouca</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.081">8</td><td role="cell" style="--p: 0.133">13</td><td role="cell" style="--p: 0.159">16</td><td role="cell" style="--p: 0.159">16</td><td role="cell" style="--p: 0.143">14</td><td role="cell" style="--p: 0.118">12</td><td role="cell" class="low" style="--p: 0.088">9</td><td role="cell" class="low" style="--p: 0.056">6</td><td role="cell" class="low" style="--p: 0.032"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.016"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.003"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
-      <tr data-clubs="guimaraes" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/guimaraes.html">Vitória SC</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.040"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.085">8</td><td role="cell" style="--p: 0.114">11</td><td role="cell" style="--p: 0.136">14</td><td role="cell" style="--p: 0.147">15</td><td role="cell" style="--p: 0.136">14</td><td role="cell" style="--p: 0.118">12</td><td role="cell" class="low" style="--p: 0.090">9</td><td role="cell" class="low" style="--p: 0.059">6</td><td role="cell" class="low" style="--p: 0.037"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.021"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.010"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.005"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.001"></td></tr>
+      <tr data-clubs="guimaraes" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/vitoria-sc.html">Vitória SC</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.040"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.085">8</td><td role="cell" style="--p: 0.114">11</td><td role="cell" style="--p: 0.136">14</td><td role="cell" style="--p: 0.147">15</td><td role="cell" style="--p: 0.136">14</td><td role="cell" style="--p: 0.118">12</td><td role="cell" class="low" style="--p: 0.090">9</td><td role="cell" class="low" style="--p: 0.059">6</td><td role="cell" class="low" style="--p: 0.037"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.021"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.010"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.005"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.001"></td></tr>
       <tr data-clubs="gil-vicente" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/gil-vicente.html">Gil Vicente</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.001"></td><td role="cell" class="low" style="--p: 0.042"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.079">8</td><td role="cell" style="--p: 0.112">11</td><td role="cell" style="--p: 0.131">13</td><td role="cell" style="--p: 0.141">14</td><td role="cell" style="--p: 0.141">14</td><td role="cell" style="--p: 0.125">12</td><td role="cell" style="--p: 0.095">10</td><td role="cell" class="low" style="--p: 0.060">6</td><td role="cell" class="low" style="--p: 0.037"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.019"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.010"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.004"></td><td role="cell" class="low" style="--p: 0.002"></td><td role="cell" class="low" style="--p: 0.000"></td></tr>
       <tr data-clubs="famalicao" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/famalicao.html">Famalicão</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.020"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.049">5</td><td role="cell" class="low" style="--p: 0.078">8</td><td role="cell" style="--p: 0.107">11</td><td role="cell" style="--p: 0.129">13</td><td role="cell" style="--p: 0.144">14</td><td role="cell" style="--p: 0.141">14</td><td role="cell" style="--p: 0.123">12</td><td role="cell" class="low" style="--p: 0.088">9</td><td role="cell" class="low" style="--p: 0.059">6</td><td role="cell" class="low" style="--p: 0.032"><span class="sr">3</span></td><td role="cell" class="low" style="--p: 0.017"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.009"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.004"></td><td role="cell" class="low" style="--p: 0.001"></td></tr>
       <tr data-clubs="alverca" role="row"><th class="text" scope="row" role="rowheader"><a class="club" href="clubes/alverca.html">Alverca</a></th><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.000"></td><td role="cell" class="low" style="--p: 0.008"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.023"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.041"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.065">6</td><td role="cell" class="low" style="--p: 0.087">9</td><td role="cell" style="--p: 0.115">11</td><td role="cell" style="--p: 0.138">14</td><td role="cell" style="--p: 0.148">15</td><td role="cell" style="--p: 0.129">13</td><td role="cell" style="--p: 0.095">10</td><td role="cell" class="low" style="--p: 0.068">7</td><td role="cell" class="low" style="--p: 0.044"><span class="sr">4</span></td><td role="cell" class="low" style="--p: 0.024"><span class="sr">2</span></td><td role="cell" class="low" style="--p: 0.012"><span class="sr">1</span></td><td role="cell" class="low" style="--p: 0.005"></td></tr>
@@ -1076,6 +1090,7 @@ if (typeof module !== "undefined") module.exports = scenarioEngine;
   const box = document.getElementById("scenario");
   if (!box) return;
   const T = JSON.parse(box.dataset.text);
+  const slugs = {"guimaraes": "vitoria-sc"};  // page addresses that differ from the club id (D-135)
   const order = JSON.parse(box.dataset.order);
   const standing = JSON.parse(box.dataset.points);  // each club's expected points, as on the rest of the page
   const lang = box.dataset.lang;
@@ -1177,7 +1192,7 @@ if (typeof module !== "undefined") module.exports = scenarioEngine;
       const more = document.createElement("p");
       more.className = "zone-detail";
       const link = document.createElement("a");
-      link.href = "clubes/" + meta.clubs[c].id + ".html";
+      link.href = "clubes/" + (slugs[meta.clubs[c].id] || meta.clubs[c].id) + ".html";
       link.textContent = T.see_club + " \u2192";
       more.appendChild(link);
       head.append(name, delta, bar, ghost);

@@ -190,6 +190,16 @@ section.block { padding: 52px 0 0; }
 .meter { height: 6px; border-radius: 1px; background: var(--grid); margin-top: 6px; overflow: hidden; }
 .meter span { display: block; height: 100%; background: var(--amber); }
 .scores { padding-top: 12px; border-top: 1px solid var(--grid); }
+/* Expected goals: two bars from the middle on a 4-goal scale (D-134). */
+.xg-duel { width: 100%; margin: 4px 0 18px; }
+.xg-duel .lbl { display: block; font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.xg-row { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+.xg-row b { font-stretch: 72%; font-size: 28px; font-weight: 850; line-height: 1; }
+.xg-row .bar { display: flex; height: 12px; border-radius: 1px; background: var(--card-empty); }
+.xg-row .bar.l { justify-content: flex-end; }
+.xg-row .bar i { display: block; height: 100%; background: var(--amber); }
+.xg-names { display: flex; justify-content: space-between; gap: 12px; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.lead .xg-duel { order: 4; max-width: 520px; }
 .scores .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 14px; color: var(--ink-2); }
 .scores .hint { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
 .scores .row .hint { margin: 0; }
@@ -398,7 +408,7 @@ a.club:hover { color: var(--amber-text); }
 .results .txt small { display: block; color: var(--muted); font-size: 14px; }
 .results .tag { font-size: 13px; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
 .results .tag.hit { background: var(--amber); color: var(--amber-ink); }
-.results .tag.miss { border: 1px solid var(--axis); color: var(--ink-2); }
+.results .tag.miss { background: var(--ink); color: var(--surface); }  /* as heavy as Right (D-135) */
 .games li.pending .trio { color: var(--muted); font-size: 13px; }
 /* Matches and match pages (D-088) */
 .page-head { padding: 24px 0 8px; }
@@ -423,7 +433,7 @@ a.club:hover { color: var(--amber-text); }
 .said { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 18px 0 0; font-size: 19px; max-width: none; }
 .tag { display: inline-block; font-size: 13px; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
 .tag.hit { background: var(--amber); color: var(--amber-ink); }
-.tag.miss { border: 1px solid var(--axis); color: var(--ink-2); }
+.tag.miss { background: var(--ink); color: var(--surface); }
 .match-x12 { display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 48px; align-items: center; padding: 28px 0 36px; border-bottom: 1px solid var(--ring); }
 .match-x12 .trio-big { margin-top: 0; }
 .match-x12 .say { margin: 16px 0 0; }
@@ -555,7 +565,11 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
   .scn-nav { margin: 0 0 14px; scroll-margin-top: 110px; }
   .scn-strip { display: flex; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
   .scn-strip::-webkit-scrollbar { display: none; }
-  .scn-strip button { flex: 0 0 44px; height: 40px; font-size: 13px; }
+  .scn-strip button { flex: 0 0 44px; height: 44px; font-size: 13px; }
+  /* Every control a finger can hit: 44 px in both directions (D-135). */
+  .scn-row button { min-width: 44px; min-height: 44px; font-size: 15px; }
+  .scn-nav-head { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .scn-nav-head button { height: 44px; }
 }
 @media (min-width: 861px) {
   .scn-narrow { display: none; }
@@ -730,7 +744,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <h1><i class="club-card card-rio-ave"></i>Rio Ave</h1>
   <button type="button" class="fav" data-club-toggle="rio-ave" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>O meu clube</button>
   <p class="say">Em 100 épocas simuladas, <strong>o Rio Ave desce em 32</strong> e salva-se em 68.</p>
-  <p class="meta">7 pontos, com 90 resultados na tabela.</p>
+  <p class="meta">7 pontos em 10 jogos.</p>
   <aside class="whatif" aria-labelledby="whatif-title" data-whatif="{&#34;labels&#34;: {&#34;champions_playoff&#34;: &#34;Play-off Champions&#34;, &#34;conference&#34;: &#34;Liga Confer\u00eancia&#34;, &#34;europa&#34;: &#34;Liga Europa&#34;, &#34;middle&#34;: &#34;A meio da tabela&#34;, &#34;playoff&#34;: &#34;Play-off de descida&#34;, &#34;relegation&#34;: &#34;Descida&#34;, &#34;second&#34;: &#34;Champions&#34;, &#34;title&#34;: &#34;Campe\u00e3o&#34;}, &#34;now&#34;: {&#34;buckets&#34;: [[&#34;middle&#34;, 51], [&#34;playoff&#34;, 17], [&#34;relegation&#34;, 32]], &#34;mean&#34;: &#34;30,4&#34;, &#34;range&#34;: &#34;(23\u201338)&#34;}, &#34;order&#34;: [&#34;title&#34;, &#34;second&#34;, &#34;champions_playoff&#34;, &#34;europa&#34;, &#34;conference&#34;, &#34;middle&#34;, &#34;playoff&#34;, &#34;relegation&#34;], &#34;outcomes&#34;: [{&#34;buckets&#34;: [[&#34;middle&#34;, 63], [&#34;playoff&#34;, 16], [&#34;relegation&#34;, 21]], &#34;mean&#34;: &#34;32,6&#34;, &#34;range&#34;: &#34;(25\u201340)&#34;}, {&#34;buckets&#34;: [[&#34;middle&#34;, 52], [&#34;playoff&#34;, 18], [&#34;relegation&#34;, 30]], &#34;mean&#34;: &#34;30,8&#34;, &#34;range&#34;: &#34;(24\u201338)&#34;}, {&#34;buckets&#34;: [[&#34;middle&#34;, 46], [&#34;playoff&#34;, 18], [&#34;relegation&#34;, 36]], &#34;mean&#34;: &#34;29,7&#34;, &#34;range&#34;: &#34;(22\u201337)&#34;}]}">
     <h2 id="whatif-title">E se o Rio Ave ganhar o próximo?</h2>
     <p>Próximo jogo: Rio Ave – Sporting de Braga. Escolhe o resultado e vê o que muda na época.</p>
@@ -795,7 +809,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <div class="scroll"><table>
     <thead><tr><th class="text">Rival</th><th>Rio Ave à frente</th></tr></thead>
     <tbody>
-    <tr><td class="text"><i class="club-card card-guimaraes"></i><a class="club" href="guimaraes.html">Vitória SC</a></td><td class="chance" style="--p: 0.040"><span>4%</span></td></tr>
+    <tr><td class="text"><i class="club-card card-guimaraes"></i><a class="club" href="vitoria-sc.html">Vitória SC</a></td><td class="chance" style="--p: 0.040"><span>4%</span></td></tr>
     <tr><td class="text"><i class="club-card card-gil-vicente"></i><a class="club" href="gil-vicente.html">Gil Vicente</a></td><td class="chance" style="--p: 0.034"><span>3%</span></td></tr>
     <tr><td class="text"><i class="club-card card-famalicao"></i><a class="club" href="famalicao.html">Famalicão</a></td><td class="chance" style="--p: 0.053"><span>5%</span></td></tr>
     <tr><td class="text"><i class="club-card card-alverca"></i><a class="club" href="alverca.html">Alverca</a></td><td class="chance" style="--p: 0.105"><span>11%</span></td></tr>
@@ -807,7 +821,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
     <tr><td class="text"><i class="club-card card-estoril"></i><a class="club" href="estoril.html">Estoril Praia</a></td><td class="chance" style="--p: 0.626"><span>63%</span></td></tr>
     </tbody>
   </table></div>
-<p class="sure-line">Acaba quase sempre atrás de: <a class="club" href="porto.html">Porto</a>, <a class="club" href="benfica.html">Benfica</a>, <a class="club" href="sporting.html">Sporting</a>, <a class="club" href="sp-braga.html">Sporting de Braga</a>, <a class="club" href="santa-clara.html">Santa Clara</a>, <a class="club" href="academico-viseu.html">Académico de Viseu</a>, <a class="club" href="arouca.html">Arouca</a></p>  <nav class="clubs-nav" aria-label="Outros clubes"><a href="porto.html"><i class="club-card card-porto"></i>Porto</a><a href="benfica.html"><i class="club-card card-benfica"></i>Benfica</a><a href="sporting.html"><i class="club-card card-sporting"></i>Sporting</a><a href="sp-braga.html"><i class="club-card card-sp-braga"></i>Sporting de Braga</a><a href="santa-clara.html"><i class="club-card card-santa-clara"></i>Santa Clara</a><a href="academico-viseu.html"><i class="club-card card-academico-viseu"></i>Académico de Viseu</a><a href="arouca.html"><i class="club-card card-arouca"></i>Arouca</a><a href="guimaraes.html"><i class="club-card card-guimaraes"></i>Vitória SC</a><a href="gil-vicente.html"><i class="club-card card-gil-vicente"></i>Gil Vicente</a><a href="famalicao.html"><i class="club-card card-famalicao"></i>Famalicão</a><a href="alverca.html"><i class="club-card card-alverca"></i>Alverca</a><a href="moreirense.html"><i class="club-card card-moreirense"></i>Moreirense</a><a href="estrela-amadora.html"><i class="club-card card-estrela-amadora"></i>Estrela da Amadora</a><a href="maritimo.html"><i class="club-card card-maritimo"></i>Marítimo</a><a href="rio-ave.html" aria-current="page"><i class="club-card card-rio-ave"></i>Rio Ave</a><a href="casa-pia.html"><i class="club-card card-casa-pia"></i>Casa Pia</a><a href="nacional.html"><i class="club-card card-nacional"></i>Nacional</a><a href="estoril.html"><i class="club-card card-estoril"></i>Estoril Praia</a></nav>
+<p class="sure-line">Acaba quase sempre atrás de: <a class="club" href="porto.html">Porto</a>, <a class="club" href="benfica.html">Benfica</a>, <a class="club" href="sporting.html">Sporting</a>, <a class="club" href="sp-braga.html">Sporting de Braga</a>, <a class="club" href="santa-clara.html">Santa Clara</a>, <a class="club" href="academico-viseu.html">Académico de Viseu</a>, <a class="club" href="arouca.html">Arouca</a></p>  <nav class="clubs-nav" aria-label="Outros clubes"><a href="porto.html"><i class="club-card card-porto"></i>Porto</a><a href="benfica.html"><i class="club-card card-benfica"></i>Benfica</a><a href="sporting.html"><i class="club-card card-sporting"></i>Sporting</a><a href="sp-braga.html"><i class="club-card card-sp-braga"></i>Sporting de Braga</a><a href="santa-clara.html"><i class="club-card card-santa-clara"></i>Santa Clara</a><a href="academico-viseu.html"><i class="club-card card-academico-viseu"></i>Académico de Viseu</a><a href="arouca.html"><i class="club-card card-arouca"></i>Arouca</a><a href="vitoria-sc.html"><i class="club-card card-guimaraes"></i>Vitória SC</a><a href="gil-vicente.html"><i class="club-card card-gil-vicente"></i>Gil Vicente</a><a href="famalicao.html"><i class="club-card card-famalicao"></i>Famalicão</a><a href="alverca.html"><i class="club-card card-alverca"></i>Alverca</a><a href="moreirense.html"><i class="club-card card-moreirense"></i>Moreirense</a><a href="estrela-amadora.html"><i class="club-card card-estrela-amadora"></i>Estrela da Amadora</a><a href="maritimo.html"><i class="club-card card-maritimo"></i>Marítimo</a><a href="rio-ave.html" aria-current="page"><i class="club-card card-rio-ave"></i>Rio Ave</a><a href="casa-pia.html"><i class="club-card card-casa-pia"></i>Casa Pia</a><a href="nacional.html"><i class="club-card card-nacional"></i>Nacional</a><a href="estoril.html"><i class="club-card card-estoril"></i>Estoril Praia</a></nav>
 </section>
 </main>
 <footer><div class="wrap">Projeto pessoal. As previsões são probabilidades, não promessas, e nada aqui é aconselhamento de apostas. <a href="../como-funciona.html">Como funciona</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></div></footer>
