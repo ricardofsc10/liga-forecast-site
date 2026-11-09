@@ -78,7 +78,7 @@ h1, h2, h3 { font-stretch: 72%; font-weight: 850; letter-spacing: -0.005em; text
 h1 { font-size: clamp(40px, 7vw, 72px); line-height: 0.95; margin: 0 0 14px; }
 h2 { font-size: clamp(30px, 4.4vw, 40px); line-height: 1; margin: 0 0 8px; }
 h3 { font-size: 22px; line-height: 1.1; margin: 28px 0 8px; }
-p { margin: 6px 0; max-width: 68ch; }
+p { margin: 6px 0; max-width: 68ch; text-wrap: pretty; }
 a { color: inherit; text-decoration-color: var(--amber); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 a:hover { color: var(--amber-text); }
 .lede { color: var(--ink-2); font-size: 18px; max-width: 60ch; }
@@ -126,6 +126,8 @@ a:hover { color: var(--amber-text); }
 .card-santa-clara { --a: #d6202f; --b: #ffffff; }
 .card-sp-braga { --a: #d22630; --b: #ffffff; }
 .card-sporting { --a: #0b8a52; --b: #ffffff; }
+/* Mosaic cards that mimic each club's home kit (D-152), defined once and named by every card. */
+:root { --kit-academico-viseu: linear-gradient(180deg, #ffffff 0 14%, #1b1b1b 14%); --kit-alverca: linear-gradient(180deg, #e8243c 0 22%, transparent 22%), linear-gradient(90deg, #1f6fc4 0 42%, #e8243c 42% 58%, #1f6fc4 58%); --kit-arouca: linear-gradient(180deg, #1d3d8f 0 10%, #f5d90a 10%); --kit-benfica: linear-gradient(180deg, #ffffff 0 8%, #d6202f 8%); --kit-casa-pia: linear-gradient(90deg, #d6202f 0 8%, #1b1b1b 8% 92%, #d6202f 92%); --kit-estoril: #f2b632; --kit-estrela-amadora: linear-gradient(90deg, #7a1a28 0% 16.6667%, #1f7a3a 16.6667% 33.3333%, #7a1a28 33.3333% 50%, #1f7a3a 50% 66.6667%, #7a1a28 66.6667% 83.3333%, #1f7a3a 83.3333% 100%); --kit-famalicao: linear-gradient(90deg, #14254d 0 24%, #ffffff 24% 76%, #14254d 76%); --kit-gil-vicente: linear-gradient(180deg, #d6202f 0 9%, #1e6fe0 9%); --kit-maritimo: linear-gradient(90deg, #d6202f 0% 20%, #138a4a 20% 40%, #d6202f 40% 60%, #138a4a 60% 80%, #d6202f 80% 100%); --kit-moreirense: conic-gradient(#138a4a 25%, #ffffff 0 50%, #138a4a 0 75%, #ffffff 0) 0 0 / 50% 50%; --kit-nacional: linear-gradient(90deg, #1b1b1b 0% 14.2857%, #ffffff 14.2857% 28.5714%, #1b1b1b 28.5714% 42.8571%, #ffffff 42.8571% 57.1429%, #1b1b1b 57.1429% 71.4286%, #ffffff 71.4286% 85.7143%, #1b1b1b 85.7143% 100%); --kit-porto: linear-gradient(90deg, #1f4fb5 0% 20%, #ffffff 20% 40%, #1f4fb5 40% 60%, #ffffff 60% 80%, #1f4fb5 80% 100%); --kit-rio-ave: linear-gradient(90deg, #ffffff 0% 14.2857%, #138a4a 14.2857% 28.5714%, #ffffff 28.5714% 42.8571%, #138a4a 42.8571% 57.1429%, #ffffff 57.1429% 71.4286%, #138a4a 71.4286% 85.7143%, #ffffff 85.7143% 100%); --kit-santa-clara: repeating-linear-gradient(135deg, #d4161c 0 5px, #b80f16 5px 7px); --kit-sp-braga: linear-gradient(90deg, #ffffff 0 20%, #d22630 20% 80%, #ffffff 80%); --kit-sporting: linear-gradient(180deg, #0b6b3a 0% 20%, #ffffff 20% 40%, #0b6b3a 40% 60%, #ffffff 60% 80%, #0b6b3a 80% 100%); --kit-guimaraes: linear-gradient(135deg, #ffffff 0 40%, #1b1b1b 40% 56%, #ffffff 56%); }
 
 /* Intro and hero */
 .intro { padding: 32px 0 20px; }
@@ -261,6 +263,7 @@ svg rect.band { fill: var(--wash); stroke: var(--s1); stroke-opacity: 0.35; }
 svg .expected { stroke: var(--ink-2); stroke-width: 2; }
 svg .bar.better { fill: var(--good); } svg .bar.worse { fill: var(--axis); }
 td.out { color: var(--s2); font-weight: 650; }
+tbody tr:hover td.out { color: color-mix(in srgb, var(--s2) 85%, var(--ink)); }  /* keeps 4.5:1 on the hover row */
 svg .marker { stroke: var(--surface); stroke-width: 2; }
 svg .line.s1 { stroke: var(--s1); } svg .marker.s1 { fill: var(--s1); }
 svg .line.s2 { stroke: var(--s2); } svg .marker.s2 { fill: var(--s2); }
@@ -306,6 +309,10 @@ table.stakes th, table.stakes td { padding: 4px 4px; }
 .scn-row button, .scn-reset { font: inherit; font-size: 14px; font-weight: 700; min-width: 34px; padding: 4px 8px; border-radius: 2px; border: 1px solid var(--axis); background: var(--raised); color: var(--ink); cursor: pointer; }
 .scn-row button:hover, .scn-reset:hover { border-color: var(--amber); }
 .scn-row button[aria-pressed="true"] { background: var(--amber); color: var(--amber-ink); border-color: var(--amber); }
+/* The model's chance of each result, under its mark (D-153); every button keeps the same height. */
+.scn-row .pick button { min-height: 42px; line-height: 1.1; }
+.scn-row button small { display: block; margin: 2px 0 0; font-size: 11px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.scn-row button[aria-pressed="true"] small { color: var(--amber-ink); }
 .scn-reset { margin-bottom: 8px; }
 
 footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--ring); color: var(--muted); font-size: 14px; }
@@ -641,8 +648,8 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 .zone-extra:empty { display: none; }
 .zone-extra span + span::before { content: " · "; }
 .phone-only { display: none; }
-/* Black and white cards need an edge: black alone vanishes on a dark page, white on a light one. */
-.mosaic i[style*="linear-gradient"], .strip i[style*="linear-gradient"], .key i[style*="linear-gradient"], .legend-cards i[style*="linear-gradient"] { box-shadow: inset 0 0 0 1px var(--bw-edge); }
+/* Cards with black or white need an edge: black alone vanishes on a dark page, white on a light one (D-152). */
+:is(.mosaic, .strip, .key, .legend-cards) i:is([style*="#1b1b1b"], [style*="#ffffff"], [style*="--kit-academico-viseu)"], [style*="--kit-benfica)"], [style*="--kit-casa-pia)"], [style*="--kit-famalicao)"], [style*="--kit-moreirense)"], [style*="--kit-nacional)"], [style*="--kit-porto)"], [style*="--kit-rio-ave)"], [style*="--kit-sp-braga)"], [style*="--kit-sporting)"], [style*="--kit-guimaraes)"]) { box-shadow: inset 0 0 0 1px var(--bw-edge); }
 @media (max-width: 640px) {
   .zone-bar i.small { font-size: 0; }
   .sim .scn-status { min-height: 7.8em; }
@@ -718,7 +725,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   .heat thead th.text { display: none; }
   .heat thead th:nth-child(2), .heat thead th:nth-child(6), .heat thead th:nth-child(11), .heat thead th:nth-child(16), .heat thead th:last-child { visibility: visible; }
   .heat tbody th.text { grid-column: 1 / -1; position: static; padding: 0 0 2px; font-size: 14px; background: none; }
-  .heat td { width: auto; height: 24px; font-size: 10.5px; display: flex; align-items: center; justify-content: center; letter-spacing: -0.02em; }
+  .heat td { width: auto; height: 24px; font-size: 11px; display: flex; align-items: center; justify-content: center; letter-spacing: -0.02em; }
   .heat td.low { font-size: 0; }
   .heat tr.mine { padding: 4px; margin-inline: -4px; border-radius: 2px; }
 }
@@ -779,12 +786,24 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <button type="button" class="fav" data-club-toggle="sporting" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>My club</button>
   <p class="say">Out of 100 simulated seasons, <strong>Sporting wins the title in 1</strong> and finishes in the top two in 8.</p>
 <p class="week-line num">This week: <b class="d bad"><span aria-hidden="true">▼ 1</span><span class="sr">down 1</span></b> for the title (2 → 1 in 100), after beating Moreirense 1–0.</p>  <p class="meta">24 points in 11 games.</p>
-<p class="sim-line"><a href="../epoca.html?club=sporting#scenario">Try Sporting's matches in the simulator →</a></p></section>
+  <aside class="whatif" aria-labelledby="whatif-title" data-whatif="{&#34;labels&#34;: {&#34;champions_playoff&#34;: &#34;Champions play-off&#34;, &#34;conference&#34;: &#34;Conference League&#34;, &#34;europa&#34;: &#34;Europa League&#34;, &#34;middle&#34;: &#34;Mid-table&#34;, &#34;playoff&#34;: &#34;Relegation play-off&#34;, &#34;relegation&#34;: &#34;Relegation&#34;, &#34;second&#34;: &#34;Champions&#34;, &#34;title&#34;: &#34;Champion&#34;}, &#34;now&#34;: {&#34;buckets&#34;: [[&#34;title&#34;, 1], [&#34;second&#34;, 7], [&#34;champions_playoff&#34;, 87], [&#34;europa&#34;, 4], [&#34;conference&#34;, 1]], &#34;mean&#34;: &#34;72.3&#34;, &#34;range&#34;: &#34;(65\u201379)&#34;}, &#34;order&#34;: [&#34;title&#34;, &#34;second&#34;, &#34;champions_playoff&#34;, &#34;europa&#34;, &#34;conference&#34;, &#34;middle&#34;, &#34;playoff&#34;, &#34;relegation&#34;], &#34;outcomes&#34;: [{&#34;buckets&#34;: [[&#34;title&#34;, 3], [&#34;second&#34;, 13], [&#34;champions_playoff&#34;, 82], [&#34;europa&#34;, 2]], &#34;mean&#34;: &#34;74.3&#34;, &#34;range&#34;: &#34;(67\u201381)&#34;}, {&#34;buckets&#34;: [[&#34;title&#34;, 1], [&#34;second&#34;, 8], [&#34;champions_playoff&#34;, 87], [&#34;europa&#34;, 4]], &#34;mean&#34;: &#34;72.3&#34;, &#34;range&#34;: &#34;(65\u201379)&#34;}, {&#34;buckets&#34;: [[&#34;second&#34;, 5], [&#34;champions_playoff&#34;, 90], [&#34;europa&#34;, 4], [&#34;conference&#34;, 1]], &#34;mean&#34;: &#34;71.3&#34;, &#34;range&#34;: &#34;(64\u201378)&#34;}]}">
+    <h2 id="whatif-title">What if Sporting wins the next one?</h2>
+    <p>Next match: Porto – Sporting. Pick the result and see what changes in the season.</p>
+    <div class="opts">
+      <a href="../epoca.html?club=sporting&amp;home=porto&amp;away=sporting&amp;result=2#scenario">Sporting wins</a>
+      <a href="../epoca.html?club=sporting&amp;home=porto&amp;away=sporting&amp;result=1#scenario">Draw</a>
+      <a href="../epoca.html?club=sporting&amp;home=porto&amp;away=sporting&amp;result=0#scenario">Sporting loses</a>
+    </div>
+<div class="whatif-out" aria-live="polite" hidden>
+      <ul class="whatif-rows num"></ul>
+      <p class="sim-more"><a href="#">Combine it with other matches in the simulator →</a></p>
+    </div>  </aside>
+</section>
 
 <section class="block" id="positions">
   <h2>Where Sporting may finish</h2>
   <div class="club-map">
-    <div><div class="mosaic" role="img" aria-label="Champion 1, Champions 7, Champions play-off 87, Europa League 4, Conference League 1"><i style="background: var(--z-title)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-conference)"></i></div></div>
+    <div><p class="whatif-tag" hidden>If this result happens: <b></b></p><div class="mosaic" role="img" aria-label="Champion 1, Champions 7, Champions play-off 87, Europa League 4, Conference League 1"><i style="background: var(--z-title)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-second)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-champions_playoff)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-europa)"></i><i style="background: var(--z-conference)"></i></div></div>
     <div>
       <ul class="legend-cards num one">
 <li><i style="background: var(--z-title)"></i>Champion<b>1</b></li><li><i style="background: var(--z-second)"></i>Champions<b>7</b></li><li><i style="background: var(--z-champions_playoff)"></i>Champions play-off<b>87</b></li><li><i style="background: var(--z-europa)"></i>Europa League<b>4</b></li><li><i style="background: var(--z-conference)"></i>Conference League<b>1</b></li>      </ul>
@@ -806,6 +825,12 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   </details>
 </section>
 
+<section class="block" aria-labelledby="club-next">
+  <h2 id="club-next">Next matches</h2>
+  <ul class="games two">
+    <li class="pending"><span class="teams-line"><span class="team"><i class="club-card card-porto"></i>Porto</span> <span class="vs">–</span> <span class="team"><i class="club-card card-sporting"></i>Sporting</span></span><span class="when">29 Nov</span><span class="trio">Forecast locked 24 h before kick-off</span></li>
+  </ul>
+</section>
 
 <section class="block" aria-labelledby="club-said">
   <h2 id="club-said">What we said</h2>
@@ -886,6 +911,89 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   });
   window.markMyClub = apply;  // the simulator redraws its table and marks it again
   apply();
+})();
+</script>
+<script>
+(() => {
+  "use strict";
+  // Answers "what if?" on the club's page (D-127): the numbers came with the page, so the fan stays
+  // here and nothing is downloaded. Without this script the links open the simulator, as before.
+  const box = document.querySelector(".whatif[data-whatif]");
+  if (!box) return;
+  const data = JSON.parse(box.dataset.whatif);
+  const links = [...box.querySelectorAll(".opts a")];
+  const out = box.querySelector(".whatif-out");
+  const rows = out.querySelector(".whatif-rows");
+  const more = out.querySelector(".sim-more a");
+  const section = document.getElementById("positions");
+  const mosaic = section.querySelector(".mosaic");
+  const legend = section.querySelector(".legend-cards.one");
+  const tag = section.querySelector(".whatif-tag");
+  const mean = section.querySelector(".points-line b");
+  const range = section.querySelector(".points-line small");
+  const cells = [...mosaic.children];
+  const before = new Map(data.now.buckets);
+
+  function paint(season) {
+    let cell = 0;
+    season.buckets.forEach(([key, n]) => {
+      for (let i = 0; i < n; i++) cells[cell++].setAttribute("style", "background: var(--z-" + key + ")");
+    });
+    mosaic.setAttribute("aria-label", season.buckets.map(([key, n]) => data.labels[key] + " " + n).join(", "));
+    legend.replaceChildren(...season.buckets.map(([key, n]) => {
+      const li = document.createElement("li");
+      const swatch = document.createElement("i");
+      swatch.setAttribute("style", "background: var(--z-" + key + ")");
+      const number = document.createElement("b");
+      number.textContent = n;
+      li.append(swatch, data.labels[key], number);
+      return li;
+    }));
+    mean.textContent = season.mean;
+    range.textContent = season.range;
+  }
+  function compare(season) {
+    const after = new Map(season.buckets);
+    rows.replaceChildren(...data.order.filter((key) => before.has(key) || after.has(key)).map((key) => {
+      const from = before.get(key) || 0, to = after.get(key) || 0;
+      const li = document.createElement("li");
+      const swatch = document.createElement("i");
+      swatch.className = "z-" + key;
+      const name = document.createElement("span");
+      name.append(swatch, data.labels[key]);
+      const value = document.createElement("span");
+      value.className = "value";
+      const number = document.createElement("b");
+      number.textContent = to;
+      if (from === to) value.append(number);
+      else value.append(from + " \u2192 ", number);
+      if (from !== to) li.className = "moved";
+      li.append(name, value);
+      return li;
+    }));
+  }
+  let chosen = -1;
+  links.forEach((link, i) => {
+    link.setAttribute("role", "button");
+    link.setAttribute("aria-pressed", "false");
+    // As a button it answers to the space bar too; Enter already clicks a link.
+    link.addEventListener("keydown", (event) => { if (event.key === " ") { event.preventDefault(); link.click(); } });
+    link.addEventListener("click", (event) => {
+      // A modified click still opens the simulator, like any link.
+      if (event.metaKey || event.ctrlKey || event.shiftKey) return;
+      event.preventDefault();
+      chosen = chosen === i ? -1 : i;
+      links.forEach((other, k) => other.setAttribute("aria-pressed", String(k === chosen)));
+      out.hidden = chosen < 0;
+      if (tag) tag.hidden = chosen < 0;
+      if (chosen < 0) { paint(data.now); return; }
+      const season = data.outcomes[chosen];
+      paint(season);
+      compare(season);
+      more.href = link.getAttribute("href");
+      if (tag) tag.querySelector("b").textContent = link.textContent;
+    });
+  });
 })();
 </script>
 <script data-goatcounter="https://contasdabola.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body>
