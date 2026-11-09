@@ -490,6 +490,11 @@ a.club:hover { color: var(--amber-text); }
 li.mine { margin-inline: -8px; padding-inline: 8px; border-radius: 2px; --bar-gap: color-mix(in srgb, var(--amber) 14%, var(--page)); }
 .games li.mine, .results li.mine, .zone-rows > li.mine, .drop li.mine, li:has(+ li.mine) { border-bottom-color: transparent; }
 tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bottom-color: transparent; }
+/* Lists in columns (#120): every row is as wide as the highlight, so lines and highlight line up, and no row
+   hides a line, because the row before in the page is often in another column. */
+.results li, .list-block .games li, .games.two li { margin-inline: -8px; padding-inline: 8px; }
+.results li.mine, .results li:has(+ li.mine), .list-block .games li.mine, .list-block .games li:has(+ li.mine),
+.games.two li.mine, .games.two li:has(+ li.mine) { border-bottom-color: var(--grid); }
 .sim li.mine { background-color: color-mix(in srgb, var(--amber) 14%, var(--surface)); --bar-gap: color-mix(in srgb, var(--amber) 14%, var(--surface)); }
 .heat tr.mine th.text { background-color: color-mix(in srgb, var(--amber) 14%, var(--page)); }
 .heat tr.mine td { background-color: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }

@@ -490,6 +490,11 @@ a.club:hover { color: var(--amber-text); }
 li.mine { margin-inline: -8px; padding-inline: 8px; border-radius: 2px; --bar-gap: color-mix(in srgb, var(--amber) 14%, var(--page)); }
 .games li.mine, .results li.mine, .zone-rows > li.mine, .drop li.mine, li:has(+ li.mine) { border-bottom-color: transparent; }
 tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bottom-color: transparent; }
+/* Lists in columns (#120): every row is as wide as the highlight, so lines and highlight line up, and no row
+   hides a line, because the row before in the page is often in another column. */
+.results li, .list-block .games li, .games.two li { margin-inline: -8px; padding-inline: 8px; }
+.results li.mine, .results li:has(+ li.mine), .list-block .games li.mine, .list-block .games li:has(+ li.mine),
+.games.two li.mine, .games.two li:has(+ li.mine) { border-bottom-color: var(--grid); }
 .sim li.mine { background-color: color-mix(in srgb, var(--amber) 14%, var(--surface)); --bar-gap: color-mix(in srgb, var(--amber) 14%, var(--surface)); }
 .heat tr.mine th.text { background-color: color-mix(in srgb, var(--amber) 14%, var(--page)); }
 .heat tr.mine td { background-color: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
@@ -1256,7 +1261,7 @@ if (typeof module !== "undefined") module.exports = scenarioEngine;
         next.forEach((c) => list.appendChild(bars.get(c).li));
         drawn = next;
       }
-      pinClub();
+      markClub();
       if (calm.matches) return;
       rows.forEach((c) => {
         const { li } = bars.get(c);
@@ -1301,11 +1306,10 @@ if (typeof module !== "undefined") module.exports = scenarioEngine;
     }
     // The club a fan is reading about: the one the link named, or the one they chose as theirs.
     const focusClub = () => params.get("club") || document.documentElement.dataset.club || "";
-    function pinClub() {
+    // Only marked, never moved: the table keeps the real order from 1st to 18th (#119).
+    function markClub() {
       const id = focusClub();
       if (!index.has(id)) return;
-      const li = list.querySelector('li[data-clubs="' + id + '"]');
-      if (list.firstElementChild !== li) list.prepend(li);
       if (params.get("club")) box.querySelectorAll("[data-clubs]").forEach((el) => {
         if (el.dataset.clubs.split(" ").includes(id)) el.classList.add("mine");
       });
