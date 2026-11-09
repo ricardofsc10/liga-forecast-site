@@ -2176,11 +2176,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-famalicao-arouca",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.1461,
+   "score": [
+    1,
+    0
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   },
   {
    "away": "Académico de Viseu",
@@ -2197,11 +2200,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-nacional-academico-viseu",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.3119,
+   "score": [
+    1,
+    0
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   },
   {
    "away": "Casa Pia",
@@ -2218,11 +2224,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-alverca-casa-pia",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.1725,
+   "score": [
+    1,
+    1
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   },
   {
    "away": "Moreirense",
@@ -2239,11 +2248,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-sporting-moreirense",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.0126,
+   "score": [
+    1,
+    0
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   },
   {
    "away": "Marítimo",
@@ -2281,11 +2293,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-santa-clara-gil-vicente",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.3571,
+   "score": [
+    1,
+    2
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   },
   {
    "away": "Porto",
@@ -2302,11 +2317,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-guimaraes-porto",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.1011,
+   "score": [
+    1,
+    2
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   },
   {
    "away": "Benfica",
@@ -2323,11 +2341,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-estrela-amadora-benfica",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.0259,
+   "score": [
+    2,
+    3
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   },
   {
    "away": "Sporting de Braga",
@@ -2344,11 +2365,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-rio-ave-sp-braga",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.0785,
+   "score": [
+    0,
+    1
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending"
+   "state": "played",
+   "timing": "valid"
   }
  ]
 }
