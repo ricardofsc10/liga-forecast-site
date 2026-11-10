@@ -26,12 +26,14 @@
   --amber: #ffb000; --amber-ink: #1b1c1f; --amber-text: #8a5800;
   --s1: #1f5fc4; --s2: #c8452a; --s3: #12804e; --s4: #a86b00; --s5: #b0417a;
   --draw: #9a9ea3; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
+  --good-ink: #ffffff; --bad-ink: #ffffff;
   --good: #12804e; --bad: #b42318; --good-wash: rgba(18,128,78,0.14); --wash: rgba(31,95,196,0.12);
   --card-other: #8f939a; --card-empty: #d0d2cf; --bw-edge: rgba(0,0,0,0.45);
   --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
   --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
   --z-conference: #b9a63a; --z-conference-ink: #161300; --z-middle: #6f8792; --z-middle-ink: #0e1a20;
   --z-playoff: #a8201f; --z-playoff-ink: #ffffff; --z-relegation: #ff4d4d; --z-relegation-ink: #240303;
+  --lv4: #b42318; --lv4-ink: #ffffff; --lv3: #e0752d; --lv3-ink: #1c0e03; --lv2: #c9cbc8; --lv2-ink: #1b1d21; --lv1: #12804e; --lv1-ink: #ffffff;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {   color-scheme: dark;
   --delta-share: 50%; --delta-share-mine: 35%; --focus: #ffb000;
@@ -40,12 +42,14 @@
   --amber: #ffb000; --amber-ink: #1b1c1f; --amber-text: #ffb000;
   --s1: #5b93f0; --s2: #f07a5a; --s3: #4cc283; --s4: #ffb000; --s5: #e889b5;
   --draw: #8f939a; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
+  --good-ink: #08200f; --bad-ink: #2a0606;
   --good: #4cc283; --bad: #ff6b6b; --good-wash: rgba(76,194,131,0.16); --wash: rgba(91,147,240,0.16);
   --card-other: #5d636b; --card-empty: #31353c; --bw-edge: rgba(255,255,255,0.55);
   --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
   --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
   --z-conference: #b9a63a; --z-conference-ink: #161300; --z-middle: #6a8fa0; --z-middle-ink: #0e1a20;
   --z-playoff: #a8201f; --z-playoff-ink: #ffffff; --z-relegation: #ff4d4d; --z-relegation-ink: #240303;
+  --lv4: #d64545; --lv4-ink: #ffffff; --lv3: #e0752d; --lv3-ink: #1c0e03; --lv2: #5d636b; --lv2-ink: #ece9e2; --lv1: #2f8f5b; --lv1-ink: #ffffff;
  } }
 :root[data-theme="dark"] {   color-scheme: dark;
   --delta-share: 50%; --delta-share-mine: 35%; --focus: #ffb000;
@@ -54,12 +58,14 @@
   --amber: #ffb000; --amber-ink: #1b1c1f; --amber-text: #ffb000;
   --s1: #5b93f0; --s2: #f07a5a; --s3: #4cc283; --s4: #ffb000; --s5: #e889b5;
   --draw: #8f939a; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
+  --good-ink: #08200f; --bad-ink: #2a0606;
   --good: #4cc283; --bad: #ff6b6b; --good-wash: rgba(76,194,131,0.16); --wash: rgba(91,147,240,0.16);
   --card-other: #5d636b; --card-empty: #31353c; --bw-edge: rgba(255,255,255,0.55);
   --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
   --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
   --z-conference: #b9a63a; --z-conference-ink: #161300; --z-middle: #6a8fa0; --z-middle-ink: #0e1a20;
   --z-playoff: #a8201f; --z-playoff-ink: #ffffff; --z-relegation: #ff4d4d; --z-relegation-ink: #240303;
+  --lv4: #d64545; --lv4-ink: #ffffff; --lv3: #e0752d; --lv3-ink: #1c0e03; --lv2: #5d636b; --lv2-ink: #ece9e2; --lv1: #2f8f5b; --lv1-ink: #ffffff;
  }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 64px; scrollbar-gutter: stable; }
@@ -774,6 +780,44 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 }
 @media (prefers-reduced-motion: reduce) { .cta svg { transition: none; } }
 
+/* The run-in (D-158): FPL-style levels; hard is red and easy green, as fans read them */
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.runin { border-collapse: separate; border-spacing: 3px; font-size: 12px; width: auto; }
+.runin th { font-weight: 600; color: var(--muted); text-align: center; padding: 0 2px; }
+.runin tbody th { text-align: left; color: var(--ink); white-space: nowrap; padding-right: 8px; font-size: 14px; }
+.runin tr.me th { color: var(--amber-text); }
+.runin td { min-width: 38px; height: 38px; text-align: center; font-weight: 700; border-radius: 2px; line-height: 1.05; padding: 0 2px; }
+.runin td.rank { color: var(--ink); font-size: 14px; font-weight: 650; }
+.runin abbr { text-decoration: none; }
+.runin td small { display: block; font-weight: 500; font-size: 10px; }
+.lv4 { background: var(--lv4); color: var(--lv4-ink); } .lv3 { background: var(--lv3); color: var(--lv3-ink); }
+.lv2 { background: var(--lv2); color: var(--lv2-ink); } .lv1 { background: var(--lv1); color: var(--lv1-ink); }
+.runin-key { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 12px 0 8px; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.runin-key i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+/* Form and head to head on the match page (D-159) */
+.match-context { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 24px 48px; padding-top: 32px; align-items: start; }
+.match-context section { display: grid; gap: 12px; }
+.match-context .context-note { grid-column: 1 / -1; margin: 0; }
+.form-row { display: grid; grid-template-columns: minmax(0, 120px) 1fr auto; align-items: center; gap: 10px; }
+.form-row .who { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.form-row .pts { color: var(--muted); font-size: 14px; }
+.form-chips { display: flex; gap: 5px; margin: 0; padding: 0; list-style: none; }
+.form-chips li { min-width: 48px; padding: 5px 0; text-align: center; border-radius: 2px; font-weight: 800; }
+.form-chips small { display: block; font-weight: 500; font-size: 11px; line-height: 1.2; }
+.form-chips .rW { background: var(--good); color: var(--good-ink); }
+.form-chips .rD { background: var(--draw); color: #1b1d21; }
+.form-chips .rL { background: var(--bad); color: var(--bad-ink); }
+.h2h-sum { display: flex; gap: 20px; font-size: 15px; color: var(--ink-2); }
+.h2h-sum b { display: block; font-stretch: 72%; font-weight: 850; font-size: 32px; line-height: 1; color: var(--ink); }
+.h2h { margin: 0; padding: 0; list-style: none; }
+.h2h li { display: grid; grid-template-columns: 96px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--grid); font-size: 15px; }
+.h2h .d { color: var(--muted); font-size: 14px; }
+.h2h .won { font-weight: 700; }
+@media (max-width: 400px) { .form-row { grid-template-columns: 1fr auto; } .form-row .form-chips { grid-column: 1 / -1; grid-row: 2; } .form-chips li { min-width: 0; flex: 1; } }
+/* Provisional forecasts (D-160): a label, never a different look for the numbers */
+.pill { display: inline-block; font-size: 12px; font-weight: 750; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border: 1.5px solid var(--amber); color: var(--amber-text); border-radius: 2px; margin-right: 8px; vertical-align: 1px; line-height: 1.2; }
+.pill.sm { font-size: 10px; padding: 1px 5px; margin: 0 0 0 6px; border-width: 1px; }
+.prov { color: var(--ink-2); font-size: 15px; margin: 10px 0 0; max-width: 46ch; }
 /* Predictions game (D-156) */
 .nojs { margin-top: 12px; } .js .nojs { display: none; }
 .game { padding-top: 32px; display: grid; gap: 14px; max-width: 760px; }
@@ -849,6 +893,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <header class="match-head">
     <h1><span>Sporting de Braga</span> <span class="final num">1–3</span> <span>Sporting</span></h1>
     <p class="meta">Fri 2026-10-09 20:15</p>
+    
   </header>
 
 <p class="notice">Test forecast: made after the match was played, so it proves nothing and does not count towards our record.</p>
@@ -876,6 +921,28 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
     <ol class="likely num"><li><b>1–1</b><span>11%</span></li><li><b>1–2</b><span>9%</span></li><li><b>0–1</b><span>8%</span></li></ol>
     <p class="note">Even the most likely score rarely happens: that is football.</p>
   </section>
+  </div>
+
+  <div class="match-context">
+  <section aria-labelledby="form-title">
+    <h2 id="form-title">Form</h2>
+    <div class="form-row"><span class="who">Sporting de Braga</span><ol class="form-chips num"><li class="rD" title="Draw 0–0 away to Santa Clara, 2026-09-20"><b>D</b><small>0–0<br>San</small></li><li class="rW" title="Win 1–0 at home to Estoril Praia, 2026-09-14"><b>W</b><small>1–0<br>Est</small></li><li class="rL" title="Defeat 1–2 away to Estrela da Amadora, 2026-09-10"><b>L</b><small>1–2<br>Est</small></li><li class="rW" title="Win 2–1 away to Alverca, 2026-09-05"><b>W</b><small>2–1<br>Alv</small></li><li class="rW" title="Win 1–0 at home to Vitória SC, 2026-08-31"><b>W</b><small>1–0<br>Vit</small></li></ol><span class="pts num">10 pts</span></div>
+    <div class="form-row"><span class="who">Sporting</span><ol class="form-chips num"><li class="rD" title="Draw 2–2 at home to Arouca, 2026-09-19"><b>D</b><small>2–2<br>Aro</small></li><li class="rD" title="Draw 1–1 away to Famalicão, 2026-09-13"><b>D</b><small>1–1<br>Fam</small></li><li class="rW" title="Win 2–0 at home to Nacional, 2026-09-05"><b>W</b><small>2–0<br>Nac</small></li><li class="rW" title="Win 4–0 away to Rio Ave, 2026-08-28"><b>W</b><small>4–0<br>Rio</small></li><li class="rW" title="Win 3–1 at home to Alverca, 2026-08-22"><b>W</b><small>3–1<br>Alv</small></li></ol><span class="pts num">11 pts</span></div>
+    <p class="note">The last 5 league matches, the most recent on the left.</p>
+  </section>
+  <section aria-labelledby="h2h-title">
+    <h2 id="h2h-title">Head to head</h2>
+    <div class="h2h-sum num"><div><b>0</b>Sporting de Braga</div><div><b>3</b>Draws</div><div><b>2</b>Sporting</div></div>
+    <ul class="h2h">
+      <li><span class="d">2026-03-07</span><span><span>Sporting de Braga</span> <b class="num">2–2</b> <span>Sporting</span></span></li>
+      <li><span class="d">2025-10-05</span><span><span>Sporting</span> <b class="num">1–1</b> <span>Sporting de Braga</span></span></li>
+      <li><span class="d">2025-04-07</span><span><span>Sporting</span> <b class="num">1–1</b> <span>Sporting de Braga</span></span></li>
+      <li><span class="d">2024-11-10</span><span><span>Sporting de Braga</span> <b class="num">2–4</b> <span class="won">Sporting</span></span></li>
+      <li><span class="d">2024-02-11</span><span><span class="won">Sporting</span> <b class="num">5–0</b> <span>Sporting de Braga</span></span></li>
+    </ul>
+    <p class="note">The last 5 league matches between the two, at either ground.</p>
+  </section>
+  <p class="note context-note">For context only: the forecast already counts every result.</p>
   </div>
 
   <p class="note market">For reference, the closing odds of the bookmakers, without their margin, gave Sporting de Braga 32%, a draw 30% and Sporting 39%. <a href="../../en/como-funciona.html#terms">How it works →</a></p>
