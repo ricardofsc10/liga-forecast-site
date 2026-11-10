@@ -386,6 +386,7 @@ a.club:hover { color: var(--amber-text); }
 .cta { display: inline-flex; align-items: center; gap: 20px; background: var(--amber); color: var(--amber-ink); text-decoration: none;
   font-stretch: 80%; font-weight: 800; font-size: 21px; padding: 14px 18px; border-radius: 2px; }
 .cta:hover { color: var(--amber-ink); background: color-mix(in srgb, var(--amber) 88%, var(--ink)); }
+button.cta { border: 0; font-family: inherit; cursor: pointer; }  /* the Season page opens its simulator with one (D-162) */
 .cta svg { width: 22px; height: 22px; flex: none; transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1); }
 .cta:hover svg { transform: translateX(4px); }
 .key { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 12px 0 0; font-size: 14px; font-weight: 600; color: var(--ink-2); }
@@ -494,6 +495,9 @@ a.club:hover { color: var(--amber-text); }
 .fold { margin: 3px 0; }
 .fold > summary { font-stretch: 80%; font-size: 19px; padding: 14px 16px; }
 .fold[open] { padding-bottom: 24px; }
+.curious { padding-top: 40px; }
+.curious > .fold > summary span { font-weight: 400; color: var(--muted); }
+.curious .list-block:first-of-type { padding-top: 12px; }
 .fold section.block { padding-top: 20px; }
 
 /* Clubs (D-096) and the fan's club (D-089) */
@@ -772,7 +776,11 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   .bar .wrap { flex-wrap: wrap; height: auto; padding-top: 10px; row-gap: 4px; }
   .bar .brand { margin-right: auto; }
   .bar nav { order: 3; flex-basis: 100%; margin: 0 -8px; }
-  .bar nav a { padding: 6px 8px; font-size: 14px; }
+  html { scroll-padding-top: 108px; }  /* the bar wraps to two rows here, about 99 px: anchors land below it */
+  /* touch targets of about 40 px on a phone */
+  .bar nav a { padding: 11px 8px; font-size: 14px; }
+  .bar a.lang, .bar .theme { min-height: 40px; min-width: 40px; justify-content: center; }
+  .bar a.lang { display: inline-flex; align-items: center; }
   .hello { grid-template-columns: 1fr; gap: 10px; padding-bottom: 22px; }
   .trio-big { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .trio-big div:nth-child(2) { text-align: center; } .trio-big div:nth-child(3) { text-align: right; }
@@ -902,24 +910,24 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
     <option value="">Escolher</option>
 <option value="academico-viseu">Académico de Viseu</option><option value="alverca">Alverca</option><option value="arouca">Arouca</option><option value="benfica">Benfica</option><option value="casa-pia">Casa Pia</option><option value="estoril">Estoril Praia</option><option value="estrela-amadora">Estrela da Amadora</option><option value="famalicao">Famalicão</option><option value="gil-vicente">Gil Vicente</option><option value="maritimo">Marítimo</option><option value="moreirense">Moreirense</option><option value="nacional">Nacional</option><option value="porto">Porto</option><option value="rio-ave">Rio Ave</option><option value="santa-clara">Santa Clara</option><option value="sporting">Sporting</option><option value="sp-braga">Sporting de Braga</option><option value="guimaraes">Vitória SC</option>  </select>
 </label>
-    <p class="club-now" data-club-now="porto" hidden>Em 100 épocas simuladas, <strong>o Porto ganha o título em 59</strong> e acaba nos dois primeiros em 97. Próximo jogo: Sporting, dom 29/11/2026 20:30. Ganha 50 em 100. <a href="clubes/porto.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="benfica" hidden>Em 100 épocas simuladas, <strong>o Benfica ganha o título em 40</strong> e acaba nos dois primeiros em 95. Próximo jogo: Famalicão, seg 30/11/2026 20:15. Ganha 84 em 100. <a href="clubes/benfica.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="sporting" hidden>Em 100 épocas simuladas, <strong>o Sporting ganha o título em 1</strong> e acaba nos dois primeiros em 8. Próximo jogo: Porto, dom 29/11/2026 20:30. Ganha 23 em 100. <a href="clubes/sporting.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="sp-braga" hidden>Em 100 épocas simuladas, <strong>o Sporting de Braga vai à Europa em 79</strong>. Próximo jogo: Casa Pia, seg 30/11/2026 20:15. Ganha 64 em 100. <a href="clubes/sp-braga.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="santa-clara" hidden>Em 100 épocas simuladas, <strong>o Santa Clara vai à Europa em 36</strong>. Próximo jogo: Moreirense, sáb 28/11/2026 15:30. Ganha 46 em 100. <a href="clubes/santa-clara.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="arouca" hidden>Em 100 épocas simuladas, <strong>o Arouca vai à Europa em 26</strong>. Próximo jogo: Rio Ave, sáb 28/11/2026 15:30. Ganha 56 em 100. <a href="clubes/arouca.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="gil-vicente" hidden>Em 100 épocas simuladas, <strong>o Gil Vicente vai à Europa em 23</strong>. Próximo jogo: Estoril Praia, dom 29/11/2026 18:00. Ganha 50 em 100. <a href="clubes/gil-vicente.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="academico-viseu" hidden>Em 100 épocas simuladas, <strong>o Académico de Viseu vai à Europa em 16</strong>. Próximo jogo: Alverca, sáb 28/11/2026 18:00. Ganha 40 em 100. <a href="clubes/academico-viseu.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="guimaraes" hidden>Em 100 épocas simuladas, <strong>o Vitória SC vai à Europa em 10</strong>. Próximo jogo: Estrela da Amadora, sáb 28/11/2026 20:30. Ganha 58 em 100. <a href="clubes/vitoria-sc.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="famalicao" hidden>Em 100 épocas simuladas, <strong>o Famalicão vai à Europa em 7</strong>. Próximo jogo: Benfica, seg 30/11/2026 20:15. Ganha 5 em 100. <a href="clubes/famalicao.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="alverca" hidden>Em 100 épocas simuladas, <strong>o Alverca desce em 2</strong> e salva-se em 98. Próximo jogo: Académico de Viseu, sáb 28/11/2026 18:00. Ganha 31 em 100. <a href="clubes/alverca.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="moreirense" hidden>Em 100 épocas simuladas, <strong>o Moreirense desce em 8</strong> e salva-se em 92. Próximo jogo: Santa Clara, sáb 28/11/2026 15:30. Ganha 26 em 100. <a href="clubes/moreirense.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="estrela-amadora" hidden>Em 100 épocas simuladas, <strong>o Estrela da Amadora desce em 10</strong> e salva-se em 90. Próximo jogo: Vitória SC, sáb 28/11/2026 20:30. Ganha 18 em 100. <a href="clubes/estrela-amadora.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="maritimo" hidden>Em 100 épocas simuladas, <strong>o Marítimo desce em 15</strong> e salva-se em 85. Próximo jogo: Nacional, sex 27/11/2026 20:15. Ganha 49 em 100. <a href="clubes/maritimo.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="nacional" hidden>Em 100 épocas simuladas, <strong>o Nacional desce em 35</strong> e salva-se em 65. Próximo jogo: Marítimo, sex 27/11/2026 20:15. Ganha 24 em 100. <a href="clubes/nacional.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="casa-pia" hidden>Em 100 épocas simuladas, <strong>o Casa Pia desce em 37</strong> e salva-se em 63. Próximo jogo: Sporting de Braga, seg 30/11/2026 20:15. Ganha 14 em 100. <a href="clubes/casa-pia.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="rio-ave" hidden>Em 100 épocas simuladas, <strong>o Rio Ave desce em 43</strong> e salva-se em 57. Próximo jogo: Arouca, sáb 28/11/2026 15:30. Ganha 19 em 100. <a href="clubes/rio-ave.html">Ver o clube&nbsp;→</a></p>
-    <p class="club-now" data-club-now="estoril" hidden>Em 100 épocas simuladas, <strong>o Estoril Praia desce em 50</strong> e salva-se em 50. Próximo jogo: Gil Vicente, dom 29/11/2026 18:00. Ganha 23 em 100. <a href="clubes/estoril.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="porto" hidden>Em 100 épocas simuladas, <strong>o Porto ganha o título em 59</strong> e acaba nos dois primeiros em 97. Próximo jogo: Sporting, dom 29/11/2026 20:30. Previsão provisória: ganha 50 em 100. <a href="clubes/porto.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="benfica" hidden>Em 100 épocas simuladas, <strong>o Benfica ganha o título em 40</strong> e acaba nos dois primeiros em 95. Próximo jogo: Famalicão, seg 30/11/2026 20:15. Previsão provisória: ganha 84 em 100. <a href="clubes/benfica.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="sporting" hidden>Em 100 épocas simuladas, <strong>o Sporting ganha o título em 1</strong> e acaba nos dois primeiros em 8. Próximo jogo: Porto, dom 29/11/2026 20:30. Previsão provisória: ganha 23 em 100. <a href="clubes/sporting.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="sp-braga" hidden>Em 100 épocas simuladas, <strong>o Sporting de Braga vai à Europa em 79</strong>. Próximo jogo: Casa Pia, seg 30/11/2026 20:15. Previsão provisória: ganha 64 em 100. <a href="clubes/sp-braga.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="santa-clara" hidden>Em 100 épocas simuladas, <strong>o Santa Clara vai à Europa em 36</strong>. Próximo jogo: Moreirense, sáb 28/11/2026 15:30. Previsão provisória: ganha 46 em 100. <a href="clubes/santa-clara.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="arouca" hidden>Em 100 épocas simuladas, <strong>o Arouca vai à Europa em 26</strong>. Próximo jogo: Rio Ave, sáb 28/11/2026 15:30. Previsão provisória: ganha 56 em 100. <a href="clubes/arouca.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="gil-vicente" hidden>Em 100 épocas simuladas, <strong>o Gil Vicente vai à Europa em 23</strong>. Próximo jogo: Estoril Praia, dom 29/11/2026 18:00. Previsão provisória: ganha 50 em 100. <a href="clubes/gil-vicente.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="academico-viseu" hidden>Em 100 épocas simuladas, <strong>o Académico de Viseu vai à Europa em 16</strong>. Próximo jogo: Alverca, sáb 28/11/2026 18:00. Previsão provisória: ganha 40 em 100. <a href="clubes/academico-viseu.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="guimaraes" hidden>Em 100 épocas simuladas, <strong>o Vitória SC vai à Europa em 10</strong>. Próximo jogo: Estrela da Amadora, sáb 28/11/2026 20:30. Previsão provisória: ganha 58 em 100. <a href="clubes/vitoria-sc.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="famalicao" hidden>Em 100 épocas simuladas, <strong>o Famalicão vai à Europa em 7</strong>. Próximo jogo: Benfica, seg 30/11/2026 20:15. Previsão provisória: ganha 5 em 100. <a href="clubes/famalicao.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="alverca" hidden>Em 100 épocas simuladas, <strong>o Alverca desce em 2</strong> e salva-se em 98. Próximo jogo: Académico de Viseu, sáb 28/11/2026 18:00. Previsão provisória: ganha 31 em 100. <a href="clubes/alverca.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="moreirense" hidden>Em 100 épocas simuladas, <strong>o Moreirense desce em 8</strong> e salva-se em 92. Próximo jogo: Santa Clara, sáb 28/11/2026 15:30. Previsão provisória: ganha 26 em 100. <a href="clubes/moreirense.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="estrela-amadora" hidden>Em 100 épocas simuladas, <strong>o Estrela da Amadora desce em 10</strong> e salva-se em 90. Próximo jogo: Vitória SC, sáb 28/11/2026 20:30. Previsão provisória: ganha 18 em 100. <a href="clubes/estrela-amadora.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="maritimo" hidden>Em 100 épocas simuladas, <strong>o Marítimo desce em 15</strong> e salva-se em 85. Próximo jogo: Nacional, sex 27/11/2026 20:15. Previsão provisória: ganha 49 em 100. <a href="clubes/maritimo.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="nacional" hidden>Em 100 épocas simuladas, <strong>o Nacional desce em 35</strong> e salva-se em 65. Próximo jogo: Marítimo, sex 27/11/2026 20:15. Previsão provisória: ganha 24 em 100. <a href="clubes/nacional.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="casa-pia" hidden>Em 100 épocas simuladas, <strong>o Casa Pia desce em 37</strong> e salva-se em 63. Próximo jogo: Sporting de Braga, seg 30/11/2026 20:15. Previsão provisória: ganha 14 em 100. <a href="clubes/casa-pia.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="rio-ave" hidden>Em 100 épocas simuladas, <strong>o Rio Ave desce em 43</strong> e salva-se em 57. Próximo jogo: Arouca, sáb 28/11/2026 15:30. Previsão provisória: ganha 19 em 100. <a href="clubes/rio-ave.html">Ver o clube&nbsp;→</a></p>
+    <p class="club-now" data-club-now="estoril" hidden>Em 100 épocas simuladas, <strong>o Estoril Praia desce em 50</strong> e salva-se em 50. Próximo jogo: Gil Vicente, dom 29/11/2026 18:00. Previsão provisória: ganha 23 em 100. <a href="clubes/estoril.html">Ver o clube&nbsp;→</a></p>
   </div>
 </section>
 

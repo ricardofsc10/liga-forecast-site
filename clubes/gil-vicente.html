@@ -386,6 +386,7 @@ a.club:hover { color: var(--amber-text); }
 .cta { display: inline-flex; align-items: center; gap: 20px; background: var(--amber); color: var(--amber-ink); text-decoration: none;
   font-stretch: 80%; font-weight: 800; font-size: 21px; padding: 14px 18px; border-radius: 2px; }
 .cta:hover { color: var(--amber-ink); background: color-mix(in srgb, var(--amber) 88%, var(--ink)); }
+button.cta { border: 0; font-family: inherit; cursor: pointer; }  /* the Season page opens its simulator with one (D-162) */
 .cta svg { width: 22px; height: 22px; flex: none; transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1); }
 .cta:hover svg { transform: translateX(4px); }
 .key { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 12px 0 0; font-size: 14px; font-weight: 600; color: var(--ink-2); }
@@ -494,6 +495,9 @@ a.club:hover { color: var(--amber-text); }
 .fold { margin: 3px 0; }
 .fold > summary { font-stretch: 80%; font-size: 19px; padding: 14px 16px; }
 .fold[open] { padding-bottom: 24px; }
+.curious { padding-top: 40px; }
+.curious > .fold > summary span { font-weight: 400; color: var(--muted); }
+.curious .list-block:first-of-type { padding-top: 12px; }
 .fold section.block { padding-top: 20px; }
 
 /* Clubs (D-096) and the fan's club (D-089) */
@@ -772,7 +776,11 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   .bar .wrap { flex-wrap: wrap; height: auto; padding-top: 10px; row-gap: 4px; }
   .bar .brand { margin-right: auto; }
   .bar nav { order: 3; flex-basis: 100%; margin: 0 -8px; }
-  .bar nav a { padding: 6px 8px; font-size: 14px; }
+  html { scroll-padding-top: 108px; }  /* the bar wraps to two rows here, about 99 px: anchors land below it */
+  /* touch targets of about 40 px on a phone */
+  .bar nav a { padding: 11px 8px; font-size: 14px; }
+  .bar a.lang, .bar .theme { min-height: 40px; min-width: 40px; justify-content: center; }
+  .bar a.lang { display: inline-flex; align-items: center; }
   .hello { grid-template-columns: 1fr; gap: 10px; padding-bottom: 22px; }
   .trio-big { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .trio-big div:nth-child(2) { text-align: center; } .trio-big div:nth-child(3) { text-align: right; }
@@ -972,7 +980,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <section class="block" id="ahead">
   <h2>Frente a frente: quem acaba à frente?</h2>
   <p class="lede">Em 100 épocas simuladas, quantas vezes o Gil Vicente acaba à frente dos rivais a sério.</p>
-  <div class="scroll"><table>
+  <div class="scroll"><table aria-label="Frente a frente: quem acaba à frente?">
     <thead><tr><th class="text">Rival</th><th>Gil Vicente à frente</th></tr></thead>
     <tbody>
     <tr><td class="text"><i class="club-card card-sp-braga"></i><a class="club" href="sp-braga.html">Sporting de Braga</a></td><td class="chance" style="--p: 0.160"><span>16%</span></td></tr>
