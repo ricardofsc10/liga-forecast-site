@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ricardofsc10.github.io/liga-forecast-site/sitemap.xml
+Sitemap: https://contasdabola.pt/sitemap.xml
