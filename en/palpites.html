@@ -7,7 +7,8 @@
 <meta name="description" content="Pick who wins each match of the round and see how many you get right next to our model. Your picks stay in your browser.">
 <meta name="color-scheme" content="dark light">
 <meta name="google-site-verification" content="FNL0J3pjsVLhlkGUh-aRbb5yhrt7pO-6M1AO6vy2qWo">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 19'%3E%3Crect width='19' height='19' rx='3' fill='%23202328'/%3E%3Cg fill='%23ece9e2'%3E%3Crect x='3' y='4' width='3' height='4'/%3E%3Crect x='13' y='4' width='3' height='4'/%3E%3Crect x='8' y='11' width='3' height='4'/%3E%3C/g%3E%3Cg fill='%23ffb000'%3E%3Crect x='8' y='4' width='3' height='4'/%3E%3Crect x='3' y='11' width='3' height='4'/%3E%3Crect x='13' y='11' width='3' height='4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-192.png" sizes="192x192" type="image/png">
 <link rel="preload" href="../static/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <script>
 (function () { var d = document.documentElement; d.classList.add("js"); try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") d.dataset.theme = t; } catch (e) {} })();
@@ -135,6 +136,29 @@ a:hover { color: var(--amber-text); }
 .card-santa-clara { --a: #d6202f; --b: #ffffff; }
 .card-sp-braga { --a: #d22630; --b: #ffffff; }
 .card-sporting { --a: #0b8a52; --b: #ffffff; }
+/* Club crests (D-180): where we have a club's crest, it takes the place of the card. */
+.club-card:is(.card-academico-viseu, .card-alverca, .card-arouca, .card-benfica, .card-casa-pia, .card-estoril, .card-estrela-amadora, .card-famalicao, .card-gil-vicente, .card-guimaraes, .card-maritimo, .card-moreirense, .card-nacional, .card-porto, .card-rio-ave, .card-santa-clara, .card-sp-braga, .card-sporting) { width: 18px; height: 18px; border-radius: 0; box-shadow: none;
+  background: center / contain no-repeat; vertical-align: -4px; margin-right: 7px; }
+.teams-line .club-card:is(.card-academico-viseu, .card-alverca, .card-arouca, .card-benfica, .card-casa-pia, .card-estoril, .card-estrela-amadora, .card-famalicao, .card-gil-vicente, .card-guimaraes, .card-maritimo, .card-moreirense, .card-nacional, .card-porto, .card-rio-ave, .card-santa-clara, .card-sp-braga, .card-sporting) { width: 16px; height: 16px; margin-right: 5px; }
+.club-head h1 .club-card:is(.card-academico-viseu, .card-alverca, .card-arouca, .card-benfica, .card-casa-pia, .card-estoril, .card-estrela-amadora, .card-famalicao, .card-gil-vicente, .card-guimaraes, .card-maritimo, .card-moreirense, .card-nacional, .card-porto, .card-rio-ave, .card-santa-clara, .card-sp-braga, .card-sporting) { width: 1.05em; height: 1.05em; vertical-align: -0.14em; margin-right: 0.25em; }
+.club-card.card-academico-viseu { background-image: url("../static/crests/academico-viseu.png"); }
+.club-card.card-alverca { background-image: url("../static/crests/alverca.png"); }
+.club-card.card-arouca { background-image: url("../static/crests/arouca.png"); }
+.club-card.card-benfica { background-image: url("../static/crests/benfica.png"); }
+.club-card.card-casa-pia { background-image: url("../static/crests/casa-pia.png"); }
+.club-card.card-estoril { background-image: url("../static/crests/estoril.png"); }
+.club-card.card-estrela-amadora { background-image: url("../static/crests/estrela-amadora.png"); }
+.club-card.card-famalicao { background-image: url("../static/crests/famalicao.png"); }
+.club-card.card-gil-vicente { background-image: url("../static/crests/gil-vicente.png"); }
+.club-card.card-guimaraes { background-image: url("../static/crests/guimaraes.png"); }
+.club-card.card-maritimo { background-image: url("../static/crests/maritimo.png"); }
+.club-card.card-moreirense { background-image: url("../static/crests/moreirense.png"); }
+.club-card.card-nacional { background-image: url("../static/crests/nacional.png"); }
+.club-card.card-porto { background-image: url("../static/crests/porto.png"); }
+.club-card.card-rio-ave { background-image: url("../static/crests/rio-ave.png"); }
+.club-card.card-santa-clara { background-image: url("../static/crests/santa-clara.png"); }
+.club-card.card-sp-braga { background-image: url("../static/crests/sp-braga.png"); }
+.club-card.card-sporting { background-image: url("../static/crests/sporting.png"); }
 /* List strips (D-163, D-164): each club's plain colour and its other one, per theme. */
 :root { --strip-alverca: #1f4fa3; --strip-alverca-alt: #d6202f; --strip-arouca: #f2c200; --strip-arouca-alt: #1d3d8f; --strip-benfica: #d6202f; --strip-benfica-alt: #4b0b10; --strip-estoril: #f2c200; --strip-estoril-alt: #1d5fbf; --strip-estrela-amadora: #d6202f; --strip-estrela-amadora-alt: #138a4a; --strip-famalicao: #1d3f8f; --strip-famalicao-alt: #0a1632; --strip-gil-vicente: #d6202f; --strip-gil-vicente-alt: #1f4fa3; --strip-maritimo: #138a4a; --strip-maritimo-alt: #d6202f; --strip-moreirense: #138a4a; --strip-moreirense-alt: #07301a; --strip-porto: #1f4fa3; --strip-porto-alt: #0b1c39; --strip-rio-ave: #138a4a; --strip-rio-ave-alt: #07301a; --strip-santa-clara: #d6202f; --strip-santa-clara-alt: #4b0b10; --strip-sp-braga: #d22630; --strip-sp-braga-alt: #4a0d11; --strip-sporting: #0b8a52; --strip-sporting-alt: #04301d; }
 .strip i[style*="--bw-alt"] { box-shadow: inset 0 0 0 1px var(--bw-edge); }  /* the second black-and-white club */
@@ -771,6 +795,18 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .two-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; }
 .two-charts h2 { font-size: 28px; }
+/* Very wide screens (D-175): a side column on the front page, filled by _side.js. */
+.side { display: none; }
+@media (min-width: 1600px) {
+  body.has-side :is(.bar, footer) > .wrap, body.has-side main.wrap { max-width: 1560px; }
+  body.has-side main.wrap { display: grid; grid-template-columns: minmax(0, 1fr) 340px; column-gap: 56px; }
+  body.has-side main.wrap > * { grid-column: 1; }
+  body.has-side main.wrap > .side { grid-column: 2; grid-row: 1 / span 40; align-self: start; display: grid; gap: 28px; padding: 24px 0; }
+  body.has-side .side.stick { position: sticky; top: 72px; }
+  body.has-side .side .col { border-top: 1px solid var(--ring); padding-top: 20px; }
+  body.has-side .hello { grid-template-columns: minmax(0, 1fr); }
+  body.has-side .home-cols { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 960px) {
   .lead { display: flex; flex-direction: column; gap: 0; padding-top: 24px; }
   .lead-text { display: contents; }
@@ -806,7 +842,8 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .runin tbody th { text-align: left; color: var(--ink); white-space: nowrap; padding-right: 8px; font-size: 14px; }
 .runin tr.me th { color: var(--amber-text); }
 .runin td { min-width: 38px; height: 38px; text-align: center; font-weight: 700; border-radius: 2px; line-height: 1.05; padding: 0 2px; }
-.runin td.rank { color: var(--ink); font-size: 14px; font-weight: 650; }
+.runin-how > summary { width: fit-content; }
+.runin-how p { color: var(--ink-2); max-width: 70ch; }
 .runin abbr { text-decoration: none; }
 .runin td small { display: block; font-weight: 500; font-size: 10px; }
 .lv4 { background: var(--lv4); color: var(--lv4-ink); } .lv3 { background: var(--lv3); color: var(--lv3-ink); }
@@ -887,10 +924,10 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <meta property="og:title" content="Predictions · Contas da Bola">
 <meta property="og:description" content="Pick who wins each match of the round and see how many you get right next to our model. Your picks stay in your browser.">
 <meta property="og:url" content="https://contasdabola.pt/en/palpites">
-<meta property="og:image" content="https://contasdabola.pt/og/en-geral-ec8fa8b3cd.png">
+<meta property="og:image" content="https://contasdabola.pt/og/en-geral-74006b3ba6.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Title chances out of 100: Porto 59, Benfica 40, Others 1">
+<meta property="og:image:alt" content="Title chances out of 100: FC Porto 59, SL Benfica 40, Others 1">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
@@ -905,7 +942,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <a href="como-funciona">How it works</a>
 </nav>
   <button class="theme" type="button" aria-label="Switch between light and dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
-  <a class="lang" href="../palpites" hreflang="pt" lang="pt">EN<span class="visually-hidden"> · Read this page in English</span></a>
+  <a class="lang" href="../palpites" hreflang="pt" lang="pt">PT<span class="visually-hidden"> · Ler esta página em português</span></a>
 </div></div>
 <main id="top" class="wrap">
 <section class="page-head">
@@ -920,83 +957,83 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <div class="board num" hidden><div><b data-you></b><span>You</span></div><div class="of" data-of></div><div><b data-model></b><span>Model</span></div></div>
   <ol class="picks">
     <li class="pick" data-id="P1-2627-maritimo-nacional" data-kickoff="2026-11-27T20:15:00Z">
-      <div class="teams"><b>Marítimo – Nacional</b><span class="when">Fri 2026-11-27 20:15</span></div>
-      <div class="opts" role="group" aria-label="Marítimo – Nacional: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-maritimo"></i><span>Marítimo</span><small>provisional · 49</small></button>
+      <div class="teams"><b>CS Marítimo – CD Nacional</b><span class="when">Fri 2026-11-27 20:15</span></div>
+      <div class="opts" role="group" aria-label="CS Marítimo – CD Nacional: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-maritimo"></i><span>CS Marítimo</span><small>provisional · 49</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 27</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-nacional"></i><span>Nacional</span><small>provisional · 24</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-nacional"></i><span>CD Nacional</span><small>provisional · 24</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-arouca-rio-ave" data-kickoff="2026-11-28T15:30:00Z">
-      <div class="teams"><b>Arouca – Rio Ave</b><span class="when">Sat 2026-11-28 15:30</span></div>
-      <div class="opts" role="group" aria-label="Arouca – Rio Ave: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-arouca"></i><span>Arouca</span><small>provisional · 56</small></button>
+      <div class="teams"><b>FC Arouca – Rio Ave FC</b><span class="when">Sat 2026-11-28 15:30</span></div>
+      <div class="opts" role="group" aria-label="FC Arouca – Rio Ave FC: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-arouca"></i><span>FC Arouca</span><small>provisional · 56</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 25</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-rio-ave"></i><span>Rio Ave</span><small>provisional · 19</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-rio-ave"></i><span>Rio Ave FC</span><small>provisional · 19</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-moreirense-santa-clara" data-kickoff="2026-11-28T15:30:00Z">
-      <div class="teams"><b>Moreirense – Santa Clara</b><span class="when">Sat 2026-11-28 15:30</span></div>
-      <div class="opts" role="group" aria-label="Moreirense – Santa Clara: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-moreirense"></i><span>Moreirense</span><small>provisional · 26</small></button>
+      <div class="teams"><b>Moreirense FC – Santa Clara</b><span class="when">Sat 2026-11-28 15:30</span></div>
+      <div class="opts" role="group" aria-label="Moreirense FC – Santa Clara: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-moreirense"></i><span>Moreirense FC</span><small>provisional · 26</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 28</small></button>
         <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-santa-clara"></i><span>Santa Clara</span><small>provisional · 46</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-academico-viseu-alverca" data-kickoff="2026-11-28T18:00:00Z">
-      <div class="teams"><b>Académico de Viseu – Alverca</b><span class="when">Sat 2026-11-28 18:00</span></div>
-      <div class="opts" role="group" aria-label="Académico de Viseu – Alverca: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-academico-viseu"></i><span>Académico de Viseu</span><small>provisional · 40</small></button>
+      <div class="teams"><b>Académico – FC Alverca</b><span class="when">Sat 2026-11-28 18:00</span></div>
+      <div class="opts" role="group" aria-label="Académico – FC Alverca: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-academico-viseu"></i><span>Académico</span><small>provisional · 40</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 29</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-alverca"></i><span>Alverca</span><small>provisional · 31</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-alverca"></i><span>FC Alverca</span><small>provisional · 31</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-guimaraes-estrela-amadora" data-kickoff="2026-11-28T20:30:00Z">
-      <div class="teams"><b>Vitória SC – Estrela da Amadora</b><span class="when">Sat 2026-11-28 20:30</span></div>
-      <div class="opts" role="group" aria-label="Vitória SC – Estrela da Amadora: who wins?">
+      <div class="teams"><b>Vitória SC – Estrela Amadora</b><span class="when">Sat 2026-11-28 20:30</span></div>
+      <div class="opts" role="group" aria-label="Vitória SC – Estrela Amadora: who wins?">
         <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-guimaraes"></i><span>Vitória SC</span><small>provisional · 58</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 24</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-estrela-amadora"></i><span>Estrela da Amadora</span><small>provisional · 18</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-estrela-amadora"></i><span>Estrela Amadora</span><small>provisional · 18</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-gil-vicente-estoril" data-kickoff="2026-11-29T18:00:00Z">
-      <div class="teams"><b>Gil Vicente – Estoril Praia</b><span class="when">Sun 2026-11-29 18:00</span></div>
-      <div class="opts" role="group" aria-label="Gil Vicente – Estoril Praia: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-gil-vicente"></i><span>Gil Vicente</span><small>provisional · 50</small></button>
+      <div class="teams"><b>Gil Vicente FC – Estoril Praia</b><span class="when">Sun 2026-11-29 18:00</span></div>
+      <div class="opts" role="group" aria-label="Gil Vicente FC – Estoril Praia: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-gil-vicente"></i><span>Gil Vicente FC</span><small>provisional · 50</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 27</small></button>
         <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-estoril"></i><span>Estoril Praia</span><small>provisional · 23</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-porto-sporting" data-kickoff="2026-11-29T20:30:00Z">
-      <div class="teams"><b>Porto – Sporting</b><span class="when">Sun 2026-11-29 20:30</span></div>
-      <div class="opts" role="group" aria-label="Porto – Sporting: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-porto"></i><span>Porto</span><small>provisional · 50</small></button>
+      <div class="teams"><b>FC Porto – Sporting CP</b><span class="when">Sun 2026-11-29 20:30</span></div>
+      <div class="opts" role="group" aria-label="FC Porto – Sporting CP: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-porto"></i><span>FC Porto</span><small>provisional · 50</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 27</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-sporting"></i><span>Sporting</span><small>provisional · 23</small></button>
-      </div>
-      <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
-    </li>
-    <li class="pick" data-id="P1-2627-benfica-famalicao" data-kickoff="2026-11-30T20:15:00Z">
-      <div class="teams"><b>Benfica – Famalicão</b><span class="when">Mon 2026-11-30 20:15</span></div>
-      <div class="opts" role="group" aria-label="Benfica – Famalicão: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-benfica"></i><span>Benfica</span><small>provisional · 84</small></button>
-        <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 11</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-famalicao"></i><span>Famalicão</span><small>provisional · 5</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-sporting"></i><span>Sporting CP</span><small>provisional · 23</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-casa-pia-sp-braga" data-kickoff="2026-11-30T20:15:00Z">
-      <div class="teams"><b>Casa Pia – Sporting de Braga</b><span class="when">Mon 2026-11-30 20:15</span></div>
-      <div class="opts" role="group" aria-label="Casa Pia – Sporting de Braga: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-casa-pia"></i><span>Casa Pia</span><small>provisional · 14</small></button>
+      <div class="teams"><b>Casa Pia AC – SC Braga</b><span class="when">Mon 2026-11-30 20:15</span></div>
+      <div class="opts" role="group" aria-label="Casa Pia AC – SC Braga: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-casa-pia"></i><span>Casa Pia AC</span><small>provisional · 14</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 22</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-sp-braga"></i><span>Sporting de Braga</span><small>provisional · 64</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-sp-braga"></i><span>SC Braga</span><small>provisional · 64</small></button>
+      </div>
+      <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
+    </li>
+    <li class="pick" data-id="P1-2627-benfica-famalicao" data-kickoff="2026-11-30T20:15:00Z">
+      <div class="teams"><b>SL Benfica – FC Famalicão</b><span class="when">Mon 2026-11-30 20:15</span></div>
+      <div class="opts" role="group" aria-label="SL Benfica – FC Famalicão: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-benfica"></i><span>SL Benfica</span><small>provisional · 84</small></button>
+        <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>provisional · 11</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-famalicao"></i><span>FC Famalicão</span><small>provisional · 5</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
@@ -1007,78 +1044,78 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <div class="board num" hidden><div><b data-you></b><span>You</span></div><div class="of" data-of></div><div><b data-model></b><span>Model</span></div></div>
   <ol class="picks">
     <li class="pick" data-id="P1-2627-famalicao-arouca" data-kickoff="2026-11-06T20:45:00Z" data-out="0" data-model="0">
-      <div class="teams"><b>Famalicão – Arouca</b><span class="when">Ended 1–0</span></div>
-      <div class="opts" role="group" aria-label="Famalicão – Arouca: who wins?">
-        <button type="button" class="opt is-model" data-pick="0" aria-pressed="false"><i class="club-card card-famalicao"></i><span>Famalicão</span><small>model · 51</small></button>
+      <div class="teams"><b>FC Famalicão – FC Arouca</b><span class="when">Ended 1–0</span></div>
+      <div class="opts" role="group" aria-label="FC Famalicão – FC Arouca: who wins?">
+        <button type="button" class="opt is-model" data-pick="0" aria-pressed="false"><i class="club-card card-famalicao"></i><span>FC Famalicão</span><small>model · 51</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>27</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-arouca"></i><span>Arouca</span><small>22</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-arouca"></i><span>FC Arouca</span><small>22</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-nacional-academico-viseu" data-kickoff="2026-11-07T15:30:00Z" data-out="0" data-model="2">
-      <div class="teams"><b>Nacional – Académico de Viseu</b><span class="when">Ended 1–0</span></div>
-      <div class="opts" role="group" aria-label="Nacional – Académico de Viseu: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-nacional"></i><span>Nacional</span><small>32</small></button>
+      <div class="teams"><b>CD Nacional – Académico</b><span class="when">Ended 1–0</span></div>
+      <div class="opts" role="group" aria-label="CD Nacional – Académico: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-nacional"></i><span>CD Nacional</span><small>32</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>29</small></button>
-        <button type="button" class="opt is-model" data-pick="2" aria-pressed="false"><i class="club-card card-academico-viseu"></i><span>Académico de Viseu</span><small>model · 39</small></button>
+        <button type="button" class="opt is-model" data-pick="2" aria-pressed="false"><i class="club-card card-academico-viseu"></i><span>Académico</span><small>model · 39</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-alverca-casa-pia" data-kickoff="2026-11-07T18:00:00Z" data-out="1" data-model="0">
-      <div class="teams"><b>Alverca – Casa Pia</b><span class="when">Ended 1–1</span></div>
-      <div class="opts" role="group" aria-label="Alverca – Casa Pia: who wins?">
-        <button type="button" class="opt is-model" data-pick="0" aria-pressed="false"><i class="club-card card-alverca"></i><span>Alverca</span><small>model · 56</small></button>
+      <div class="teams"><b>FC Alverca – Casa Pia AC</b><span class="when">Ended 1–1</span></div>
+      <div class="opts" role="group" aria-label="FC Alverca – Casa Pia AC: who wins?">
+        <button type="button" class="opt is-model" data-pick="0" aria-pressed="false"><i class="club-card card-alverca"></i><span>FC Alverca</span><small>model · 56</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>25</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-casa-pia"></i><span>Casa Pia</span><small>19</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-casa-pia"></i><span>Casa Pia AC</span><small>19</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-sporting-moreirense" data-kickoff="2026-11-07T20:30:00Z" data-out="0" data-model="0">
-      <div class="teams"><b>Sporting – Moreirense</b><span class="when">Ended 1–0</span></div>
-      <div class="opts" role="group" aria-label="Sporting – Moreirense: who wins?">
-        <button type="button" class="opt is-model" data-pick="0" aria-pressed="false"><i class="club-card card-sporting"></i><span>Sporting</span><small>model · 85</small></button>
+      <div class="teams"><b>Sporting CP – Moreirense FC</b><span class="when">Ended 1–0</span></div>
+      <div class="opts" role="group" aria-label="Sporting CP – Moreirense FC: who wins?">
+        <button type="button" class="opt is-model" data-pick="0" aria-pressed="false"><i class="club-card card-sporting"></i><span>Sporting CP</span><small>model · 85</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>10</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-moreirense"></i><span>Moreirense</span><small>5</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-moreirense"></i><span>Moreirense FC</span><small>5</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-estoril-maritimo" data-kickoff="2026-11-08T15:30:00Z" data-model="0">
-      <div class="teams"><b>Estoril Praia – Marítimo</b><span class="when">Postponed</span></div>
+      <div class="teams"><b>Estoril Praia – CS Marítimo</b><span class="when">Postponed</span></div>
       <p class="note">Postponed: it comes back when it has a new date.</p>
     </li>
     <li class="pick" data-id="P1-2627-santa-clara-gil-vicente" data-kickoff="2026-11-08T15:30:00Z" data-out="2" data-model="0">
-      <div class="teams"><b>Santa Clara – Gil Vicente</b><span class="when">Ended 1–2</span></div>
-      <div class="opts" role="group" aria-label="Santa Clara – Gil Vicente: who wins?">
+      <div class="teams"><b>Santa Clara – Gil Vicente FC</b><span class="when">Ended 1–2</span></div>
+      <div class="opts" role="group" aria-label="Santa Clara – Gil Vicente FC: who wins?">
         <button type="button" class="opt is-model" data-pick="0" aria-pressed="false"><i class="club-card card-santa-clara"></i><span>Santa Clara</span><small>model · 43</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>30</small></button>
-        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-gil-vicente"></i><span>Gil Vicente</span><small>27</small></button>
+        <button type="button" class="opt" data-pick="2" aria-pressed="false"><i class="club-card card-gil-vicente"></i><span>Gil Vicente FC</span><small>27</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-guimaraes-porto" data-kickoff="2026-11-08T18:00:00Z" data-out="2" data-model="2">
-      <div class="teams"><b>Vitória SC – Porto</b><span class="when">Ended 1–2</span></div>
-      <div class="opts" role="group" aria-label="Vitória SC – Porto: who wins?">
+      <div class="teams"><b>Vitória SC – FC Porto</b><span class="when">Ended 1–2</span></div>
+      <div class="opts" role="group" aria-label="Vitória SC – FC Porto: who wins?">
         <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-guimaraes"></i><span>Vitória SC</span><small>18</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>23</small></button>
-        <button type="button" class="opt is-model" data-pick="2" aria-pressed="false"><i class="club-card card-porto"></i><span>Porto</span><small>model · 59</small></button>
+        <button type="button" class="opt is-model" data-pick="2" aria-pressed="false"><i class="club-card card-porto"></i><span>FC Porto</span><small>model · 59</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-estrela-amadora-benfica" data-kickoff="2026-11-08T20:30:00Z" data-out="2" data-model="2">
-      <div class="teams"><b>Estrela da Amadora – Benfica</b><span class="when">Ended 2–3</span></div>
-      <div class="opts" role="group" aria-label="Estrela da Amadora – Benfica: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-estrela-amadora"></i><span>Estrela da Amadora</span><small>8</small></button>
+      <div class="teams"><b>Estrela Amadora – SL Benfica</b><span class="when">Ended 2–3</span></div>
+      <div class="opts" role="group" aria-label="Estrela Amadora – SL Benfica: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-estrela-amadora"></i><span>Estrela Amadora</span><small>8</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>13</small></button>
-        <button type="button" class="opt is-model" data-pick="2" aria-pressed="false"><i class="club-card card-benfica"></i><span>Benfica</span><small>model · 79</small></button>
+        <button type="button" class="opt is-model" data-pick="2" aria-pressed="false"><i class="club-card card-benfica"></i><span>SL Benfica</span><small>model · 79</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
     <li class="pick" data-id="P1-2627-rio-ave-sp-braga" data-kickoff="2026-11-08T20:30:00Z" data-out="2" data-model="2">
-      <div class="teams"><b>Rio Ave – Sporting de Braga</b><span class="when">Ended 0–1</span></div>
-      <div class="opts" role="group" aria-label="Rio Ave – Sporting de Braga: who wins?">
-        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-rio-ave"></i><span>Rio Ave</span><small>15</small></button>
+      <div class="teams"><b>Rio Ave FC – SC Braga</b><span class="when">Ended 0–1</span></div>
+      <div class="opts" role="group" aria-label="Rio Ave FC – SC Braga: who wins?">
+        <button type="button" class="opt" data-pick="0" aria-pressed="false"><i class="club-card card-rio-ave"></i><span>Rio Ave FC</span><small>15</small></button>
         <button type="button" class="opt" data-pick="1" aria-pressed="false"><i class="swatch-draw"></i><span>Draw</span><small>22</small></button>
-        <button type="button" class="opt is-model" data-pick="2" aria-pressed="false"><i class="club-card card-sp-braga"></i><span>Sporting de Braga</span><small>model · 63</small></button>
+        <button type="button" class="opt is-model" data-pick="2" aria-pressed="false"><i class="club-card card-sp-braga"></i><span>SC Braga</span><small>model · 63</small></button>
       </div>
       <p class="verdict" hidden><span data-you-hit></span><span data-model-hit></span></p>
     </li>
@@ -1088,9 +1125,9 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <h2 id="season-title">Your season</h2>
   <ol class="season-rounds num" data-season-list></ol>
 </section>
-<script type="application/json" id="game-data">{"P1-2627-estoril-famalicao":[1,1,null],"P1-2627-maritimo-casa-pia":[1,0,null],"P1-2627-guimaraes-arouca":[1,2,null],"P1-2627-estrela-amadora-sporting":[1,1,null],"P1-2627-porto-alverca":[1,0,null],"P1-2627-benfica-academico-viseu":[1,1,null],"P1-2627-gil-vicente-rio-ave":[1,0,null],"P1-2627-moreirense-sp-braga":[1,1,null],"P1-2627-santa-clara-nacional":[1,1,null],"P1-2627-sporting-guimaraes":[2,0,null],"P1-2627-alverca-estrela-amadora":[2,1,null],"P1-2627-academico-viseu-santa-clara":[2,2,null],"P1-2627-rio-ave-porto":[2,2,null],"P1-2627-nacional-estoril":[2,0,null],"P1-2627-arouca-moreirense":[2,0,null],"P1-2627-famalicao-maritimo":[2,2,null],"P1-2627-casa-pia-benfica":[2,2,null],"P1-2627-sp-braga-gil-vicente":[2,2,null],"P1-2627-maritimo-academico-viseu":[3,1,null],"P1-2627-estoril-rio-ave":[3,2,null],"P1-2627-sporting-alverca":[3,0,null],"P1-2627-guimaraes-nacional":[3,0,null],"P1-2627-santa-clara-famalicao":[3,0,null],"P1-2627-porto-arouca":[3,0,null],"P1-2627-gil-vicente-casa-pia":[3,0,null],"P1-2627-moreirense-benfica":[3,2,null],"P1-2627-estrela-amadora-sp-braga":[3,0,null],"P1-2627-rio-ave-sporting":[4,2,null],"P1-2627-alverca-santa-clara":[4,1,null],"P1-2627-arouca-maritimo":[4,0,null],"P1-2627-academico-viseu-porto":[4,2,null],"P1-2627-nacional-estrela-amadora":[4,2,null],"P1-2627-casa-pia-moreirense":[4,2,null],"P1-2627-famalicao-gil-vicente":[4,1,null],"P1-2627-benfica-estoril":[4,0,null],"P1-2627-sp-braga-guimaraes":[4,0,null],"P1-2627-porto-moreirense":[5,0,null],"P1-2627-estrela-amadora-famalicao":[5,1,null],"P1-2627-alverca-sp-braga":[5,2,null],"P1-2627-maritimo-benfica":[5,2,null],"P1-2627-sporting-nacional":[5,0,null],"P1-2627-santa-clara-rio-ave":[5,0,null],"P1-2627-guimaraes-casa-pia":[5,1,null],"P1-2627-gil-vicente-academico-viseu":[5,2,null],"P1-2627-estoril-arouca":[5,1,null],"P1-2627-nacional-alverca":[6,2,null],"P1-2627-casa-pia-porto":[6,2,null],"P1-2627-academico-viseu-guimaraes":[6,0,null],"P1-2627-arouca-santa-clara":[6,2,null],"P1-2627-benfica-gil-vicente":[6,0,null],"P1-2627-famalicao-sporting":[6,1,null],"P1-2627-rio-ave-estrela-amadora":[6,1,null],"P1-2627-moreirense-maritimo":[6,0,null],"P1-2627-sp-braga-estoril":[6,0,null],"P1-2627-gil-vicente-maritimo":[7,1,null],"P1-2627-nacional-famalicao":[7,2,null],"P1-2627-alverca-rio-ave":[7,0,null],"P1-2627-sporting-arouca":[7,1,null],"P1-2627-estrela-amadora-academico-viseu":[7,2,null],"P1-2627-guimaraes-moreirense":[7,1,null],"P1-2627-estoril-casa-pia":[7,2,null],"P1-2627-santa-clara-sp-braga":[7,1,null],"P1-2627-porto-benfica":[7,0,null],"P1-2627-moreirense-gil-vicente":[8,2,null],"P1-2627-sp-braga-sporting":[8,2,null],"P1-2627-maritimo-porto":[8,2,null],"P1-2627-academico-viseu-estoril":[8,0,null],"P1-2627-casa-pia-santa-clara":[8,2,null],"P1-2627-rio-ave-nacional":[8,0,null],"P1-2627-benfica-guimaraes":[8,0,null],"P1-2627-arouca-estrela-amadora":[8,0,null],"P1-2627-famalicao-alverca":[8,2,null],"P1-2627-guimaraes-maritimo":[9,0,null],"P1-2627-estrela-amadora-casa-pia":[9,2,null],"P1-2627-alverca-arouca":[9,2,null],"P1-2627-gil-vicente-porto":[9,2,null],"P1-2627-estoril-moreirense":[9,2,null],"P1-2627-nacional-sp-braga":[9,0,null],"P1-2627-rio-ave-famalicao":[9,2,null],"P1-2627-sporting-academico-viseu":[9,2,null],"P1-2627-santa-clara-benfica":[9,2,2],"P1-2627-casa-pia-sporting":[10,2,2],"P1-2627-moreirense-estrela-amadora":[10,0,2],"P1-2627-porto-estoril":[10,0,0],"P1-2627-arouca-nacional":[10,0,0],"P1-2627-academico-viseu-rio-ave":[10,0,0],"P1-2627-maritimo-santa-clara":[10,2,2],"P1-2627-sp-braga-famalicao":[10,0,0],"P1-2627-benfica-alverca":[10,0,0],"P1-2627-gil-vicente-guimaraes":[10,1,2],"P1-2627-famalicao-arouca":[11,0,0],"P1-2627-nacional-academico-viseu":[11,0,2],"P1-2627-alverca-casa-pia":[11,1,0],"P1-2627-sporting-moreirense":[11,0,0],"P1-2627-santa-clara-gil-vicente":[11,2,0],"P1-2627-guimaraes-porto":[11,2,2],"P1-2627-estrela-amadora-benfica":[11,2,2],"P1-2627-rio-ave-sp-braga":[11,2,2],"P1-2627-maritimo-nacional":[12,null,null],"P1-2627-arouca-rio-ave":[12,null,null],"P1-2627-moreirense-santa-clara":[12,null,null],"P1-2627-academico-viseu-alverca":[12,null,null],"P1-2627-guimaraes-estrela-amadora":[12,null,null],"P1-2627-gil-vicente-estoril":[12,null,null],"P1-2627-porto-sporting":[12,null,null],"P1-2627-benfica-famalicao":[12,null,null],"P1-2627-casa-pia-sp-braga":[12,null,null],"P1-2627-nacional-benfica":[13,null,null],"P1-2627-santa-clara-porto":[13,null,null],"P1-2627-sp-braga-arouca":[13,null,null],"P1-2627-sporting-maritimo":[13,null,null],"P1-2627-estrela-amadora-gil-vicente":[13,null,null],"P1-2627-rio-ave-casa-pia":[13,null,null],"P1-2627-estoril-guimaraes":[13,null,null],"P1-2627-famalicao-academico-viseu":[13,null,null],"P1-2627-alverca-moreirense":[13,null,null],"P1-2627-estoril-santa-clara":[14,null,null],"P1-2627-maritimo-rio-ave":[14,null,null],"P1-2627-gil-vicente-sporting":[14,null,null],"P1-2627-academico-viseu-arouca":[14,null,null],"P1-2627-casa-pia-nacional":[14,null,null],"P1-2627-moreirense-famalicao":[14,null,null],"P1-2627-guimaraes-alverca":[14,null,null],"P1-2627-porto-estrela-amadora":[14,null,null],"P1-2627-benfica-sp-braga":[14,null,null],"P1-2627-alverca-gil-vicente":[15,null,null],"P1-2627-arouca-casa-pia":[15,null,null],"P1-2627-estrela-amadora-maritimo":[15,null,null],"P1-2627-famalicao-porto":[15,null,null],"P1-2627-nacional-moreirense":[15,null,null],"P1-2627-rio-ave-benfica":[15,null,null],"P1-2627-santa-clara-guimaraes":[15,null,null],"P1-2627-sporting-estoril":[15,null,null],"P1-2627-sp-braga-academico-viseu":[15,null,null],"P1-2627-benfica-sporting":[16,null,null],"P1-2627-casa-pia-famalicao":[16,null,null],"P1-2627-estoril-alverca":[16,null,null],"P1-2627-gil-vicente-arouca":[16,null,null],"P1-2627-maritimo-sp-braga":[16,null,null],"P1-2627-moreirense-academico-viseu":[16,null,null],"P1-2627-porto-nacional":[16,null,null],"P1-2627-santa-clara-estrela-amadora":[16,null,null],"P1-2627-guimaraes-rio-ave":[16,null,null],"P1-2627-academico-viseu-casa-pia":[17,null,null],"P1-2627-alverca-maritimo":[17,null,null],"P1-2627-arouca-benfica":[17,null,null],"P1-2627-estrela-amadora-estoril":[17,null,null],"P1-2627-famalicao-guimaraes":[17,null,null],"P1-2627-nacional-gil-vicente":[17,null,null],"P1-2627-rio-ave-moreirense":[17,null,null],"P1-2627-sporting-santa-clara":[17,null,null],"P1-2627-sp-braga-porto":[17,null,null],"P1-2627-academico-viseu-benfica":[18,null,null],"P1-2627-alverca-porto":[18,null,null],"P1-2627-arouca-guimaraes":[18,null,null],"P1-2627-casa-pia-maritimo":[18,null,null],"P1-2627-famalicao-estoril":[18,null,null],"P1-2627-nacional-santa-clara":[18,null,null],"P1-2627-rio-ave-gil-vicente":[18,null,null],"P1-2627-sporting-estrela-amadora":[18,null,null],"P1-2627-sp-braga-moreirense":[18,null,null],"P1-2627-benfica-casa-pia":[19,null,null],"P1-2627-estoril-nacional":[19,null,null],"P1-2627-estrela-amadora-alverca":[19,null,null],"P1-2627-gil-vicente-sp-braga":[19,null,null],"P1-2627-maritimo-famalicao":[19,null,null],"P1-2627-moreirense-arouca":[19,null,null],"P1-2627-porto-rio-ave":[19,null,null],"P1-2627-santa-clara-academico-viseu":[19,null,null],"P1-2627-guimaraes-sporting":[19,null,null],"P1-2627-academico-viseu-maritimo":[20,null,null],"P1-2627-alverca-sporting":[20,null,null],"P1-2627-arouca-porto":[20,null,null],"P1-2627-benfica-moreirense":[20,null,null],"P1-2627-casa-pia-gil-vicente":[20,null,null],"P1-2627-famalicao-santa-clara":[20,null,null],"P1-2627-nacional-guimaraes":[20,null,null],"P1-2627-rio-ave-estoril":[20,null,null],"P1-2627-sp-braga-estrela-amadora":[20,null,null],"P1-2627-estoril-benfica":[21,null,null],"P1-2627-estrela-amadora-nacional":[21,null,null],"P1-2627-gil-vicente-famalicao":[21,null,null],"P1-2627-maritimo-arouca":[21,null,null],"P1-2627-moreirense-casa-pia":[21,null,null],"P1-2627-porto-academico-viseu":[21,null,null],"P1-2627-santa-clara-alverca":[21,null,null],"P1-2627-sporting-rio-ave":[21,null,null],"P1-2627-guimaraes-sp-braga":[21,null,null],"P1-2627-academico-viseu-gil-vicente":[22,null,null],"P1-2627-arouca-estoril":[22,null,null],"P1-2627-benfica-maritimo":[22,null,null],"P1-2627-casa-pia-guimaraes":[22,null,null],"P1-2627-famalicao-estrela-amadora":[22,null,null],"P1-2627-moreirense-porto":[22,null,null],"P1-2627-nacional-sporting":[22,null,null],"P1-2627-rio-ave-santa-clara":[22,null,null],"P1-2627-sp-braga-alverca":[22,null,null],"P1-2627-alverca-nacional":[23,null,null],"P1-2627-estoril-sp-braga":[23,null,null],"P1-2627-estrela-amadora-rio-ave":[23,null,null],"P1-2627-gil-vicente-benfica":[23,null,null],"P1-2627-maritimo-moreirense":[23,null,null],"P1-2627-porto-casa-pia":[23,null,null],"P1-2627-santa-clara-arouca":[23,null,null],"P1-2627-sporting-famalicao":[23,null,null],"P1-2627-guimaraes-academico-viseu":[23,null,null],"P1-2627-academico-viseu-estrela-amadora":[24,null,null],"P1-2627-arouca-sporting":[24,null,null],"P1-2627-benfica-porto":[24,null,null],"P1-2627-casa-pia-estoril":[24,null,null],"P1-2627-famalicao-nacional":[24,null,null],"P1-2627-maritimo-gil-vicente":[24,null,null],"P1-2627-moreirense-guimaraes":[24,null,null],"P1-2627-rio-ave-alverca":[24,null,null],"P1-2627-sp-braga-santa-clara":[24,null,null],"P1-2627-alverca-famalicao":[25,null,null],"P1-2627-estoril-academico-viseu":[25,null,null],"P1-2627-estrela-amadora-arouca":[25,null,null],"P1-2627-gil-vicente-moreirense":[25,null,null],"P1-2627-nacional-rio-ave":[25,null,null],"P1-2627-porto-maritimo":[25,null,null],"P1-2627-santa-clara-casa-pia":[25,null,null],"P1-2627-sporting-sp-braga":[25,null,null],"P1-2627-guimaraes-benfica":[25,null,null],"P1-2627-academico-viseu-sporting":[26,null,null],"P1-2627-arouca-alverca":[26,null,null],"P1-2627-benfica-santa-clara":[26,null,null],"P1-2627-casa-pia-estrela-amadora":[26,null,null],"P1-2627-famalicao-rio-ave":[26,null,null],"P1-2627-maritimo-guimaraes":[26,null,null],"P1-2627-moreirense-estoril":[26,null,null],"P1-2627-porto-gil-vicente":[26,null,null],"P1-2627-sp-braga-nacional":[26,null,null],"P1-2627-alverca-benfica":[27,null,null],"P1-2627-estoril-porto":[27,null,null],"P1-2627-estrela-amadora-moreirense":[27,null,null],"P1-2627-famalicao-sp-braga":[27,null,null],"P1-2627-nacional-arouca":[27,null,null],"P1-2627-rio-ave-academico-viseu":[27,null,null],"P1-2627-santa-clara-maritimo":[27,null,null],"P1-2627-sporting-casa-pia":[27,null,null],"P1-2627-guimaraes-gil-vicente":[27,null,null],"P1-2627-academico-viseu-nacional":[28,null,null],"P1-2627-arouca-famalicao":[28,null,null],"P1-2627-benfica-estrela-amadora":[28,null,null],"P1-2627-casa-pia-alverca":[28,null,null],"P1-2627-gil-vicente-santa-clara":[28,null,null],"P1-2627-maritimo-estoril":[28,null,null],"P1-2627-moreirense-sporting":[28,null,null],"P1-2627-porto-guimaraes":[28,null,null],"P1-2627-sp-braga-rio-ave":[28,null,null],"P1-2627-alverca-academico-viseu":[29,null,null],"P1-2627-estoril-gil-vicente":[29,null,null],"P1-2627-estrela-amadora-guimaraes":[29,null,null],"P1-2627-famalicao-benfica":[29,null,null],"P1-2627-nacional-maritimo":[29,null,null],"P1-2627-rio-ave-arouca":[29,null,null],"P1-2627-santa-clara-moreirense":[29,null,null],"P1-2627-sporting-porto":[29,null,null],"P1-2627-sp-braga-casa-pia":[29,null,null],"P1-2627-academico-viseu-famalicao":[30,null,null],"P1-2627-arouca-sp-braga":[30,null,null],"P1-2627-benfica-nacional":[30,null,null],"P1-2627-casa-pia-rio-ave":[30,null,null],"P1-2627-gil-vicente-estrela-amadora":[30,null,null],"P1-2627-maritimo-sporting":[30,null,null],"P1-2627-moreirense-alverca":[30,null,null],"P1-2627-porto-santa-clara":[30,null,null],"P1-2627-guimaraes-estoril":[30,null,null],"P1-2627-alverca-guimaraes":[31,null,null],"P1-2627-arouca-academico-viseu":[31,null,null],"P1-2627-estrela-amadora-porto":[31,null,null],"P1-2627-famalicao-moreirense":[31,null,null],"P1-2627-nacional-casa-pia":[31,null,null],"P1-2627-rio-ave-maritimo":[31,null,null],"P1-2627-santa-clara-estoril":[31,null,null],"P1-2627-sporting-gil-vicente":[31,null,null],"P1-2627-sp-braga-benfica":[31,null,null],"P1-2627-academico-viseu-sp-braga":[32,null,null],"P1-2627-benfica-rio-ave":[32,null,null],"P1-2627-casa-pia-arouca":[32,null,null],"P1-2627-estoril-sporting":[32,null,null],"P1-2627-gil-vicente-alverca":[32,null,null],"P1-2627-maritimo-estrela-amadora":[32,null,null],"P1-2627-moreirense-nacional":[32,null,null],"P1-2627-porto-famalicao":[32,null,null],"P1-2627-guimaraes-santa-clara":[32,null,null],"P1-2627-academico-viseu-moreirense":[33,null,null],"P1-2627-alverca-estoril":[33,null,null],"P1-2627-arouca-gil-vicente":[33,null,null],"P1-2627-estrela-amadora-santa-clara":[33,null,null],"P1-2627-famalicao-casa-pia":[33,null,null],"P1-2627-nacional-porto":[33,null,null],"P1-2627-rio-ave-guimaraes":[33,null,null],"P1-2627-sporting-benfica":[33,null,null],"P1-2627-sp-braga-maritimo":[33,null,null],"P1-2627-benfica-arouca":[34,null,null],"P1-2627-casa-pia-academico-viseu":[34,null,null],"P1-2627-estoril-estrela-amadora":[34,null,null],"P1-2627-gil-vicente-nacional":[34,null,null],"P1-2627-maritimo-alverca":[34,null,null],"P1-2627-moreirense-rio-ave":[34,null,null],"P1-2627-porto-sp-braga":[34,null,null],"P1-2627-santa-clara-sporting":[34,null,null],"P1-2627-guimaraes-famalicao":[34,null,null]}</script>
+<script type="application/json" id="game-data">{"P1-2627-estoril-famalicao":[1,1,null],"P1-2627-maritimo-casa-pia":[1,0,null],"P1-2627-guimaraes-arouca":[1,2,null],"P1-2627-estrela-amadora-sporting":[1,1,null],"P1-2627-porto-alverca":[1,0,null],"P1-2627-gil-vicente-rio-ave":[1,0,null],"P1-2627-moreirense-sp-braga":[1,1,null],"P1-2627-benfica-academico-viseu":[1,1,null],"P1-2627-santa-clara-nacional":[1,1,null],"P1-2627-sporting-guimaraes":[2,0,null],"P1-2627-alverca-estrela-amadora":[2,1,null],"P1-2627-academico-viseu-santa-clara":[2,2,null],"P1-2627-rio-ave-porto":[2,2,null],"P1-2627-nacional-estoril":[2,0,null],"P1-2627-arouca-moreirense":[2,0,null],"P1-2627-famalicao-maritimo":[2,2,null],"P1-2627-casa-pia-benfica":[2,2,null],"P1-2627-sp-braga-gil-vicente":[2,2,null],"P1-2627-maritimo-academico-viseu":[3,1,null],"P1-2627-estoril-rio-ave":[3,2,null],"P1-2627-sporting-alverca":[3,0,null],"P1-2627-guimaraes-nacional":[3,0,null],"P1-2627-santa-clara-famalicao":[3,0,null],"P1-2627-porto-arouca":[3,0,null],"P1-2627-gil-vicente-casa-pia":[3,0,null],"P1-2627-moreirense-benfica":[3,2,null],"P1-2627-estrela-amadora-sp-braga":[3,0,null],"P1-2627-rio-ave-sporting":[4,2,null],"P1-2627-alverca-santa-clara":[4,1,null],"P1-2627-arouca-maritimo":[4,0,null],"P1-2627-academico-viseu-porto":[4,2,null],"P1-2627-nacional-estrela-amadora":[4,2,null],"P1-2627-casa-pia-moreirense":[4,2,null],"P1-2627-famalicao-gil-vicente":[4,1,null],"P1-2627-sp-braga-guimaraes":[4,0,null],"P1-2627-benfica-estoril":[4,0,null],"P1-2627-porto-moreirense":[5,0,null],"P1-2627-estrela-amadora-famalicao":[5,1,null],"P1-2627-maritimo-benfica":[5,2,null],"P1-2627-alverca-sp-braga":[5,2,null],"P1-2627-sporting-nacional":[5,0,null],"P1-2627-santa-clara-rio-ave":[5,0,null],"P1-2627-guimaraes-casa-pia":[5,1,null],"P1-2627-gil-vicente-academico-viseu":[5,2,null],"P1-2627-estoril-arouca":[5,1,null],"P1-2627-nacional-alverca":[6,2,null],"P1-2627-casa-pia-porto":[6,2,null],"P1-2627-academico-viseu-guimaraes":[6,0,null],"P1-2627-arouca-santa-clara":[6,2,null],"P1-2627-benfica-gil-vicente":[6,0,null],"P1-2627-famalicao-sporting":[6,1,null],"P1-2627-rio-ave-estrela-amadora":[6,1,null],"P1-2627-moreirense-maritimo":[6,0,null],"P1-2627-sp-braga-estoril":[6,0,null],"P1-2627-nacional-famalicao":[7,2,null],"P1-2627-gil-vicente-maritimo":[7,1,null],"P1-2627-alverca-rio-ave":[7,0,null],"P1-2627-sporting-arouca":[7,1,null],"P1-2627-estrela-amadora-academico-viseu":[7,2,null],"P1-2627-guimaraes-moreirense":[7,1,null],"P1-2627-estoril-casa-pia":[7,2,null],"P1-2627-santa-clara-sp-braga":[7,1,null],"P1-2627-porto-benfica":[7,0,null],"P1-2627-moreirense-gil-vicente":[8,2,null],"P1-2627-sp-braga-sporting":[8,2,null],"P1-2627-maritimo-porto":[8,2,null],"P1-2627-academico-viseu-estoril":[8,0,null],"P1-2627-casa-pia-santa-clara":[8,2,null],"P1-2627-rio-ave-nacional":[8,0,null],"P1-2627-benfica-guimaraes":[8,0,null],"P1-2627-arouca-estrela-amadora":[8,0,null],"P1-2627-famalicao-alverca":[8,2,null],"P1-2627-guimaraes-maritimo":[9,0,null],"P1-2627-estrela-amadora-casa-pia":[9,2,null],"P1-2627-alverca-arouca":[9,2,null],"P1-2627-gil-vicente-porto":[9,2,null],"P1-2627-estoril-moreirense":[9,2,null],"P1-2627-nacional-sp-braga":[9,0,null],"P1-2627-rio-ave-famalicao":[9,2,null],"P1-2627-sporting-academico-viseu":[9,2,null],"P1-2627-santa-clara-benfica":[9,2,2],"P1-2627-casa-pia-sporting":[10,2,2],"P1-2627-moreirense-estrela-amadora":[10,0,2],"P1-2627-porto-estoril":[10,0,0],"P1-2627-arouca-nacional":[10,0,0],"P1-2627-academico-viseu-rio-ave":[10,0,0],"P1-2627-maritimo-santa-clara":[10,2,2],"P1-2627-sp-braga-famalicao":[10,0,0],"P1-2627-gil-vicente-guimaraes":[10,1,2],"P1-2627-benfica-alverca":[10,0,0],"P1-2627-famalicao-arouca":[11,0,0],"P1-2627-nacional-academico-viseu":[11,0,2],"P1-2627-alverca-casa-pia":[11,1,0],"P1-2627-sporting-moreirense":[11,0,0],"P1-2627-santa-clara-gil-vicente":[11,2,0],"P1-2627-guimaraes-porto":[11,2,2],"P1-2627-estrela-amadora-benfica":[11,2,2],"P1-2627-rio-ave-sp-braga":[11,2,2],"P1-2627-maritimo-nacional":[12,null,null],"P1-2627-arouca-rio-ave":[12,null,null],"P1-2627-moreirense-santa-clara":[12,null,null],"P1-2627-academico-viseu-alverca":[12,null,null],"P1-2627-guimaraes-estrela-amadora":[12,null,null],"P1-2627-gil-vicente-estoril":[12,null,null],"P1-2627-porto-sporting":[12,null,null],"P1-2627-casa-pia-sp-braga":[12,null,null],"P1-2627-benfica-famalicao":[12,null,null],"P1-2627-nacional-benfica":[13,null,null],"P1-2627-santa-clara-porto":[13,null,null],"P1-2627-sp-braga-arouca":[13,null,null],"P1-2627-sporting-maritimo":[13,null,null],"P1-2627-estrela-amadora-gil-vicente":[13,null,null],"P1-2627-rio-ave-casa-pia":[13,null,null],"P1-2627-estoril-guimaraes":[13,null,null],"P1-2627-famalicao-academico-viseu":[13,null,null],"P1-2627-alverca-moreirense":[13,null,null],"P1-2627-estoril-santa-clara":[14,null,null],"P1-2627-maritimo-rio-ave":[14,null,null],"P1-2627-gil-vicente-sporting":[14,null,null],"P1-2627-academico-viseu-arouca":[14,null,null],"P1-2627-casa-pia-nacional":[14,null,null],"P1-2627-moreirense-famalicao":[14,null,null],"P1-2627-guimaraes-alverca":[14,null,null],"P1-2627-porto-estrela-amadora":[14,null,null],"P1-2627-benfica-sp-braga":[14,null,null],"P1-2627-nacional-moreirense":[15,null,null],"P1-2627-estrela-amadora-maritimo":[15,null,null],"P1-2627-alverca-gil-vicente":[15,null,null],"P1-2627-arouca-casa-pia":[15,null,null],"P1-2627-famalicao-porto":[15,null,null],"P1-2627-rio-ave-benfica":[15,null,null],"P1-2627-sp-braga-academico-viseu":[15,null,null],"P1-2627-santa-clara-guimaraes":[15,null,null],"P1-2627-sporting-estoril":[15,null,null],"P1-2627-maritimo-sp-braga":[16,null,null],"P1-2627-casa-pia-famalicao":[16,null,null],"P1-2627-estoril-alverca":[16,null,null],"P1-2627-porto-nacional":[16,null,null],"P1-2627-gil-vicente-arouca":[16,null,null],"P1-2627-moreirense-academico-viseu":[16,null,null],"P1-2627-benfica-sporting":[16,null,null],"P1-2627-santa-clara-estrela-amadora":[16,null,null],"P1-2627-guimaraes-rio-ave":[16,null,null],"P1-2627-academico-viseu-casa-pia":[17,null,null],"P1-2627-nacional-gil-vicente":[17,null,null],"P1-2627-estrela-amadora-estoril":[17,null,null],"P1-2627-alverca-maritimo":[17,null,null],"P1-2627-arouca-benfica":[17,null,null],"P1-2627-famalicao-guimaraes":[17,null,null],"P1-2627-rio-ave-moreirense":[17,null,null],"P1-2627-sp-braga-porto":[17,null,null],"P1-2627-sporting-santa-clara":[17,null,null],"P1-2627-academico-viseu-benfica":[18,null,null],"P1-2627-nacional-santa-clara":[18,null,null],"P1-2627-casa-pia-maritimo":[18,null,null],"P1-2627-alverca-porto":[18,null,null],"P1-2627-arouca-guimaraes":[18,null,null],"P1-2627-famalicao-estoril":[18,null,null],"P1-2627-rio-ave-gil-vicente":[18,null,null],"P1-2627-sp-braga-moreirense":[18,null,null],"P1-2627-sporting-estrela-amadora":[18,null,null],"P1-2627-maritimo-famalicao":[19,null,null],"P1-2627-estoril-nacional":[19,null,null],"P1-2627-estrela-amadora-alverca":[19,null,null],"P1-2627-porto-rio-ave":[19,null,null],"P1-2627-gil-vicente-sp-braga":[19,null,null],"P1-2627-moreirense-arouca":[19,null,null],"P1-2627-benfica-casa-pia":[19,null,null],"P1-2627-santa-clara-academico-viseu":[19,null,null],"P1-2627-guimaraes-sporting":[19,null,null],"P1-2627-academico-viseu-maritimo":[20,null,null],"P1-2627-nacional-guimaraes":[20,null,null],"P1-2627-casa-pia-gil-vicente":[20,null,null],"P1-2627-alverca-sporting":[20,null,null],"P1-2627-arouca-porto":[20,null,null],"P1-2627-famalicao-santa-clara":[20,null,null],"P1-2627-rio-ave-estoril":[20,null,null],"P1-2627-sp-braga-estrela-amadora":[20,null,null],"P1-2627-benfica-moreirense":[20,null,null],"P1-2627-maritimo-arouca":[21,null,null],"P1-2627-estoril-benfica":[21,null,null],"P1-2627-estrela-amadora-nacional":[21,null,null],"P1-2627-porto-academico-viseu":[21,null,null],"P1-2627-gil-vicente-famalicao":[21,null,null],"P1-2627-moreirense-casa-pia":[21,null,null],"P1-2627-santa-clara-alverca":[21,null,null],"P1-2627-sporting-rio-ave":[21,null,null],"P1-2627-guimaraes-sp-braga":[21,null,null],"P1-2627-academico-viseu-gil-vicente":[22,null,null],"P1-2627-nacional-sporting":[22,null,null],"P1-2627-casa-pia-guimaraes":[22,null,null],"P1-2627-arouca-estoril":[22,null,null],"P1-2627-famalicao-estrela-amadora":[22,null,null],"P1-2627-moreirense-porto":[22,null,null],"P1-2627-rio-ave-santa-clara":[22,null,null],"P1-2627-sp-braga-alverca":[22,null,null],"P1-2627-benfica-maritimo":[22,null,null],"P1-2627-maritimo-moreirense":[23,null,null],"P1-2627-estoril-sp-braga":[23,null,null],"P1-2627-estrela-amadora-rio-ave":[23,null,null],"P1-2627-alverca-nacional":[23,null,null],"P1-2627-porto-casa-pia":[23,null,null],"P1-2627-gil-vicente-benfica":[23,null,null],"P1-2627-santa-clara-arouca":[23,null,null],"P1-2627-sporting-famalicao":[23,null,null],"P1-2627-guimaraes-academico-viseu":[23,null,null],"P1-2627-academico-viseu-estrela-amadora":[24,null,null],"P1-2627-maritimo-gil-vicente":[24,null,null],"P1-2627-casa-pia-estoril":[24,null,null],"P1-2627-arouca-sporting":[24,null,null],"P1-2627-famalicao-nacional":[24,null,null],"P1-2627-moreirense-guimaraes":[24,null,null],"P1-2627-rio-ave-alverca":[24,null,null],"P1-2627-sp-braga-santa-clara":[24,null,null],"P1-2627-benfica-porto":[24,null,null],"P1-2627-nacional-rio-ave":[25,null,null],"P1-2627-estoril-academico-viseu":[25,null,null],"P1-2627-estrela-amadora-arouca":[25,null,null],"P1-2627-alverca-famalicao":[25,null,null],"P1-2627-porto-maritimo":[25,null,null],"P1-2627-gil-vicente-moreirense":[25,null,null],"P1-2627-santa-clara-casa-pia":[25,null,null],"P1-2627-sporting-sp-braga":[25,null,null],"P1-2627-guimaraes-benfica":[25,null,null],"P1-2627-academico-viseu-sporting":[26,null,null],"P1-2627-maritimo-guimaraes":[26,null,null],"P1-2627-casa-pia-estrela-amadora":[26,null,null],"P1-2627-arouca-alverca":[26,null,null],"P1-2627-famalicao-rio-ave":[26,null,null],"P1-2627-porto-gil-vicente":[26,null,null],"P1-2627-moreirense-estoril":[26,null,null],"P1-2627-sp-braga-nacional":[26,null,null],"P1-2627-benfica-santa-clara":[26,null,null],"P1-2627-nacional-arouca":[27,null,null],"P1-2627-estoril-porto":[27,null,null],"P1-2627-estrela-amadora-moreirense":[27,null,null],"P1-2627-alverca-benfica":[27,null,null],"P1-2627-famalicao-sp-braga":[27,null,null],"P1-2627-rio-ave-academico-viseu":[27,null,null],"P1-2627-santa-clara-maritimo":[27,null,null],"P1-2627-sporting-casa-pia":[27,null,null],"P1-2627-guimaraes-gil-vicente":[27,null,null],"P1-2627-academico-viseu-nacional":[28,null,null],"P1-2627-maritimo-estoril":[28,null,null],"P1-2627-casa-pia-alverca":[28,null,null],"P1-2627-arouca-famalicao":[28,null,null],"P1-2627-porto-guimaraes":[28,null,null],"P1-2627-gil-vicente-santa-clara":[28,null,null],"P1-2627-moreirense-sporting":[28,null,null],"P1-2627-sp-braga-rio-ave":[28,null,null],"P1-2627-benfica-estrela-amadora":[28,null,null],"P1-2627-nacional-maritimo":[29,null,null],"P1-2627-estoril-gil-vicente":[29,null,null],"P1-2627-estrela-amadora-guimaraes":[29,null,null],"P1-2627-alverca-academico-viseu":[29,null,null],"P1-2627-famalicao-benfica":[29,null,null],"P1-2627-rio-ave-arouca":[29,null,null],"P1-2627-sp-braga-casa-pia":[29,null,null],"P1-2627-santa-clara-moreirense":[29,null,null],"P1-2627-sporting-porto":[29,null,null],"P1-2627-academico-viseu-famalicao":[30,null,null],"P1-2627-maritimo-sporting":[30,null,null],"P1-2627-casa-pia-rio-ave":[30,null,null],"P1-2627-arouca-sp-braga":[30,null,null],"P1-2627-porto-santa-clara":[30,null,null],"P1-2627-gil-vicente-estrela-amadora":[30,null,null],"P1-2627-moreirense-alverca":[30,null,null],"P1-2627-benfica-nacional":[30,null,null],"P1-2627-guimaraes-estoril":[30,null,null],"P1-2627-nacional-casa-pia":[31,null,null],"P1-2627-estrela-amadora-porto":[31,null,null],"P1-2627-alverca-guimaraes":[31,null,null],"P1-2627-arouca-academico-viseu":[31,null,null],"P1-2627-famalicao-moreirense":[31,null,null],"P1-2627-rio-ave-maritimo":[31,null,null],"P1-2627-sp-braga-benfica":[31,null,null],"P1-2627-santa-clara-estoril":[31,null,null],"P1-2627-sporting-gil-vicente":[31,null,null],"P1-2627-academico-viseu-sp-braga":[32,null,null],"P1-2627-maritimo-estrela-amadora":[32,null,null],"P1-2627-casa-pia-arouca":[32,null,null],"P1-2627-estoril-sporting":[32,null,null],"P1-2627-porto-famalicao":[32,null,null],"P1-2627-gil-vicente-alverca":[32,null,null],"P1-2627-moreirense-nacional":[32,null,null],"P1-2627-benfica-rio-ave":[32,null,null],"P1-2627-guimaraes-santa-clara":[32,null,null],"P1-2627-academico-viseu-moreirense":[33,null,null],"P1-2627-nacional-porto":[33,null,null],"P1-2627-estrela-amadora-santa-clara":[33,null,null],"P1-2627-alverca-estoril":[33,null,null],"P1-2627-arouca-gil-vicente":[33,null,null],"P1-2627-famalicao-casa-pia":[33,null,null],"P1-2627-rio-ave-guimaraes":[33,null,null],"P1-2627-sp-braga-maritimo":[33,null,null],"P1-2627-sporting-benfica":[33,null,null],"P1-2627-maritimo-alverca":[34,null,null],"P1-2627-casa-pia-academico-viseu":[34,null,null],"P1-2627-estoril-estrela-amadora":[34,null,null],"P1-2627-porto-sp-braga":[34,null,null],"P1-2627-gil-vicente-nacional":[34,null,null],"P1-2627-moreirense-rio-ave":[34,null,null],"P1-2627-benfica-arouca":[34,null,null],"P1-2627-santa-clara-sporting":[34,null,null],"P1-2627-guimaraes-famalicao":[34,null,null]}</script>
 </main>
-<footer><div class="wrap">Personal project. Forecasts are chances, not promises, and nothing here is betting advice. <a href="../en/como-funciona">How it works</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></div></footer>
+<footer><div class="wrap">Personal project. Forecasts are chances, not promises, and nothing here is betting advice. The crests belong to the clubs; this site has no link to them or to the league. <a href="../en/como-funciona">How it works</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></div></footer>
 <script>
 (function () {
   var d = document.documentElement, b = document.querySelector(".bar .theme");
