@@ -399,6 +399,7 @@ a.club:hover { color: var(--amber-text); }
 .club-box { display: none; } .js .club-box { align-self: end; display: grid; gap: 12px; padding: 6px 0 6px 24px; border-left: 3px solid var(--amber); }
 .hello .club-box p { max-width: none; font-size: 18px; }
 .hello .club-box .club-now { font-size: 17px; line-height: 1.4; }
+.hello .club-box .play-cta { display: flex; justify-content: space-between; margin-bottom: 8px; }  /* the Daily Three (D-184) */
 .club-now strong { color: var(--accent); }
 .club-now a { color: var(--ink); font-weight: 700; white-space: nowrap; }
 .mosaic, .strip { display: grid; gap: 3px; }
@@ -799,6 +800,144 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .two-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; }
 .two-charts h2 { font-size: 28px; }
+/* «Jogar» (D-177, D-184): the site's own tokens; the pitch is the one new object on the page. */
+.play { --pitch: #2f7a4b; --pitch-2: #2a6f44; --pitch-line: rgba(255,255,255,0.55); }
+:root[data-theme="dark"] .play { --pitch: #245c3a; --pitch-2: #205334; --pitch-line: rgba(255,255,255,0.4); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .play { --pitch: #245c3a; --pitch-2: #205334; --pitch-line: rgba(255,255,255,0.4); } }
+.play-hub { display: grid; gap: 20px; padding: 20px 0 28px; }
+.play-hub h1 { font-size: clamp(40px, 6vw, 64px); margin: 0 0 10px; }
+.play-hub .lede { margin: 0; }
+.hub-head { border-bottom: 1px solid var(--ring); padding-bottom: 20px; }
+.play .cards { display: grid; gap: 16px; }
+@media (min-width: 1000px) { .play .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.play .mode { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--ring); border-radius: 2px; }
+.play .mode.today { border: 2px solid var(--amber); }
+.play .mode h2 { font-size: 26px; margin: 0; }
+.play .mode p { margin: 0; color: var(--ink-2); }
+.play .mode .kicker { margin: 0; color: var(--muted); }
+.play .mode p.meta { color: var(--muted); }
+.play .mode .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.play .mode > .row:last-of-type { margin-top: auto; padding-top: 6px; }
+.play .pal-status { font-size: 15px; }
+.play .mode p.pal-season { font-size: 15px; font-weight: 700; color: var(--ink); }
+.play .chip { font: inherit; font-size: 14px; font-weight: 700; padding: 6px 12px; border: 1px solid var(--axis); border-radius: 2px; background: none; color: var(--ink); cursor: pointer; line-height: 1.3; }
+.play .chip[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.play .btn { font: inherit; font-weight: 800; font-size: 17px; padding: 10px 18px; border: 0; border-radius: 2px; background: var(--amber); color: var(--amber-ink); cursor: pointer; display: inline-flex; gap: 12px; align-items: center; text-decoration: none; }
+.play .btn:hover { background: color-mix(in srgb, var(--amber) 88%, var(--ink)); color: var(--amber-ink); }
+.play .btn.quiet { background: none; border: 1px solid var(--axis); color: var(--ink); font-weight: 700; }
+.play .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+.play a.btn { align-self: flex-start; }
+.play .done { font-weight: 700; color: var(--good); }
+.play .crest { width: 30px; height: 30px; object-fit: contain; flex: none; display: block; }
+.play .club-card { width: 14px; height: 24px; }
+/* Round */
+.play .round { padding: 20px 0 8px; }
+.play .round-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: baseline; margin-bottom: 12px; }
+.play .round-top .kicker { margin: 0; font-size: 15px; }
+.play .dots { display: flex; gap: 6px; flex-wrap: wrap; }
+.play .dots span { width: 28px; height: 6px; background: var(--grid); border-radius: 1px; }
+.play .dots span.on { background: var(--amber); } .play .dots span.past { background: var(--ink-2); }
+.play .season-tag { font-weight: 700; color: var(--ink); }
+.play .round-body { display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 28px; align-items: start; }
+.play .pitch-wrap { display: grid; gap: 6px; }
+.play .pitch-col { display: grid; min-width: 0; }
+.play .tband { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--ring); min-width: 0; }
+.play .tband.top { border-bottom: 0; } .play .tband.bottom { border-top: 0; }
+.play .tband .nm { font-stretch: 72%; font-weight: 850; font-size: 22px; line-height: 1; }
+.play .tband .sub { margin-left: auto; text-align: right; font-size: 13px; color: var(--muted); line-height: 1.3; }
+.play .tband .sub strong { color: var(--ink); }
+/* The pitch: vertical, home on top (D-177) */
+.play .pitch { position: relative; width: 100%; aspect-ratio: 68 / 88; overflow: hidden;
+  background: repeating-linear-gradient(180deg, var(--pitch) 0 10%, var(--pitch-2) 10% 20%); }
+.play .pitch svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+.play .pitch svg.lines * { fill: none; stroke: var(--pitch-line); stroke-width: 0.35; }
+.play .p { position: absolute; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 2px; width: 19%; }
+.play .p i { font-style: normal; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800;
+  background: var(--k); color: var(--ki); box-shadow: 0 0 0 2px var(--ki); }
+.play .p b { font-size: 11.5px; font-weight: 700; color: #fff; line-height: 1.1; text-align: center; text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.play .p.cap b::after { content: " (C)"; font-weight: 600; opacity: 0.85; }
+.play .eleven { margin: 0; padding: 12px 14px 12px 34px; background: var(--surface); border-inline: 1px solid var(--ring); columns: 2; font-size: 15px; }
+.play .pitch-note { font-size: 13px; color: var(--muted); margin: 0; }
+/* Guess, hints and reveal beside the pitch */
+.play .clues { display: grid; gap: 18px; }
+.play .box { background: var(--surface); border: 1px solid var(--ring); border-radius: 2px; padding: 16px 18px; display: grid; gap: 10px; }
+.play .box h3 { margin: 0; font-size: 22px; }
+.play .box .meta { margin: 0; }
+.play .vguess { display: grid; gap: 10px; }
+.play .vrow { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.play .vrow .nm { font-weight: 800; font-size: 18px; line-height: 1.2; }
+.play .vrow .club-card { justify-self: center; }
+.play .step { display: grid; grid-template-columns: 44px 56px 44px; align-items: center; }
+.play .step button { font: inherit; font-size: 22px; font-weight: 800; height: 44px; border: 1px solid var(--axis); background: var(--raised); color: var(--ink); cursor: pointer; }
+.play .step button:first-child { border-radius: 2px 0 0 2px; } .play .step button:last-child { border-radius: 0 2px 2px 0; }
+.play .step output { height: 44px; display: grid; place-items: center; font-size: 28px; font-weight: 850; font-stretch: 72%; border-block: 1px solid var(--axis); background: var(--raised); font-variant-numeric: tabular-nums; }
+.play .hints { display: grid; gap: 8px; }
+.play .hint { display: grid; gap: 8px; }
+.play .hint > button { font: inherit; text-align: left; display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--axis);
+  background: var(--raised); color: var(--ink); border-radius: 2px; font-weight: 700; cursor: pointer; }
+.play .hint > button span { color: var(--muted); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.play .hint > button[disabled] { opacity: 0.5; cursor: not-allowed; }
+.play .hint.used > button { border-color: var(--amber); }
+.play .hint-body { padding: 4px 2px 6px; font-size: 15px; }
+.play .tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+.play .tbl td { padding: 4px 6px; border-bottom: 1px solid var(--grid); }
+.play .tbl td.n { text-align: right; white-space: nowrap; }
+.play .form-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+.play .form-row .who { width: 9em; font-weight: 700; }
+.play .fl { width: 24px; height: 24px; display: grid; place-items: center; font-size: 12px; font-weight: 800; border-radius: 2px; }
+.play .fl.W { background: var(--good); color: var(--good-ink); } .play .fl.D { background: var(--draw); color: #fff; } .play .fl.L { background: var(--bad); color: var(--bad-ink); }
+.play .bars { display: grid; gap: 6px; }
+.play .bar1 { display: grid; grid-template-columns: 9em minmax(0, 1fr) 3em; gap: 8px; align-items: center; font-size: 15px; }
+.play .bar1 .t { height: 12px; background: var(--grid); border-radius: 1px; overflow: hidden; }
+.play .bar1 .t i { display: block; height: 100%; background: var(--ink-2); }
+.play .bar1 .v { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.play .reveal .score { font-stretch: 72%; font-weight: 850; font-size: 40px; line-height: 1.05; }
+.play .goals { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; font-size: 15px; }
+.play .goals li { display: grid; grid-template-columns: 3em minmax(0, 1fr); }
+.play .goals .m { color: var(--muted); font-variant-numeric: tabular-nums; }
+.play .pts { display: grid; gap: 2px; font-size: 15px; }
+.play .pts div { display: flex; justify-content: space-between; }
+.play .pts .total { font-weight: 850; font-size: 20px; border-top: 1px solid var(--ring); padding-top: 4px; margin-top: 2px; }
+.play details.model summary { cursor: pointer; font-weight: 700; }
+.play .verdict { font-weight: 800; font-size: 18px; margin: 0; }
+.play .verdict.good { color: var(--good); } .play .verdict.bad { color: var(--bad); }
+/* The end: the recap and the share sheet */
+.play .final { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 380px); gap: 28px; padding: 20px 0; align-items: start; }
+.play .final h2 { font-size: clamp(40px, 6vw, 60px); margin: 0; }
+.play .recap { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 6px; }
+.play .recap li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 16px; }
+.play .sq { width: 22px; height: 22px; border-radius: 2px; }
+.play .sq.g { background: var(--good); } .play .sq.y { background: var(--amber); } .play .sq.x { background: var(--ink-2); }
+.play .copied { color: var(--good); font-weight: 700; }
+.play .sheet { gap: 14px; }
+.play .card-img { width: 100%; aspect-ratio: 1080 / 1350; display: block; border-radius: 2px; box-shadow: 0 0 0 1px var(--ring); background: #17191c; }
+.play .btn.wide { width: 100%; justify-content: center; font-size: 19px; padding: 14px 18px; }
+.play .btn svg { width: 20px; height: 20px; }
+.play .nets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 6px; }
+.play .net { display: grid; justify-items: center; gap: 6px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink-2);
+  background: none; border: 0; padding: 0; cursor: pointer; text-decoration: none; text-align: center; }
+.play .net:hover { color: var(--ink); }
+.play .net .ic { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: #fff; }
+.play .net .ic svg { width: 24px; height: 24px; }
+.play .net .ic.plain { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--axis); }
+.play .net:hover .ic { box-shadow: 0 0 0 2px var(--amber); }
+.play .net:focus-visible { outline: none; } .play .net:focus-visible .ic { box-shadow: 0 0 0 3px var(--amber); }
+@media (max-width: 860px) {
+  .play .round-body, .play .final { grid-template-columns: minmax(0, 1fr); }
+  .play .p i { width: 22px; height: 22px; font-size: 11px; }
+  .play .p b { font-size: 10.5px; }
+}
+/* «Jornadas» (D-184): each round with its days. */
+.round-dates { font-size: 0.5em; font-weight: 600; font-stretch: 100%; color: var(--muted); margin-left: 10px; letter-spacing: 0; }
+/* The predictions game under «Jogar»: the way back up, and two matches a row from 1000 px (D-184). */
+.back-up { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
+.back-up a { color: var(--ink-2); text-decoration: none; } .back-up a:hover { color: var(--amber-text); }
+@media (min-width: 1000px) {
+  main.wrap .game { max-width: none; }
+  main.wrap .game :is(.note, .board) { max-width: 760px; }
+  main.wrap .game .picks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
+}
 /* Very wide screens (D-175, #167): every page takes the same wider frame, so the bar's buttons
    stay put from page to page and the lists gain columns; the front page adds a side column for
    this week's matches, filled by _side.js. */
@@ -949,8 +1088,8 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <div class="bar"><div class="wrap">
   <a class="brand" href="../"><svg viewBox="0 0 19 12" aria-hidden="true"><rect x="0" y="0" width="5" height="5" rx="1"/><rect class="lit" x="7" y="0" width="5" height="5" rx="1"/><rect x="14" y="0" width="5" height="5" rx="1"/><rect class="lit" x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/><rect x="14" y="7" width="5" height="5" rx="1"/></svg><span>Contas da Bola</span></a>
   <nav aria-label="Secções"><a href="../">Início</a>
-<a href="../jogos" aria-current="page">Jogos</a>
-<a href="../palpites">Palpites</a>
+<a href="../jogar">Jogar</a>
+<a href="../jornadas" aria-current="page">Jornadas</a>
 <a href="../epoca">Época</a>
 <a href="../clubes">Clubes</a>
 <a href="../como-funciona">Como funciona</a>
@@ -1016,7 +1155,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   </div>
 
   <p class="note market">Como referência, as odds de fecho das casas de apostas, sem a margem, davam 28% ao Moreirense FC, 30% ao empate e 42% ao Gil Vicente FC. <a href="../como-funciona#terms">Como funciona →</a></p>
-  <p><a class="more" href="../jogos">← Todos os jogos</a></p>
+  <p><a class="more" href="../jornadas">← Todas as jornadas</a></p>
 </article>
 </main>
 <footer><div class="wrap">Projeto pessoal. As previsões são probabilidades, não promessas, e nada aqui é aconselhamento de apostas. Os emblemas pertencem aos clubes; o site não tem ligação a eles nem à Liga. <a href="../como-funciona">Como funciona</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></div></footer>
