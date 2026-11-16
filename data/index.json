@@ -4,16 +4,17 @@
   "ledger-hashes.json": "The SHA-256 of every ledger line, dated by this site's git.",
   "season.json": "The latest frozen season table and the head-to-head matrix."
  },
- "format": 1,
+ "format": 2,
  "last_ledger_line_utc": "2026-11-07T21:04:01Z",
  "left_out": [
-  "Bookmaker odds and the market's no-vig closing probabilities: their sources' terms do not allow redistribution.",
+  "Bookmaker odds, pre-match and closing, and everything derived from them: their sources' terms do not allow redistribution. Where the shown 1X2 is the market's no-vig pre-closing odds (x12_source pre_closing), its 1X2 and RPS are null here.",
   "Match statistics and expected goals: their sources' terms do not allow redistribution.",
   "The model's internal ratings and the raw downloaded files."
  ],
  "licence": {
-  "attribution": "Primeira Liga forecasts, https://contasdabola.pt/",
+  "attribution": "Contas da Bola (https://contasdabola.pt/), CC BY 4.0",
   "id": "CC-BY-4.0",
+  "scope": "The licence covers only this project's own outputs: forecasts, simulations and metrics. Sports facts (fixtures, dates, scores) are given with no claim of rights. Third-party data, including odds and everything derived from them, is excluded.",
   "url": "https://creativecommons.org/licenses/by/4.0/"
  },
  "probabilities": "Shares from 0 to 1, rounded to 4 decimal places."

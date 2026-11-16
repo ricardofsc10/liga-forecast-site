@@ -1,5 +1,5 @@
 {
- "format": 1,
+ "format": 2,
  "matches": [
   {
    "away": "FC Famalicão",
@@ -23,7 +23,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Casa Pia AC",
@@ -47,7 +48,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "elo"
   },
   {
    "away": "FC Arouca",
@@ -71,16 +73,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Sporting CP",
    "corrected": false,
    "forecast": {
-    "away": 0.7998,
+    "away": null,
     "both_score": 0.5384,
-    "draw": 0.1346,
-    "home": 0.0656,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6294
    },
    "home": "Estrela Amadora",
@@ -88,23 +91,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-estrela-amadora-sporting",
    "model_version": "phase4-v2",
-   "rps": 0.322,
+   "rps": null,
    "score": [
     2,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Alverca",
    "corrected": false,
    "forecast": {
-    "away": 0.0498,
+    "away": null,
     "both_score": 0.4479,
-    "draw": 0.1165,
-    "home": 0.8337,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.615
    },
    "home": "FC Porto",
@@ -112,23 +116,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-porto-alverca",
    "model_version": "phase4-v2",
-   "rps": 0.0151,
+   "rps": null,
    "score": [
     2,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Académico",
    "corrected": false,
    "forecast": {
-    "away": 0.0281,
+    "away": null,
     "both_score": 0.4664,
-    "draw": 0.0788,
-    "home": 0.8932,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6726
    },
    "home": "SL Benfica",
@@ -136,23 +141,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-benfica-academico-viseu",
    "model_version": "phase4-v2",
-   "rps": 0.3993,
+   "rps": null,
    "score": [
     2,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Rio Ave FC",
    "corrected": false,
    "forecast": {
-    "away": 0.2418,
+    "away": null,
     "both_score": 0.4805,
-    "draw": 0.2654,
-    "home": 0.4928,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4931
    },
    "home": "Gil Vicente FC",
@@ -160,23 +166,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-gil-vicente-rio-ave",
    "model_version": "phase4-v2",
-   "rps": 0.1579,
+   "rps": null,
    "score": [
     1,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SC Braga",
    "corrected": false,
    "forecast": {
-    "away": 0.5637,
+    "away": null,
     "both_score": 0.5105,
-    "draw": 0.2476,
-    "home": 0.1887,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4922
    },
    "home": "Moreirense FC",
@@ -184,23 +191,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-moreirense-sp-braga",
    "model_version": "phase4-v2",
-   "rps": 0.1767,
+   "rps": null,
    "score": [
     2,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "CD Nacional",
    "corrected": false,
    "forecast": {
-    "away": 0.2132,
+    "away": null,
     "both_score": 0.426,
-    "draw": 0.2729,
-    "home": 0.5139,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4421
    },
    "home": "Santa Clara",
@@ -208,14 +216,15 @@
    "kind": "retrospective",
    "match_id": "P1-2627-santa-clara-nacional",
    "model_version": "phase4-v2",
-   "rps": 0.1548,
+   "rps": null,
    "score": [
     2,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Vitória SC",
@@ -239,7 +248,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Estrela Amadora",
@@ -263,7 +273,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Santa Clara",
@@ -287,16 +298,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "elo"
   },
   {
    "away": "FC Porto",
    "corrected": false,
    "forecast": {
-    "away": 0.693,
+    "away": null,
     "both_score": 0.4795,
-    "draw": 0.1937,
-    "home": 0.1133,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5381
    },
    "home": "Rio Ave FC",
@@ -304,23 +316,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-rio-ave-porto",
    "model_version": "phase4-v2",
-   "rps": 0.0535,
+   "rps": null,
    "score": [
     0,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Estoril Praia",
    "corrected": false,
    "forecast": {
-    "away": 0.3678,
+    "away": null,
     "both_score": 0.5274,
-    "draw": 0.275,
-    "home": 0.3572,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.514
    },
    "home": "CD Nacional",
@@ -328,23 +341,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-nacional-estoril",
    "model_version": "phase4-v2",
-   "rps": 0.2742,
+   "rps": null,
    "score": [
     2,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Moreirense FC",
    "corrected": false,
    "forecast": {
-    "away": 0.2628,
+    "away": null,
     "both_score": 0.5139,
-    "draw": 0.2802,
-    "home": 0.4569,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4522
    },
    "home": "FC Arouca",
@@ -352,23 +366,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-arouca-moreirense",
    "model_version": "phase4-v2",
-   "rps": 0.182,
+   "rps": null,
    "score": [
     4,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "CS Marítimo",
    "corrected": false,
    "forecast": {
-    "away": 0.2046,
+    "away": null,
     "both_score": 0.427,
-    "draw": 0.2587,
-    "home": 0.5367,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4677
    },
    "home": "FC Famalicão",
@@ -376,23 +391,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-famalicao-maritimo",
    "model_version": "phase4-v2",
-   "rps": 0.4604,
+   "rps": null,
    "score": [
     1,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SL Benfica",
    "corrected": false,
    "forecast": {
-    "away": 0.8065,
+    "away": null,
     "both_score": 0.5096,
-    "draw": 0.1312,
-    "home": 0.0622,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6038
    },
    "home": "Casa Pia AC",
@@ -400,14 +416,15 @@
    "kind": "retrospective",
    "match_id": "P1-2627-casa-pia-benfica",
    "model_version": "phase4-v2",
-   "rps": 0.0207,
+   "rps": null,
    "score": [
     0,
     7
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Académico",
@@ -431,7 +448,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "elo"
   },
   {
    "away": "Rio Ave FC",
@@ -455,16 +473,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "FC Alverca",
    "corrected": false,
    "forecast": {
-    "away": 0.0636,
+    "away": null,
     "both_score": 0.5001,
-    "draw": 0.124,
-    "home": 0.8124,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6666
    },
    "home": "Sporting CP",
@@ -472,23 +491,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-sporting-alverca",
    "model_version": "phase4-v2",
-   "rps": 0.0196,
+   "rps": null,
    "score": [
     3,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "CD Nacional",
    "corrected": false,
    "forecast": {
-    "away": 0.188,
+    "away": null,
     "both_score": 0.4727,
-    "draw": 0.2418,
-    "home": 0.5702,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5045
    },
    "home": "Vitória SC",
@@ -496,23 +516,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-guimaraes-nacional",
    "model_version": "phase4-v2",
-   "rps": 0.11,
+   "rps": null,
    "score": [
     1,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Famalicão",
    "corrected": false,
    "forecast": {
-    "away": 0.3324,
+    "away": null,
     "both_score": 0.4143,
-    "draw": 0.3118,
-    "home": 0.3558,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.3798
    },
    "home": "Santa Clara",
@@ -520,23 +541,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-santa-clara-famalicao",
    "model_version": "phase4-v2",
-   "rps": 0.2628,
+   "rps": null,
    "score": [
     1,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Arouca",
    "corrected": false,
    "forecast": {
-    "away": 0.0594,
+    "away": null,
     "both_score": 0.4884,
-    "draw": 0.1356,
-    "home": 0.805,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5957
    },
    "home": "FC Porto",
@@ -544,23 +566,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-porto-arouca",
    "model_version": "phase4-v2",
-   "rps": 0.0208,
+   "rps": null,
    "score": [
     2,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Casa Pia AC",
    "corrected": false,
    "forecast": {
-    "away": 0.1703,
+    "away": null,
     "both_score": 0.458,
-    "draw": 0.2613,
-    "home": 0.5684,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4179
    },
    "home": "Gil Vicente FC",
@@ -568,14 +591,15 @@
    "kind": "retrospective",
    "match_id": "P1-2627-gil-vicente-casa-pia",
    "model_version": "phase4-v2",
-   "rps": 0.1077,
+   "rps": null,
    "score": [
     2,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Sporting CP",
@@ -599,7 +623,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Santa Clara",
@@ -623,7 +648,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "CS Marítimo",
@@ -647,7 +673,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "FC Porto",
@@ -671,16 +698,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Estrela Amadora",
    "corrected": false,
    "forecast": {
-    "away": 0.3091,
+    "away": null,
     "both_score": 0.4657,
-    "draw": 0.2788,
-    "home": 0.4122,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4921
    },
    "home": "CD Nacional",
@@ -688,23 +716,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-nacional-estrela-amadora",
    "model_version": "phase4-v2",
-   "rps": 0.3236,
+   "rps": null,
    "score": [
     2,
     3
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Moreirense FC",
    "corrected": false,
    "forecast": {
-    "away": 0.2997,
+    "away": null,
     "both_score": 0.4776,
-    "draw": 0.3028,
-    "home": 0.3975,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.393
    },
    "home": "Casa Pia AC",
@@ -712,23 +741,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-casa-pia-moreirense",
    "model_version": "phase4-v2",
-   "rps": 0.3242,
+   "rps": null,
    "score": [
     0,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Gil Vicente FC",
    "corrected": false,
    "forecast": {
-    "away": 0.2698,
+    "away": null,
     "both_score": 0.4304,
-    "draw": 0.2891,
-    "home": 0.4411,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4234
    },
    "home": "FC Famalicão",
@@ -736,23 +766,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-famalicao-gil-vicente",
    "model_version": "phase4-v2",
-   "rps": 0.1337,
+   "rps": null,
    "score": [
     0,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Estoril Praia",
    "corrected": false,
    "forecast": {
-    "away": 0.052,
+    "away": null,
     "both_score": 0.5392,
-    "draw": 0.1058,
-    "home": 0.8422,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6954
    },
    "home": "SL Benfica",
@@ -760,23 +791,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-benfica-estoril",
    "model_version": "phase4-v2",
-   "rps": 0.0138,
+   "rps": null,
    "score": [
     2,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Vitória SC",
    "corrected": false,
    "forecast": {
-    "away": 0.1922,
+    "away": null,
     "both_score": 0.5011,
-    "draw": 0.2528,
-    "home": 0.5551,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4977
    },
    "home": "SC Braga",
@@ -784,14 +816,15 @@
    "kind": "retrospective",
    "match_id": "P1-2627-sp-braga-guimaraes",
    "model_version": "phase4-v2",
-   "rps": 0.1175,
+   "rps": null,
    "score": [
     1,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Moreirense FC",
@@ -815,7 +848,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "FC Famalicão",
@@ -839,7 +873,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "SC Braga",
@@ -863,7 +898,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "SL Benfica",
@@ -887,16 +923,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "CD Nacional",
    "corrected": false,
    "forecast": {
-    "away": 0.0611,
+    "away": null,
     "both_score": 0.5013,
-    "draw": 0.1246,
-    "home": 0.8143,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6862
    },
    "home": "Sporting CP",
@@ -904,23 +941,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-sporting-nacional",
    "model_version": "phase4-v2",
-   "rps": 0.0191,
+   "rps": null,
    "score": [
     2,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Rio Ave FC",
    "corrected": false,
    "forecast": {
-    "away": 0.1906,
+    "away": null,
     "both_score": 0.4329,
-    "draw": 0.2644,
-    "home": 0.545,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4419
    },
    "home": "Santa Clara",
@@ -928,23 +966,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-santa-clara-rio-ave",
    "model_version": "phase4-v2",
-   "rps": 0.1217,
+   "rps": null,
    "score": [
     4,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Casa Pia AC",
    "corrected": false,
    "forecast": {
-    "away": 0.1348,
+    "away": null,
     "both_score": 0.4595,
-    "draw": 0.2236,
-    "home": 0.6416,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4827
    },
    "home": "Vitória SC",
@@ -952,23 +991,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-guimaraes-casa-pia",
    "model_version": "phase4-v2",
-   "rps": 0.2149,
+   "rps": null,
    "score": [
     0,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Académico",
    "corrected": false,
    "forecast": {
-    "away": 0.2272,
+    "away": null,
     "both_score": 0.4934,
-    "draw": 0.2673,
-    "home": 0.5055,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4632
    },
    "home": "Gil Vicente FC",
@@ -976,23 +1016,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-gil-vicente-academico-viseu",
    "model_version": "phase4-v2",
-   "rps": 0.4264,
+   "rps": null,
    "score": [
     0,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Arouca",
    "corrected": false,
    "forecast": {
-    "away": 0.3121,
+    "away": null,
     "both_score": 0.5659,
-    "draw": 0.2693,
-    "home": 0.4186,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5259
    },
    "home": "Estoril Praia",
@@ -1000,23 +1041,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-estoril-arouca",
    "model_version": "phase4-v2",
-   "rps": 0.1363,
+   "rps": null,
    "score": [
     0,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SL Benfica",
    "corrected": false,
    "forecast": {
-    "away": 0.8434,
+    "away": null,
     "both_score": 0.5248,
-    "draw": 0.1076,
-    "home": 0.0489,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6563
    },
    "home": "Moreirense FC",
@@ -1024,23 +1066,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-moreirense-benfica",
    "model_version": "phase4-v2",
-   "rps": 0.0135,
+   "rps": null,
    "score": [
     0,
     4
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SC Braga",
    "corrected": false,
    "forecast": {
-    "away": 0.5558,
+    "away": null,
     "both_score": 0.5324,
-    "draw": 0.2513,
-    "home": 0.1929,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4899
    },
    "home": "Estrela Amadora",
@@ -1048,14 +1091,15 @@
    "kind": "retrospective",
    "match_id": "P1-2627-estrela-amadora-sp-braga",
    "model_version": "phase4-v2",
-   "rps": 0.4802,
+   "rps": null,
    "score": [
     2,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Alverca",
@@ -1079,7 +1123,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "FC Porto",
@@ -1103,16 +1148,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Vitória SC",
    "corrected": false,
    "forecast": {
-    "away": 0.4709,
+    "away": null,
     "both_score": 0.4929,
-    "draw": 0.2749,
-    "home": 0.2542,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4647
    },
    "home": "Académico",
@@ -1120,23 +1166,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-academico-viseu-guimaraes",
    "model_version": "phase4-v2",
-   "rps": 0.389,
+   "rps": null,
    "score": [
     2,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Santa Clara",
    "corrected": false,
    "forecast": {
-    "away": 0.3399,
+    "away": null,
     "both_score": 0.4742,
-    "draw": 0.2973,
-    "home": 0.3629,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4177
    },
    "home": "FC Arouca",
@@ -1144,23 +1191,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-arouca-santa-clara",
    "model_version": "phase4-v2",
-   "rps": 0.2837,
+   "rps": null,
    "score": [
     1,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Gil Vicente FC",
    "corrected": false,
    "forecast": {
-    "away": 0.0358,
+    "away": null,
     "both_score": 0.4783,
-    "draw": 0.0967,
-    "home": 0.8674,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6438
    },
    "home": "SL Benfica",
@@ -1168,23 +1216,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-benfica-gil-vicente",
    "model_version": "phase4-v2",
-   "rps": 0.0094,
+   "rps": null,
    "score": [
     3,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Sporting CP",
    "corrected": false,
    "forecast": {
-    "away": 0.6324,
+    "away": null,
     "both_score": 0.5166,
-    "draw": 0.2118,
-    "home": 0.1557,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5469
    },
    "home": "FC Famalicão",
@@ -1192,23 +1241,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-famalicao-sporting",
    "model_version": "phase4-v2",
-   "rps": 0.2121,
+   "rps": null,
    "score": [
     1,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Estrela Amadora",
    "corrected": false,
    "forecast": {
-    "away": 0.3744,
+    "away": null,
     "both_score": 0.5089,
-    "draw": 0.2842,
-    "home": 0.3415,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4649
    },
    "home": "Rio Ave FC",
@@ -1216,23 +1266,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-rio-ave-estrela-amadora",
    "model_version": "phase4-v2",
-   "rps": 0.1284,
+   "rps": null,
    "score": [
     3,
     3
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "CS Marítimo",
    "corrected": false,
    "forecast": {
-    "away": 0.319,
+    "away": null,
     "both_score": 0.5101,
-    "draw": 0.2926,
-    "home": 0.3884,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4261
    },
    "home": "Moreirense FC",
@@ -1240,23 +1291,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-moreirense-maritimo",
    "model_version": "phase4-v2",
-   "rps": 0.2379,
+   "rps": null,
    "score": [
     3,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Estoril Praia",
    "corrected": false,
    "forecast": {
-    "away": 0.1295,
+    "away": null,
     "both_score": 0.5321,
-    "draw": 0.2009,
-    "home": 0.6695,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5687
    },
    "home": "SC Braga",
@@ -1264,14 +1316,15 @@
    "kind": "retrospective",
    "match_id": "P1-2627-sp-braga-estoril",
    "model_version": "phase4-v2",
-   "rps": 0.063,
+   "rps": null,
    "score": [
     1,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "CS Marítimo",
@@ -1295,7 +1348,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "FC Famalicão",
@@ -1319,7 +1373,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Rio Ave FC",
@@ -1343,16 +1398,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "FC Arouca",
    "corrected": false,
    "forecast": {
-    "away": 0.0621,
+    "away": null,
     "both_score": 0.5362,
-    "draw": 0.1232,
-    "home": 0.8147,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6819
    },
    "home": "Sporting CP",
@@ -1360,23 +1416,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-sporting-arouca",
    "model_version": "phase4-v2",
-   "rps": 0.3338,
+   "rps": null,
    "score": [
     2,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Académico",
    "corrected": false,
    "forecast": {
-    "away": 0.2736,
+    "away": null,
     "both_score": 0.5461,
-    "draw": 0.279,
-    "home": 0.4473,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4672
    },
    "home": "Estrela Amadora",
@@ -1384,23 +1441,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-estrela-amadora-academico-viseu",
    "model_version": "phase4-v2",
-   "rps": 0.3639,
+   "rps": null,
    "score": [
     0,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Moreirense FC",
    "corrected": false,
    "forecast": {
-    "away": 0.1404,
+    "away": null,
     "both_score": 0.4715,
-    "draw": 0.2205,
-    "home": 0.639,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4964
    },
    "home": "Vitória SC",
@@ -1408,23 +1466,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-guimaraes-moreirense",
    "model_version": "phase4-v2",
-   "rps": 0.214,
+   "rps": null,
    "score": [
     1,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Casa Pia AC",
    "corrected": false,
    "forecast": {
-    "away": 0.2033,
+    "away": null,
     "both_score": 0.4954,
-    "draw": 0.2509,
-    "home": 0.5458,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5036
    },
    "home": "Estoril Praia",
@@ -1432,23 +1491,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-estoril-casa-pia",
    "model_version": "phase4-v2",
-   "rps": 0.4663,
+   "rps": null,
    "score": [
     1,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SC Braga",
    "corrected": false,
    "forecast": {
-    "away": 0.4604,
+    "away": null,
     "both_score": 0.4702,
-    "draw": 0.2935,
-    "home": 0.2461,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.3881
    },
    "home": "Santa Clara",
@@ -1456,23 +1516,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-santa-clara-sp-braga",
    "model_version": "phase4-v2",
-   "rps": 0.1363,
+   "rps": null,
    "score": [
     0,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SL Benfica",
    "corrected": false,
    "forecast": {
-    "away": 0.3721,
+    "away": null,
     "both_score": 0.5365,
-    "draw": 0.2713,
-    "home": 0.3566,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5227
    },
    "home": "FC Porto",
@@ -1480,14 +1541,15 @@
    "kind": "retrospective",
    "match_id": "P1-2627-porto-benfica",
    "model_version": "phase4-v2",
-   "rps": 0.2762,
+   "rps": null,
    "score": [
     3,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Gil Vicente FC",
@@ -1511,7 +1573,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Sporting CP",
@@ -1535,7 +1598,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "FC Porto",
@@ -1559,16 +1623,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Estoril Praia",
    "corrected": false,
    "forecast": {
-    "away": 0.3086,
+    "away": null,
     "both_score": 0.5419,
-    "draw": 0.2706,
-    "home": 0.4208,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5066
    },
    "home": "Académico",
@@ -1576,23 +1641,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-academico-viseu-estoril",
    "model_version": "phase4-v2",
-   "rps": 0.2154,
+   "rps": null,
    "score": [
     2,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Santa Clara",
    "corrected": false,
    "forecast": {
-    "away": 0.5152,
+    "away": null,
     "both_score": 0.4392,
-    "draw": 0.2778,
-    "home": 0.207,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4108
    },
    "home": "Casa Pia AC",
@@ -1600,23 +1666,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-casa-pia-santa-clara",
    "model_version": "phase4-v2",
-   "rps": 0.139,
+   "rps": null,
    "score": [
     0,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "CD Nacional",
    "corrected": false,
    "forecast": {
-    "away": 0.298,
+    "away": null,
     "both_score": 0.4915,
-    "draw": 0.2832,
-    "home": 0.4188,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.46
    },
    "home": "Rio Ave FC",
@@ -1624,23 +1691,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-rio-ave-nacional",
    "model_version": "phase4-v2",
-   "rps": 0.2133,
+   "rps": null,
    "score": [
     3,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Vitória SC",
    "corrected": false,
    "forecast": {
-    "away": 0.0635,
+    "away": null,
     "both_score": 0.4939,
-    "draw": 0.1295,
-    "home": 0.807,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6578
    },
    "home": "SL Benfica",
@@ -1648,23 +1716,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-benfica-guimaraes",
    "model_version": "phase4-v2",
-   "rps": 0.0206,
+   "rps": null,
    "score": [
     2,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Estrela Amadora",
    "corrected": false,
    "forecast": {
-    "away": 0.2781,
+    "away": null,
     "both_score": 0.5361,
-    "draw": 0.2701,
-    "home": 0.4519,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5178
    },
    "home": "FC Arouca",
@@ -1672,23 +1741,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-arouca-estrela-amadora",
    "model_version": "phase4-v2",
-   "rps": 0.1889,
+   "rps": null,
    "score": [
     1,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Alverca",
    "corrected": false,
    "forecast": {
-    "away": 0.2077,
+    "away": null,
     "both_score": 0.4409,
-    "draw": 0.2713,
-    "home": 0.521,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.471
    },
    "home": "FC Famalicão",
@@ -1696,23 +1766,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-famalicao-alverca",
    "model_version": "phase4-v2",
-   "rps": 0.4495,
+   "rps": null,
    "score": [
     1,
     4
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Gil Vicente FC",
    "corrected": false,
    "forecast": {
-    "away": 0.1534,
+    "away": null,
     "both_score": 0.4622,
-    "draw": 0.2349,
-    "home": 0.6118,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4677
    },
    "home": "SC Braga",
@@ -1720,14 +1791,15 @@
    "kind": "retrospective",
    "match_id": "P1-2627-sp-braga-gil-vicente",
    "model_version": "phase4-v2",
-   "rps": 0.5455,
+   "rps": null,
    "score": [
     1,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "CS Marítimo",
@@ -1751,7 +1823,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Casa Pia AC",
@@ -1775,7 +1848,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "FC Arouca",
@@ -1799,16 +1873,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "FC Porto",
    "corrected": false,
    "forecast": {
-    "away": 0.6764,
+    "away": null,
     "both_score": 0.4579,
-    "draw": 0.2041,
-    "home": 0.1196,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5131
    },
    "home": "Gil Vicente FC",
@@ -1816,23 +1891,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-gil-vicente-porto",
    "model_version": "phase4-v2",
-   "rps": 0.0595,
+   "rps": null,
    "score": [
     0,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Moreirense FC",
    "corrected": false,
    "forecast": {
-    "away": 0.2445,
+    "away": null,
     "both_score": 0.5061,
-    "draw": 0.2628,
-    "home": 0.4927,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5035
    },
    "home": "Estoril Praia",
@@ -1840,23 +1916,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-estoril-moreirense",
    "model_version": "phase4-v2",
-   "rps": 0.4068,
+   "rps": null,
    "score": [
     1,
     3
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SC Braga",
    "corrected": false,
    "forecast": {
-    "away": 0.6172,
+    "away": null,
     "both_score": 0.5056,
-    "draw": 0.2265,
-    "home": 0.1563,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5132
    },
    "home": "CD Nacional",
@@ -1864,23 +1941,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-nacional-sp-braga",
    "model_version": "phase4-v2",
-   "rps": 0.5464,
+   "rps": null,
    "score": [
     1,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Famalicão",
    "corrected": false,
    "forecast": {
-    "away": 0.4694,
+    "away": null,
     "both_score": 0.4759,
-    "draw": 0.2777,
-    "home": 0.2529,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.465
    },
    "home": "Rio Ave FC",
@@ -1888,23 +1966,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-rio-ave-famalicao",
    "model_version": "phase4-v2",
-   "rps": 0.1727,
+   "rps": null,
    "score": [
     0,
     4
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Académico",
    "corrected": false,
    "forecast": {
-    "away": 0.0723,
+    "away": null,
     "both_score": 0.5391,
-    "draw": 0.1351,
-    "home": 0.7926,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.661
    },
    "home": "Sporting CP",
@@ -1912,23 +1991,24 @@
    "kind": "retrospective",
    "match_id": "P1-2627-sporting-academico-viseu",
    "model_version": "phase4-v2",
-   "rps": 0.7444,
+   "rps": null,
    "score": [
     1,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "retrospective"
+   "timing": "retrospective",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SL Benfica",
    "corrected": false,
    "forecast": {
-    "away": 0.7128,
+    "away": null,
     "both_score": 0.4877,
-    "draw": 0.1885,
-    "home": 0.0987,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5253
    },
    "home": "Santa Clara",
@@ -1936,14 +2016,15 @@
    "kind": "prospective",
    "match_id": "P1-2627-santa-clara-benfica",
    "model_version": "phase4-v2",
-   "rps": 0.0461,
+   "rps": null,
    "score": [
     1,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Sporting CP",
@@ -1967,16 +2048,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Estrela Amadora",
    "corrected": false,
    "forecast": {
-    "away": 0.3856,
+    "away": null,
     "both_score": 0.4958,
-    "draw": 0.2794,
-    "home": 0.335,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4936
    },
    "home": "Moreirense FC",
@@ -1984,23 +2066,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-moreirense-estrela-amadora",
    "model_version": "phase4-v2",
-   "rps": 0.2954,
+   "rps": null,
    "score": [
     2,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Estoril Praia",
    "corrected": false,
    "forecast": {
-    "away": 0.0513,
+    "away": null,
     "both_score": 0.4782,
-    "draw": 0.1274,
-    "home": 0.8212,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5756
    },
    "home": "FC Porto",
@@ -2008,23 +2091,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-porto-estoril",
    "model_version": "phase4-v2",
-   "rps": 0.0173,
+   "rps": null,
    "score": [
     4,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "CD Nacional",
    "corrected": false,
    "forecast": {
-    "away": 0.2193,
+    "away": null,
     "both_score": 0.4944,
-    "draw": 0.2473,
-    "home": 0.5335,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5268
    },
    "home": "FC Arouca",
@@ -2032,23 +2116,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-arouca-nacional",
    "model_version": "phase4-v2",
-   "rps": 0.1329,
+   "rps": null,
    "score": [
     1,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Rio Ave FC",
    "corrected": false,
    "forecast": {
-    "away": 0.2393,
+    "away": null,
     "both_score": 0.541,
-    "draw": 0.26,
-    "home": 0.5007,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5167
    },
    "home": "Académico",
@@ -2056,23 +2141,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-academico-viseu-rio-ave",
    "model_version": "phase4-v2",
-   "rps": 0.1533,
+   "rps": null,
    "score": [
     2,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Santa Clara",
    "corrected": false,
    "forecast": {
-    "away": 0.4201,
+    "away": null,
     "both_score": 0.5021,
-    "draw": 0.2983,
-    "home": 0.2816,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.3936
    },
    "home": "CS Marítimo",
@@ -2080,23 +2166,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-maritimo-santa-clara",
    "model_version": "phase4-v2",
-   "rps": 0.2078,
+   "rps": null,
    "score": [
     0,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Famalicão",
    "corrected": false,
    "forecast": {
-    "away": 0.1935,
+    "away": null,
     "both_score": 0.4683,
-    "draw": 0.2676,
-    "home": 0.539,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4307
    },
    "home": "SC Braga",
@@ -2104,23 +2191,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-sp-braga-famalicao",
    "model_version": "phase4-v2",
-   "rps": 0.125,
+   "rps": null,
    "score": [
     3,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Alverca",
    "corrected": false,
    "forecast": {
-    "away": 0.0522,
+    "away": null,
     "both_score": 0.4988,
-    "draw": 0.104,
-    "home": 0.8438,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6934
    },
    "home": "SL Benfica",
@@ -2128,23 +2216,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-benfica-alverca",
    "model_version": "phase4-v2",
-   "rps": 0.0136,
+   "rps": null,
    "score": [
     1,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Vitória SC",
    "corrected": false,
    "forecast": {
-    "away": 0.3787,
+    "away": null,
     "both_score": 0.4377,
-    "draw": 0.292,
-    "home": 0.3293,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.4303
    },
    "home": "Gil Vicente FC",
@@ -2152,14 +2241,15 @@
    "kind": "prospective",
    "match_id": "P1-2627-gil-vicente-guimaraes",
    "model_version": "phase4-v2",
-   "rps": 0.1259,
+   "rps": null,
    "score": [
     0,
     0
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Arouca",
@@ -2183,7 +2273,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Académico",
@@ -2207,7 +2298,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Casa Pia AC",
@@ -2231,7 +2323,8 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "Moreirense FC",
@@ -2255,16 +2348,17 @@
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "odds_ratings"
   },
   {
    "away": "CS Marítimo",
    "corrected": false,
    "forecast": {
-    "away": 0.2713,
+    "away": null,
     "both_score": 0.5682,
-    "draw": 0.2653,
-    "home": 0.4634,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5171
    },
    "home": "Estoril Praia",
@@ -2276,16 +2370,17 @@
    "score": null,
    "season": "2026/27",
    "state": "awaiting",
-   "timing": "pending"
+   "timing": "pending",
+   "x12_source": "pre_closing"
   },
   {
    "away": "Gil Vicente FC",
    "corrected": false,
    "forecast": {
-    "away": 0.2712,
+    "away": null,
     "both_score": 0.3956,
-    "draw": 0.301,
-    "home": 0.4279,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.376
    },
    "home": "Santa Clara",
@@ -2293,23 +2388,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-santa-clara-gil-vicente",
    "model_version": "phase4-v2",
-   "rps": 0.3571,
+   "rps": null,
    "score": [
     1,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "FC Porto",
    "corrected": false,
    "forecast": {
-    "away": 0.5881,
+    "away": null,
     "both_score": 0.4634,
-    "draw": 0.2312,
-    "home": 0.1807,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5208
    },
    "home": "Vitória SC",
@@ -2317,23 +2413,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-guimaraes-porto",
    "model_version": "phase4-v2",
-   "rps": 0.1011,
+   "rps": null,
    "score": [
     1,
     2
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SL Benfica",
    "corrected": false,
    "forecast": {
-    "away": 0.7863,
+    "away": null,
     "both_score": 0.5355,
-    "draw": 0.1352,
-    "home": 0.0785,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.6754
    },
    "home": "Estrela Amadora",
@@ -2341,23 +2438,24 @@
    "kind": "prospective",
    "match_id": "P1-2627-estrela-amadora-benfica",
    "model_version": "phase4-v2",
-   "rps": 0.0259,
+   "rps": null,
    "score": [
     2,
     3
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   },
   {
    "away": "SC Braga",
    "corrected": false,
    "forecast": {
-    "away": 0.6337,
+    "away": null,
     "both_score": 0.5133,
-    "draw": 0.215,
-    "home": 0.1513,
+    "draw": null,
+    "home": null,
     "over_2_5": 0.5388
    },
    "home": "Rio Ave FC",
@@ -2365,14 +2463,15 @@
    "kind": "prospective",
    "match_id": "P1-2627-rio-ave-sp-braga",
    "model_version": "phase4-v2",
-   "rps": 0.0785,
+   "rps": null,
    "score": [
     0,
     1
    ],
    "season": "2026/27",
    "state": "played",
-   "timing": "valid"
+   "timing": "valid",
+   "x12_source": "pre_closing"
   }
  ]
 }

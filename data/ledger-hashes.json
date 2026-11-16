@@ -1,6 +1,6 @@
 {
  "algorithm": "sha256",
- "format": 1,
+ "format": 2,
  "hashed": "Each ledger line's UTF-8 bytes, without the trailing newline.",
  "lines": [
   {

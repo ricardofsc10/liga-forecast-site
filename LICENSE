@@ -1,0 +1,24 @@
+Contas da Bola (https://contasdabola.pt/)
+
+Open data
+---------
+The JSON files under data/ are licensed under the Creative Commons Attribution 4.0
+International licence (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/legalcode
+
+The licence covers only this project's own outputs: forecasts, simulations and metrics.
+Sports facts (fixtures, dates, scores) are given with no claim of rights.
+
+Attribution: "Source: Contas da Bola (https://contasdabola.pt/), CC BY 4.0".
+
+Excluded from the licence
+-------------------------
+- Third-party data, including bookmaker odds and everything derived from them, match
+  statistics and expected goals. None of it is in data/.
+- Club names, trademarks and crests (static/crests/), which belong to their owners and are
+  used only to identify the clubs.
+- The Archivo font (static/fonts/), under the SIL Open Font License 1.1 (static/fonts/OFL.txt).
+
+Everything else
+---------------
+The pages, texts, images and scripts of the site are (c) Contas da Bola, all rights reserved,
+unless stated otherwise.

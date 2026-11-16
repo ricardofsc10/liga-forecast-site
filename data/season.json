@@ -1012,7 +1012,7 @@
   }
  ],
  "data_cutoff_utc": "2026-11-09T14:44:53Z",
- "format": 1,
+ "format": 2,
  "model_version": "season-s2-v1",
  "played": 98,
  "remaining": 208,

@@ -2,6 +2,8 @@
 <html lang="pt">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-kZdZMqf+9PJAyXuU49ZstML23lnMFAnRIqJygKmm58k=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FC Famalicão: época 2026/27 · Contas da Bola</title>
 <meta name="description" content="Onde o FC Famalicão pode acabar a Primeira Liga 2026/27: probabilidade de cada posição final e de ficar à frente de cada outro clube, a partir da simulação de época congelada.">
@@ -29,7 +31,8 @@
   --draw: #9a9ea3; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
   --bw-fill: #1b1b1b; --bw-alt: #ffffff; --strip-draw: #7a7f86;  /* list strips (D-163): black stands out here; the draw at 3.2:1 */
   --good-ink: #ffffff; --bad-ink: #ffffff;
-  --good: #12804e; --bad: #b42318; --good-wash: rgba(18,128,78,0.14); --wash: rgba(31,95,196,0.12);
+  --good: #0d6640; --bad: #b42318; --good-wash: rgba(13,102,64,0.14);  /* 5.5:1 on the page (D-186) */
+  --wash: rgba(31,95,196,0.12);
   --card-other: #8f939a; --card-empty: #d0d2cf; --bw-edge: rgba(0,0,0,0.45);
   --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
   --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
@@ -254,6 +257,7 @@ section.block { padding: 52px 0 0; }
 
 /* Tables */
 .scroll { position: relative; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.scroll:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 table { border-collapse: collapse; width: 100%; font-size: 15px; }
 caption { text-align: left; padding: 0 0 8px; }
 th, td { padding: 8px 8px; border-bottom: 1px solid var(--grid); text-align: right; white-space: nowrap; }
@@ -356,7 +360,14 @@ table.stakes th, table.stakes td { padding: 4px 4px; }
 .scn-reset { margin-bottom: 8px; }
 
 footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--ring); color: var(--muted); font-size: 14px; }
-footer p { max-width: none; }
+footer p { max-width: none; margin: 0 0 8px; }
+footer .links { margin-top: 12px; }
+.stale { margin: 16px 0 0; padding: 10px 14px; border: 1px solid var(--ring); border-left: 4px solid var(--ink); border-radius: 2px; color: var(--ink); max-width: none; }
+.prose { max-width: 70ch; padding-bottom: 24px; }
+.prose h2 { font-size: 20px; margin: 28px 0 8px; }
+.prose p, .prose li { color: var(--ink-2); }
+.prose ul { padding-left: 20px; }
+.prose button.chip { font: inherit; font-size: 14px; cursor: pointer; background: none; color: var(--ink); }
 
 @media (max-width: 720px) {
   .hero { grid-template-columns: 1fr; padding: 22px 18px; }
@@ -1085,7 +1096,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 </head>
 <body>
 <a class="skip" href="#top">Saltar para o conteúdo</a>
-<div class="bar"><div class="wrap">
+<header class="bar"><div class="wrap">
   <a class="brand" href="../"><svg viewBox="0 0 19 12" aria-hidden="true"><rect x="0" y="0" width="5" height="5" rx="1"/><rect class="lit" x="7" y="0" width="5" height="5" rx="1"/><rect x="14" y="0" width="5" height="5" rx="1"/><rect class="lit" x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/><rect x="14" y="7" width="5" height="5" rx="1"/></svg><span>Contas da Bola</span></a>
   <nav aria-label="Secções"><a href="../">Início</a>
 <a href="../jogar">Jogar</a>
@@ -1096,9 +1107,9 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 </nav>
   <button class="theme" type="button" aria-label="Alternar entre claro e escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
   <a class="lang" href="../en/clubes/fc-famalicao" hreflang="en" lang="en">EN<span class="visually-hidden"> · Read this page in English</span></a>
-</div></div>
+</div></header>
 <main id="top" class="wrap">
-<section class="club-head">
+<p class="stale" role="status" hidden data-after="2026-11-18T06:09:00Z">Estes números podem estar desatualizados: o site não é atualizado desde seg 16/11/2026 18:09.</p><section class="club-head">
   <h1><i class="club-card card-famalicao"></i>FC Famalicão</h1>
   <button type="button" class="fav" data-club-toggle="famalicao" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>O meu clube</button>
   <p class="say">Em 100 épocas simuladas, <strong>o FC Famalicão vai à Europa em 7</strong>.</p>
@@ -1134,7 +1145,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
       <span><i class="z1"></i>Champions</span><span><i class="z2"></i>Pré-eliminatória Champions</span><span><i class="z3"></i>Liga Europa</span><span><i class="z4"></i>Liga Conferência</span><span><i class="z5"></i>Play-off de descida</span><span><i class="z6"></i>Descida</span>
     </div>
     <svg class="chart cols" viewBox="0 0 720 220" role="img" aria-label="posição final"><line class="grid" x1="48" x2="704" y1="176.0" y2="176.0"/><text class="tick" x="40" y="180.0" text-anchor="end">0%</text><line class="grid" x1="48" x2="704" y1="124.0" y2="124.0"/><text class="tick" x="40" y="128.0" text-anchor="end">5%</text><line class="grid" x1="48" x2="704" y1="72.0" y2="72.0"/><text class="tick" x="40" y="76.0" text-anchor="end">10%</text><line class="grid" x1="48" x2="704" y1="20.0" y2="20.0"/><text class="tick" x="40" y="24.0" text-anchor="end">15%</text><g><title>1.º lugar: &amp;lt;1%</title><rect class="col z1" x="53.5" y="176.0" width="25.5" height="0.0" rx="2"/><rect class="hit" x="48.0" y="20" width="36.4" height="156"/></g><text class="tick" x="66.2" y="192" text-anchor="middle">1</text><g><title>2.º lugar: &amp;lt;1%</title><rect class="col z1" x="89.9" y="176.0" width="25.5" height="0.0" rx="2"/><rect class="hit" x="84.4" y="20" width="36.4" height="156"/></g><text class="tick" x="102.7" y="192" text-anchor="middle">2</text><g><title>3.º lugar: &amp;lt;1%</title><rect class="col z2" x="126.4" y="175.8" width="25.5" height="0.2" rx="2"/><rect class="hit" x="120.9" y="20" width="36.4" height="156"/></g><text class="tick" x="139.1" y="192" text-anchor="middle">3</text><g><title>4.º lugar: 2%</title><rect class="col z3" x="162.8" y="160.0" width="25.5" height="16.0" rx="2"/><rect class="hit" x="157.3" y="20" width="36.4" height="156"/></g><text class="tick" x="175.6" y="192" text-anchor="middle">4</text><g><title>5.º lugar: 5%</title><rect class="col z4" x="199.2" y="126.5" width="25.5" height="49.5" rx="2"/><rect class="hit" x="193.8" y="20" width="36.4" height="156"/></g><text class="tick" x="212.0" y="192" text-anchor="middle">5</text><g><title>6.º lugar: 8%</title><rect class="col z0" x="235.7" y="95.6" width="25.5" height="80.4" rx="2"/><rect class="hit" x="230.2" y="20" width="36.4" height="156"/></g><text class="tick" x="248.4" y="192" text-anchor="middle">6</text><g><title>7.º lugar: 10%</title><rect class="col z0" x="272.1" y="69.3" width="25.5" height="106.7" rx="2"/><rect class="hit" x="266.7" y="20" width="36.4" height="156"/></g><text class="tick" x="284.9" y="192" text-anchor="middle">7</text><g><title>8.º lugar: 13%</title><rect class="col z0" x="308.6" y="45.4" width="25.5" height="130.6" rx="2"/><rect class="hit" x="303.1" y="20" width="36.4" height="156"/></g><text class="tick" x="321.3" y="192" text-anchor="middle">8</text><g><title>9.º lugar: 14%</title><rect class="col z0" x="345.0" y="25.7" width="25.5" height="150.3" rx="2"/><rect class="hit" x="339.6" y="20" width="36.4" height="156"/></g><text class="tick" x="357.8" y="192" text-anchor="middle">9</text><g><title>10.º lugar: 15%</title><rect class="col z0" x="381.5" y="20.4" width="25.5" height="155.6" rx="2"/><rect class="hit" x="376.0" y="20" width="36.4" height="156"/></g><text class="tick" x="394.2" y="192" text-anchor="middle">10</text><g><title>11.º lugar: 12%</title><rect class="col z0" x="417.9" y="46.9" width="25.5" height="129.1" rx="2"/><rect class="hit" x="412.4" y="20" width="36.4" height="156"/></g><text class="tick" x="430.7" y="192" text-anchor="middle">11</text><g><title>12.º lugar: 9%</title><rect class="col z0" x="454.4" y="82.2" width="25.5" height="93.8" rx="2"/><rect class="hit" x="448.9" y="20" width="36.4" height="156"/></g><text class="tick" x="467.1" y="192" text-anchor="middle">12</text><g><title>13.º lugar: 6%</title><rect class="col z0" x="490.8" y="117.8" width="25.5" height="58.2" rx="2"/><rect class="hit" x="485.3" y="20" width="36.4" height="156"/></g><text class="tick" x="503.6" y="192" text-anchor="middle">13</text><g><title>14.º lugar: 3%</title><rect class="col z0" x="527.2" y="140.1" width="25.5" height="35.9" rx="2"/><rect class="hit" x="521.8" y="20" width="36.4" height="156"/></g><text class="tick" x="540.0" y="192" text-anchor="middle">14</text><g><title>15.º lugar: 2%</title><rect class="col z0" x="563.7" y="157.0" width="25.5" height="19.0" rx="2"/><rect class="hit" x="558.2" y="20" width="36.4" height="156"/></g><text class="tick" x="576.4" y="192" text-anchor="middle">15</text><g><title>16.º lugar: 1%</title><rect class="col z5" x="600.1" y="167.0" width="25.5" height="9.0" rx="2"/><rect class="hit" x="594.7" y="20" width="36.4" height="156"/></g><text class="tick" x="612.9" y="192" text-anchor="middle">16</text><g><title>17.º lugar: &amp;lt;1%</title><rect class="col z6" x="636.6" y="171.8" width="25.5" height="4.2" rx="2"/><rect class="hit" x="631.1" y="20" width="36.4" height="156"/></g><text class="tick" x="649.3" y="192" text-anchor="middle">17</text><g><title>18.º lugar: &amp;lt;1%</title><rect class="col z6" x="673.0" y="174.6" width="25.5" height="1.4" rx="2"/><rect class="hit" x="667.6" y="20" width="36.4" height="156"/></g><text class="tick" x="685.8" y="192" text-anchor="middle">18</text><text class="axis-label" x="376.0" y="214" text-anchor="middle">posição final</text></svg>
-    <div class="scroll"><table>
+    <div class="scroll" tabindex="0" role="region" aria-label="Tabela que desliza para o lado"><table>
       <caption>Probabilidade de cada posição final. Uma célula vazia quer dizer menos de 1 em 100.</caption>
       <thead><tr><th class="text">Posição</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th></tr></thead>
       <tbody><tr><td class="text">Probabilidade</td><td></td><td></td><td></td><td>2%</td><td>5%</td><td>8%</td><td>10%</td><td>13%</td><td>14%</td><td>15%</td><td>12%</td><td>9%</td><td>6%</td><td>3%</td><td>2%</td><td>1%</td><td></td><td></td></tr></tbody>
@@ -1152,7 +1163,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 
 <section class="block" aria-labelledby="club-runin">
   <h2 id="club-runin">O calendário que falta</h2>
-  <div class="scroll"><table class="runin num">
+  <div class="scroll" tabindex="0" role="region" aria-label="Tabela que desliza para o lado"><table class="runin num">
     <caption class="visually-hidden">Jogos que faltam, jornada a jornada: FC Famalicão e os clubes mais perto dele na classificação</caption>
     <thead><tr><th scope="col"><span class="visually-hidden">Clube</span></th><th scope="col">12</th><th scope="col">13</th><th scope="col">14</th><th scope="col">15</th><th scope="col">16</th><th scope="col">17</th><th scope="col">18</th><th scope="col">19</th><th scope="col">20</th><th scope="col">21</th><th scope="col">22</th><th scope="col">23</th><th scope="col">24</th><th scope="col">25</th><th scope="col">26</th><th scope="col">27</th><th scope="col">28</th><th scope="col">29</th><th scope="col">30</th><th scope="col">31</th><th scope="col">32</th><th scope="col">33</th><th scope="col">34</th></tr></thead>
     <tbody>
@@ -1178,13 +1189,13 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <section class="block">
   <h2>As probabilidades do FC Famalicão, resultado a resultado</h2>
   <div class="legend"><span><i class="k3"></i>Europa (1.º–5.º)</span></div>
-  <div class="scroll"><svg class="chart" viewBox="0 0 720 240" role="img" aria-label="probabilidades de época do clube"><line class="grid" x1="48" x2="672" y1="196.0" y2="196.0"/><text class="tick" x="40" y="200.0" text-anchor="end">0%</text><line class="grid" x1="48" x2="672" y1="150.0" y2="150.0"/><text class="tick" x="40" y="154.0" text-anchor="end">25%</text><line class="grid" x1="48" x2="672" y1="104.0" y2="104.0"/><text class="tick" x="40" y="108.0" text-anchor="end">50%</text><line class="grid" x1="48" x2="672" y1="58.0" y2="58.0"/><text class="tick" x="40" y="62.0" text-anchor="end">75%</text><line class="grid" x1="48" x2="672" y1="12.0" y2="12.0"/><text class="tick" x="40" y="16.0" text-anchor="end">100%</text><text class="tick" x="48.0" y="212" text-anchor="middle">9</text><text class="tick" x="378.4" y="212" text-anchor="middle">10</text><text class="axis-label" x="360.0" y="234" text-anchor="middle">jornadas jogadas</text><polyline class="line s3" points="48.0,173.1 304.9,183.2 378.4,183.3 672.0,184.4"/><g><title>Europa (1.º–5.º): 12% depois de 81 resultados (até 29/10/2026)</title><circle class="hit" cx="48.0" cy="173.1" r="9"/><circle class="marker s3" cx="48.0" cy="173.1" r="3"/></g><g><title>Europa (1.º–5.º): 7% depois de 88 resultados (até 02/11/2026)</title><circle class="hit" cx="304.9" cy="183.2" r="9"/><circle class="marker s3" cx="304.9" cy="183.2" r="3"/></g><g><title>Europa (1.º–5.º): 7% depois de 90 resultados (até 03/11/2026)</title><circle class="hit" cx="378.4" cy="183.3" r="9"/><circle class="marker s3" cx="378.4" cy="183.3" r="3"/></g><g><title>Europa (1.º–5.º): 6% depois de 98 resultados (até 09/11/2026)</title><circle class="hit" cx="672.0" cy="184.4" r="9"/><circle class="marker s3" cx="672.0" cy="184.4" r="3"/></g><text class="end s3" x="680.0" y="188.4">6%</text></svg></div>
+  <div class="scroll" tabindex="0" role="region" aria-label="Tabela que desliza para o lado"><svg class="chart" viewBox="0 0 720 240" role="img" aria-label="probabilidades de época do clube"><line class="grid" x1="48" x2="672" y1="196.0" y2="196.0"/><text class="tick" x="40" y="200.0" text-anchor="end">0%</text><line class="grid" x1="48" x2="672" y1="150.0" y2="150.0"/><text class="tick" x="40" y="154.0" text-anchor="end">25%</text><line class="grid" x1="48" x2="672" y1="104.0" y2="104.0"/><text class="tick" x="40" y="108.0" text-anchor="end">50%</text><line class="grid" x1="48" x2="672" y1="58.0" y2="58.0"/><text class="tick" x="40" y="62.0" text-anchor="end">75%</text><line class="grid" x1="48" x2="672" y1="12.0" y2="12.0"/><text class="tick" x="40" y="16.0" text-anchor="end">100%</text><text class="tick" x="48.0" y="212" text-anchor="middle">9</text><text class="tick" x="378.4" y="212" text-anchor="middle">10</text><text class="axis-label" x="360.0" y="234" text-anchor="middle">jornadas jogadas</text><polyline class="line s3" points="48.0,173.1 304.9,183.2 378.4,183.3 672.0,184.4"/><g><title>Europa (1.º–5.º): 12% depois de 81 resultados (até 29/10/2026)</title><circle class="hit" cx="48.0" cy="173.1" r="9"/><circle class="marker s3" cx="48.0" cy="173.1" r="3"/></g><g><title>Europa (1.º–5.º): 7% depois de 88 resultados (até 02/11/2026)</title><circle class="hit" cx="304.9" cy="183.2" r="9"/><circle class="marker s3" cx="304.9" cy="183.2" r="3"/></g><g><title>Europa (1.º–5.º): 7% depois de 90 resultados (até 03/11/2026)</title><circle class="hit" cx="378.4" cy="183.3" r="9"/><circle class="marker s3" cx="378.4" cy="183.3" r="3"/></g><g><title>Europa (1.º–5.º): 6% depois de 98 resultados (até 09/11/2026)</title><circle class="hit" cx="672.0" cy="184.4" r="9"/><circle class="marker s3" cx="672.0" cy="184.4" r="3"/></g><text class="end s3" x="680.0" y="188.4">6%</text></svg></div>
 </section>
 
 <section class="block" id="ahead">
   <h2>Frente a frente: quem acaba à frente?</h2>
   <p class="lede">Em 100 épocas simuladas, quantas vezes o FC Famalicão acaba à frente dos rivais a sério.</p>
-  <div class="scroll"><table aria-label="Frente a frente: quem acaba à frente?">
+  <div class="scroll" tabindex="0" role="region" aria-label="Tabela que desliza para o lado"><table aria-label="Frente a frente: quem acaba à frente?">
     <thead><tr><th class="text">Rival</th><th>FC Famalicão à frente</th></tr></thead>
     <tbody>
     <tr><td class="text"><i class="club-card card-sp-braga"></i><a class="club" href="sc-braga">SC Braga</a></td><td class="chance" style="--p: 0.050"><span>5%</span></td></tr>
@@ -1206,7 +1217,12 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <p class="sure-line">Acaba quase sempre atrás de: <a class="club" href="fc-porto">FC Porto</a>, <a class="club" href="sl-benfica">SL Benfica</a>, <a class="club" href="sporting-cp">Sporting CP</a></p>  <nav class="clubs-nav" aria-label="Outros clubes"><a href="fc-porto"><i class="club-card card-porto"></i>FC Porto</a><a href="sl-benfica"><i class="club-card card-benfica"></i>SL Benfica</a><a href="sporting-cp"><i class="club-card card-sporting"></i>Sporting CP</a><a href="sc-braga"><i class="club-card card-sp-braga"></i>SC Braga</a><a href="santa-clara"><i class="club-card card-santa-clara"></i>Santa Clara</a><a href="fc-arouca"><i class="club-card card-arouca"></i>FC Arouca</a><a href="gil-vicente-fc"><i class="club-card card-gil-vicente"></i>Gil Vicente FC</a><a href="academico"><i class="club-card card-academico-viseu"></i>Académico</a><a href="vitoria-sc"><i class="club-card card-guimaraes"></i>Vitória SC</a><a href="fc-famalicao" aria-current="page"><i class="club-card card-famalicao"></i>FC Famalicão</a><a href="fc-alverca"><i class="club-card card-alverca"></i>FC Alverca</a><a href="moreirense-fc"><i class="club-card card-moreirense"></i>Moreirense FC</a><a href="estrela-amadora"><i class="club-card card-estrela-amadora"></i>Estrela Amadora</a><a href="cs-maritimo"><i class="club-card card-maritimo"></i>CS Marítimo</a><a href="cd-nacional"><i class="club-card card-nacional"></i>CD Nacional</a><a href="casa-pia-ac"><i class="club-card card-casa-pia"></i>Casa Pia AC</a><a href="rio-ave-fc"><i class="club-card card-rio-ave"></i>Rio Ave FC</a><a href="estoril-praia"><i class="club-card card-estoril"></i>Estoril Praia</a></nav>
 </section>
 </main>
-<footer><div class="wrap">Projeto pessoal. As previsões são probabilidades, não promessas, e nada aqui é aconselhamento de apostas. Os emblemas pertencem aos clubes; o site não tem ligação a eles nem à Liga. <a href="../como-funciona">Como funciona</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></div></footer>
+<footer><div class="wrap">
+<p>Projeto pessoal e não comercial, sem ligação à Liga Portugal, aos clubes nem a casas de apostas. As previsões são probabilidades, não promessas, e nada aqui é aconselhamento de apostas. Os emblemas pertencem aos clubes.</p>
+<p><b>18+</b> · O jogo pode causar dependência. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Linha 1414 (gratuita e anónima)</a></p>
+<p>Dados: Football-Data.co.uk e Bzzoiro Sports Data; dados não oficiais. As nossas previsões em JSON estão sob CC BY 4.0, sem odds nem estatísticas de terceiros.</p>
+<p>Atualizado: <time datetime="2026-11-16T18:09:00Z">seg 16/11/2026 18:09</time></p><p class="links"><a href="../como-funciona">Como funciona</a> · <a href="../termos">Termos</a> · <a href="../privacidade">Privacidade</a> · <a href="../fontes-e-licencas">Fontes e licenças</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
+</div></footer>
 <script>
 (function () {
   var d = document.documentElement, b = document.querySelector(".bar .theme");
@@ -1218,6 +1234,8 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 })();
 </script>
 <script>
+(function () { var p = document.querySelector(".stale"); if (p && Date.now() > Date.parse(p.dataset.after)) p.hidden = false; })();
+</script><script>
 (function () {
   // The fan's club (D-089): kept in this browser only. Adds to the page, never required by it.
   var KEY = "club", club = null;
@@ -1344,5 +1362,13 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   });
 })();
 </script>
-<script data-goatcounter="https://contasdabola.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body>
+<script>
+(function () {
+  try { if (localStorage.getItem("skipgc") === "t") return; } catch (e) {}
+  if (navigator.globalPrivacyControl || navigator.webdriver) return;
+  var r = "";
+  try { var u = new URL(document.referrer); if (u.host !== location.host) r = u.origin + u.pathname; } catch (e) {}
+  new Image().src = "https://contasdabola.goatcounter.com/count" + "?p=" + encodeURIComponent(location.pathname) + (r ? "&r=" + encodeURIComponent(r) : "") + "&rnd=" + Math.random().toString(36).slice(2);
+})();
+</script></body>
 </html>

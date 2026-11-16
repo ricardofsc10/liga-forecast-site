@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FC Porto – Sporting CP · Contas da Bola</title>
 <meta name="description" content="Our forecast for FC Porto – Sporting CP: who is the favourite, how many goals and the most likely scores.">
@@ -29,7 +31,8 @@
   --draw: #9a9ea3; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
   --bw-fill: #1b1b1b; --bw-alt: #ffffff; --strip-draw: #7a7f86;  /* list strips (D-163): black stands out here; the draw at 3.2:1 */
   --good-ink: #ffffff; --bad-ink: #ffffff;
-  --good: #12804e; --bad: #b42318; --good-wash: rgba(18,128,78,0.14); --wash: rgba(31,95,196,0.12);
+  --good: #0d6640; --bad: #b42318; --good-wash: rgba(13,102,64,0.14);  /* 5.5:1 on the page (D-186) */
+  --wash: rgba(31,95,196,0.12);
   --card-other: #8f939a; --card-empty: #d0d2cf; --bw-edge: rgba(0,0,0,0.45);
   --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
   --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
@@ -254,6 +257,7 @@ section.block { padding: 52px 0 0; }
 
 /* Tables */
 .scroll { position: relative; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.scroll:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 table { border-collapse: collapse; width: 100%; font-size: 15px; }
 caption { text-align: left; padding: 0 0 8px; }
 th, td { padding: 8px 8px; border-bottom: 1px solid var(--grid); text-align: right; white-space: nowrap; }
@@ -356,7 +360,14 @@ table.stakes th, table.stakes td { padding: 4px 4px; }
 .scn-reset { margin-bottom: 8px; }
 
 footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--ring); color: var(--muted); font-size: 14px; }
-footer p { max-width: none; }
+footer p { max-width: none; margin: 0 0 8px; }
+footer .links { margin-top: 12px; }
+.stale { margin: 16px 0 0; padding: 10px 14px; border: 1px solid var(--ring); border-left: 4px solid var(--ink); border-radius: 2px; color: var(--ink); max-width: none; }
+.prose { max-width: 70ch; padding-bottom: 24px; }
+.prose h2 { font-size: 20px; margin: 28px 0 8px; }
+.prose p, .prose li { color: var(--ink-2); }
+.prose ul { padding-left: 20px; }
+.prose button.chip { font: inherit; font-size: 14px; cursor: pointer; background: none; color: var(--ink); }
 
 @media (max-width: 720px) {
   .hero { grid-template-columns: 1fr; padding: 22px 18px; }
@@ -1085,7 +1096,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 </head>
 <body>
 <a class="skip" href="#top">Skip to the content</a>
-<div class="bar"><div class="wrap">
+<header class="bar"><div class="wrap">
   <a class="brand" href="../../en/"><svg viewBox="0 0 19 12" aria-hidden="true"><rect x="0" y="0" width="5" height="5" rx="1"/><rect class="lit" x="7" y="0" width="5" height="5" rx="1"/><rect x="14" y="0" width="5" height="5" rx="1"/><rect class="lit" x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/><rect x="14" y="7" width="5" height="5" rx="1"/></svg><span>Contas da Bola</span></a>
   <nav aria-label="Sections"><a href="../">Front page</a>
 <a href="../jogar">Play</a>
@@ -1096,9 +1107,9 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 </nav>
   <button class="theme" type="button" aria-label="Switch between light and dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
   <a class="lang" href="../../jogos/P1-2627-porto-sporting" hreflang="pt" lang="pt">PT<span class="visually-hidden"> · Ler esta página em português</span></a>
-</div></div>
+</div></header>
 <main id="top" class="wrap">
-<article class="match-page">
+<p class="stale" role="status" hidden data-after="2026-11-18T06:09:00Z">These numbers may be out of date: the site has not been updated since Mon 2026-11-16 18:09.</p><article class="match-page">
   <header class="match-head">
     <h1><span>FC Porto</span> <span class="x" aria-hidden="true">×</span> <span>Sporting CP</span></h1>
     <p class="meta">Sun 2026-11-29 20:30</p>
@@ -1156,7 +1167,12 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <p><a class="more" href="../../en/jornadas">← All the matchdays</a></p>
 </article>
 </main>
-<footer><div class="wrap">Personal project. Forecasts are chances, not promises, and nothing here is betting advice. The crests belong to the clubs; this site has no link to them or to the league. <a href="../../en/como-funciona">How it works</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></div></footer>
+<footer><div class="wrap">
+<p>Personal, non-commercial project, with no link to Liga Portugal, the clubs or any bookmaker. Forecasts are chances, not promises, and nothing here is betting advice. The crests belong to the clubs.</p>
+<p><b>18+</b> · Gambling can be addictive. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Helpline 1414 (free and anonymous)</a></p>
+<p>Data: Football-Data.co.uk and Bzzoiro Sports Data; unofficial data. Our forecasts in JSON are under CC BY 4.0, with no odds or third-party statistics.</p>
+<p>Updated: <time datetime="2026-11-16T18:09:00Z">Mon 2026-11-16 18:09</time></p><p class="links"><a href="../../en/como-funciona">How it works</a> · <a href="../../en/termos">Terms</a> · <a href="../../en/privacidade">Privacy</a> · <a href="../../en/fontes-e-licencas">Sources and licences</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
+</div></footer>
 <script>
 (function () {
   var d = document.documentElement, b = document.querySelector(".bar .theme");
@@ -1168,6 +1184,8 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 })();
 </script>
 <script>
+(function () { var p = document.querySelector(".stale"); if (p && Date.now() > Date.parse(p.dataset.after)) p.hidden = false; })();
+</script><script>
 (function () {
   // The fan's club (D-089): kept in this browser only. Adds to the page, never required by it.
   var KEY = "club", club = null;
@@ -1211,5 +1229,13 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   apply();
 })();
 </script>
-<script data-goatcounter="https://contasdabola.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script></body>
+<script>
+(function () {
+  try { if (localStorage.getItem("skipgc") === "t") return; } catch (e) {}
+  if (navigator.globalPrivacyControl || navigator.webdriver) return;
+  var r = "";
+  try { var u = new URL(document.referrer); if (u.host !== location.host) r = u.origin + u.pathname; } catch (e) {}
+  new Image().src = "https://contasdabola.goatcounter.com/count" + "?p=" + encodeURIComponent(location.pathname) + (r ? "&r=" + encodeURIComponent(r) : "") + "&rnd=" + Math.random().toString(36).slice(2);
+})();
+</script></body>
 </html>
