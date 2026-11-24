@@ -162,6 +162,25 @@ a:hover { color: var(--amber-text); }
 .club-card.card-santa-clara { background-image: url("../../static/crests/santa-clara.png"); }
 .club-card.card-sp-braga { background-image: url("../../static/crests/sp-braga.png"); }
 .club-card.card-sporting { background-image: url("../../static/crests/sporting.png"); }
+/* A club page's title shows the large copy (D-191); only the element shown fetches its image. */
+.club-head h1 .club-card.card-academico-viseu { background-image: url("../../static/crests/large/academico-viseu.png"); }
+.club-head h1 .club-card.card-alverca { background-image: url("../../static/crests/large/alverca.png"); }
+.club-head h1 .club-card.card-arouca { background-image: url("../../static/crests/large/arouca.png"); }
+.club-head h1 .club-card.card-benfica { background-image: url("../../static/crests/large/benfica.png"); }
+.club-head h1 .club-card.card-casa-pia { background-image: url("../../static/crests/large/casa-pia.png"); }
+.club-head h1 .club-card.card-estoril { background-image: url("../../static/crests/large/estoril.png"); }
+.club-head h1 .club-card.card-estrela-amadora { background-image: url("../../static/crests/large/estrela-amadora.png"); }
+.club-head h1 .club-card.card-famalicao { background-image: url("../../static/crests/large/famalicao.png"); }
+.club-head h1 .club-card.card-gil-vicente { background-image: url("../../static/crests/large/gil-vicente.png"); }
+.club-head h1 .club-card.card-guimaraes { background-image: url("../../static/crests/large/guimaraes.png"); }
+.club-head h1 .club-card.card-maritimo { background-image: url("../../static/crests/large/maritimo.png"); }
+.club-head h1 .club-card.card-moreirense { background-image: url("../../static/crests/large/moreirense.png"); }
+.club-head h1 .club-card.card-nacional { background-image: url("../../static/crests/large/nacional.png"); }
+.club-head h1 .club-card.card-porto { background-image: url("../../static/crests/large/porto.png"); }
+.club-head h1 .club-card.card-rio-ave { background-image: url("../../static/crests/large/rio-ave.png"); }
+.club-head h1 .club-card.card-santa-clara { background-image: url("../../static/crests/large/santa-clara.png"); }
+.club-head h1 .club-card.card-sp-braga { background-image: url("../../static/crests/large/sp-braga.png"); }
+.club-head h1 .club-card.card-sporting { background-image: url("../../static/crests/large/sporting.png"); }
 /* List strips (D-163, D-164): each club's plain colour and its other one, per theme. */
 :root { --strip-alverca: #1f4fa3; --strip-alverca-alt: #d6202f; --strip-arouca: #f2c200; --strip-arouca-alt: #1d3d8f; --strip-benfica: #d6202f; --strip-benfica-alt: #4b0b10; --strip-estoril: #f2c200; --strip-estoril-alt: #1d5fbf; --strip-estrela-amadora: #d6202f; --strip-estrela-amadora-alt: #138a4a; --strip-famalicao: #1d3f8f; --strip-famalicao-alt: #0a1632; --strip-gil-vicente: #d6202f; --strip-gil-vicente-alt: #1f4fa3; --strip-maritimo: #138a4a; --strip-maritimo-alt: #d6202f; --strip-moreirense: #138a4a; --strip-moreirense-alt: #07301a; --strip-porto: #1f4fa3; --strip-porto-alt: #0b1c39; --strip-rio-ave: #138a4a; --strip-rio-ave-alt: #07301a; --strip-santa-clara: #d6202f; --strip-santa-clara-alt: #4b0b10; --strip-sp-braga: #d22630; --strip-sp-braga-alt: #4a0d11; --strip-sporting: #0b8a52; --strip-sporting-alt: #04301d; }
 .strip i[style*="--bw-alt"] { box-shadow: inset 0 0 0 1px var(--bw-edge); }  /* the second black-and-white club */
@@ -714,7 +733,7 @@ tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bott
 /* The club's place in the table the fan is building, and how far it moved from where it stood. */
 .scn-table .rank { display: inline-block; min-width: 1.5em; color: var(--muted); font-weight: 650; }
 .scn-table .moved { margin-left: 6px; color: var(--muted); font-size: 12px; font-weight: 700; white-space: nowrap; }
-.scn-table .delta { grid-area: 1 / 2; align-self: end; min-height: 15px; font-size: 13px; font-weight: 750; line-height: 1.2; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.scn-table .delta { grid-area: 1 / 2; align-self: end; min-height: 16px; font-size: 13px; font-weight: 750; line-height: 1.2; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* The change keeps its place's colour as far as it stays readable: the fan's club has a warmer,
    lighter ground, so its text takes more ink there. Lowest contrast measured: 4.5:1. */
 .scn-table li.mine { --delta-share: var(--delta-share-mine); }
@@ -845,6 +864,8 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .play .round { padding: 20px 0 8px; }
 .play .round-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: baseline; margin-bottom: 12px; }
 .play .round-top .kicker { margin: 0; font-size: 15px; }
+.play .round-top .exit { font-size: 15px; padding: 8px 14px; min-height: 44px; }
+.play .mode p.meta:empty { display: none; }
 .play .dots { display: flex; gap: 6px; flex-wrap: wrap; }
 .play .dots span { width: 28px; height: 6px; background: var(--grid); border-radius: 1px; }
 .play .dots span.on { background: var(--amber); } .play .dots span.past { background: var(--ink-2); }
@@ -1071,7 +1092,16 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .game-season ol { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
 .game-season li { padding: 10px 14px; background: var(--surface); border-radius: 2px; }
 .game-season li.total { font-weight: 700; }
-@media (max-width: 400px) { .game .opt { padding: 6px 8px; font-size: 14px; } }
+/* Small phones (360 px and below): the club name in the title shrinks with the screen, and each
+   prediction button puts the crest above the name, so no name is cut or broken mid-word (D-189). */
+@media (max-width: 400px) {
+  .club-head h1 { font-size: min(48px, 11.5vw); }
+  .game .opts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .game .opt { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; row-gap: 3px; padding: 8px 4px; font-size: 14px; }
+  .game .opt small { grid-column: 1; }
+  .game .opt span { overflow-wrap: normal; hyphens: auto; }
+  .whatif .opts a { font-size: 14px; padding: 6px 4px; }
+}
 @media print {
   .bar { position: static; }
   .bar .theme { display: none; }
@@ -1109,7 +1139,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <a class="lang" href="../../jogos/P1-2627-nacional-famalicao" hreflang="pt" lang="pt">PT<span class="visually-hidden"> · Ler esta página em português</span></a>
 </div></header>
 <main id="top" class="wrap">
-<p class="stale" role="status" hidden data-after="2026-11-26T07:07:00Z">These numbers may be out of date: the site has not been updated since Tue 2026-11-24 19:07.</p><article class="match-page">
+<p class="stale" role="status" hidden data-after="2026-11-26T08:36:00Z">These numbers may be out of date: the site has not been updated since Tue 2026-11-24 20:36.</p><article class="match-page">
   <header class="match-head">
     <h1><span>CD Nacional</span> <span class="final num">0–4</span> <span>FC Famalicão</span></h1>
     <p class="meta">Sat 2026-09-19 15:30</p>
@@ -1173,7 +1203,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <p>Personal, non-commercial project, with no link to Liga Portugal, the clubs or any bookmaker. Forecasts are chances, not promises, and nothing here is betting advice. The crests belong to the clubs.</p>
 <p><b>18+</b> · Gambling can be addictive. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Helpline 1414 (free and anonymous)</a></p>
 <p>Data: Football-Data.co.uk and Bzzoiro Sports Data; unofficial data. Our forecasts in JSON are under CC BY 4.0, with no odds or third-party statistics.</p>
-<p>Updated: <time datetime="2026-11-24T19:07:00Z">Tue 2026-11-24 19:07</time></p><p class="links"><a href="../../en/como-funciona">How it works</a> · <a href="../../en/termos">Terms</a> · <a href="../../en/privacidade">Privacy</a> · <a href="../../en/fontes-e-licencas">Sources and licences</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
+<p>Updated: <time datetime="2026-11-24T20:36:00Z">Tue 2026-11-24 20:36</time></p><p class="links"><a href="../../en/como-funciona">How it works</a> · <a href="../../en/termos">Terms</a> · <a href="../../en/privacidade">Privacy</a> · <a href="../../en/fontes-e-licencas">Sources and licences</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
 </div></footer>
 <script>
 (function () {
