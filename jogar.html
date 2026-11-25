@@ -2,11 +2,11 @@
 <html lang="pt">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-uT4c4C/qlg2Kq+06sahxLZODV86MUxLV3Q9wUXakIXs=' 'sha256-Kh8TcycQ/fQQR68WnwJmH4L6qI8E1lPbLe7tMjetaG0=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self' https://jcsusyrgqhhdqrjqtinf.supabase.co; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-S6yVlLpSbsXqiBNBtv6JFHe0JhazqKBFiTpba+1+ttQ=' 'sha256-QYz1Z8DR+zAoCVDz6ZkPjoYZxEuYvqRLqTATRU73Ydo=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self' https://jcsusyrgqhhdqrjqtinf.supabase.co; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jogar · Contas da Bola</title>
-<meta name="description" content="Dois jogos para adeptos: adivinha o resultado de jogos antigos da Liga pelos onzes iniciais e escolhe quem ganha os jogos da próxima jornada contra o nosso modelo.">
+<meta name="description" content="Jogos para adeptos: adivinha resultados antigos pelos onzes iniciais, escolhe a próxima jornada contra o nosso modelo e sobe nos rankings.">
 <meta name="color-scheme" content="dark light">
 <meta name="google-site-verification" content="FNL0J3pjsVLhlkGUh-aRbb5yhrt7pO-6M1AO6vy2qWo">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -20,7 +20,7 @@
    floodlight amber for actions; club colours appear only as cards. Flat: no gradients, no
    shadows, 2px corners. */
 @font-face { font-family: "Archivo"; src: url("static/fonts/archivo.woff2") format("woff2");
-  font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
+  font-weight: 100 900; font-stretch: 62% 125%; font-display: optional; }  /* no swap, so no jump when it arrives */
 :root {
   color-scheme: light;
   --delta-share: 45%; --delta-share-mine: 40%; --focus: #1b1d21;
@@ -115,6 +115,13 @@ a:hover { color: var(--amber-text); }
   padding: 5px 10px; border: 1px solid var(--axis); border-radius: 2px; background: none; cursor: pointer; }
 .bar a.lang:hover, .bar .theme:hover { border-color: var(--amber); color: var(--ink); }
 .bar .theme { display: none; } .js .bar .theme { display: inline-flex; align-items: center; }
+.bar a.acct { flex: none; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none; padding: 6px 10px;
+  border: 1px solid var(--amber); border-radius: 2px; max-width: 9em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar a.acct:hover { background: var(--amber); color: var(--amber-ink); }
+.bar a.acct { display: inline-flex; align-items: center; gap: 6px; }
+.bar a.acct svg { width: 16px; height: 16px; flex: none; }
+.bar a.acct .t { overflow: hidden; text-overflow: ellipsis; }
+html.accounts-off .bar a.acct { display: none; }
 .bar .theme svg { width: 16px; height: 16px; }
 
 /* Club cards (D-090): a small card with the club's two colours */
@@ -1011,6 +1018,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   .bar nav a { padding: 11px 8px; font-size: 14px; }
   .bar a.lang, .bar .theme { min-height: 40px; min-width: 40px; justify-content: center; }
   .bar a.lang { display: inline-flex; align-items: center; }
+  .bar a.acct { min-height: 40px; display: inline-flex; align-items: center; max-width: 7.5em; }
   .hello { grid-template-columns: 1fr; gap: 10px; padding-bottom: 22px; }
   .trio-big { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .trio-big div:nth-child(2) { text-align: center; } .trio-big div:nth-child(3) { text-align: right; }
@@ -1121,7 +1129,13 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .acc .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .acc .tabs, .ranking-view .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
 .acc .chip[aria-selected="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
-.acc .btn.google { justify-content: center; background: var(--raised); color: var(--ink); border: 1px solid var(--axis); }
+/* Google's sign-in button: white with a grey edge in light, near-black in dark, the four-colour G (brand guidelines) */
+.acc .btn.google { justify-content: center; gap: 12px; background: #ffffff; color: #1f1f1f; border: 1px solid #747775; font-family: Roboto, Arial, sans-serif; font-weight: 500; font-size: 16px; min-height: 44px; }
+.acc .btn.google:hover { background: #f2f2f2; color: #1f1f1f; }
+.acc .btn.google .g { width: 20px; height: 20px; flex: none; }
+:root[data-theme="dark"] .acc .btn.google { background: #131314; color: #e3e3e3; border-color: #8e918f; }
+:root[data-theme="dark"] .acc .btn.google:hover { background: #1f1f20; color: #e3e3e3; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .acc .btn.google { background: #131314; color: #e3e3e3; border-color: #8e918f; } }
 .acc .link { font: inherit; background: none; border: 0; padding: 4px 0; color: var(--accent); text-decoration: underline; cursor: pointer; min-height: 32px; }
 .acc .link.danger, .acc .btn.danger { color: var(--bad); }
 .acc .btn.danger { background: none; border: 1px solid var(--bad); }
@@ -1150,8 +1164,24 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .play .invite { border: 2px solid var(--amber); }
 .play .invite p { margin: 0; }
 .play .final .invite { margin-top: 16px; }
-html.accounts-off [data-account-link] { display: none; }
 @media (max-width: 520px) { .acc .acc-form.inline { grid-template-columns: 1fr; } }
+/* Audit fixes (D-203) */
+/* On a phone the account link is an icon, so the brand, it, the theme and EN share one row */
+@media (max-width: 480px) {
+  .bar .wrap { gap: 8px; }
+  .bar a.acct { min-width: 40px; justify-content: center; padding: 6px; }
+  .bar a.acct .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (max-width: 360px) { .brand { font-size: 18px; gap: 7px; } }
+@media (max-width: 340px) { .brand { font-size: 15px; gap: 6px; } .bar .wrap { gap: 6px; } }
+.play .clock { position: sticky; top: 57px; z-index: 5; background: var(--page); padding: 6px 0; }
+@media (max-width: 640px) { .play .clock { top: 100px; } }
+.ranking-view .filters label { flex-wrap: wrap; max-width: 100%; }
+.ranking-view select { max-width: 100%; min-width: 0; flex: 1 1 10em; min-height: 44px; }
+.ranking-view .tbl td:not(.n) { text-align: left; }
+.acc .chip, .ranking-view .chip, .play .chip { min-height: 44px; }
+.acc .link { min-height: 44px; }
+.acc .sqs { white-space: nowrap; }
 
 </style>
 <link rel="canonical" href="https://contasdabola.pt/jogar">
@@ -1162,7 +1192,7 @@ html.accounts-off [data-account-link] { display: none; }
 <meta property="og:site_name" content="Contas da Bola">
 <meta property="og:locale" content="pt_PT">
 <meta property="og:title" content="Jogar · Contas da Bola">
-<meta property="og:description" content="Dois jogos para adeptos: adivinha o resultado de jogos antigos da Liga pelos onzes iniciais e escolhe quem ganha os jogos da próxima jornada contra o nosso modelo.">
+<meta property="og:description" content="Jogos para adeptos: adivinha resultados antigos pelos onzes iniciais, escolhe a próxima jornada contra o nosso modelo e sobe nos rankings.">
 <meta property="og:url" content="https://contasdabola.pt/jogar">
 <meta property="og:image" content="https://contasdabola.pt/og/pt-geral-c8198557bf.png">
 <meta property="og:image:width" content="1200">
@@ -1176,17 +1206,16 @@ html.accounts-off [data-account-link] { display: none; }
   <a class="brand" href="./"><svg viewBox="0 0 19 12" aria-hidden="true"><rect x="0" y="0" width="5" height="5" rx="1"/><rect class="lit" x="7" y="0" width="5" height="5" rx="1"/><rect x="14" y="0" width="5" height="5" rx="1"/><rect class="lit" x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/><rect x="14" y="7" width="5" height="5" rx="1"/></svg><span>Contas da Bola</span></a>
   <nav aria-label="Secções"><a href="./">Início</a>
 <a href="jogar" aria-current="page">Jogar</a>
-<a href="jornadas">Jornadas</a>
+<a href="ranking">Ranking</a><a href="jornadas">Jornadas</a>
 <a href="epoca">Época</a>
 <a href="clubes">Clubes</a>
 <a href="como-funciona">Como funciona</a>
-<a href="ranking">Ranking</a>
-<a href="conta" data-account-link>Entrar</a></nav>
-  <button class="theme" type="button" aria-label="Alternar entre claro e escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+</nav>
+<a class="acct" href="conta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span class="t" data-account-link>Entrar</span></a>  <button class="theme" type="button" aria-label="Alternar entre claro e escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
   <a class="lang" href="en/jogar" hreflang="en" lang="en">EN<span class="visually-hidden"> · Read this page in English</span></a>
 </div></header>
 <main id="top" class="wrap">
-<p class="stale" role="status" hidden data-after="2026-11-27T01:05:00Z">Estes números podem estar desatualizados: o site não é atualizado desde qua 25/11/2026 13:05.</p><div class="play">
+<p class="stale" role="status" hidden data-after="2026-11-27T02:11:00Z">Estes números podem estar desatualizados: o site não é atualizado desde qua 25/11/2026 14:11.</p><div class="play">
 <section class="play-hub" id="hub">
   <div class="hub-head">
     <h1>Jogar</h1>
@@ -1235,15 +1264,13 @@ html.accounts-off [data-account-link] { display: none; }
 <section class="round" id="round" hidden></section>
 <section class="final" id="final" hidden></section>
 </div>
-<script type="application/json" id="play-data">{"t":{"desafio":"Desafio do Dia","seconds_left":"Faltam {n} s","time_up":"Acabou o tempo: a resposta vale 0 pontos.","too_late":"Fora de tempo","share_desafio":"Desafio do Dia no Contas da Bola: {n}/{of} {squares}","server_error":"Isso n\u00e3o passou. Tenta outra vez.","server_down":"Este jogo est\u00e1 indispon\u00edvel neste momento. Experimenta o modo livre.","play_tripla":"Jogar a Tripla do Dia","play_desafio":"Jogar o Desafio do Dia","go_on":"Continuar","see_ranking":"Ver o ranking","invite":"Guarda o teu progresso e entra no ranking","invite_note":"Com conta, os teus jogos e palpites ficam em todos os dispositivos e podes criar ligas com amigos.","invite_go":"Criar conta","invite_later":"Agora n\u00e3o","tripla":"Tripla do Dia","free":"Modo livre","months":["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"],"game_of":"jogo {n} de {of}","season":"\u00e9poca {season}","manager":"Treinador: {name}","pitch_label":"Onzes iniciais: {home} em cima, {away} em baixo","pitch_note":"As posi\u00e7\u00f5es s\u00e3o aproximadas: v\u00eam da t\u00e1tica do jogo e da posi\u00e7\u00e3o habitual de cada jogador.","no_formation":"Sem t\u00e1tica nos dados deste jogo: os onzes por n\u00famero.","your_guess":"O teu palpite","confirm":"Confirmar palpite","less":"Menos um golo","more":"Mais um golo","hints":"Ajudas","hints_one":"Tens 1 ajuda para os 3 jogos.","hints_n":"Tens {n} ajudas.","hints_none":"J\u00e1 n\u00e3o tens ajudas.","hint_cost":"Cada uma tira 1 ponto a este jogo.","minus":"\u22121 ponto","used":"usada","h_table":"Posi\u00e7\u00e3o na tabela","h_form":"\u00daltimos 5 jogos","h_model":"Quem era favorito?","ordinal":".\u00ba","pts":"{n} pts","played":"{n} j","no_games":"ainda sem jogos","table_note":"Antes do jogo, com os jogos j\u00e1 feitos.","letter":{"W":"V","D":"E","L":"D"},"result":{"W":"Vit\u00f3ria","D":"Empate","L":"Derrota"},"no_form":"sem jogos na Liga nesta \u00e9poca nem na anterior","form_note":"\u00daltimos 5 jogos da Liga, o mais recente \u00e0 direita.","draw":"Empate","no_model":"Sem previs\u00e3o para este jogo.","model_note":"O que o nosso modelo dava na v\u00e9spera, s\u00f3 com os resultados at\u00e9 a\u00ed.","exact":"Resultado exato!","winner":"Acertaste no vencedor.","miss":"Desta vez n\u00e3o.","your_pick":"O teu palpite: {score}","no_goals":"Sem golos.","no_scorers":"Sem marcadores nos dados deste jogo.","pen":"(g.p.)","og":"(p.b.)","right_winner":"Vencedor certo","exact_row":"Resultado exato","hint_row":"Ajuda","this_game":"Neste jogo","points":"{n} pontos","points_word":"pontos","what_model":"O que dizia o modelo?","next":"Jogo seguinte","see_result":"Ver o resultado","final_title":"{n} de {of} pontos","recap_pick":"palpite {score}","recap_note":"Verde: resultado exato. Amarelo: s\u00f3 o vencedor. Escuro: falhou.","tomorrow":"Amanh\u00e3 h\u00e1 outros tr\u00eas.","card_alt":"Imagem do resultado: {n} de {of} pontos","card_cta":"Consegues fazer melhor?","share_tripla":"Fiz {n}/{of} na Tripla do Dia do Contas da Bola {squares}\nConsegues fazer melhor?","share_free":"Fiz {n}/{of} no modo livre do Contas da Bola {squares}\nConsegues fazer melhor?","share_image":"Partilhar imagem","copy_text":"Copiar texto","save":"Guardar","copied":"Copiado. Cola numa conversa com os amigos.","saved":"Imagem guardada.","saved_app":"Guard\u00e1mos a imagem. Abre o {app} e publica-a, por exemplo numa hist\u00f3ria.","no_file_share":"Este browser n\u00e3o partilha imagens diretamente: guard\u00e1mos a imagem para a publicares.","back":"Voltar a Jogar","exit":"Sair do jogo","done_today":"J\u00e1 jogaste hoje: {n}/{of}.","see_again":"Ver o resultado","no_tripla":"A Tripla de hoje ainda n\u00e3o chegou: volta daqui a pouco.","loading":"A carregar os jogos\u2026","load_error":"Os jogos n\u00e3o carregaram. Tenta outra vez daqui a pouco.","pick_club":"Escolhe primeiro o teu clube no \u003ca href=\"./\"\u003eIn\u00edcio\u003c/a\u003e.","mode_notes":{"todos":"","classicos":"S\u00f3 jogos entre o FC Porto, o SL Benfica e o Sporting CP.","clube":"S\u00f3 jogos do teu clube. Tem de estar na Liga desta \u00e9poca."},"picked":"J\u00e1 escolheste {n} de {of}.","first":"Primeiro jogo: {when}.","round_closed":"Os jogos desta jornada j\u00e1 come\u00e7aram todos.","season_score":"\u00c9poca: tu {you}, modelo {model}"},"clubs":{"academica":["Acad\u00e9mica","#8f939a","#ece9e2",false,false],"academico-viseu":["Acad\u00e9mico","#1b1b1b","#ffffff",true,true],"alverca":["FC Alverca","#1f4fa3","#d6202f",true,true],"arouca":["FC Arouca","#f2c200","#1d3d8f",true,true],"aves":["Desportivo das Aves","#8f939a","#ece9e2",false,false],"avs":["AVS","#8f939a","#ece9e2",false,false],"belenenses":["Belenenses","#8f939a","#ece9e2",false,false],"benfica":["SL Benfica","#d6202f","#ffffff",true,true],"boavista":["Boavista","#8f939a","#ece9e2",false,false],"casa-pia":["Casa Pia AC","#1b1b1b","#ffffff",true,true],"chaves":["Desportivo de Chaves","#8f939a","#ece9e2",false,false],"estoril":["Estoril Praia","#f2c200","#1d5fbf",true,true],"estrela-amadora":["Estrela Amadora","#d6202f","#138a4a",true,true],"famalicao":["FC Famalic\u00e3o","#1d3f8f","#ffffff",true,true],"farense":["Farense","#8f939a","#ece9e2",false,false],"feirense":["Feirense","#8f939a","#ece9e2",false,false],"gil-vicente":["Gil Vicente FC","#d6202f","#1f4fa3",true,true],"guimaraes":["Vit\u00f3ria SC","#ffffff","#1b1b1b",true,true],"maritimo":["CS Mar\u00edtimo","#138a4a","#d6202f",true,true],"moreirense":["Moreirense FC","#138a4a","#ffffff",true,true],"nacional":["CD Nacional","#1b1b1b","#ffffff",true,true],"olhanense":["Olhanense","#8f939a","#ece9e2",false,false],"pacos-ferreira":["Pa\u00e7os de Ferreira","#8f939a","#ece9e2",false,false],"penafiel":["Penafiel","#8f939a","#ece9e2",false,false],"portimonense":["Portimonense","#8f939a","#ece9e2",false,false],"porto":["FC Porto","#1f4fa3","#ffffff",true,true],"rio-ave":["Rio Ave FC","#138a4a","#ffffff",true,true],"santa-clara":["Santa Clara","#d6202f","#ffffff",true,true],"setubal":["Vit\u00f3ria de Set\u00fabal","#8f939a","#ece9e2",false,false],"sp-braga":["SC Braga","#d22630","#ffffff",true,true],"sporting":["Sporting CP","#0b8a52","#ffffff",true,true],"tondela":["Tondela","#8f939a","#ece9e2",false,false],"uniao-madeira":["Uni\u00e3o da Madeira","#8f939a","#ece9e2",false,false],"vizela":["Vizela","#8f939a","#ece9e2",false,false]},"current":["porto","benfica","sporting","sp-braga","santa-clara","arouca","gil-vicente","academico-viseu","guimaraes","famalicao","alverca","moreirense","estrela-amadora","maritimo","nacional","casa-pia","rio-ave","estoril"],"root":"","tripla":{},"server":true,"buckets":128,"icons":{"facebook":"M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z","instagram":"M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077","telegram":"M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z","tiktok":"M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z","whatsapp":"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z","x":"M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z","share":"M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7l-6.7 3.4a3 3 0 1 0 0 3.2L15 17a3 3 0 1 0 3-1z","copy":"M8 8h11v13H8zM5 3h11v3H7v11H5z","save":"M11 3h2v10l4-4 1.4 1.4L12 16.8 5.6 10.4 7 9l4 4zM4 19h16v2H4z"},"url":"https://contasdabola.pt/jogar","address":"contasdabola.pt/jogar"}</script>
+<script type="application/json" id="play-data">{"t":{"desafio":"Desafio do Dia","seconds_left":"Faltam {n} s","time_up":"Acabou o tempo: a resposta vale 0 pontos.","too_late":"Fora de tempo","share_desafio":"Desafio do Dia no Contas da Bola: {n}/{of} {squares}","server_error":"N\u00e3o foi poss\u00edvel enviar. Verifica a liga\u00e7\u00e3o e tenta outra vez.","server_down":"Este jogo est\u00e1 indispon\u00edvel neste momento. Experimenta o modo livre.","play_tripla":"Jogar a Tripla do Dia","play_desafio":"Jogar o Desafio do Dia","go_on":"Continuar","see_ranking":"Ver o ranking","invite":"Guarda o teu progresso e entra no ranking","invite_note":"Com conta, os teus jogos e palpites ficam em todos os dispositivos e podes criar ligas com amigos.","invite_go":"Criar conta","invite_later":"Agora n\u00e3o","tripla":"Tripla do Dia","free":"Modo livre","months":["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"],"game_of":"jogo {n} de {of}","season":"\u00e9poca {season}","manager":"Treinador: {name}","pitch_label":"Onzes iniciais: {home} em cima, {away} em baixo","pitch_note":"As posi\u00e7\u00f5es s\u00e3o aproximadas: v\u00eam da t\u00e1tica do jogo e da posi\u00e7\u00e3o habitual de cada jogador.","no_formation":"Sem t\u00e1tica nos dados deste jogo: os onzes por n\u00famero.","your_guess":"O teu palpite","confirm":"Confirmar palpite","less":"Menos um golo","more":"Mais um golo","hints":"Ajudas","hints_one":"Tens 1 ajuda para os 3 jogos.","hints_n":"Tens {n} ajudas.","hints_none":"J\u00e1 n\u00e3o tens ajudas.","hint_cost":"Cada uma tira 1 ponto a este jogo.","minus":"\u22121 ponto","used":"usada","h_table":"Posi\u00e7\u00e3o na tabela","h_form":"\u00daltimos 5 jogos","h_model":"Quem era favorito?","ordinal":".\u00ba","pts":"{n} pts","played":"{n} j","no_games":"ainda sem jogos","table_note":"Antes do jogo, com os jogos j\u00e1 feitos.","letter":{"W":"V","D":"E","L":"D"},"result":{"W":"Vit\u00f3ria","D":"Empate","L":"Derrota"},"no_form":"sem jogos na Liga nesta \u00e9poca nem na anterior","form_note":"\u00daltimos 5 jogos da Liga, o mais recente \u00e0 direita.","draw":"Empate","no_model":"Sem previs\u00e3o para este jogo.","model_note":"O que o nosso modelo dava na v\u00e9spera, s\u00f3 com os resultados at\u00e9 a\u00ed.","exact":"Resultado exato!","winner":"Acertaste no vencedor.","miss":"Desta vez n\u00e3o.","your_pick":"O teu palpite: {score}","no_goals":"Sem golos.","no_scorers":"Sem marcadores nos dados deste jogo.","pen":"(g.p.)","og":"(p.b.)","right_winner":"Vencedor certo","exact_row":"Resultado exato","hint_row":"Ajuda","this_game":"Neste jogo","points":"{n} pontos","points_word":"pontos","what_model":"O que dizia o modelo?","next":"Jogo seguinte","see_result":"Ver o resultado","final_title":"{n} de {of} pontos","recap_pick":"palpite {score}","recap_note":"Verde: resultado exato. Amarelo: s\u00f3 o vencedor. Escuro: falhou.","tomorrow":"Amanh\u00e3 h\u00e1 outros tr\u00eas.","card_alt":"Imagem do resultado: {n} de {of} pontos","card_cta":"Consegues fazer melhor?","share_tripla":"Fiz {n}/{of} na Tripla do Dia do Contas da Bola {squares}\nConsegues fazer melhor?","share_free":"Fiz {n}/{of} no modo livre do Contas da Bola {squares}\nConsegues fazer melhor?","share_image":"Partilhar imagem","copy_text":"Copiar texto","save":"Guardar","copied":"Copiado. Cola numa conversa com os amigos.","saved":"Imagem guardada.","saved_app":"Guard\u00e1mos a imagem. Abre o {app} e publica-a, por exemplo numa hist\u00f3ria.","no_file_share":"Este browser n\u00e3o partilha imagens diretamente: guard\u00e1mos a imagem para a publicares.","back":"Voltar a Jogar","exit":"Sair do jogo","done_today":"J\u00e1 jogaste hoje: {n}/{of}.","see_again":"Ver o resultado","no_tripla":"A Tripla de hoje ainda n\u00e3o chegou: volta daqui a pouco.","loading":"A carregar os jogos\u2026","load_error":"Os jogos n\u00e3o carregaram. Tenta outra vez daqui a pouco.","pick_club":"Escolhe primeiro o teu clube no \u003ca href=\"./\"\u003eIn\u00edcio\u003c/a\u003e.","mode_notes":{"todos":"","classicos":"S\u00f3 jogos entre o FC Porto, o SL Benfica e o Sporting CP.","clube":"S\u00f3 jogos do teu clube. Tem de estar na Liga desta \u00e9poca."},"picked":"J\u00e1 escolheste {n} de {of}.","first":"Primeiro jogo: {when}.","round_closed":"Os jogos desta jornada j\u00e1 come\u00e7aram todos.","season_score":"\u00c9poca: tu {you}, modelo {model}"},"clubs":{"academica":["Acad\u00e9mica","#8f939a","#ece9e2",false,false],"academico-viseu":["Acad\u00e9mico","#1b1b1b","#ffffff",true,true],"alverca":["FC Alverca","#1f4fa3","#d6202f",true,true],"arouca":["FC Arouca","#f2c200","#1d3d8f",true,true],"aves":["Desportivo das Aves","#8f939a","#ece9e2",false,false],"avs":["AVS","#8f939a","#ece9e2",false,false],"belenenses":["Belenenses","#8f939a","#ece9e2",false,false],"benfica":["SL Benfica","#d6202f","#ffffff",true,true],"boavista":["Boavista","#8f939a","#ece9e2",false,false],"casa-pia":["Casa Pia AC","#1b1b1b","#ffffff",true,true],"chaves":["Desportivo de Chaves","#8f939a","#ece9e2",false,false],"estoril":["Estoril Praia","#f2c200","#1d5fbf",true,true],"estrela-amadora":["Estrela Amadora","#d6202f","#138a4a",true,true],"famalicao":["FC Famalic\u00e3o","#1d3f8f","#ffffff",true,true],"farense":["Farense","#8f939a","#ece9e2",false,false],"feirense":["Feirense","#8f939a","#ece9e2",false,false],"gil-vicente":["Gil Vicente FC","#d6202f","#1f4fa3",true,true],"guimaraes":["Vit\u00f3ria SC","#ffffff","#1b1b1b",true,true],"maritimo":["CS Mar\u00edtimo","#138a4a","#d6202f",true,true],"moreirense":["Moreirense FC","#138a4a","#ffffff",true,true],"nacional":["CD Nacional","#1b1b1b","#ffffff",true,true],"olhanense":["Olhanense","#8f939a","#ece9e2",false,false],"pacos-ferreira":["Pa\u00e7os de Ferreira","#8f939a","#ece9e2",false,false],"penafiel":["Penafiel","#8f939a","#ece9e2",false,false],"portimonense":["Portimonense","#8f939a","#ece9e2",false,false],"porto":["FC Porto","#1f4fa3","#ffffff",true,true],"rio-ave":["Rio Ave FC","#138a4a","#ffffff",true,true],"santa-clara":["Santa Clara","#d6202f","#ffffff",true,true],"setubal":["Vit\u00f3ria de Set\u00fabal","#8f939a","#ece9e2",false,false],"sp-braga":["SC Braga","#d22630","#ffffff",true,true],"sporting":["Sporting CP","#0b8a52","#ffffff",true,true],"tondela":["Tondela","#8f939a","#ece9e2",false,false],"uniao-madeira":["Uni\u00e3o da Madeira","#8f939a","#ece9e2",false,false],"vizela":["Vizela","#8f939a","#ece9e2",false,false]},"current":["porto","benfica","sporting","sp-braga","santa-clara","arouca","gil-vicente","academico-viseu","guimaraes","famalicao","alverca","moreirense","estrela-amadora","maritimo","nacional","casa-pia","rio-ave","estoril"],"root":"","tripla":{},"server":true,"buckets":128,"icons":{"facebook":"M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z","instagram":"M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077","telegram":"M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z","tiktok":"M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z","whatsapp":"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z","x":"M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z","share":"M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.4a3 3 0 0 0 0-1.6l6.7-3.4A3 3 0 1 0 15 7l-6.7 3.4a3 3 0 1 0 0 3.2L15 17a3 3 0 1 0 3-1z","copy":"M8 8h11v13H8zM5 3h11v3H7v11H5z","save":"M11 3h2v10l4-4 1.4 1.4L12 16.8 5.6 10.4 7 9l4 4zM4 19h16v2H4z"},"url":"https://contasdabola.pt/jogar","address":"contasdabola.pt/jogar"}</script>
 <script type="application/json" id="palpites-round">{"round":12,"matches":[["P1-2627-maritimo-nacional","2026-11-27T20:15:00Z","sex 27/11/2026 20:15"],["P1-2627-arouca-rio-ave","2026-11-28T15:30:00Z","s\u00e1b 28/11/2026 15:30"],["P1-2627-moreirense-santa-clara","2026-11-28T15:30:00Z","s\u00e1b 28/11/2026 15:30"],["P1-2627-academico-viseu-alverca","2026-11-28T18:00:00Z","s\u00e1b 28/11/2026 18:00"],["P1-2627-guimaraes-estrela-amadora","2026-11-28T20:30:00Z","s\u00e1b 28/11/2026 20:30"],["P1-2627-gil-vicente-estoril","2026-11-29T18:00:00Z","dom 29/11/2026 18:00"],["P1-2627-porto-sporting","2026-11-29T20:30:00Z","dom 29/11/2026 20:30"],["P1-2627-casa-pia-sp-braga","2026-11-30T20:15:00Z","seg 30/11/2026 20:15"],["P1-2627-benfica-famalicao","2026-11-30T20:15:00Z","seg 30/11/2026 20:15"]]}</script>
 <script type="application/json" id="game-data">{"P1-2627-estoril-famalicao":[1,1,null],"P1-2627-maritimo-casa-pia":[1,0,null],"P1-2627-guimaraes-arouca":[1,2,null],"P1-2627-estrela-amadora-sporting":[1,1,null],"P1-2627-porto-alverca":[1,0,null],"P1-2627-gil-vicente-rio-ave":[1,0,null],"P1-2627-moreirense-sp-braga":[1,1,null],"P1-2627-benfica-academico-viseu":[1,1,null],"P1-2627-santa-clara-nacional":[1,1,null],"P1-2627-sporting-guimaraes":[2,0,null],"P1-2627-alverca-estrela-amadora":[2,1,null],"P1-2627-academico-viseu-santa-clara":[2,2,null],"P1-2627-rio-ave-porto":[2,2,null],"P1-2627-nacional-estoril":[2,0,null],"P1-2627-arouca-moreirense":[2,0,null],"P1-2627-famalicao-maritimo":[2,2,null],"P1-2627-casa-pia-benfica":[2,2,null],"P1-2627-sp-braga-gil-vicente":[2,2,null],"P1-2627-maritimo-academico-viseu":[3,1,null],"P1-2627-estoril-rio-ave":[3,2,null],"P1-2627-sporting-alverca":[3,0,null],"P1-2627-guimaraes-nacional":[3,0,null],"P1-2627-santa-clara-famalicao":[3,0,null],"P1-2627-porto-arouca":[3,0,null],"P1-2627-gil-vicente-casa-pia":[3,0,null],"P1-2627-moreirense-benfica":[3,2,null],"P1-2627-estrela-amadora-sp-braga":[3,0,null],"P1-2627-rio-ave-sporting":[4,2,null],"P1-2627-alverca-santa-clara":[4,1,null],"P1-2627-arouca-maritimo":[4,0,null],"P1-2627-academico-viseu-porto":[4,2,null],"P1-2627-nacional-estrela-amadora":[4,2,null],"P1-2627-casa-pia-moreirense":[4,2,null],"P1-2627-famalicao-gil-vicente":[4,1,null],"P1-2627-sp-braga-guimaraes":[4,0,null],"P1-2627-benfica-estoril":[4,0,null],"P1-2627-porto-moreirense":[5,0,null],"P1-2627-estrela-amadora-famalicao":[5,1,null],"P1-2627-maritimo-benfica":[5,2,null],"P1-2627-alverca-sp-braga":[5,2,null],"P1-2627-sporting-nacional":[5,0,null],"P1-2627-santa-clara-rio-ave":[5,0,null],"P1-2627-guimaraes-casa-pia":[5,1,null],"P1-2627-gil-vicente-academico-viseu":[5,2,null],"P1-2627-estoril-arouca":[5,1,null],"P1-2627-nacional-alverca":[6,2,null],"P1-2627-casa-pia-porto":[6,2,null],"P1-2627-academico-viseu-guimaraes":[6,0,null],"P1-2627-arouca-santa-clara":[6,2,null],"P1-2627-benfica-gil-vicente":[6,0,null],"P1-2627-famalicao-sporting":[6,1,null],"P1-2627-rio-ave-estrela-amadora":[6,1,null],"P1-2627-moreirense-maritimo":[6,0,null],"P1-2627-sp-braga-estoril":[6,0,null],"P1-2627-nacional-famalicao":[7,2,null],"P1-2627-gil-vicente-maritimo":[7,1,null],"P1-2627-alverca-rio-ave":[7,0,null],"P1-2627-sporting-arouca":[7,1,null],"P1-2627-estrela-amadora-academico-viseu":[7,2,null],"P1-2627-guimaraes-moreirense":[7,1,null],"P1-2627-estoril-casa-pia":[7,2,null],"P1-2627-santa-clara-sp-braga":[7,1,null],"P1-2627-porto-benfica":[7,0,null],"P1-2627-moreirense-gil-vicente":[8,2,null],"P1-2627-sp-braga-sporting":[8,2,null],"P1-2627-maritimo-porto":[8,2,null],"P1-2627-academico-viseu-estoril":[8,0,null],"P1-2627-casa-pia-santa-clara":[8,2,null],"P1-2627-rio-ave-nacional":[8,0,null],"P1-2627-benfica-guimaraes":[8,0,null],"P1-2627-arouca-estrela-amadora":[8,0,null],"P1-2627-famalicao-alverca":[8,2,null],"P1-2627-guimaraes-maritimo":[9,0,null],"P1-2627-estrela-amadora-casa-pia":[9,2,null],"P1-2627-alverca-arouca":[9,2,null],"P1-2627-gil-vicente-porto":[9,2,null],"P1-2627-estoril-moreirense":[9,2,null],"P1-2627-nacional-sp-braga":[9,0,null],"P1-2627-rio-ave-famalicao":[9,2,null],"P1-2627-sporting-academico-viseu":[9,2,null],"P1-2627-santa-clara-benfica":[9,2,2],"P1-2627-casa-pia-sporting":[10,2,2],"P1-2627-moreirense-estrela-amadora":[10,0,2],"P1-2627-porto-estoril":[10,0,0],"P1-2627-arouca-nacional":[10,0,0],"P1-2627-academico-viseu-rio-ave":[10,0,0],"P1-2627-maritimo-santa-clara":[10,2,2],"P1-2627-sp-braga-famalicao":[10,0,0],"P1-2627-gil-vicente-guimaraes":[10,1,2],"P1-2627-benfica-alverca":[10,0,0],"P1-2627-famalicao-arouca":[11,0,0],"P1-2627-nacional-academico-viseu":[11,0,2],"P1-2627-alverca-casa-pia":[11,1,0],"P1-2627-sporting-moreirense":[11,0,0],"P1-2627-santa-clara-gil-vicente":[11,2,0],"P1-2627-guimaraes-porto":[11,2,2],"P1-2627-estrela-amadora-benfica":[11,2,2],"P1-2627-rio-ave-sp-braga":[11,2,2],"P1-2627-maritimo-nacional":[12,null,null],"P1-2627-arouca-rio-ave":[12,null,null],"P1-2627-moreirense-santa-clara":[12,null,null],"P1-2627-academico-viseu-alverca":[12,null,null],"P1-2627-guimaraes-estrela-amadora":[12,null,null],"P1-2627-gil-vicente-estoril":[12,null,null],"P1-2627-porto-sporting":[12,null,null],"P1-2627-casa-pia-sp-braga":[12,null,null],"P1-2627-benfica-famalicao":[12,null,null],"P1-2627-nacional-benfica":[13,null,null],"P1-2627-santa-clara-porto":[13,null,null],"P1-2627-sp-braga-arouca":[13,null,null],"P1-2627-sporting-maritimo":[13,null,null],"P1-2627-estrela-amadora-gil-vicente":[13,null,null],"P1-2627-rio-ave-casa-pia":[13,null,null],"P1-2627-estoril-guimaraes":[13,null,null],"P1-2627-famalicao-academico-viseu":[13,null,null],"P1-2627-alverca-moreirense":[13,null,null],"P1-2627-estoril-santa-clara":[14,null,null],"P1-2627-maritimo-rio-ave":[14,null,null],"P1-2627-gil-vicente-sporting":[14,null,null],"P1-2627-academico-viseu-arouca":[14,null,null],"P1-2627-casa-pia-nacional":[14,null,null],"P1-2627-moreirense-famalicao":[14,null,null],"P1-2627-guimaraes-alverca":[14,null,null],"P1-2627-porto-estrela-amadora":[14,null,null],"P1-2627-benfica-sp-braga":[14,null,null],"P1-2627-nacional-moreirense":[15,null,null],"P1-2627-estrela-amadora-maritimo":[15,null,null],"P1-2627-alverca-gil-vicente":[15,null,null],"P1-2627-arouca-casa-pia":[15,null,null],"P1-2627-famalicao-porto":[15,null,null],"P1-2627-rio-ave-benfica":[15,null,null],"P1-2627-sp-braga-academico-viseu":[15,null,null],"P1-2627-santa-clara-guimaraes":[15,null,null],"P1-2627-sporting-estoril":[15,null,null],"P1-2627-maritimo-sp-braga":[16,null,null],"P1-2627-casa-pia-famalicao":[16,null,null],"P1-2627-estoril-alverca":[16,null,null],"P1-2627-porto-nacional":[16,null,null],"P1-2627-gil-vicente-arouca":[16,null,null],"P1-2627-moreirense-academico-viseu":[16,null,null],"P1-2627-benfica-sporting":[16,null,null],"P1-2627-santa-clara-estrela-amadora":[16,null,null],"P1-2627-guimaraes-rio-ave":[16,null,null],"P1-2627-academico-viseu-casa-pia":[17,null,null],"P1-2627-nacional-gil-vicente":[17,null,null],"P1-2627-estrela-amadora-estoril":[17,null,null],"P1-2627-alverca-maritimo":[17,null,null],"P1-2627-arouca-benfica":[17,null,null],"P1-2627-famalicao-guimaraes":[17,null,null],"P1-2627-rio-ave-moreirense":[17,null,null],"P1-2627-sp-braga-porto":[17,null,null],"P1-2627-sporting-santa-clara":[17,null,null],"P1-2627-academico-viseu-benfica":[18,null,null],"P1-2627-nacional-santa-clara":[18,null,null],"P1-2627-casa-pia-maritimo":[18,null,null],"P1-2627-alverca-porto":[18,null,null],"P1-2627-arouca-guimaraes":[18,null,null],"P1-2627-famalicao-estoril":[18,null,null],"P1-2627-rio-ave-gil-vicente":[18,null,null],"P1-2627-sp-braga-moreirense":[18,null,null],"P1-2627-sporting-estrela-amadora":[18,null,null],"P1-2627-maritimo-famalicao":[19,null,null],"P1-2627-estoril-nacional":[19,null,null],"P1-2627-estrela-amadora-alverca":[19,null,null],"P1-2627-porto-rio-ave":[19,null,null],"P1-2627-gil-vicente-sp-braga":[19,null,null],"P1-2627-moreirense-arouca":[19,null,null],"P1-2627-benfica-casa-pia":[19,null,null],"P1-2627-santa-clara-academico-viseu":[19,null,null],"P1-2627-guimaraes-sporting":[19,null,null],"P1-2627-academico-viseu-maritimo":[20,null,null],"P1-2627-nacional-guimaraes":[20,null,null],"P1-2627-casa-pia-gil-vicente":[20,null,null],"P1-2627-alverca-sporting":[20,null,null],"P1-2627-arouca-porto":[20,null,null],"P1-2627-famalicao-santa-clara":[20,null,null],"P1-2627-rio-ave-estoril":[20,null,null],"P1-2627-sp-braga-estrela-amadora":[20,null,null],"P1-2627-benfica-moreirense":[20,null,null],"P1-2627-maritimo-arouca":[21,null,null],"P1-2627-estoril-benfica":[21,null,null],"P1-2627-estrela-amadora-nacional":[21,null,null],"P1-2627-porto-academico-viseu":[21,null,null],"P1-2627-gil-vicente-famalicao":[21,null,null],"P1-2627-moreirense-casa-pia":[21,null,null],"P1-2627-santa-clara-alverca":[21,null,null],"P1-2627-sporting-rio-ave":[21,null,null],"P1-2627-guimaraes-sp-braga":[21,null,null],"P1-2627-academico-viseu-gil-vicente":[22,null,null],"P1-2627-nacional-sporting":[22,null,null],"P1-2627-casa-pia-guimaraes":[22,null,null],"P1-2627-arouca-estoril":[22,null,null],"P1-2627-famalicao-estrela-amadora":[22,null,null],"P1-2627-moreirense-porto":[22,null,null],"P1-2627-rio-ave-santa-clara":[22,null,null],"P1-2627-sp-braga-alverca":[22,null,null],"P1-2627-benfica-maritimo":[22,null,null],"P1-2627-maritimo-moreirense":[23,null,null],"P1-2627-estoril-sp-braga":[23,null,null],"P1-2627-estrela-amadora-rio-ave":[23,null,null],"P1-2627-alverca-nacional":[23,null,null],"P1-2627-porto-casa-pia":[23,null,null],"P1-2627-gil-vicente-benfica":[23,null,null],"P1-2627-santa-clara-arouca":[23,null,null],"P1-2627-sporting-famalicao":[23,null,null],"P1-2627-guimaraes-academico-viseu":[23,null,null],"P1-2627-academico-viseu-estrela-amadora":[24,null,null],"P1-2627-maritimo-gil-vicente":[24,null,null],"P1-2627-casa-pia-estoril":[24,null,null],"P1-2627-arouca-sporting":[24,null,null],"P1-2627-famalicao-nacional":[24,null,null],"P1-2627-moreirense-guimaraes":[24,null,null],"P1-2627-rio-ave-alverca":[24,null,null],"P1-2627-sp-braga-santa-clara":[24,null,null],"P1-2627-benfica-porto":[24,null,null],"P1-2627-nacional-rio-ave":[25,null,null],"P1-2627-estoril-academico-viseu":[25,null,null],"P1-2627-estrela-amadora-arouca":[25,null,null],"P1-2627-alverca-famalicao":[25,null,null],"P1-2627-porto-maritimo":[25,null,null],"P1-2627-gil-vicente-moreirense":[25,null,null],"P1-2627-santa-clara-casa-pia":[25,null,null],"P1-2627-sporting-sp-braga":[25,null,null],"P1-2627-guimaraes-benfica":[25,null,null],"P1-2627-academico-viseu-sporting":[26,null,null],"P1-2627-maritimo-guimaraes":[26,null,null],"P1-2627-casa-pia-estrela-amadora":[26,null,null],"P1-2627-arouca-alverca":[26,null,null],"P1-2627-famalicao-rio-ave":[26,null,null],"P1-2627-porto-gil-vicente":[26,null,null],"P1-2627-moreirense-estoril":[26,null,null],"P1-2627-sp-braga-nacional":[26,null,null],"P1-2627-benfica-santa-clara":[26,null,null],"P1-2627-nacional-arouca":[27,null,null],"P1-2627-estoril-porto":[27,null,null],"P1-2627-estrela-amadora-moreirense":[27,null,null],"P1-2627-alverca-benfica":[27,null,null],"P1-2627-famalicao-sp-braga":[27,null,null],"P1-2627-rio-ave-academico-viseu":[27,null,null],"P1-2627-santa-clara-maritimo":[27,null,null],"P1-2627-sporting-casa-pia":[27,null,null],"P1-2627-guimaraes-gil-vicente":[27,null,null],"P1-2627-academico-viseu-nacional":[28,null,null],"P1-2627-maritimo-estoril":[28,null,null],"P1-2627-casa-pia-alverca":[28,null,null],"P1-2627-arouca-famalicao":[28,null,null],"P1-2627-porto-guimaraes":[28,null,null],"P1-2627-gil-vicente-santa-clara":[28,null,null],"P1-2627-moreirense-sporting":[28,null,null],"P1-2627-sp-braga-rio-ave":[28,null,null],"P1-2627-benfica-estrela-amadora":[28,null,null],"P1-2627-nacional-maritimo":[29,null,null],"P1-2627-estoril-gil-vicente":[29,null,null],"P1-2627-estrela-amadora-guimaraes":[29,null,null],"P1-2627-alverca-academico-viseu":[29,null,null],"P1-2627-famalicao-benfica":[29,null,null],"P1-2627-rio-ave-arouca":[29,null,null],"P1-2627-sp-braga-casa-pia":[29,null,null],"P1-2627-santa-clara-moreirense":[29,null,null],"P1-2627-sporting-porto":[29,null,null],"P1-2627-academico-viseu-famalicao":[30,null,null],"P1-2627-maritimo-sporting":[30,null,null],"P1-2627-casa-pia-rio-ave":[30,null,null],"P1-2627-arouca-sp-braga":[30,null,null],"P1-2627-porto-santa-clara":[30,null,null],"P1-2627-gil-vicente-estrela-amadora":[30,null,null],"P1-2627-moreirense-alverca":[30,null,null],"P1-2627-benfica-nacional":[30,null,null],"P1-2627-guimaraes-estoril":[30,null,null],"P1-2627-nacional-casa-pia":[31,null,null],"P1-2627-estrela-amadora-porto":[31,null,null],"P1-2627-alverca-guimaraes":[31,null,null],"P1-2627-arouca-academico-viseu":[31,null,null],"P1-2627-famalicao-moreirense":[31,null,null],"P1-2627-rio-ave-maritimo":[31,null,null],"P1-2627-sp-braga-benfica":[31,null,null],"P1-2627-santa-clara-estoril":[31,null,null],"P1-2627-sporting-gil-vicente":[31,null,null],"P1-2627-academico-viseu-sp-braga":[32,null,null],"P1-2627-maritimo-estrela-amadora":[32,null,null],"P1-2627-casa-pia-arouca":[32,null,null],"P1-2627-estoril-sporting":[32,null,null],"P1-2627-porto-famalicao":[32,null,null],"P1-2627-gil-vicente-alverca":[32,null,null],"P1-2627-moreirense-nacional":[32,null,null],"P1-2627-benfica-rio-ave":[32,null,null],"P1-2627-guimaraes-santa-clara":[32,null,null],"P1-2627-academico-viseu-moreirense":[33,null,null],"P1-2627-nacional-porto":[33,null,null],"P1-2627-estrela-amadora-santa-clara":[33,null,null],"P1-2627-alverca-estoril":[33,null,null],"P1-2627-arouca-gil-vicente":[33,null,null],"P1-2627-famalicao-casa-pia":[33,null,null],"P1-2627-rio-ave-guimaraes":[33,null,null],"P1-2627-sp-braga-maritimo":[33,null,null],"P1-2627-sporting-benfica":[33,null,null],"P1-2627-maritimo-alverca":[34,null,null],"P1-2627-casa-pia-academico-viseu":[34,null,null],"P1-2627-estoril-estrela-amadora":[34,null,null],"P1-2627-porto-sp-braga":[34,null,null],"P1-2627-gil-vicente-nacional":[34,null,null],"P1-2627-moreirense-rio-ave":[34,null,null],"P1-2627-benfica-arouca":[34,null,null],"P1-2627-santa-clara-sporting":[34,null,null],"P1-2627-guimaraes-famalicao":[34,null,null]}</script>
 </main>
 <footer><div class="wrap">
-<p>Projeto pessoal e não comercial, sem ligação à Liga Portugal, aos clubes nem a casas de apostas. As previsões são probabilidades, não promessas, e nada aqui é aconselhamento de apostas. Os emblemas pertencem aos clubes.</p>
-<p><b>18+</b> · O jogo pode causar dependência. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Linha 1414 (gratuita e anónima)</a></p>
-<p>Dados não oficiais; as fontes estão em «Fontes e licenças». As nossas previsões em JSON estão sob CC BY 4.0, sem odds nem estatísticas de terceiros.</p>
-<p>Atualizado: <time datetime="2026-11-25T13:05:00Z">qua 25/11/2026 13:05</time></p><p class="links"><a href="como-funciona">Como funciona</a> · <a href="termos">Termos</a> · <a href="privacidade">Privacidade</a> · <a href="fontes-e-licencas">Fontes e licenças</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
+<p><b>18+</b> · Projeto pessoal, sem ligação à Liga Portugal, aos clubes nem a casas de apostas. As previsões não são conselhos de aposta e os dados não são oficiais. Os emblemas pertencem aos clubes. O jogo pode causar dependência. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Linha 1414 (gratuita e anónima)</a></p>
+<p class="links">Atualizado: <time datetime="2026-11-25T14:11:00Z">qua 25/11/2026 14:11</time> · <a href="como-funciona">Como funciona</a> · <a href="termos">Termos</a> · <a href="privacidade">Privacidade</a> · <a href="fontes-e-licencas">Fontes e licenças</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
 </div></footer>
 <script>
 (function () {
@@ -1301,7 +1328,7 @@ html.accounts-off [data-account-link] { display: none; }
   apply();
 })();
 </script>
-<script type="application/json" id="account-config">{"url":"https://jcsusyrgqhhdqrjqtinf.supabase.co","key":"sb_publishable_ijxoFtISarNf0vTop-K0wA_ty5YG7Ba","root":"","site":"https://contasdabola.pt/","callback":"https://contasdabola.pt/conta","t":{"account":"Conta","sign_in":"Entrar","why":"Guarda os teus palpites e jogos em todos os dispositivos e entra nos rankings. \u00c9 gr\u00e1tis e podes apagar tudo quando quiseres.","google":"Continuar com o Google","tab_code":"C\u00f3digo por email","tab_password":"Email e password","email":"Email","send_code":"Enviar-me um c\u00f3digo","code_note":"Sem password: enviamos-te por email um c\u00f3digo de 6 d\u00edgitos para escreveres aqui.","password":"Password","create":"Criar conta","forgot":"Esqueceste-te da password?","forgot_mail":"Escreve primeiro o teu email.","password_note":"Pelo menos 8 caracteres, com letras e algarismos.","terms_note":"Ao criares conta aceitas os \u003ca href=\"termos\"\u003eTermos\u003c/a\u003e; a p\u00e1gina \u003ca href=\"privacidade\"\u003ePrivacidade\u003c/a\u003e diz o que guardamos.","code_sent":"Envi\u00e1mos um c\u00f3digo para {email}.","code":"C\u00f3digo","code_spam":"Demora no m\u00e1ximo um minuto. N\u00e3o chegou? V\u00ea no spam.","new_password":"Nova password","confirm":"Confirmar","back":"Voltar","choose_name":"Escolhe o teu nome para os rankings","change_name":"Mudar o nome","name_note":"3 a 20 letras, algarismos, _ ou . \u2014 \u00e9 p\u00fablico nos rankings e podes mud\u00e1-lo uma vez a cada 30 dias.","username":"Nome","age":"Tenho 16 anos ou mais.","save":"Guardar","leagues":"Ligas com amigos","loading":"A carregar\u2026","league_name":"Nome da liga","create_league":"Criar liga","league_code":"C\u00f3digo de convite","join":"Entrar","joined":"J\u00e1 est\u00e1s na liga.","no_leagues":"Ainda n\u00e3o tens ligas: cria uma e envia o c\u00f3digo aos teus amigos.","members":"{n} membros","see_ranking":"Ver o ranking","code_label":"C\u00f3digo:","copy_invite":"Copiar o link de convite","copied":"Copiado.","new_code":"Novo c\u00f3digo","remove_member":"Remover um membro","remove_who":"O nome do membro a remover:","delete_league":"Apagar a liga","delete_league_sure":"Apagar esta liga para todos?","leave":"Sair da liga","leave_sure":"Sair desta liga?","history":"Os teus jogos","no_history":"Ainda n\u00e3o jogaste. Joga a Tripla do Dia ou o Desafio do Dia.","tripla":"Tripla do Dia","desafio":"Desafio do Dia","your_data":"A tua conta","signed_as":"Entraste como {email}. Nome nos rankings: {name}.","imported":"{n} palpites chegaram \u00e0 conta depois do apito: ficam no teu hist\u00f3rico e n\u00e3o contam para o ranking.","export":"Descarregar os meus dados","sign_out":"Sair","delete_account":"Apagar a minha conta","delete_note":"Apaga a conta, os teus palpites, os teus jogos e as ligas que criaste, de imediato e para sempre.","delete_confirm":"Apagar tudo","delete_sure":"Apagar a conta e tudo o que tem? N\u00e3o d\u00e1 para desfazer.","deleted":"Conta apagada.","off":"As contas est\u00e3o indispon\u00edveis neste momento. Tudo o resto funciona como sempre.","retry":"Tentar outra vez","season":"\u00c9poca","week":"Esta semana","round":"Jornada {n}","everyone":"Todos","model":"O modelo","name":"Nome","points":"Pontos","matches":"Jogos","games":"Jogos","palpites_note":"1 ponto por palpite certo, feito antes do apito. Empates: primeiro quem fez mais palpites, depois quem l\u00e1 chegou primeiro. A linha do modelo usa a previs\u00e3o fechada 24 h antes do jogo.","games_note":"Cada adepto tem os seus jogos em cada dia, com 60 segundos por jogo: 3 pontos pelo vencedor, mais 2 pelo resultado exato e menos 1 por ajuda.","empty":"Ainda n\u00e3o h\u00e1 ningu\u00e9m aqui.","join_note":"\u003ca href=\"conta\"\u003eCria uma conta\u003c/a\u003e para entrares nos rankings.","unavailable":"O ranking est\u00e1 indispon\u00edvel neste momento. Tenta daqui a pouco.","e_taken":"Esse nome j\u00e1 est\u00e1 ocupado.","e_username":"3 a 20 letras, algarismos, _ ou . (nem no in\u00edcio nem no fim).","e_blocked":"Esse nome n\u00e3o \u00e9 permitido.","e_30days":"Mudaste o nome h\u00e1 menos de 30 dias.","e_age":"Confirma que tens 16 anos ou mais.","e_no_league":"N\u00e3o h\u00e1 nenhuma liga com esse c\u00f3digo.","e_full":"Essa liga est\u00e1 cheia (50 membros).","e_ten":"J\u00e1 est\u00e1s em 10 ligas.","e_league_name":"A liga precisa de um nome com 3 a 40 caracteres.","e_login":"Email ou password errados.","e_confirm":"Confirma primeiro o teu email, com o c\u00f3digo que te envi\u00e1mos.","e_code":"Esse c\u00f3digo est\u00e1 errado ou j\u00e1 expirou. Pede um novo.","e_password":"A password precisa de pelo menos 8 caracteres, com letras e algarismos.","e_rate":"Demasiadas tentativas. Espera uns minutos.","e_exists":"J\u00e1 h\u00e1 uma conta com esse email: entra.","e_network":"Sem liga\u00e7\u00e3o. Tenta outra vez.","e_generic":"Algo correu mal. Tenta outra vez."}}</script>
+<script type="application/json" id="account-config">{"url":"https://jcsusyrgqhhdqrjqtinf.supabase.co","key":"sb_publishable_ijxoFtISarNf0vTop-K0wA_ty5YG7Ba","root":"","site":"https://contasdabola.pt/","callback":"https://contasdabola.pt/conta","t":{"account":"Conta","sign_in":"Entrar","why":"Guarda os teus palpites e jogos em todos os dispositivos e entra nos rankings. \u00c9 gr\u00e1tis e podes apagar tudo quando quiseres.","google":"Continuar com o Google","tab_code":"C\u00f3digo por email","tab_password":"Email e password","email":"Email","send_code":"Enviar-me um c\u00f3digo","code_note":"Sem password: enviamos-te por email um c\u00f3digo de 6 d\u00edgitos para escreveres aqui.","password":"Password","create":"Criar conta","forgot":"Esqueceste-te da password?","forgot_mail":"Escreve primeiro o teu email.","password_note":"Pelo menos 8 caracteres, com letras e algarismos.","terms_note":"Ao criares conta aceitas os \u003ca href=\"termos\"\u003eTermos\u003c/a\u003e; a p\u00e1gina \u003ca href=\"privacidade\"\u003ePrivacidade\u003c/a\u003e diz o que guardamos.","code_sent":"Envi\u00e1mos um c\u00f3digo para {email}.","code":"C\u00f3digo","code_spam":"Demora no m\u00e1ximo um minuto. N\u00e3o chegou? V\u00ea no spam.","new_password":"Nova password","confirm":"Confirmar","back":"Voltar","choose_name":"Escolhe o teu nome para os rankings","change_name":"Mudar o nome","name_note":"3 a 20 letras (com acentos), algarismos, _ ou ., sem espa\u00e7os \u2014 \u00e9 p\u00fablico nos rankings e podes mud\u00e1-lo uma vez a cada 30 dias.","username":"Nome","age":"Tenho 16 anos ou mais.","save":"Guardar","leagues":"Ligas com amigos","loading":"A carregar\u2026","league_name":"Nome da liga","create_league":"Criar liga","league_code":"C\u00f3digo de convite","join":"Juntar-me","joined":"J\u00e1 est\u00e1s na liga.","no_leagues":"Ainda n\u00e3o tens ligas: cria uma e envia o c\u00f3digo aos teus amigos.","members":"{n} membros","member_one":"1 membro","share_invite":"Entra na minha liga \u00ab{name}\u00bb no Contas da Bola:","join_ready":"C\u00f3digo de convite preenchido: carrega em \u00abJuntar-me\u00bb para entrar na liga.","unfinished":"a meio","inapp":"Para entrar com o Google, abre esta p\u00e1gina no browser (\u22ee ou \u22ef \u2192 Abrir no browser). Ou usa o c\u00f3digo por email, aqui em baixo.","e_google":"A entrada com o Google n\u00e3o chegou ao fim. Tenta outra vez ou usa o c\u00f3digo por email.","see_ranking":"Ver o ranking","code_label":"C\u00f3digo:","copy_invite":"Copiar o link de convite","copied":"Copiado.","new_code":"Novo c\u00f3digo","remove_member":"Remover um membro","remove_who":"O nome do membro a remover:","delete_league":"Apagar a liga","delete_league_sure":"Apagar esta liga para todos?","leave":"Sair da liga","leave_sure":"Sair desta liga?","history":"Os teus jogos","no_history":"Ainda n\u00e3o jogaste. Joga a Tripla do Dia ou o Desafio do Dia.","tripla":"Tripla do Dia","desafio":"Desafio do Dia","your_data":"A tua conta","signed_as":"Entraste como {email}. Nome nos rankings: {name}.","imported":"{n} palpites chegaram \u00e0 conta depois do apito: ficam no teu hist\u00f3rico e n\u00e3o contam para o ranking.","export":"Descarregar os meus dados","sign_out":"Sair","delete_account":"Apagar a minha conta","delete_note":"Apaga a conta, os teus palpites, os teus jogos e as ligas que criaste, de imediato e para sempre.","delete_confirm":"Apagar tudo","delete_sure":"Apagar a conta e tudo o que tem? N\u00e3o d\u00e1 para desfazer.","deleted":"Conta apagada.","off":"As contas est\u00e3o indispon\u00edveis neste momento. Tudo o resto funciona como sempre.","retry":"Tentar outra vez","season":"\u00c9poca","week":"Esta semana","round":"Jornada {n}","everyone":"Todos","model":"O modelo","name":"Nome","points":"Pontos","matches":"Jogos","games":"Jogos","palpites_note":"1 ponto por palpite certo, feito antes do apito. Empates: primeiro quem fez mais palpites, depois quem l\u00e1 chegou primeiro. A linha do modelo usa a previs\u00e3o fechada 24 h antes do jogo.","games_note":"Cada adepto tem os seus jogos em cada dia, com 60 segundos por jogo: 3 pontos pelo vencedor, mais 2 pelo resultado exato e menos 1 por ajuda.","empty":"Ainda n\u00e3o h\u00e1 ningu\u00e9m aqui.","join_note":"\u003ca href=\"conta\"\u003eCria uma conta\u003c/a\u003e para entrares nos rankings.","unavailable":"O ranking est\u00e1 indispon\u00edvel neste momento. Tenta daqui a pouco.","e_taken":"Esse nome j\u00e1 est\u00e1 ocupado.","e_username":"3 a 20 letras, algarismos, _ ou ., sem espa\u00e7os (o _ e o . nem no in\u00edcio nem no fim).","e_blocked":"Esse nome n\u00e3o \u00e9 permitido.","e_30days":"Mudaste o nome h\u00e1 menos de 30 dias.","e_age":"Confirma que tens 16 anos ou mais.","e_no_league":"N\u00e3o h\u00e1 nenhuma liga com esse c\u00f3digo.","e_full":"Essa liga est\u00e1 cheia (50 membros).","e_ten":"J\u00e1 est\u00e1s em 10 ligas.","e_league_name":"A liga precisa de um nome com 3 a 40 caracteres.","e_login":"Email ou password errados.","e_confirm":"Confirma primeiro o teu email, com o c\u00f3digo que te envi\u00e1mos.","e_code":"Esse c\u00f3digo est\u00e1 errado ou j\u00e1 expirou. Pede um novo.","e_password":"A password precisa de pelo menos 8 caracteres, com letras e algarismos.","e_rate":"Demasiadas tentativas. Espera uns minutos.","e_exists":"J\u00e1 h\u00e1 uma conta com esse email: entra.","e_network":"Sem liga\u00e7\u00e3o. Tenta outra vez.","e_generic":"Algo correu mal. Tenta outra vez."},"months":["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"]}</script>
 <script>
 (function () {
   // Accounts (D-195 to D-200): a small client for the Supabase Auth and REST APIs, with no
@@ -1319,16 +1346,19 @@ html.accounts-off [data-account-link] { display: none; }
   }
 
   function Problem(status, code, message) { this.status = status; this.code = code; this.message = message; }
+  // Without storage (some private modes) a session cannot be kept: the account parts stay off.
+  var storageWorks = (function () { try { localStorage.setItem("lfp-probe", "1"); localStorage.removeItem("lfp-probe"); return true; } catch (e) { return false; } })();
 
   // One request to the API. ``auth``: "user" sends the session's token, "anon" the public key only.
-  function call(method, path, body, auth, extra) {
+  function call(method, path, body, auth, extra, retried) {
     var headers = { apikey: C.key, "Content-Type": "application/json" };
     for (var h in (extra || {})) headers[h] = extra[h];
-    var ready = auth === "user" ? token() : Promise.resolve(null);
+    var ready = auth === "user" ? token(retried) : Promise.resolve(null);
     return ready.then(function (t) {
       if (auth === "user" && !t) throw new Problem(401, "no_session", "");
       headers.Authorization = "Bearer " + (t || C.key);
-      return fetch(C.url + path, { method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body) });
+      return fetch(C.url + path, { method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body) })
+        .catch(function () { throw new Problem(0, "network", ""); });
     }).then(function (r) {
       return r.text().then(function (text) {
         var data = null;
@@ -1339,7 +1369,13 @@ html.accounts-off [data-account-link] { display: none; }
         }
         return data;
       });
-    }, function () { throw new Problem(0, "network", ""); });
+    }).catch(function (e) {
+      // An expired token (a device clock that is off, a revoked session): refresh once and retry.
+      if (auth === "user" && !retried && e instanceof Problem && e.status === 401 && e.code !== "no_session") {
+        return call(method, path, body, auth, extra, true);
+      }
+      throw e;
+    });
   }
 
   // --- The session ---------------------------------------------------------------------------
@@ -1347,20 +1383,31 @@ html.accounts-off [data-account-link] { display: none; }
   function keep(s) {
     if (!s || !s.access_token) { store(KEY_SESSION, null); return null; }
     var stored = { access_token: s.access_token, refresh_token: s.refresh_token,
-      expires_at: s.expires_at || Math.floor(Date.now() / 1000) + (s.expires_in || 3600), user: s.user || null };
+      // on this device's clock, so a clock that is off does not keep a dead token
+      expires_at: Math.floor(Date.now() / 1000) + (s.expires_in || 3600), user: s.user || null };
     store(KEY_SESSION, stored);
     emit();
     return stored;
   }
   function session() { return read(KEY_SESSION); }
-  function token() {
+  var DEAD = ["refresh_token_not_found", "refresh_token_already_used", "invalid_grant", "session_not_found", "user_not_found"];
+  function token(force) {
     var s = session();
     if (!s) return Promise.resolve(null);
-    if (s.expires_at - 60 > Date.now() / 1000) return Promise.resolve(s.access_token);
+    if (!force && s.expires_at - 60 > Date.now() / 1000) return Promise.resolve(s.access_token);
     if (!refreshing) {
-      refreshing = call("POST", "/auth/v1/token?grant_type=refresh_token", { refresh_token: s.refresh_token }, "anon")
+      var used = s.refresh_token;
+      refreshing = call("POST", "/auth/v1/token?grant_type=refresh_token", { refresh_token: used }, "anon")
         .then(function (fresh) { refreshing = null; return keep(fresh).access_token; },
-              function (e) { refreshing = null; if (e.status >= 400 && e.status < 500) { keep(null); } return null; });
+              function (e) {
+                refreshing = null;
+                var now = session();
+                // Another tab may have rotated the token meanwhile: use theirs.
+                if (now && now.refresh_token !== used) return now.access_token;
+                // Only a refused refresh token ends the session; a 429, a 5xx or no network do not.
+                if ((e.status === 400 || e.status === 401) && DEAD.indexOf(e.code) >= 0) keep(null);
+                return null;
+              });
     }
     return refreshing;
   }
@@ -1377,7 +1424,12 @@ html.accounts-off [data-account-link] { display: none; }
 
   // An anonymous session, made only when a game needs one (D-196).
   function ensureSession() {
-    if (session()) return token().then(function (t) { return t ? true : ensureSession(); });
+    if (session()) return token().then(function (t) {
+      if (t) return true;
+      if (session()) throw new Problem(0, "network", "");  // kept, but unreachable now: no retry loop
+      return ensureSession();  // the old session was refused: start a new one
+    });
+    if (!storageWorks) return Promise.reject(new Problem(0, "storage", ""));
     return call("POST", "/auth/v1/signup", { data: {} }, "anon").then(function (s) { keep(s); return true; });
   }
 
@@ -1422,7 +1474,13 @@ html.accounts-off [data-account-link] { display: none; }
   }
   function signUp(mail, password) {
     return prepareClaim().then(function () { return call("POST", "/auth/v1/signup", { email: mail, password: password }, "anon"); })
-      .then(function (r) { if (r && r.access_token) return afterSignIn(r).then(function () { return "in"; }); return "code"; });
+      .then(function (r) {
+        if (r && r.access_token) return afterSignIn(r).then(function () { return "in"; });
+        // Supabase hides an existing email by answering as if it were new, with no identities.
+        var user = r && (r.user || r);
+        if (user && user.identities && user.identities.length === 0) throw new Problem(422, "user_already_exists", "user_already_exists");
+        return "code";
+      });
   }
   function signIn(mail, password) {
     return prepareClaim().then(function () { return call("POST", "/auth/v1/token?grant_type=password", { email: mail, password: password }, "anon"); })
@@ -1438,15 +1496,19 @@ html.accounts-off [data-account-link] { display: none; }
   function recover(mail) { return call("POST", "/auth/v1/recover", { email: mail }, "anon"); }
   function setPassword(password) { return call("PUT", "/auth/v1/user", { password: password }, "user"); }
   function signOut() {
-    var done = function () { keep(null); store(KEY_SYNC, null); emit(); };
+    // The next person on this browser does not inherit this account's data.
+    var done = function () { forget(); keep(null); emit(); };
     return call("POST", "/auth/v1/logout", {}, "user").then(done, done);
   }
 
+  function forget() {
+    ["picks", "jogo-vistos", "club", "tripla", KEY_SYNC, KEY_CLAIM, KEY_PKCE].forEach(function (k) { store(k, null); });
+  }
   function rpc(name, args, anon) { return call("POST", "/rest/v1/rpc/" + name, args || {}, anon ? "anon" : "user"); }
   function rest(method, path, body, extra) { return call(method, "/rest/v1/" + path, body, "user", extra); }
 
   // --- The kill switch (D-195): off, the account parts of the page hide and stay hidden --------
-  var state = { on: true, profile: undefined };
+  var state = { on: storageWorks, profile: undefined };
   var checked = read(KEY_OFF);
   if (checked && Date.now() - checked.at < 10 * 60 * 1000) state.on = checked.on;
   function applySwitch() {
@@ -1456,7 +1518,7 @@ html.accounts-off [data-account-link] { display: none; }
   applySwitch();
   var ready = (checked && Date.now() - checked.at < 10 * 60 * 1000 ? Promise.resolve() :
     call("GET", "/rest/v1/config?key=eq.accounts_enabled&select=value", undefined, "anon").then(function (rows) {
-      state.on = !(rows && rows[0] && rows[0].value === false);
+      state.on = storageWorks && !(rows && rows[0] && rows[0].value === false);
       store(KEY_OFF, { on: state.on, at: Date.now() });
     }, function () {})).then(applySwitch);
 
@@ -1469,68 +1531,100 @@ html.accounts-off [data-account-link] { display: none; }
 
   var syncing = null, again = false;
   function sync(first) {
-    if (!isAccount()) return Promise.resolve(null);
+    if (!isAccount() || !state.on) return Promise.resolve(null);
     if (syncing) { again = true; return syncing; }
     syncing = doSync(first).then(function (r) { syncing = null; if (again) { again = false; return sync(); } return r; },
       function (e) { syncing = null; throw e; });
     return syncing;
   }
+  // A refusal the server means (a pick after kick-off, a match it does not know): its value wins.
+  function refused(e) { return !!e && (e.status === 400 || e.status === 403 || e.status === 409 || e.code === "42501" || e.code === "23503"); }
   function doSync(first) {
     var base = first ? null : read(KEY_SYNC);
+    var me = claims().sub;
     return Promise.all([rest("GET", "profiles?select=username,club,theme,seen,settings_updated_at"), rest("GET", "picks?select=match_id,pick,imported")])
       .then(function (both) {
         var profile = both[0] && both[0][0] || null, server = {}, flags = {};
         (both[1] || []).forEach(function (p) { server[p.match_id] = p.pick; flags[p.match_id] = p.imported; });
         state.profile = profile;
-        var jobs = [], picks = localPicks(), was = base ? base.picks : {};
-        // Picks: on the first sync both sides join and the account wins a clash (contas.md §6).
-        Object.keys(picks).forEach(function (id) {
-          var mine = picks[id];
+        var jobs = [], start = localPicks(), was = base ? base.picks : {}, pending = {};
+        function job(id, request, applied) {
+          jobs.push(request.then(applied, function (e) { if (!refused(e)) pending[id] = true; }));
+        }
+        // Picks: on the first sync both sides join and the account wins a clash (contas.md §6);
+        // later, the side that differs from the last sync is the one that changed.
+        Object.keys(start).forEach(function (id) {
+          var mine = start[id];
           if (server[id] === mine) return;
           if (server[id] === undefined && (base === null || was[id] !== mine)) {
-            jobs.push(rest("POST", "picks", { match_id: id, pick: mine }, { Prefer: "resolution=merge-duplicates,return=minimal" })
-              .then(function () { server[id] = mine; }, function () {}));
+            job(id, rest("POST", "picks", { match_id: id, pick: mine }, { Prefer: "resolution=merge-duplicates,return=minimal" }),
+              function () { server[id] = mine; });
           } else if (server[id] !== undefined && base !== null && was[id] !== mine && was[id] === server[id]) {
-            jobs.push(rest("PATCH", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), { pick: mine }, { Prefer: "return=minimal" })
-              .then(function () { server[id] = mine; }, function () {}));
+            job(id, rest("PATCH", "picks?user_id=eq." + me + "&match_id=eq." + encodeURIComponent(id), { pick: mine }, { Prefer: "return=minimal" }),
+              function () { server[id] = mine; });
           }
         });
         if (base !== null) Object.keys(was).forEach(function (id) {
-          if (picks[id] === undefined && server[id] === was[id]) {
-            jobs.push(rest("DELETE", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), undefined, { Prefer: "return=minimal" })
-              .then(function () { delete server[id]; }, function () {}));
+          if (start[id] === undefined && server[id] === was[id]) {
+            job(id, rest("DELETE", "picks?user_id=eq." + me + "&match_id=eq." + encodeURIComponent(id), undefined, { Prefer: "return=minimal" }),
+              function () { delete server[id]; });
           }
         });
         return Promise.all(jobs).then(function () {
-          // What the server kept is the truth (a late change is refused there).
-          setLocal("picks", JSON.stringify(server));
-          state.imported = Object.keys(flags).filter(function (id) { return flags[id]; }).length;
-          var settings = Promise.resolve();
-          if (profile) {
-            var now = { club: local("club"), theme: local("theme"), seen: localSeen() };
-            var old = base ? base.settings : null;
-            var pushed = !old || now.club !== old.club || now.theme !== old.theme || now.seen.length !== old.seen.length;
-            var pulled = old && profile.settings_updated_at !== base.settings_at;
-            // This device's change is the newest one; else the account's, made on another device.
-            if (pushed) {
-              var seen = now.seen.concat((profile.seen || []).filter(function (g) { return now.seen.indexOf(g) < 0; })).slice(-3000);
-              settings = rest("PATCH", "profiles?user_id=eq." + claims().sub + "&select=settings_updated_at", { club: now.club, theme: now.theme, seen: seen }, { Prefer: "return=representation" })
-                .then(function (rows) { profile.settings_updated_at = rows && rows[0] ? rows[0].settings_updated_at : profile.settings_updated_at; profile.club = now.club; profile.theme = now.theme; profile.seen = seen; setLocal("jogo-vistos", JSON.stringify(seen)); });
-            } else if (pulled) {
-              setLocal("club", profile.club);
-              setLocal("theme", profile.theme);
-              setLocal("jogo-vistos", JSON.stringify(profile.seen || []));
-              if (profile.theme) document.documentElement.dataset.theme = profile.theme;
+          // Merge match by match: a pick made while this sync ran, or one that could not be sent,
+          // stays as it is on this device and goes next time; elsewhere the server's copy is the truth.
+          var now = localPicks(), merged = {}, nextBase = {}, ids = {};
+          [now, start, server, was].forEach(function (o) { for (var k in o) ids[k] = true; });
+          Object.keys(ids).forEach(function (id) {
+            if (now[id] !== start[id] || pending[id]) {
+              if (now[id] !== undefined) merged[id] = now[id];
+              if (was[id] !== undefined) nextBase[id] = was[id];
+            } else if (server[id] !== undefined) {
+              merged[id] = server[id];
+              nextBase[id] = server[id];
             }
-          }
-          return settings.then(function () {
-            store(KEY_SYNC, { picks: server, settings: profile ? { club: profile.club, theme: profile.theme, seen: profile.seen || [] } : null,
+          });
+          setLocal("picks", JSON.stringify(merged));
+          var unsent = Object.keys(pending).length > 0;
+          if (JSON.stringify(now) !== JSON.stringify(start)) again = true;
+          state.imported = Object.keys(flags).filter(function (id) { return flags[id]; }).length;
+          state.unsent = unsent;
+          return settingsSync(profile, base).then(function () {
+            store(KEY_SYNC, { picks: nextBase, settings: profile ? { club: profile.club, theme: profile.theme, seen: profile.seen || [] } : null,
               settings_at: profile ? profile.settings_updated_at : null, at: Date.now() });
             emit();
             return profile;
           });
         });
       });
+  }
+  function sameSeen(a, b) { return a.length === b.length && a[a.length - 1] === b[b.length - 1]; }
+  function settingsSync(profile, base) {
+    if (!profile) return Promise.resolve();
+    var me = claims().sub;
+    var now = { club: local("club"), theme: local("theme"), seen: localSeen() };
+    var target;
+    if (!base || !base.settings) {
+      // The first sync on this device: what the account already has wins, this device fills the gaps.
+      target = { club: profile.club || now.club, theme: profile.theme || now.theme,
+        seen: now.seen.concat((profile.seen || []).filter(function (g) { return now.seen.indexOf(g) < 0; })).slice(-3000) };
+    } else {
+      var old = base.settings;
+      var mineChanged = now.club !== old.club || now.theme !== old.theme || !sameSeen(now.seen, old.seen || []);
+      // This device's change is the newest; else the account's, made on another device.
+      target = mineChanged ? now : { club: profile.club, theme: profile.theme, seen: profile.seen || [] };
+    }
+    setLocal("club", target.club);
+    setLocal("theme", target.theme);
+    setLocal("jogo-vistos", JSON.stringify(target.seen));
+    if (target.theme) document.documentElement.dataset.theme = target.theme;
+    if (window.markMyClub) window.markMyClub();
+    if (target.club === profile.club && target.theme === profile.theme && sameSeen(target.seen, profile.seen || [])) return Promise.resolve();
+    return rest("PATCH", "profiles?user_id=eq." + me + "&select=settings_updated_at", target, { Prefer: "return=representation" })
+      .then(function (rows) {
+        profile.settings_updated_at = rows && rows[0] ? rows[0].settings_updated_at : profile.settings_updated_at;
+        profile.club = target.club; profile.theme = target.theme; profile.seen = target.seen;
+      }, function () {});
   }
   var soon = null;
   function syncSoon() { clearTimeout(soon); soon = setTimeout(function () { sync().catch(function () {}); }, 800); }
@@ -1558,7 +1652,7 @@ html.accounts-off [data-account-link] { display: none; }
     session: session, claims: claims, isAccount: isAccount, email: email, ensureSession: ensureSession,
     google: google, finishGoogle: finishGoogle, signUp: signUp, signIn: signIn, sendCode: sendCode,
     verify: verify, recover: recover, setPassword: setPassword, signOut: signOut,
-    rpc: rpc, rest: rest, sync: sync, syncSoon: syncSoon, invite: invite,
+    rpc: rpc, rest: rest, sync: sync, syncSoon: syncSoon, invite: invite, forget: forget, storageWorks: storageWorks,
     on: function (f) { listeners.push(f); }
   };
   label();
@@ -1650,13 +1744,13 @@ html.accounts-off [data-account-link] { display: none; }
     rows.sort(function (x, y) { return (x[1][0] || 99) - (y[1][0] || 99); });
     return '<table class="tbl"><tbody>' + rows.map(function (r) {
       var t = r[1];
-      return t[1] ? "<tr><td>" + t[0] + T.ordinal + "</td><td>" + esc(name(r[0])) + '</td><td class="n">' + fill(T.pts, { n: t[2] }) + '</td><td class="n">' + fill(T.played, { n: t[1] }) + "</td></tr>"
+      return t[1] ? "<tr><td>" + Number(t[0]) + T.ordinal + "</td><td>" + esc(name(r[0])) + '</td><td class="n">' + fill(T.pts, { n: Number(t[2]) }) + '</td><td class="n">' + fill(T.played, { n: Number(t[1]) }) + "</td></tr>"
         : "<tr><td></td><td>" + esc(name(r[0])) + '</td><td class="n" colspan="2">' + T.no_games + "</td></tr>";
     }).join("") + '</tbody></table><p class="meta">' + T.table_note + "</p>";
   }
   function hintForm(g) {
     function row(team) {
-      var f = team.form || "";
+      var f = String(team.form || "").replace(/[^WDL]/g, "");
       return '<div class="form-row"><span class="who">' + esc(name(team.team)) + "</span>" + (f ? f.split("").map(function (c) {
         return '<span class="fl ' + c + '" title="' + T.result[c] + '">' + T.letter[c] + "</span>";
       }).join("") : '<span class="meta">' + T.no_form + "</span>") + "</div>";
@@ -1757,12 +1851,15 @@ html.accounts-off [data-account-link] { display: none; }
     go.type = "button";
     go.addEventListener("click", function () {
       if (!state.server) { reveal(g, cur); return; }
+      if (state.busy) return;
+      state.busy = true;
       go.disabled = true;
       ACC.rpc("answer", { play: state.server.play, h: cur.h, a: cur.a }).then(function (r) {
         clearInterval(timer);
         state.games[state.i] = r.game;
+        state.busy = false;
         reveal(r.game, cur, { winner: r.winner, exact: r.exact, total: r.points, used: r.hints.length, late: r.late });
-      }, function () { go.disabled = false; serverError(); });
+      }, function () { state.busy = false; go.disabled = false; serverError(); });
     });
     gb.appendChild(go);
     side.appendChild(gb);
@@ -1779,13 +1876,18 @@ html.accounts-off [data-account-link] { display: none; }
       b.addEventListener("click", function () {
         if (used || state.hintsLeft === 0) return;
         if (state.server) {  // the server opens and counts the hint
+          if (state.busy) return;
+          state.busy = true;
           b.disabled = true;
+          var round = state.i;
           ACC.rpc("hint", { play: state.server.play, k: k }).then(function (r) {
+            state.busy = false;
+            if (state.i !== round || state.rounds.length > round) return;  // the round moved on
             merge(g, r.data);
             state.hintsLeft = r.hints_left; cur.used.push(k);
             renderSide(g, cur);
             side.querySelectorAll(".hint > button")[k].focus();
-          }, function () { b.disabled = false; serverError(); });
+          }, function () { state.busy = false; b.disabled = false; serverError(); });
           return;
         }
         state.hintsLeft -= 1; cur.used.push(k);
@@ -1807,7 +1909,7 @@ html.accounts-off [data-account-link] { display: none; }
     if (!g.goals.length) return "<p class='meta'>" + T.no_goals + "</p>";
     return '<ul class="goals">' + g.goals.map(function (x) {
       var tag = x[3] === "penalty" ? " " + T.pen : x[3] === "own_goal" ? " " + T.og : "";
-      return '<li><span class="m">' + x[0] + "'</span><span>" + esc(x[1]) + tag + " · " + esc(name(x[2] ? g.away.team : g.home.team)) + "</span></li>";
+      return '<li><span class="m">' + Number(x[0]) + "'</span><span>" + esc(x[1]) + tag + " · " + esc(name(x[2] ? g.away.team : g.home.team)) + "</span></li>";
     }).join("") + "</ul>";
   }
 

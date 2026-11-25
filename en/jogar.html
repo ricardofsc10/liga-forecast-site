@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-uT4c4C/qlg2Kq+06sahxLZODV86MUxLV3Q9wUXakIXs=' 'sha256-Kh8TcycQ/fQQR68WnwJmH4L6qI8E1lPbLe7tMjetaG0=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self' https://jcsusyrgqhhdqrjqtinf.supabase.co; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-S6yVlLpSbsXqiBNBtv6JFHe0JhazqKBFiTpba+1+ttQ=' 'sha256-QYz1Z8DR+zAoCVDz6ZkPjoYZxEuYvqRLqTATRU73Ydo=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self' https://jcsusyrgqhhdqrjqtinf.supabase.co; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Play · Contas da Bola</title>
-<meta name="description" content="Two games for fans: guess the score of past league games from the starting elevens, and pick the next round's winners against our model.">
+<meta name="description" content="Games for fans: guess past league scores from the starting elevens, pick the next round against our model, and climb the rankings.">
 <meta name="color-scheme" content="dark light">
 <meta name="google-site-verification" content="FNL0J3pjsVLhlkGUh-aRbb5yhrt7pO-6M1AO6vy2qWo">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -20,7 +20,7 @@
    floodlight amber for actions; club colours appear only as cards. Flat: no gradients, no
    shadows, 2px corners. */
 @font-face { font-family: "Archivo"; src: url("../static/fonts/archivo.woff2") format("woff2");
-  font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
+  font-weight: 100 900; font-stretch: 62% 125%; font-display: optional; }  /* no swap, so no jump when it arrives */
 :root {
   color-scheme: light;
   --delta-share: 45%; --delta-share-mine: 40%; --focus: #1b1d21;
@@ -115,6 +115,13 @@ a:hover { color: var(--amber-text); }
   padding: 5px 10px; border: 1px solid var(--axis); border-radius: 2px; background: none; cursor: pointer; }
 .bar a.lang:hover, .bar .theme:hover { border-color: var(--amber); color: var(--ink); }
 .bar .theme { display: none; } .js .bar .theme { display: inline-flex; align-items: center; }
+.bar a.acct { flex: none; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none; padding: 6px 10px;
+  border: 1px solid var(--amber); border-radius: 2px; max-width: 9em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar a.acct:hover { background: var(--amber); color: var(--amber-ink); }
+.bar a.acct { display: inline-flex; align-items: center; gap: 6px; }
+.bar a.acct svg { width: 16px; height: 16px; flex: none; }
+.bar a.acct .t { overflow: hidden; text-overflow: ellipsis; }
+html.accounts-off .bar a.acct { display: none; }
 .bar .theme svg { width: 16px; height: 16px; }
 
 /* Club cards (D-090): a small card with the club's two colours */
@@ -1011,6 +1018,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   .bar nav a { padding: 11px 8px; font-size: 14px; }
   .bar a.lang, .bar .theme { min-height: 40px; min-width: 40px; justify-content: center; }
   .bar a.lang { display: inline-flex; align-items: center; }
+  .bar a.acct { min-height: 40px; display: inline-flex; align-items: center; max-width: 7.5em; }
   .hello { grid-template-columns: 1fr; gap: 10px; padding-bottom: 22px; }
   .trio-big { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .trio-big div:nth-child(2) { text-align: center; } .trio-big div:nth-child(3) { text-align: right; }
@@ -1121,7 +1129,13 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .acc .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .acc .tabs, .ranking-view .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
 .acc .chip[aria-selected="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
-.acc .btn.google { justify-content: center; background: var(--raised); color: var(--ink); border: 1px solid var(--axis); }
+/* Google's sign-in button: white with a grey edge in light, near-black in dark, the four-colour G (brand guidelines) */
+.acc .btn.google { justify-content: center; gap: 12px; background: #ffffff; color: #1f1f1f; border: 1px solid #747775; font-family: Roboto, Arial, sans-serif; font-weight: 500; font-size: 16px; min-height: 44px; }
+.acc .btn.google:hover { background: #f2f2f2; color: #1f1f1f; }
+.acc .btn.google .g { width: 20px; height: 20px; flex: none; }
+:root[data-theme="dark"] .acc .btn.google { background: #131314; color: #e3e3e3; border-color: #8e918f; }
+:root[data-theme="dark"] .acc .btn.google:hover { background: #1f1f20; color: #e3e3e3; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .acc .btn.google { background: #131314; color: #e3e3e3; border-color: #8e918f; } }
 .acc .link { font: inherit; background: none; border: 0; padding: 4px 0; color: var(--accent); text-decoration: underline; cursor: pointer; min-height: 32px; }
 .acc .link.danger, .acc .btn.danger { color: var(--bad); }
 .acc .btn.danger { background: none; border: 1px solid var(--bad); }
@@ -1150,8 +1164,24 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .play .invite { border: 2px solid var(--amber); }
 .play .invite p { margin: 0; }
 .play .final .invite { margin-top: 16px; }
-html.accounts-off [data-account-link] { display: none; }
 @media (max-width: 520px) { .acc .acc-form.inline { grid-template-columns: 1fr; } }
+/* Audit fixes (D-203) */
+/* On a phone the account link is an icon, so the brand, it, the theme and EN share one row */
+@media (max-width: 480px) {
+  .bar .wrap { gap: 8px; }
+  .bar a.acct { min-width: 40px; justify-content: center; padding: 6px; }
+  .bar a.acct .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (max-width: 360px) { .brand { font-size: 18px; gap: 7px; } }
+@media (max-width: 340px) { .brand { font-size: 15px; gap: 6px; } .bar .wrap { gap: 6px; } }
+.play .clock { position: sticky; top: 57px; z-index: 5; background: var(--page); padding: 6px 0; }
+@media (max-width: 640px) { .play .clock { top: 100px; } }
+.ranking-view .filters label { flex-wrap: wrap; max-width: 100%; }
+.ranking-view select { max-width: 100%; min-width: 0; flex: 1 1 10em; min-height: 44px; }
+.ranking-view .tbl td:not(.n) { text-align: left; }
+.acc .chip, .ranking-view .chip, .play .chip { min-height: 44px; }
+.acc .link { min-height: 44px; }
+.acc .sqs { white-space: nowrap; }
 
 </style>
 <link rel="canonical" href="https://contasdabola.pt/en/jogar">
@@ -1162,7 +1192,7 @@ html.accounts-off [data-account-link] { display: none; }
 <meta property="og:site_name" content="Contas da Bola">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="Play · Contas da Bola">
-<meta property="og:description" content="Two games for fans: guess the score of past league games from the starting elevens, and pick the next round's winners against our model.">
+<meta property="og:description" content="Games for fans: guess past league scores from the starting elevens, pick the next round against our model, and climb the rankings.">
 <meta property="og:url" content="https://contasdabola.pt/en/jogar">
 <meta property="og:image" content="https://contasdabola.pt/og/en-geral-74006b3ba6.png">
 <meta property="og:image:width" content="1200">
@@ -1176,17 +1206,16 @@ html.accounts-off [data-account-link] { display: none; }
   <a class="brand" href="./"><svg viewBox="0 0 19 12" aria-hidden="true"><rect x="0" y="0" width="5" height="5" rx="1"/><rect class="lit" x="7" y="0" width="5" height="5" rx="1"/><rect x="14" y="0" width="5" height="5" rx="1"/><rect class="lit" x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/><rect x="14" y="7" width="5" height="5" rx="1"/></svg><span>Contas da Bola</span></a>
   <nav aria-label="Sections"><a href="./">Front page</a>
 <a href="jogar" aria-current="page">Play</a>
-<a href="jornadas">Matchdays</a>
+<a href="ranking">Ranking</a><a href="jornadas">Matchdays</a>
 <a href="epoca">Season</a>
 <a href="clubes">Clubs</a>
 <a href="como-funciona">How it works</a>
-<a href="ranking">Ranking</a>
-<a href="conta" data-account-link>Sign in</a></nav>
-  <button class="theme" type="button" aria-label="Switch between light and dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+</nav>
+<a class="acct" href="../en/conta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span class="t" data-account-link>Sign in</span></a>  <button class="theme" type="button" aria-label="Switch between light and dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
   <a class="lang" href="../jogar" hreflang="pt" lang="pt">PT<span class="visually-hidden"> · Ler esta página em português</span></a>
 </div></header>
 <main id="top" class="wrap">
-<p class="stale" role="status" hidden data-after="2026-11-27T01:05:00Z">These numbers may be out of date: the site has not been updated since Wed 2026-11-25 13:05.</p><div class="play">
+<p class="stale" role="status" hidden data-after="2026-11-27T02:11:00Z">These numbers may be out of date: the site has not been updated since Wed 2026-11-25 14:11.</p><div class="play">
 <section class="play-hub" id="hub">
   <div class="hub-head">
     <h1>Play</h1>
@@ -1240,10 +1269,8 @@ html.accounts-off [data-account-link] { display: none; }
 <script type="application/json" id="game-data">{"P1-2627-estoril-famalicao":[1,1,null],"P1-2627-maritimo-casa-pia":[1,0,null],"P1-2627-guimaraes-arouca":[1,2,null],"P1-2627-estrela-amadora-sporting":[1,1,null],"P1-2627-porto-alverca":[1,0,null],"P1-2627-gil-vicente-rio-ave":[1,0,null],"P1-2627-moreirense-sp-braga":[1,1,null],"P1-2627-benfica-academico-viseu":[1,1,null],"P1-2627-santa-clara-nacional":[1,1,null],"P1-2627-sporting-guimaraes":[2,0,null],"P1-2627-alverca-estrela-amadora":[2,1,null],"P1-2627-academico-viseu-santa-clara":[2,2,null],"P1-2627-rio-ave-porto":[2,2,null],"P1-2627-nacional-estoril":[2,0,null],"P1-2627-arouca-moreirense":[2,0,null],"P1-2627-famalicao-maritimo":[2,2,null],"P1-2627-casa-pia-benfica":[2,2,null],"P1-2627-sp-braga-gil-vicente":[2,2,null],"P1-2627-maritimo-academico-viseu":[3,1,null],"P1-2627-estoril-rio-ave":[3,2,null],"P1-2627-sporting-alverca":[3,0,null],"P1-2627-guimaraes-nacional":[3,0,null],"P1-2627-santa-clara-famalicao":[3,0,null],"P1-2627-porto-arouca":[3,0,null],"P1-2627-gil-vicente-casa-pia":[3,0,null],"P1-2627-moreirense-benfica":[3,2,null],"P1-2627-estrela-amadora-sp-braga":[3,0,null],"P1-2627-rio-ave-sporting":[4,2,null],"P1-2627-alverca-santa-clara":[4,1,null],"P1-2627-arouca-maritimo":[4,0,null],"P1-2627-academico-viseu-porto":[4,2,null],"P1-2627-nacional-estrela-amadora":[4,2,null],"P1-2627-casa-pia-moreirense":[4,2,null],"P1-2627-famalicao-gil-vicente":[4,1,null],"P1-2627-sp-braga-guimaraes":[4,0,null],"P1-2627-benfica-estoril":[4,0,null],"P1-2627-porto-moreirense":[5,0,null],"P1-2627-estrela-amadora-famalicao":[5,1,null],"P1-2627-maritimo-benfica":[5,2,null],"P1-2627-alverca-sp-braga":[5,2,null],"P1-2627-sporting-nacional":[5,0,null],"P1-2627-santa-clara-rio-ave":[5,0,null],"P1-2627-guimaraes-casa-pia":[5,1,null],"P1-2627-gil-vicente-academico-viseu":[5,2,null],"P1-2627-estoril-arouca":[5,1,null],"P1-2627-nacional-alverca":[6,2,null],"P1-2627-casa-pia-porto":[6,2,null],"P1-2627-academico-viseu-guimaraes":[6,0,null],"P1-2627-arouca-santa-clara":[6,2,null],"P1-2627-benfica-gil-vicente":[6,0,null],"P1-2627-famalicao-sporting":[6,1,null],"P1-2627-rio-ave-estrela-amadora":[6,1,null],"P1-2627-moreirense-maritimo":[6,0,null],"P1-2627-sp-braga-estoril":[6,0,null],"P1-2627-nacional-famalicao":[7,2,null],"P1-2627-gil-vicente-maritimo":[7,1,null],"P1-2627-alverca-rio-ave":[7,0,null],"P1-2627-sporting-arouca":[7,1,null],"P1-2627-estrela-amadora-academico-viseu":[7,2,null],"P1-2627-guimaraes-moreirense":[7,1,null],"P1-2627-estoril-casa-pia":[7,2,null],"P1-2627-santa-clara-sp-braga":[7,1,null],"P1-2627-porto-benfica":[7,0,null],"P1-2627-moreirense-gil-vicente":[8,2,null],"P1-2627-sp-braga-sporting":[8,2,null],"P1-2627-maritimo-porto":[8,2,null],"P1-2627-academico-viseu-estoril":[8,0,null],"P1-2627-casa-pia-santa-clara":[8,2,null],"P1-2627-rio-ave-nacional":[8,0,null],"P1-2627-benfica-guimaraes":[8,0,null],"P1-2627-arouca-estrela-amadora":[8,0,null],"P1-2627-famalicao-alverca":[8,2,null],"P1-2627-guimaraes-maritimo":[9,0,null],"P1-2627-estrela-amadora-casa-pia":[9,2,null],"P1-2627-alverca-arouca":[9,2,null],"P1-2627-gil-vicente-porto":[9,2,null],"P1-2627-estoril-moreirense":[9,2,null],"P1-2627-nacional-sp-braga":[9,0,null],"P1-2627-rio-ave-famalicao":[9,2,null],"P1-2627-sporting-academico-viseu":[9,2,null],"P1-2627-santa-clara-benfica":[9,2,2],"P1-2627-casa-pia-sporting":[10,2,2],"P1-2627-moreirense-estrela-amadora":[10,0,2],"P1-2627-porto-estoril":[10,0,0],"P1-2627-arouca-nacional":[10,0,0],"P1-2627-academico-viseu-rio-ave":[10,0,0],"P1-2627-maritimo-santa-clara":[10,2,2],"P1-2627-sp-braga-famalicao":[10,0,0],"P1-2627-gil-vicente-guimaraes":[10,1,2],"P1-2627-benfica-alverca":[10,0,0],"P1-2627-famalicao-arouca":[11,0,0],"P1-2627-nacional-academico-viseu":[11,0,2],"P1-2627-alverca-casa-pia":[11,1,0],"P1-2627-sporting-moreirense":[11,0,0],"P1-2627-santa-clara-gil-vicente":[11,2,0],"P1-2627-guimaraes-porto":[11,2,2],"P1-2627-estrela-amadora-benfica":[11,2,2],"P1-2627-rio-ave-sp-braga":[11,2,2],"P1-2627-maritimo-nacional":[12,null,null],"P1-2627-arouca-rio-ave":[12,null,null],"P1-2627-moreirense-santa-clara":[12,null,null],"P1-2627-academico-viseu-alverca":[12,null,null],"P1-2627-guimaraes-estrela-amadora":[12,null,null],"P1-2627-gil-vicente-estoril":[12,null,null],"P1-2627-porto-sporting":[12,null,null],"P1-2627-casa-pia-sp-braga":[12,null,null],"P1-2627-benfica-famalicao":[12,null,null],"P1-2627-nacional-benfica":[13,null,null],"P1-2627-santa-clara-porto":[13,null,null],"P1-2627-sp-braga-arouca":[13,null,null],"P1-2627-sporting-maritimo":[13,null,null],"P1-2627-estrela-amadora-gil-vicente":[13,null,null],"P1-2627-rio-ave-casa-pia":[13,null,null],"P1-2627-estoril-guimaraes":[13,null,null],"P1-2627-famalicao-academico-viseu":[13,null,null],"P1-2627-alverca-moreirense":[13,null,null],"P1-2627-estoril-santa-clara":[14,null,null],"P1-2627-maritimo-rio-ave":[14,null,null],"P1-2627-gil-vicente-sporting":[14,null,null],"P1-2627-academico-viseu-arouca":[14,null,null],"P1-2627-casa-pia-nacional":[14,null,null],"P1-2627-moreirense-famalicao":[14,null,null],"P1-2627-guimaraes-alverca":[14,null,null],"P1-2627-porto-estrela-amadora":[14,null,null],"P1-2627-benfica-sp-braga":[14,null,null],"P1-2627-nacional-moreirense":[15,null,null],"P1-2627-estrela-amadora-maritimo":[15,null,null],"P1-2627-alverca-gil-vicente":[15,null,null],"P1-2627-arouca-casa-pia":[15,null,null],"P1-2627-famalicao-porto":[15,null,null],"P1-2627-rio-ave-benfica":[15,null,null],"P1-2627-sp-braga-academico-viseu":[15,null,null],"P1-2627-santa-clara-guimaraes":[15,null,null],"P1-2627-sporting-estoril":[15,null,null],"P1-2627-maritimo-sp-braga":[16,null,null],"P1-2627-casa-pia-famalicao":[16,null,null],"P1-2627-estoril-alverca":[16,null,null],"P1-2627-porto-nacional":[16,null,null],"P1-2627-gil-vicente-arouca":[16,null,null],"P1-2627-moreirense-academico-viseu":[16,null,null],"P1-2627-benfica-sporting":[16,null,null],"P1-2627-santa-clara-estrela-amadora":[16,null,null],"P1-2627-guimaraes-rio-ave":[16,null,null],"P1-2627-academico-viseu-casa-pia":[17,null,null],"P1-2627-nacional-gil-vicente":[17,null,null],"P1-2627-estrela-amadora-estoril":[17,null,null],"P1-2627-alverca-maritimo":[17,null,null],"P1-2627-arouca-benfica":[17,null,null],"P1-2627-famalicao-guimaraes":[17,null,null],"P1-2627-rio-ave-moreirense":[17,null,null],"P1-2627-sp-braga-porto":[17,null,null],"P1-2627-sporting-santa-clara":[17,null,null],"P1-2627-academico-viseu-benfica":[18,null,null],"P1-2627-nacional-santa-clara":[18,null,null],"P1-2627-casa-pia-maritimo":[18,null,null],"P1-2627-alverca-porto":[18,null,null],"P1-2627-arouca-guimaraes":[18,null,null],"P1-2627-famalicao-estoril":[18,null,null],"P1-2627-rio-ave-gil-vicente":[18,null,null],"P1-2627-sp-braga-moreirense":[18,null,null],"P1-2627-sporting-estrela-amadora":[18,null,null],"P1-2627-maritimo-famalicao":[19,null,null],"P1-2627-estoril-nacional":[19,null,null],"P1-2627-estrela-amadora-alverca":[19,null,null],"P1-2627-porto-rio-ave":[19,null,null],"P1-2627-gil-vicente-sp-braga":[19,null,null],"P1-2627-moreirense-arouca":[19,null,null],"P1-2627-benfica-casa-pia":[19,null,null],"P1-2627-santa-clara-academico-viseu":[19,null,null],"P1-2627-guimaraes-sporting":[19,null,null],"P1-2627-academico-viseu-maritimo":[20,null,null],"P1-2627-nacional-guimaraes":[20,null,null],"P1-2627-casa-pia-gil-vicente":[20,null,null],"P1-2627-alverca-sporting":[20,null,null],"P1-2627-arouca-porto":[20,null,null],"P1-2627-famalicao-santa-clara":[20,null,null],"P1-2627-rio-ave-estoril":[20,null,null],"P1-2627-sp-braga-estrela-amadora":[20,null,null],"P1-2627-benfica-moreirense":[20,null,null],"P1-2627-maritimo-arouca":[21,null,null],"P1-2627-estoril-benfica":[21,null,null],"P1-2627-estrela-amadora-nacional":[21,null,null],"P1-2627-porto-academico-viseu":[21,null,null],"P1-2627-gil-vicente-famalicao":[21,null,null],"P1-2627-moreirense-casa-pia":[21,null,null],"P1-2627-santa-clara-alverca":[21,null,null],"P1-2627-sporting-rio-ave":[21,null,null],"P1-2627-guimaraes-sp-braga":[21,null,null],"P1-2627-academico-viseu-gil-vicente":[22,null,null],"P1-2627-nacional-sporting":[22,null,null],"P1-2627-casa-pia-guimaraes":[22,null,null],"P1-2627-arouca-estoril":[22,null,null],"P1-2627-famalicao-estrela-amadora":[22,null,null],"P1-2627-moreirense-porto":[22,null,null],"P1-2627-rio-ave-santa-clara":[22,null,null],"P1-2627-sp-braga-alverca":[22,null,null],"P1-2627-benfica-maritimo":[22,null,null],"P1-2627-maritimo-moreirense":[23,null,null],"P1-2627-estoril-sp-braga":[23,null,null],"P1-2627-estrela-amadora-rio-ave":[23,null,null],"P1-2627-alverca-nacional":[23,null,null],"P1-2627-porto-casa-pia":[23,null,null],"P1-2627-gil-vicente-benfica":[23,null,null],"P1-2627-santa-clara-arouca":[23,null,null],"P1-2627-sporting-famalicao":[23,null,null],"P1-2627-guimaraes-academico-viseu":[23,null,null],"P1-2627-academico-viseu-estrela-amadora":[24,null,null],"P1-2627-maritimo-gil-vicente":[24,null,null],"P1-2627-casa-pia-estoril":[24,null,null],"P1-2627-arouca-sporting":[24,null,null],"P1-2627-famalicao-nacional":[24,null,null],"P1-2627-moreirense-guimaraes":[24,null,null],"P1-2627-rio-ave-alverca":[24,null,null],"P1-2627-sp-braga-santa-clara":[24,null,null],"P1-2627-benfica-porto":[24,null,null],"P1-2627-nacional-rio-ave":[25,null,null],"P1-2627-estoril-academico-viseu":[25,null,null],"P1-2627-estrela-amadora-arouca":[25,null,null],"P1-2627-alverca-famalicao":[25,null,null],"P1-2627-porto-maritimo":[25,null,null],"P1-2627-gil-vicente-moreirense":[25,null,null],"P1-2627-santa-clara-casa-pia":[25,null,null],"P1-2627-sporting-sp-braga":[25,null,null],"P1-2627-guimaraes-benfica":[25,null,null],"P1-2627-academico-viseu-sporting":[26,null,null],"P1-2627-maritimo-guimaraes":[26,null,null],"P1-2627-casa-pia-estrela-amadora":[26,null,null],"P1-2627-arouca-alverca":[26,null,null],"P1-2627-famalicao-rio-ave":[26,null,null],"P1-2627-porto-gil-vicente":[26,null,null],"P1-2627-moreirense-estoril":[26,null,null],"P1-2627-sp-braga-nacional":[26,null,null],"P1-2627-benfica-santa-clara":[26,null,null],"P1-2627-nacional-arouca":[27,null,null],"P1-2627-estoril-porto":[27,null,null],"P1-2627-estrela-amadora-moreirense":[27,null,null],"P1-2627-alverca-benfica":[27,null,null],"P1-2627-famalicao-sp-braga":[27,null,null],"P1-2627-rio-ave-academico-viseu":[27,null,null],"P1-2627-santa-clara-maritimo":[27,null,null],"P1-2627-sporting-casa-pia":[27,null,null],"P1-2627-guimaraes-gil-vicente":[27,null,null],"P1-2627-academico-viseu-nacional":[28,null,null],"P1-2627-maritimo-estoril":[28,null,null],"P1-2627-casa-pia-alverca":[28,null,null],"P1-2627-arouca-famalicao":[28,null,null],"P1-2627-porto-guimaraes":[28,null,null],"P1-2627-gil-vicente-santa-clara":[28,null,null],"P1-2627-moreirense-sporting":[28,null,null],"P1-2627-sp-braga-rio-ave":[28,null,null],"P1-2627-benfica-estrela-amadora":[28,null,null],"P1-2627-nacional-maritimo":[29,null,null],"P1-2627-estoril-gil-vicente":[29,null,null],"P1-2627-estrela-amadora-guimaraes":[29,null,null],"P1-2627-alverca-academico-viseu":[29,null,null],"P1-2627-famalicao-benfica":[29,null,null],"P1-2627-rio-ave-arouca":[29,null,null],"P1-2627-sp-braga-casa-pia":[29,null,null],"P1-2627-santa-clara-moreirense":[29,null,null],"P1-2627-sporting-porto":[29,null,null],"P1-2627-academico-viseu-famalicao":[30,null,null],"P1-2627-maritimo-sporting":[30,null,null],"P1-2627-casa-pia-rio-ave":[30,null,null],"P1-2627-arouca-sp-braga":[30,null,null],"P1-2627-porto-santa-clara":[30,null,null],"P1-2627-gil-vicente-estrela-amadora":[30,null,null],"P1-2627-moreirense-alverca":[30,null,null],"P1-2627-benfica-nacional":[30,null,null],"P1-2627-guimaraes-estoril":[30,null,null],"P1-2627-nacional-casa-pia":[31,null,null],"P1-2627-estrela-amadora-porto":[31,null,null],"P1-2627-alverca-guimaraes":[31,null,null],"P1-2627-arouca-academico-viseu":[31,null,null],"P1-2627-famalicao-moreirense":[31,null,null],"P1-2627-rio-ave-maritimo":[31,null,null],"P1-2627-sp-braga-benfica":[31,null,null],"P1-2627-santa-clara-estoril":[31,null,null],"P1-2627-sporting-gil-vicente":[31,null,null],"P1-2627-academico-viseu-sp-braga":[32,null,null],"P1-2627-maritimo-estrela-amadora":[32,null,null],"P1-2627-casa-pia-arouca":[32,null,null],"P1-2627-estoril-sporting":[32,null,null],"P1-2627-porto-famalicao":[32,null,null],"P1-2627-gil-vicente-alverca":[32,null,null],"P1-2627-moreirense-nacional":[32,null,null],"P1-2627-benfica-rio-ave":[32,null,null],"P1-2627-guimaraes-santa-clara":[32,null,null],"P1-2627-academico-viseu-moreirense":[33,null,null],"P1-2627-nacional-porto":[33,null,null],"P1-2627-estrela-amadora-santa-clara":[33,null,null],"P1-2627-alverca-estoril":[33,null,null],"P1-2627-arouca-gil-vicente":[33,null,null],"P1-2627-famalicao-casa-pia":[33,null,null],"P1-2627-rio-ave-guimaraes":[33,null,null],"P1-2627-sp-braga-maritimo":[33,null,null],"P1-2627-sporting-benfica":[33,null,null],"P1-2627-maritimo-alverca":[34,null,null],"P1-2627-casa-pia-academico-viseu":[34,null,null],"P1-2627-estoril-estrela-amadora":[34,null,null],"P1-2627-porto-sp-braga":[34,null,null],"P1-2627-gil-vicente-nacional":[34,null,null],"P1-2627-moreirense-rio-ave":[34,null,null],"P1-2627-benfica-arouca":[34,null,null],"P1-2627-santa-clara-sporting":[34,null,null],"P1-2627-guimaraes-famalicao":[34,null,null]}</script>
 </main>
 <footer><div class="wrap">
-<p>Personal, non-commercial project, with no link to Liga Portugal, the clubs or any bookmaker. Forecasts are chances, not promises, and nothing here is betting advice. The crests belong to the clubs.</p>
-<p><b>18+</b> · Gambling can be addictive. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Helpline 1414 (free and anonymous)</a></p>
-<p>Unofficial data; the sources are listed in “Sources and licences”. Our forecasts in JSON are under CC BY 4.0, with no odds or third-party statistics.</p>
-<p>Updated: <time datetime="2026-11-25T13:05:00Z">Wed 2026-11-25 13:05</time></p><p class="links"><a href="../en/como-funciona">How it works</a> · <a href="../en/termos">Terms</a> · <a href="../en/privacidade">Privacy</a> · <a href="../en/fontes-e-licencas">Sources and licences</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
+<p><b>18+</b> · Personal project, with no link to Liga Portugal, the clubs or any bookmaker. The forecasts are not betting advice, and the data are unofficial. The crests belong to the clubs. Gambling can be addictive. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Helpline 1414 (free and anonymous)</a></p>
+<p class="links">Updated: <time datetime="2026-11-25T14:11:00Z">Wed 2026-11-25 14:11</time> · <a href="../en/como-funciona">How it works</a> · <a href="../en/termos">Terms</a> · <a href="../en/privacidade">Privacy</a> · <a href="../en/fontes-e-licencas">Sources and licences</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
 </div></footer>
 <script>
 (function () {
@@ -1301,7 +1328,7 @@ html.accounts-off [data-account-link] { display: none; }
   apply();
 })();
 </script>
-<script type="application/json" id="account-config">{"url":"https://jcsusyrgqhhdqrjqtinf.supabase.co","key":"sb_publishable_ijxoFtISarNf0vTop-K0wA_ty5YG7Ba","root":"../","site":"https://contasdabola.pt/en/","callback":"https://contasdabola.pt/en/conta","t":{"account":"Account","sign_in":"Sign in","why":"Keep your picks and games on every device and enter the rankings. Free, and you can delete everything at any time.","google":"Continue with Google","tab_code":"Code by email","tab_password":"Email and password","email":"Email","send_code":"Send me a code","code_note":"No password: we email you a 6-digit code to type here.","password":"Password","create":"Create account","forgot":"Forgot the password?","forgot_mail":"Write your email first.","password_note":"At least 8 characters, with letters and digits.","terms_note":"By creating an account you accept the \u003ca href=\"termos\"\u003eTerms\u003c/a\u003e; the \u003ca href=\"privacidade\"\u003ePrivacy\u003c/a\u003e page says what we keep.","code_sent":"We sent a code to {email}.","code":"Code","code_spam":"It takes a minute at most. Not there? Look in spam.","new_password":"New password","confirm":"Confirm","back":"Back","choose_name":"Choose your name for the rankings","change_name":"Change the name","name_note":"3 to 20 letters, digits, _ or . \u2014 it is public in the rankings, and you can change it once every 30 days.","username":"Name","age":"I am 16 or older.","save":"Save","leagues":"Leagues with friends","loading":"Loading\u2026","league_name":"League name","create_league":"Create league","league_code":"Invite code","join":"Join","joined":"You are in the league.","no_leagues":"No leagues yet: create one and send the code to your friends.","members":"{n} members","see_ranking":"See the ranking","code_label":"Code:","copy_invite":"Copy the invite link","copied":"Copied.","new_code":"New code","remove_member":"Remove a member","remove_who":"The name of the member to remove:","delete_league":"Delete the league","delete_league_sure":"Delete this league for everyone?","leave":"Leave the league","leave_sure":"Leave this league?","history":"Your games","no_history":"No games yet. Play the Daily Three or the Daily Challenge.","tripla":"Daily Three","desafio":"Daily Challenge","your_data":"Your account","signed_as":"Signed in as {email}. Name in the rankings: {name}.","imported":"{n} picks reached the account after kick-off: they are in your history and do not count for the ranking.","export":"Download my data","sign_out":"Sign out","delete_account":"Delete my account","delete_note":"Deletes the account, your picks, your games and the leagues you created, at once and for good.","delete_confirm":"Delete everything","delete_sure":"Delete the account and everything in it? This cannot be undone.","deleted":"Account deleted.","off":"Accounts are unavailable right now. Everything else works as usual.","retry":"Try again","season":"Season","week":"This week","round":"Round {n}","everyone":"Everyone","model":"The model","name":"Name","points":"Points","matches":"Matches","games":"Games","palpites_note":"1 point per right pick, made before kick-off. Ties: more picks first, then whoever got there first. The model\u0027s line uses its forecast locked 24 h before kick-off.","games_note":"Each fan gets their own games each day, with 60 seconds per game: 3 points for the winner, 2 more for the exact score, 1 less per hint.","empty":"Nobody here yet.","join_note":"\u003ca href=\"conta\"\u003eCreate an account\u003c/a\u003e to enter the rankings.","unavailable":"The ranking is unavailable right now. Try again in a moment.","e_taken":"That name is taken.","e_username":"3 to 20 letters, digits, _ or . (not at the start or the end).","e_blocked":"That name is not allowed.","e_30days":"You changed the name less than 30 days ago.","e_age":"Confirm that you are 16 or older.","e_no_league":"No league has that code.","e_full":"That league is full (50 members).","e_ten":"You are already in 10 leagues.","e_league_name":"The league needs a name of 3 to 40 characters.","e_login":"Wrong email or password.","e_confirm":"Confirm your email first, with the code we sent.","e_code":"That code is wrong or expired. Ask for a new one.","e_password":"The password needs at least 8 characters, with letters and digits.","e_rate":"Too many tries. Wait a few minutes.","e_exists":"There is already an account with that email: sign in.","e_network":"No connection. Try again.","e_generic":"Something went wrong. Try again."}}</script>
+<script type="application/json" id="account-config">{"url":"https://jcsusyrgqhhdqrjqtinf.supabase.co","key":"sb_publishable_ijxoFtISarNf0vTop-K0wA_ty5YG7Ba","root":"../","site":"https://contasdabola.pt/en/","callback":"https://contasdabola.pt/en/conta","t":{"account":"Account","sign_in":"Sign in","why":"Keep your picks and games on every device and enter the rankings. Free, and you can delete everything at any time.","google":"Continue with Google","tab_code":"Code by email","tab_password":"Email and password","email":"Email","send_code":"Send me a code","code_note":"No password: we email you a 6-digit code to type here.","password":"Password","create":"Create account","forgot":"Forgot the password?","forgot_mail":"Write your email first.","password_note":"At least 8 characters, with letters and digits.","terms_note":"By creating an account you accept the \u003ca href=\"termos\"\u003eTerms\u003c/a\u003e; the \u003ca href=\"privacidade\"\u003ePrivacy\u003c/a\u003e page says what we keep.","code_sent":"We sent a code to {email}.","code":"Code","code_spam":"It takes a minute at most. Not there? Look in spam.","new_password":"New password","confirm":"Confirm","back":"Back","choose_name":"Choose your name for the rankings","change_name":"Change the name","name_note":"3 to 20 letters (accents allowed), digits, _ or ., no spaces \u2014 it is public in the rankings, and you can change it once every 30 days.","username":"Name","age":"I am 16 or older.","save":"Save","leagues":"Leagues with friends","loading":"Loading\u2026","league_name":"League name","create_league":"Create league","league_code":"Invite code","join":"Join","joined":"You are in the league.","no_leagues":"No leagues yet: create one and send the code to your friends.","members":"{n} members","member_one":"1 member","share_invite":"Join my league \u00ab{name}\u00bb on Contas da Bola:","join_ready":"Invite code filled in: press Join to enter the league.","unfinished":"unfinished","inapp":"To sign in with Google, open this page in your browser (\u22ee or \u22ef \u2192 Open in browser). Or use a code by email below.","e_google":"The sign-in with Google did not finish. Try again or use a code by email.","see_ranking":"See the ranking","code_label":"Code:","copy_invite":"Copy the invite link","copied":"Copied.","new_code":"New code","remove_member":"Remove a member","remove_who":"The name of the member to remove:","delete_league":"Delete the league","delete_league_sure":"Delete this league for everyone?","leave":"Leave the league","leave_sure":"Leave this league?","history":"Your games","no_history":"No games yet. Play the Daily Three or the Daily Challenge.","tripla":"Daily Three","desafio":"Daily Challenge","your_data":"Your account","signed_as":"Signed in as {email}. Name in the rankings: {name}.","imported":"{n} picks reached the account after kick-off: they are in your history and do not count for the ranking.","export":"Download my data","sign_out":"Sign out","delete_account":"Delete my account","delete_note":"Deletes the account, your picks, your games and the leagues you created, at once and for good.","delete_confirm":"Delete everything","delete_sure":"Delete the account and everything in it? This cannot be undone.","deleted":"Account deleted.","off":"Accounts are unavailable right now. Everything else works as usual.","retry":"Try again","season":"Season","week":"This week","round":"Round {n}","everyone":"Everyone","model":"The model","name":"Name","points":"Points","matches":"Matches","games":"Games","palpites_note":"1 point per right pick, made before kick-off. Ties: more picks first, then whoever got there first. The model\u0027s line uses its forecast locked 24 h before kick-off.","games_note":"Each fan gets their own games each day, with 60 seconds per game: 3 points for the winner, 2 more for the exact score, 1 less per hint.","empty":"Nobody here yet.","join_note":"\u003ca href=\"conta\"\u003eCreate an account\u003c/a\u003e to enter the rankings.","unavailable":"The ranking is unavailable right now. Try again in a moment.","e_taken":"That name is taken.","e_username":"3 to 20 letters, digits, _ or ., with no spaces (_ and . not at the start or the end).","e_blocked":"That name is not allowed.","e_30days":"You changed the name less than 30 days ago.","e_age":"Confirm that you are 16 or older.","e_no_league":"No league has that code.","e_full":"That league is full (50 members).","e_ten":"You are already in 10 leagues.","e_league_name":"The league needs a name of 3 to 40 characters.","e_login":"Wrong email or password.","e_confirm":"Confirm your email first, with the code we sent.","e_code":"That code is wrong or expired. Ask for a new one.","e_password":"The password needs at least 8 characters, with letters and digits.","e_rate":"Too many tries. Wait a few minutes.","e_exists":"There is already an account with that email: sign in.","e_network":"No connection. Try again.","e_generic":"Something went wrong. Try again."},"months":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]}</script>
 <script>
 (function () {
   // Accounts (D-195 to D-200): a small client for the Supabase Auth and REST APIs, with no
@@ -1319,16 +1346,19 @@ html.accounts-off [data-account-link] { display: none; }
   }
 
   function Problem(status, code, message) { this.status = status; this.code = code; this.message = message; }
+  // Without storage (some private modes) a session cannot be kept: the account parts stay off.
+  var storageWorks = (function () { try { localStorage.setItem("lfp-probe", "1"); localStorage.removeItem("lfp-probe"); return true; } catch (e) { return false; } })();
 
   // One request to the API. ``auth``: "user" sends the session's token, "anon" the public key only.
-  function call(method, path, body, auth, extra) {
+  function call(method, path, body, auth, extra, retried) {
     var headers = { apikey: C.key, "Content-Type": "application/json" };
     for (var h in (extra || {})) headers[h] = extra[h];
-    var ready = auth === "user" ? token() : Promise.resolve(null);
+    var ready = auth === "user" ? token(retried) : Promise.resolve(null);
     return ready.then(function (t) {
       if (auth === "user" && !t) throw new Problem(401, "no_session", "");
       headers.Authorization = "Bearer " + (t || C.key);
-      return fetch(C.url + path, { method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body) });
+      return fetch(C.url + path, { method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body) })
+        .catch(function () { throw new Problem(0, "network", ""); });
     }).then(function (r) {
       return r.text().then(function (text) {
         var data = null;
@@ -1339,7 +1369,13 @@ html.accounts-off [data-account-link] { display: none; }
         }
         return data;
       });
-    }, function () { throw new Problem(0, "network", ""); });
+    }).catch(function (e) {
+      // An expired token (a device clock that is off, a revoked session): refresh once and retry.
+      if (auth === "user" && !retried && e instanceof Problem && e.status === 401 && e.code !== "no_session") {
+        return call(method, path, body, auth, extra, true);
+      }
+      throw e;
+    });
   }
 
   // --- The session ---------------------------------------------------------------------------
@@ -1347,20 +1383,31 @@ html.accounts-off [data-account-link] { display: none; }
   function keep(s) {
     if (!s || !s.access_token) { store(KEY_SESSION, null); return null; }
     var stored = { access_token: s.access_token, refresh_token: s.refresh_token,
-      expires_at: s.expires_at || Math.floor(Date.now() / 1000) + (s.expires_in || 3600), user: s.user || null };
+      // on this device's clock, so a clock that is off does not keep a dead token
+      expires_at: Math.floor(Date.now() / 1000) + (s.expires_in || 3600), user: s.user || null };
     store(KEY_SESSION, stored);
     emit();
     return stored;
   }
   function session() { return read(KEY_SESSION); }
-  function token() {
+  var DEAD = ["refresh_token_not_found", "refresh_token_already_used", "invalid_grant", "session_not_found", "user_not_found"];
+  function token(force) {
     var s = session();
     if (!s) return Promise.resolve(null);
-    if (s.expires_at - 60 > Date.now() / 1000) return Promise.resolve(s.access_token);
+    if (!force && s.expires_at - 60 > Date.now() / 1000) return Promise.resolve(s.access_token);
     if (!refreshing) {
-      refreshing = call("POST", "/auth/v1/token?grant_type=refresh_token", { refresh_token: s.refresh_token }, "anon")
+      var used = s.refresh_token;
+      refreshing = call("POST", "/auth/v1/token?grant_type=refresh_token", { refresh_token: used }, "anon")
         .then(function (fresh) { refreshing = null; return keep(fresh).access_token; },
-              function (e) { refreshing = null; if (e.status >= 400 && e.status < 500) { keep(null); } return null; });
+              function (e) {
+                refreshing = null;
+                var now = session();
+                // Another tab may have rotated the token meanwhile: use theirs.
+                if (now && now.refresh_token !== used) return now.access_token;
+                // Only a refused refresh token ends the session; a 429, a 5xx or no network do not.
+                if ((e.status === 400 || e.status === 401) && DEAD.indexOf(e.code) >= 0) keep(null);
+                return null;
+              });
     }
     return refreshing;
   }
@@ -1377,7 +1424,12 @@ html.accounts-off [data-account-link] { display: none; }
 
   // An anonymous session, made only when a game needs one (D-196).
   function ensureSession() {
-    if (session()) return token().then(function (t) { return t ? true : ensureSession(); });
+    if (session()) return token().then(function (t) {
+      if (t) return true;
+      if (session()) throw new Problem(0, "network", "");  // kept, but unreachable now: no retry loop
+      return ensureSession();  // the old session was refused: start a new one
+    });
+    if (!storageWorks) return Promise.reject(new Problem(0, "storage", ""));
     return call("POST", "/auth/v1/signup", { data: {} }, "anon").then(function (s) { keep(s); return true; });
   }
 
@@ -1422,7 +1474,13 @@ html.accounts-off [data-account-link] { display: none; }
   }
   function signUp(mail, password) {
     return prepareClaim().then(function () { return call("POST", "/auth/v1/signup", { email: mail, password: password }, "anon"); })
-      .then(function (r) { if (r && r.access_token) return afterSignIn(r).then(function () { return "in"; }); return "code"; });
+      .then(function (r) {
+        if (r && r.access_token) return afterSignIn(r).then(function () { return "in"; });
+        // Supabase hides an existing email by answering as if it were new, with no identities.
+        var user = r && (r.user || r);
+        if (user && user.identities && user.identities.length === 0) throw new Problem(422, "user_already_exists", "user_already_exists");
+        return "code";
+      });
   }
   function signIn(mail, password) {
     return prepareClaim().then(function () { return call("POST", "/auth/v1/token?grant_type=password", { email: mail, password: password }, "anon"); })
@@ -1438,15 +1496,19 @@ html.accounts-off [data-account-link] { display: none; }
   function recover(mail) { return call("POST", "/auth/v1/recover", { email: mail }, "anon"); }
   function setPassword(password) { return call("PUT", "/auth/v1/user", { password: password }, "user"); }
   function signOut() {
-    var done = function () { keep(null); store(KEY_SYNC, null); emit(); };
+    // The next person on this browser does not inherit this account's data.
+    var done = function () { forget(); keep(null); emit(); };
     return call("POST", "/auth/v1/logout", {}, "user").then(done, done);
   }
 
+  function forget() {
+    ["picks", "jogo-vistos", "club", "tripla", KEY_SYNC, KEY_CLAIM, KEY_PKCE].forEach(function (k) { store(k, null); });
+  }
   function rpc(name, args, anon) { return call("POST", "/rest/v1/rpc/" + name, args || {}, anon ? "anon" : "user"); }
   function rest(method, path, body, extra) { return call(method, "/rest/v1/" + path, body, "user", extra); }
 
   // --- The kill switch (D-195): off, the account parts of the page hide and stay hidden --------
-  var state = { on: true, profile: undefined };
+  var state = { on: storageWorks, profile: undefined };
   var checked = read(KEY_OFF);
   if (checked && Date.now() - checked.at < 10 * 60 * 1000) state.on = checked.on;
   function applySwitch() {
@@ -1456,7 +1518,7 @@ html.accounts-off [data-account-link] { display: none; }
   applySwitch();
   var ready = (checked && Date.now() - checked.at < 10 * 60 * 1000 ? Promise.resolve() :
     call("GET", "/rest/v1/config?key=eq.accounts_enabled&select=value", undefined, "anon").then(function (rows) {
-      state.on = !(rows && rows[0] && rows[0].value === false);
+      state.on = storageWorks && !(rows && rows[0] && rows[0].value === false);
       store(KEY_OFF, { on: state.on, at: Date.now() });
     }, function () {})).then(applySwitch);
 
@@ -1469,68 +1531,100 @@ html.accounts-off [data-account-link] { display: none; }
 
   var syncing = null, again = false;
   function sync(first) {
-    if (!isAccount()) return Promise.resolve(null);
+    if (!isAccount() || !state.on) return Promise.resolve(null);
     if (syncing) { again = true; return syncing; }
     syncing = doSync(first).then(function (r) { syncing = null; if (again) { again = false; return sync(); } return r; },
       function (e) { syncing = null; throw e; });
     return syncing;
   }
+  // A refusal the server means (a pick after kick-off, a match it does not know): its value wins.
+  function refused(e) { return !!e && (e.status === 400 || e.status === 403 || e.status === 409 || e.code === "42501" || e.code === "23503"); }
   function doSync(first) {
     var base = first ? null : read(KEY_SYNC);
+    var me = claims().sub;
     return Promise.all([rest("GET", "profiles?select=username,club,theme,seen,settings_updated_at"), rest("GET", "picks?select=match_id,pick,imported")])
       .then(function (both) {
         var profile = both[0] && both[0][0] || null, server = {}, flags = {};
         (both[1] || []).forEach(function (p) { server[p.match_id] = p.pick; flags[p.match_id] = p.imported; });
         state.profile = profile;
-        var jobs = [], picks = localPicks(), was = base ? base.picks : {};
-        // Picks: on the first sync both sides join and the account wins a clash (contas.md §6).
-        Object.keys(picks).forEach(function (id) {
-          var mine = picks[id];
+        var jobs = [], start = localPicks(), was = base ? base.picks : {}, pending = {};
+        function job(id, request, applied) {
+          jobs.push(request.then(applied, function (e) { if (!refused(e)) pending[id] = true; }));
+        }
+        // Picks: on the first sync both sides join and the account wins a clash (contas.md §6);
+        // later, the side that differs from the last sync is the one that changed.
+        Object.keys(start).forEach(function (id) {
+          var mine = start[id];
           if (server[id] === mine) return;
           if (server[id] === undefined && (base === null || was[id] !== mine)) {
-            jobs.push(rest("POST", "picks", { match_id: id, pick: mine }, { Prefer: "resolution=merge-duplicates,return=minimal" })
-              .then(function () { server[id] = mine; }, function () {}));
+            job(id, rest("POST", "picks", { match_id: id, pick: mine }, { Prefer: "resolution=merge-duplicates,return=minimal" }),
+              function () { server[id] = mine; });
           } else if (server[id] !== undefined && base !== null && was[id] !== mine && was[id] === server[id]) {
-            jobs.push(rest("PATCH", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), { pick: mine }, { Prefer: "return=minimal" })
-              .then(function () { server[id] = mine; }, function () {}));
+            job(id, rest("PATCH", "picks?user_id=eq." + me + "&match_id=eq." + encodeURIComponent(id), { pick: mine }, { Prefer: "return=minimal" }),
+              function () { server[id] = mine; });
           }
         });
         if (base !== null) Object.keys(was).forEach(function (id) {
-          if (picks[id] === undefined && server[id] === was[id]) {
-            jobs.push(rest("DELETE", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), undefined, { Prefer: "return=minimal" })
-              .then(function () { delete server[id]; }, function () {}));
+          if (start[id] === undefined && server[id] === was[id]) {
+            job(id, rest("DELETE", "picks?user_id=eq." + me + "&match_id=eq." + encodeURIComponent(id), undefined, { Prefer: "return=minimal" }),
+              function () { delete server[id]; });
           }
         });
         return Promise.all(jobs).then(function () {
-          // What the server kept is the truth (a late change is refused there).
-          setLocal("picks", JSON.stringify(server));
-          state.imported = Object.keys(flags).filter(function (id) { return flags[id]; }).length;
-          var settings = Promise.resolve();
-          if (profile) {
-            var now = { club: local("club"), theme: local("theme"), seen: localSeen() };
-            var old = base ? base.settings : null;
-            var pushed = !old || now.club !== old.club || now.theme !== old.theme || now.seen.length !== old.seen.length;
-            var pulled = old && profile.settings_updated_at !== base.settings_at;
-            // This device's change is the newest one; else the account's, made on another device.
-            if (pushed) {
-              var seen = now.seen.concat((profile.seen || []).filter(function (g) { return now.seen.indexOf(g) < 0; })).slice(-3000);
-              settings = rest("PATCH", "profiles?user_id=eq." + claims().sub + "&select=settings_updated_at", { club: now.club, theme: now.theme, seen: seen }, { Prefer: "return=representation" })
-                .then(function (rows) { profile.settings_updated_at = rows && rows[0] ? rows[0].settings_updated_at : profile.settings_updated_at; profile.club = now.club; profile.theme = now.theme; profile.seen = seen; setLocal("jogo-vistos", JSON.stringify(seen)); });
-            } else if (pulled) {
-              setLocal("club", profile.club);
-              setLocal("theme", profile.theme);
-              setLocal("jogo-vistos", JSON.stringify(profile.seen || []));
-              if (profile.theme) document.documentElement.dataset.theme = profile.theme;
+          // Merge match by match: a pick made while this sync ran, or one that could not be sent,
+          // stays as it is on this device and goes next time; elsewhere the server's copy is the truth.
+          var now = localPicks(), merged = {}, nextBase = {}, ids = {};
+          [now, start, server, was].forEach(function (o) { for (var k in o) ids[k] = true; });
+          Object.keys(ids).forEach(function (id) {
+            if (now[id] !== start[id] || pending[id]) {
+              if (now[id] !== undefined) merged[id] = now[id];
+              if (was[id] !== undefined) nextBase[id] = was[id];
+            } else if (server[id] !== undefined) {
+              merged[id] = server[id];
+              nextBase[id] = server[id];
             }
-          }
-          return settings.then(function () {
-            store(KEY_SYNC, { picks: server, settings: profile ? { club: profile.club, theme: profile.theme, seen: profile.seen || [] } : null,
+          });
+          setLocal("picks", JSON.stringify(merged));
+          var unsent = Object.keys(pending).length > 0;
+          if (JSON.stringify(now) !== JSON.stringify(start)) again = true;
+          state.imported = Object.keys(flags).filter(function (id) { return flags[id]; }).length;
+          state.unsent = unsent;
+          return settingsSync(profile, base).then(function () {
+            store(KEY_SYNC, { picks: nextBase, settings: profile ? { club: profile.club, theme: profile.theme, seen: profile.seen || [] } : null,
               settings_at: profile ? profile.settings_updated_at : null, at: Date.now() });
             emit();
             return profile;
           });
         });
       });
+  }
+  function sameSeen(a, b) { return a.length === b.length && a[a.length - 1] === b[b.length - 1]; }
+  function settingsSync(profile, base) {
+    if (!profile) return Promise.resolve();
+    var me = claims().sub;
+    var now = { club: local("club"), theme: local("theme"), seen: localSeen() };
+    var target;
+    if (!base || !base.settings) {
+      // The first sync on this device: what the account already has wins, this device fills the gaps.
+      target = { club: profile.club || now.club, theme: profile.theme || now.theme,
+        seen: now.seen.concat((profile.seen || []).filter(function (g) { return now.seen.indexOf(g) < 0; })).slice(-3000) };
+    } else {
+      var old = base.settings;
+      var mineChanged = now.club !== old.club || now.theme !== old.theme || !sameSeen(now.seen, old.seen || []);
+      // This device's change is the newest; else the account's, made on another device.
+      target = mineChanged ? now : { club: profile.club, theme: profile.theme, seen: profile.seen || [] };
+    }
+    setLocal("club", target.club);
+    setLocal("theme", target.theme);
+    setLocal("jogo-vistos", JSON.stringify(target.seen));
+    if (target.theme) document.documentElement.dataset.theme = target.theme;
+    if (window.markMyClub) window.markMyClub();
+    if (target.club === profile.club && target.theme === profile.theme && sameSeen(target.seen, profile.seen || [])) return Promise.resolve();
+    return rest("PATCH", "profiles?user_id=eq." + me + "&select=settings_updated_at", target, { Prefer: "return=representation" })
+      .then(function (rows) {
+        profile.settings_updated_at = rows && rows[0] ? rows[0].settings_updated_at : profile.settings_updated_at;
+        profile.club = target.club; profile.theme = target.theme; profile.seen = target.seen;
+      }, function () {});
   }
   var soon = null;
   function syncSoon() { clearTimeout(soon); soon = setTimeout(function () { sync().catch(function () {}); }, 800); }
@@ -1558,7 +1652,7 @@ html.accounts-off [data-account-link] { display: none; }
     session: session, claims: claims, isAccount: isAccount, email: email, ensureSession: ensureSession,
     google: google, finishGoogle: finishGoogle, signUp: signUp, signIn: signIn, sendCode: sendCode,
     verify: verify, recover: recover, setPassword: setPassword, signOut: signOut,
-    rpc: rpc, rest: rest, sync: sync, syncSoon: syncSoon, invite: invite,
+    rpc: rpc, rest: rest, sync: sync, syncSoon: syncSoon, invite: invite, forget: forget, storageWorks: storageWorks,
     on: function (f) { listeners.push(f); }
   };
   label();
@@ -1650,13 +1744,13 @@ html.accounts-off [data-account-link] { display: none; }
     rows.sort(function (x, y) { return (x[1][0] || 99) - (y[1][0] || 99); });
     return '<table class="tbl"><tbody>' + rows.map(function (r) {
       var t = r[1];
-      return t[1] ? "<tr><td>" + t[0] + T.ordinal + "</td><td>" + esc(name(r[0])) + '</td><td class="n">' + fill(T.pts, { n: t[2] }) + '</td><td class="n">' + fill(T.played, { n: t[1] }) + "</td></tr>"
+      return t[1] ? "<tr><td>" + Number(t[0]) + T.ordinal + "</td><td>" + esc(name(r[0])) + '</td><td class="n">' + fill(T.pts, { n: Number(t[2]) }) + '</td><td class="n">' + fill(T.played, { n: Number(t[1]) }) + "</td></tr>"
         : "<tr><td></td><td>" + esc(name(r[0])) + '</td><td class="n" colspan="2">' + T.no_games + "</td></tr>";
     }).join("") + '</tbody></table><p class="meta">' + T.table_note + "</p>";
   }
   function hintForm(g) {
     function row(team) {
-      var f = team.form || "";
+      var f = String(team.form || "").replace(/[^WDL]/g, "");
       return '<div class="form-row"><span class="who">' + esc(name(team.team)) + "</span>" + (f ? f.split("").map(function (c) {
         return '<span class="fl ' + c + '" title="' + T.result[c] + '">' + T.letter[c] + "</span>";
       }).join("") : '<span class="meta">' + T.no_form + "</span>") + "</div>";
@@ -1757,12 +1851,15 @@ html.accounts-off [data-account-link] { display: none; }
     go.type = "button";
     go.addEventListener("click", function () {
       if (!state.server) { reveal(g, cur); return; }
+      if (state.busy) return;
+      state.busy = true;
       go.disabled = true;
       ACC.rpc("answer", { play: state.server.play, h: cur.h, a: cur.a }).then(function (r) {
         clearInterval(timer);
         state.games[state.i] = r.game;
+        state.busy = false;
         reveal(r.game, cur, { winner: r.winner, exact: r.exact, total: r.points, used: r.hints.length, late: r.late });
-      }, function () { go.disabled = false; serverError(); });
+      }, function () { state.busy = false; go.disabled = false; serverError(); });
     });
     gb.appendChild(go);
     side.appendChild(gb);
@@ -1779,13 +1876,18 @@ html.accounts-off [data-account-link] { display: none; }
       b.addEventListener("click", function () {
         if (used || state.hintsLeft === 0) return;
         if (state.server) {  // the server opens and counts the hint
+          if (state.busy) return;
+          state.busy = true;
           b.disabled = true;
+          var round = state.i;
           ACC.rpc("hint", { play: state.server.play, k: k }).then(function (r) {
+            state.busy = false;
+            if (state.i !== round || state.rounds.length > round) return;  // the round moved on
             merge(g, r.data);
             state.hintsLeft = r.hints_left; cur.used.push(k);
             renderSide(g, cur);
             side.querySelectorAll(".hint > button")[k].focus();
-          }, function () { b.disabled = false; serverError(); });
+          }, function () { state.busy = false; b.disabled = false; serverError(); });
           return;
         }
         state.hintsLeft -= 1; cur.used.push(k);
@@ -1807,7 +1909,7 @@ html.accounts-off [data-account-link] { display: none; }
     if (!g.goals.length) return "<p class='meta'>" + T.no_goals + "</p>";
     return '<ul class="goals">' + g.goals.map(function (x) {
       var tag = x[3] === "penalty" ? " " + T.pen : x[3] === "own_goal" ? " " + T.og : "";
-      return '<li><span class="m">' + x[0] + "'</span><span>" + esc(x[1]) + tag + " · " + esc(name(x[2] ? g.away.team : g.home.team)) + "</span></li>";
+      return '<li><span class="m">' + Number(x[0]) + "'</span><span>" + esc(x[1]) + tag + " · " + esc(name(x[2] ? g.away.team : g.home.team)) + "</span></li>";
     }).join("") + "</ul>";
   }
 
