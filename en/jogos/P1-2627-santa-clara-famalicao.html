@@ -1173,7 +1173,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   .bar a.acct .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 }
 @media (max-width: 360px) { .brand { font-size: 18px; gap: 7px; } }
-@media (max-width: 340px) { .brand { font-size: 15px; gap: 6px; } .bar .wrap { gap: 6px; } }
+@media (max-width: 340px) { .brand { font-size: 14px; gap: 6px; } .brand svg { display: none; } .bar .wrap { gap: 6px; } }
 .play .clock { position: sticky; top: 57px; z-index: 5; background: var(--page); padding: 6px 0; }
 @media (max-width: 640px) { .play .clock { top: 100px; } }
 .ranking-view .filters label { flex-wrap: wrap; max-width: 100%; }
@@ -1185,6 +1185,15 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 .acc .members { list-style: none; margin: 4px 0 0; padding: 0 0 0 12px; display: grid; gap: 2px; border-left: 2px solid var(--ring); }
 .acc .members li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 0; border: 0; }
 .acc .gsi { min-height: 44px; display: flex; justify-content: center; }
+/* D-209: on a phone the top row never wraps, even before the site's font arrives (font-display:
+   optional shows the wider fallback on a first visit): the brand shrinks instead. */
+@media (max-width: 640px) {
+  .bar .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; column-gap: 8px; }
+  .bar .brand { min-width: 0; margin-right: 0; }
+  .bar .brand span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .bar nav { grid-row: 2; grid-column: 1 / -1; }
+}
+
 </style>
 <link rel="canonical" href="https://contasdabola.pt/en/jogos/P1-2627-santa-clara-famalicao">
 <link rel="alternate" hreflang="pt" href="https://contasdabola.pt/jogos/P1-2627-santa-clara-famalicao">
@@ -1217,7 +1226,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   <a class="lang" href="../../jogos/P1-2627-santa-clara-famalicao" hreflang="pt" lang="pt">PT<span class="visually-hidden"> · Ler esta página em português</span></a>
 </div></header>
 <main id="top" class="wrap">
-<p class="stale" role="status" hidden data-after="2026-11-27T03:11:00Z">These numbers may be out of date: the site has not been updated since Wed 2026-11-25 15:11.</p><article class="match-page">
+<p class="stale" role="status" hidden data-after="2026-11-27T03:38:00Z">These numbers may be out of date: the site has not been updated since Wed 2026-11-25 15:38.</p><article class="match-page">
   <header class="match-head">
     <h1><span>Santa Clara</span> <span class="final num">1–0</span> <span>FC Famalicão</span></h1>
     <p class="meta">Sun 2026-08-23 18:00</p>
@@ -1279,7 +1288,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 </main>
 <footer><div class="wrap">
 <p><b>18+</b> · Personal project, with no link to Liga Portugal, the clubs or any bookmaker. The forecasts are not betting advice, and the data are unofficial. The crests belong to the clubs. Gambling can be addictive. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Helpline 1414 (free and anonymous)</a></p>
-<p class="links">Updated: <time datetime="2026-11-25T15:11:00Z">Wed 2026-11-25 15:11</time> · <a href="../../en/como-funciona">How it works</a> · <a href="../../en/termos">Terms</a> · <a href="../../en/privacidade">Privacy</a> · <a href="../../en/fontes-e-licencas">Sources and licences</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
+<p class="links">Updated: <time datetime="2026-11-25T15:38:00Z">Wed 2026-11-25 15:38</time> · <a href="../../en/como-funciona">How it works</a> · <a href="../../en/termos">Terms</a> · <a href="../../en/privacidade">Privacy</a> · <a href="../../en/fontes-e-licencas">Sources and licences</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
 </div></footer>
 <script>
 (function () {
