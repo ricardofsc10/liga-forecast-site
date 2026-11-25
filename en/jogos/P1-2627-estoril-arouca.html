@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-uT4c4C/qlg2Kq+06sahxLZODV86MUxLV3Q9wUXakIXs=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self' https://jcsusyrgqhhdqrjqtinf.supabase.co; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Estoril Praia – FC Arouca · Contas da Bola</title>
@@ -1107,6 +1107,52 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   .bar .theme { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* Accounts and rankings (D-195, D-197): the Jogar page's parts, plus forms and the clock */
+.acc .account { display: grid; gap: 20px; max-width: 640px; padding: 16px 0 8px; }
+.acc .acc-panel { display: grid; gap: 12px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--ring); border-radius: 2px; }
+.acc .acc-panel h2 { margin: 0; font-size: 24px; }
+.acc .acc-panel p { margin: 0; }
+.acc .acc-form { display: grid; gap: 10px; }
+.acc .acc-form.inline { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+.acc label { display: grid; gap: 4px; font-weight: 700; font-size: 15px; }
+.acc label.check { display: flex; gap: 8px; align-items: center; font-weight: 600; }
+.acc input:not([type="checkbox"]), .acc select { font: inherit; font-size: 17px; padding: 9px 10px; border: 1px solid var(--axis); border-radius: 2px; background: var(--raised); color: var(--ink); min-height: 44px; }
+.acc input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--amber); }
+.acc .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.acc .tabs, .ranking-view .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.acc .chip[aria-selected="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.acc .btn.google { justify-content: center; background: var(--raised); color: var(--ink); border: 1px solid var(--axis); }
+.acc .link { font: inherit; background: none; border: 0; padding: 4px 0; color: var(--accent); text-decoration: underline; cursor: pointer; min-height: 32px; }
+.acc .link.danger, .acc .btn.danger { color: var(--bad); }
+.acc .btn.danger { background: none; border: 1px solid var(--bad); }
+.acc .warn { color: var(--bad); }
+.acc .leagues { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.acc .leagues li { display: grid; gap: 4px; padding-bottom: 10px; border-bottom: 1px solid var(--grid); }
+.acc code { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+.acc .recap { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.acc .recap li { display: flex; gap: 12px; justify-content: space-between; align-items: center; }
+.acc .sq { display: inline-block; width: 14px; height: 14px; margin-right: 3px; border-radius: 1px; }
+.acc .sq.g { background: var(--good); } .acc .sq.y { background: var(--amber); } .acc .sq.x { background: var(--axis); }
+.acc .danger-zone summary { cursor: pointer; color: var(--bad); font-weight: 700; }
+.acc .danger-zone[open] { display: grid; gap: 10px; }
+.ranking-view { display: grid; gap: 14px; padding: 16px 0 8px; }
+.ranking-view .filters { gap: 16px; }
+.ranking-view .filters label { display: flex; gap: 8px; align-items: center; }
+.ranking-view .tbl.ranking { max-width: 640px; }
+.ranking-view .tbl th { text-align: left; font-size: 13px; color: var(--muted); padding: 4px 6px; border-bottom: 1px solid var(--axis); }
+.ranking-view .tbl th.n { text-align: right; }
+.ranking-view tr.mine td { background: var(--good-wash); font-weight: 700; }
+.ranking-view tr.model td { color: var(--muted); font-style: italic; }
+.ranking-view tr.gap td { text-align: center; color: var(--muted); }
+.play .clock { margin: 0 0 10px; font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.play .clock.low { color: var(--bad); }
+.play .warn { color: var(--bad); }
+.play .invite { border: 2px solid var(--amber); }
+.play .invite p { margin: 0; }
+.play .final .invite { margin-top: 16px; }
+html.accounts-off [data-account-link] { display: none; }
+@media (max-width: 520px) { .acc .acc-form.inline { grid-template-columns: 1fr; } }
+
 </style>
 <link rel="canonical" href="https://contasdabola.pt/en/jogos/P1-2627-estoril-arouca">
 <link rel="alternate" hreflang="pt" href="https://contasdabola.pt/jogos/P1-2627-estoril-arouca">
@@ -1134,12 +1180,13 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <a href="../epoca">Season</a>
 <a href="../clubes">Clubs</a>
 <a href="../como-funciona">How it works</a>
-</nav>
+<a href="../ranking">Ranking</a>
+<a href="../conta" data-account-link>Sign in</a></nav>
   <button class="theme" type="button" aria-label="Switch between light and dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
   <a class="lang" href="../../jogos/P1-2627-estoril-arouca" hreflang="pt" lang="pt">PT<span class="visually-hidden"> · Ler esta página em português</span></a>
 </div></header>
 <main id="top" class="wrap">
-<p class="stale" role="status" hidden data-after="2026-11-27T00:24:00Z">These numbers may be out of date: the site has not been updated since Wed 2026-11-25 12:24.</p><article class="match-page">
+<p class="stale" role="status" hidden data-after="2026-11-27T01:05:00Z">These numbers may be out of date: the site has not been updated since Wed 2026-11-25 13:05.</p><article class="match-page">
   <header class="match-head">
     <h1><span>Estoril Praia</span> <span class="final num">0–0</span> <span>FC Arouca</span></h1>
     <p class="meta">Mon 2026-09-07 20:15</p>
@@ -1203,7 +1250,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <p>Personal, non-commercial project, with no link to Liga Portugal, the clubs or any bookmaker. Forecasts are chances, not promises, and nothing here is betting advice. The crests belong to the clubs.</p>
 <p><b>18+</b> · Gambling can be addictive. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Helpline 1414 (free and anonymous)</a></p>
 <p>Unofficial data; the sources are listed in “Sources and licences”. Our forecasts in JSON are under CC BY 4.0, with no odds or third-party statistics.</p>
-<p>Updated: <time datetime="2026-11-25T12:24:00Z">Wed 2026-11-25 12:24</time></p><p class="links"><a href="../../en/como-funciona">How it works</a> · <a href="../../en/termos">Terms</a> · <a href="../../en/privacidade">Privacy</a> · <a href="../../en/fontes-e-licencas">Sources and licences</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
+<p>Updated: <time datetime="2026-11-25T13:05:00Z">Wed 2026-11-25 13:05</time></p><p class="links"><a href="../../en/como-funciona">How it works</a> · <a href="../../en/termos">Terms</a> · <a href="../../en/privacidade">Privacy</a> · <a href="../../en/fontes-e-licencas">Sources and licences</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
 </div></footer>
 <script>
 (function () {
@@ -1261,7 +1308,270 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   apply();
 })();
 </script>
+<script type="application/json" id="account-config">{"url":"https://jcsusyrgqhhdqrjqtinf.supabase.co","key":"sb_publishable_ijxoFtISarNf0vTop-K0wA_ty5YG7Ba","root":"../../","site":"https://contasdabola.pt/en/","callback":"https://contasdabola.pt/en/conta","t":{"account":"Account","sign_in":"Sign in","why":"Keep your picks and games on every device and enter the rankings. Free, and you can delete everything at any time.","google":"Continue with Google","tab_code":"Code by email","tab_password":"Email and password","email":"Email","send_code":"Send me a code","code_note":"No password: we email you a 6-digit code to type here.","password":"Password","create":"Create account","forgot":"Forgot the password?","forgot_mail":"Write your email first.","password_note":"At least 8 characters, with letters and digits.","terms_note":"By creating an account you accept the \u003ca href=\"termos\"\u003eTerms\u003c/a\u003e; the \u003ca href=\"privacidade\"\u003ePrivacy\u003c/a\u003e page says what we keep.","code_sent":"We sent a code to {email}.","code":"Code","code_spam":"It takes a minute at most. Not there? Look in spam.","new_password":"New password","confirm":"Confirm","back":"Back","choose_name":"Choose your name for the rankings","change_name":"Change the name","name_note":"3 to 20 letters, digits, _ or . \u2014 it is public in the rankings, and you can change it once every 30 days.","username":"Name","age":"I am 16 or older.","save":"Save","leagues":"Leagues with friends","loading":"Loading\u2026","league_name":"League name","create_league":"Create league","league_code":"Invite code","join":"Join","joined":"You are in the league.","no_leagues":"No leagues yet: create one and send the code to your friends.","members":"{n} members","see_ranking":"See the ranking","code_label":"Code:","copy_invite":"Copy the invite link","copied":"Copied.","new_code":"New code","remove_member":"Remove a member","remove_who":"The name of the member to remove:","delete_league":"Delete the league","delete_league_sure":"Delete this league for everyone?","leave":"Leave the league","leave_sure":"Leave this league?","history":"Your games","no_history":"No games yet. Play the Daily Three or the Daily Challenge.","tripla":"Daily Three","desafio":"Daily Challenge","your_data":"Your account","signed_as":"Signed in as {email}. Name in the rankings: {name}.","imported":"{n} picks reached the account after kick-off: they are in your history and do not count for the ranking.","export":"Download my data","sign_out":"Sign out","delete_account":"Delete my account","delete_note":"Deletes the account, your picks, your games and the leagues you created, at once and for good.","delete_confirm":"Delete everything","delete_sure":"Delete the account and everything in it? This cannot be undone.","deleted":"Account deleted.","off":"Accounts are unavailable right now. Everything else works as usual.","retry":"Try again","season":"Season","week":"This week","round":"Round {n}","everyone":"Everyone","model":"The model","name":"Name","points":"Points","matches":"Matches","games":"Games","palpites_note":"1 point per right pick, made before kick-off. Ties: more picks first, then whoever got there first. The model\u0027s line uses its forecast locked 24 h before kick-off.","games_note":"Each fan gets their own games each day, with 60 seconds per game: 3 points for the winner, 2 more for the exact score, 1 less per hint.","empty":"Nobody here yet.","join_note":"\u003ca href=\"conta\"\u003eCreate an account\u003c/a\u003e to enter the rankings.","unavailable":"The ranking is unavailable right now. Try again in a moment.","e_taken":"That name is taken.","e_username":"3 to 20 letters, digits, _ or . (not at the start or the end).","e_blocked":"That name is not allowed.","e_30days":"You changed the name less than 30 days ago.","e_age":"Confirm that you are 16 or older.","e_no_league":"No league has that code.","e_full":"That league is full (50 members).","e_ten":"You are already in 10 leagues.","e_league_name":"The league needs a name of 3 to 40 characters.","e_login":"Wrong email or password.","e_confirm":"Confirm your email first, with the code we sent.","e_code":"That code is wrong or expired. Ask for a new one.","e_password":"The password needs at least 8 characters, with letters and digits.","e_rate":"Too many tries. Wait a few minutes.","e_exists":"There is already an account with that email: sign in.","e_network":"No connection. Try again.","e_generic":"Something went wrong. Try again."}}</script>
 <script>
+(function () {
+  // Accounts (D-195 to D-200): a small client for the Supabase Auth and REST APIs, with no
+  // library, so the page's scripts stay its own (D-186). The session lives in this browser; the
+  // account is a copy of the browser's data and the server's record of the games. Everything here
+  // adds to the page: without it, the page works as it did.
+  var C;
+  try { C = JSON.parse(document.getElementById("account-config").textContent); } catch (e) { return; }
+  var KEY_SESSION = "lfp-session", KEY_SYNC = "lfp-sync", KEY_CLAIM = "lfp-claim", KEY_PKCE = "lfp-pkce";
+  var KEY_OFF = "lfp-accounts-off";
+
+  function read(key) { try { return JSON.parse(localStorage.getItem(key) || "null"); } catch (e) { return null; } }
+  function store(key, value) {
+    try { if (value === null || value === undefined) localStorage.removeItem(key); else localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+
+  function Problem(status, code, message) { this.status = status; this.code = code; this.message = message; }
+
+  // One request to the API. ``auth``: "user" sends the session's token, "anon" the public key only.
+  function call(method, path, body, auth, extra) {
+    var headers = { apikey: C.key, "Content-Type": "application/json" };
+    for (var h in (extra || {})) headers[h] = extra[h];
+    var ready = auth === "user" ? token() : Promise.resolve(null);
+    return ready.then(function (t) {
+      if (auth === "user" && !t) throw new Problem(401, "no_session", "");
+      headers.Authorization = "Bearer " + (t || C.key);
+      return fetch(C.url + path, { method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body) });
+    }).then(function (r) {
+      return r.text().then(function (text) {
+        var data = null;
+        try { data = text ? JSON.parse(text) : null; } catch (e) { data = text; }
+        if (!r.ok) {
+          var d = data || {};
+          throw new Problem(r.status, d.code || d.error_code || d.error || "", d.message || d.msg || d.error_description || "");
+        }
+        return data;
+      });
+    }, function () { throw new Problem(0, "network", ""); });
+  }
+
+  // --- The session ---------------------------------------------------------------------------
+  var refreshing = null;
+  function keep(s) {
+    if (!s || !s.access_token) { store(KEY_SESSION, null); return null; }
+    var stored = { access_token: s.access_token, refresh_token: s.refresh_token,
+      expires_at: s.expires_at || Math.floor(Date.now() / 1000) + (s.expires_in || 3600), user: s.user || null };
+    store(KEY_SESSION, stored);
+    emit();
+    return stored;
+  }
+  function session() { return read(KEY_SESSION); }
+  function token() {
+    var s = session();
+    if (!s) return Promise.resolve(null);
+    if (s.expires_at - 60 > Date.now() / 1000) return Promise.resolve(s.access_token);
+    if (!refreshing) {
+      refreshing = call("POST", "/auth/v1/token?grant_type=refresh_token", { refresh_token: s.refresh_token }, "anon")
+        .then(function (fresh) { refreshing = null; return keep(fresh).access_token; },
+              function (e) { refreshing = null; if (e.status >= 400 && e.status < 500) { keep(null); } return null; });
+    }
+    return refreshing;
+  }
+  function claims() {
+    var s = session();
+    if (!s) return null;
+    try { return JSON.parse(atob(s.access_token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))); } catch (e) { return null; }
+  }
+  function isAccount() { var c = claims(); return !!c && c.is_anonymous !== true; }
+  function email() { var s = session(); return s && s.user ? s.user.email : null; }
+
+  var listeners = [];
+  function emit() { listeners.forEach(function (f) { try { f(); } catch (e) {} }); }
+
+  // An anonymous session, made only when a game needs one (D-196).
+  function ensureSession() {
+    if (session()) return token().then(function (t) { return t ? true : ensureSession(); });
+    return call("POST", "/auth/v1/signup", { data: {} }, "anon").then(function (s) { keep(s); return true; });
+  }
+
+  // Before an anonymous session signs in, it leaves a claim for the account to take its games.
+  function prepareClaim() {
+    var c = claims();
+    if (!c || c.is_anonymous !== true) return Promise.resolve();
+    return rpc("make_claim", {}).then(function (t) { store(KEY_CLAIM, { token: t, at: Date.now() }); }, function () {});
+  }
+  function afterSignIn(s) {
+    keep(s);
+    var c = read(KEY_CLAIM);
+    store(KEY_CLAIM, null);
+    var claimed = c && Date.now() - c.at < 25 * 60 * 1000 ? rpc("claim", { token: c.token }).catch(function () { return 0; }) : Promise.resolve(0);
+    return claimed.then(function () { store(KEY_SYNC, null); return sync(true); });
+  }
+
+  // --- Ways in (D-195): Google, email and password, a code by email ----------------------------
+  function b64url(bytes) {
+    var s = ""; bytes.forEach(function (b) { s += String.fromCharCode(b); });
+    return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function google(next) {
+    var raw = new Uint8Array(48); crypto.getRandomValues(raw);
+    var verifier = b64url(raw);
+    return prepareClaim().then(function () {
+      return crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier));
+    }).then(function (digest) {
+      store(KEY_PKCE, { verifier: verifier, next: next || null });
+      location.href = C.url + "/auth/v1/authorize?provider=google&redirect_to=" + encodeURIComponent(C.callback) +
+        "&code_challenge=" + b64url(new Uint8Array(digest)) + "&code_challenge_method=s256";
+    });
+  }
+  // Back from Google with ?code=: trade it for a session. Returns the page to go on to, or null.
+  function finishGoogle() {
+    var q = new URLSearchParams(location.search), code = q.get("code"), p = read(KEY_PKCE);
+    if (!code || !p) return Promise.resolve(null);
+    store(KEY_PKCE, null);
+    history.replaceState(null, "", location.pathname);
+    return call("POST", "/auth/v1/token?grant_type=pkce", { auth_code: code, code_verifier: p.verifier }, "anon")
+      .then(afterSignIn).then(function () { return p.next || ""; });
+  }
+  function signUp(mail, password) {
+    return prepareClaim().then(function () { return call("POST", "/auth/v1/signup", { email: mail, password: password }, "anon"); })
+      .then(function (r) { if (r && r.access_token) return afterSignIn(r).then(function () { return "in"; }); return "code"; });
+  }
+  function signIn(mail, password) {
+    return prepareClaim().then(function () { return call("POST", "/auth/v1/token?grant_type=password", { email: mail, password: password }, "anon"); })
+      .then(afterSignIn);
+  }
+  function sendCode(mail) {
+    return prepareClaim().then(function () { return call("POST", "/auth/v1/otp", { email: mail, create_user: true }, "anon"); });
+  }
+  // ``type``: "email" for the sign-in code, "signup" to confirm a new account, "recovery".
+  function verify(mail, code, type) {
+    return call("POST", "/auth/v1/verify", { email: mail, token: String(code).replace(/\D/g, ""), type: type }, "anon").then(afterSignIn);
+  }
+  function recover(mail) { return call("POST", "/auth/v1/recover", { email: mail }, "anon"); }
+  function setPassword(password) { return call("PUT", "/auth/v1/user", { password: password }, "user"); }
+  function signOut() {
+    var done = function () { keep(null); store(KEY_SYNC, null); emit(); };
+    return call("POST", "/auth/v1/logout", {}, "user").then(done, done);
+  }
+
+  function rpc(name, args, anon) { return call("POST", "/rest/v1/rpc/" + name, args || {}, anon ? "anon" : "user"); }
+  function rest(method, path, body, extra) { return call(method, "/rest/v1/" + path, body, "user", extra); }
+
+  // --- The kill switch (D-195): off, the account parts of the page hide and stay hidden --------
+  var state = { on: true, profile: undefined };
+  var checked = read(KEY_OFF);
+  if (checked && Date.now() - checked.at < 10 * 60 * 1000) state.on = checked.on;
+  function applySwitch() {
+    document.documentElement.classList.toggle("accounts-off", !state.on);
+    document.querySelectorAll("[data-account]").forEach(function (el) { el.hidden = !state.on; });
+  }
+  applySwitch();
+  var ready = (checked && Date.now() - checked.at < 10 * 60 * 1000 ? Promise.resolve() :
+    call("GET", "/rest/v1/config?key=eq.accounts_enabled&select=value", undefined, "anon").then(function (rows) {
+      state.on = !(rows && rows[0] && rows[0].value === false);
+      store(KEY_OFF, { on: state.on, at: Date.now() });
+    }, function () {})).then(applySwitch);
+
+  // --- Sync (D-195): a three-way merge of the settings and the picks ---------------------------
+  // KEY_SYNC holds what both sides had at the last sync; a side that differs from it changed.
+  function local(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+  function setLocal(key, value) { try { if (value === null || value === undefined) localStorage.removeItem(key); else localStorage.setItem(key, value); } catch (e) {} }
+  function localPicks() { try { return JSON.parse(local("picks") || "{}") || {}; } catch (e) { return {}; } }
+  function localSeen() { try { return JSON.parse(local("jogo-vistos") || "[]") || []; } catch (e) { return []; } }
+
+  var syncing = null, again = false;
+  function sync(first) {
+    if (!isAccount()) return Promise.resolve(null);
+    if (syncing) { again = true; return syncing; }
+    syncing = doSync(first).then(function (r) { syncing = null; if (again) { again = false; return sync(); } return r; },
+      function (e) { syncing = null; throw e; });
+    return syncing;
+  }
+  function doSync(first) {
+    var base = first ? null : read(KEY_SYNC);
+    return Promise.all([rest("GET", "profiles?select=username,club,theme,seen,settings_updated_at"), rest("GET", "picks?select=match_id,pick,imported")])
+      .then(function (both) {
+        var profile = both[0] && both[0][0] || null, server = {}, flags = {};
+        (both[1] || []).forEach(function (p) { server[p.match_id] = p.pick; flags[p.match_id] = p.imported; });
+        state.profile = profile;
+        var jobs = [], picks = localPicks(), was = base ? base.picks : {};
+        // Picks: on the first sync both sides join and the account wins a clash (contas.md §6).
+        Object.keys(picks).forEach(function (id) {
+          var mine = picks[id];
+          if (server[id] === mine) return;
+          if (server[id] === undefined && (base === null || was[id] !== mine)) {
+            jobs.push(rest("POST", "picks", { match_id: id, pick: mine }, { Prefer: "resolution=merge-duplicates,return=minimal" })
+              .then(function () { server[id] = mine; }, function () {}));
+          } else if (server[id] !== undefined && base !== null && was[id] !== mine && was[id] === server[id]) {
+            jobs.push(rest("PATCH", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), { pick: mine }, { Prefer: "return=minimal" })
+              .then(function () { server[id] = mine; }, function () {}));
+          }
+        });
+        if (base !== null) Object.keys(was).forEach(function (id) {
+          if (picks[id] === undefined && server[id] === was[id]) {
+            jobs.push(rest("DELETE", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), undefined, { Prefer: "return=minimal" })
+              .then(function () { delete server[id]; }, function () {}));
+          }
+        });
+        return Promise.all(jobs).then(function () {
+          // What the server kept is the truth (a late change is refused there).
+          setLocal("picks", JSON.stringify(server));
+          state.imported = Object.keys(flags).filter(function (id) { return flags[id]; }).length;
+          var settings = Promise.resolve();
+          if (profile) {
+            var now = { club: local("club"), theme: local("theme"), seen: localSeen() };
+            var old = base ? base.settings : null;
+            var pushed = !old || now.club !== old.club || now.theme !== old.theme || now.seen.length !== old.seen.length;
+            var pulled = old && profile.settings_updated_at !== base.settings_at;
+            // This device's change is the newest one; else the account's, made on another device.
+            if (pushed) {
+              var seen = now.seen.concat((profile.seen || []).filter(function (g) { return now.seen.indexOf(g) < 0; })).slice(-3000);
+              settings = rest("PATCH", "profiles?user_id=eq." + claims().sub + "&select=settings_updated_at", { club: now.club, theme: now.theme, seen: seen }, { Prefer: "return=representation" })
+                .then(function (rows) { profile.settings_updated_at = rows && rows[0] ? rows[0].settings_updated_at : profile.settings_updated_at; profile.club = now.club; profile.theme = now.theme; profile.seen = seen; setLocal("jogo-vistos", JSON.stringify(seen)); });
+            } else if (pulled) {
+              setLocal("club", profile.club);
+              setLocal("theme", profile.theme);
+              setLocal("jogo-vistos", JSON.stringify(profile.seen || []));
+              if (profile.theme) document.documentElement.dataset.theme = profile.theme;
+            }
+          }
+          return settings.then(function () {
+            store(KEY_SYNC, { picks: server, settings: profile ? { club: profile.club, theme: profile.theme, seen: profile.seen || [] } : null,
+              settings_at: profile ? profile.settings_updated_at : null, at: Date.now() });
+            emit();
+            return profile;
+          });
+        });
+      });
+  }
+  var soon = null;
+  function syncSoon() { clearTimeout(soon); soon = setTimeout(function () { sync().catch(function () {}); }, 800); }
+
+  // The invitation (D-197, Q17): at most once a week per browser, never to an account.
+  function invite(box) {
+    if (!state.on || isAccount() || !box) return;
+    var snooze = read("lfp-invite");
+    if (snooze && Date.now() - snooze < 7 * 24 * 3600 * 1000) return;
+    box.hidden = false;
+    var later = box.querySelector("[data-invite-later]");
+    if (later) later.addEventListener("click", function () { store("lfp-invite", Date.now()); box.hidden = true; });
+  }
+
+  // The menu's link says who is in.
+  function label() {
+    document.querySelectorAll("[data-account-link]").forEach(function (a) {
+      a.textContent = isAccount() ? (state.profile && state.profile.username) || C.t.account : C.t.sign_in;
+    });
+  }
+  listeners.push(label);
+
+  window.LFP_ACCOUNT = {
+    config: C, ready: ready, state: state, Problem: Problem,
+    session: session, claims: claims, isAccount: isAccount, email: email, ensureSession: ensureSession,
+    google: google, finishGoogle: finishGoogle, signUp: signUp, signIn: signIn, sendCode: sendCode,
+    verify: verify, recover: recover, setPassword: setPassword, signOut: signOut,
+    rpc: rpc, rest: rest, sync: sync, syncSoon: syncSoon, invite: invite,
+    on: function (f) { listeners.push(f); }
+  };
+  label();
+  ready.then(function () { if (state.on && isAccount()) sync().then(label, function () {}); });
+})();
+</script><script>
 (function () {
   try { if (localStorage.getItem("skipgc") === "t") return; } catch (e) {}
   if (navigator.globalPrivacyControl || navigator.webdriver) return;

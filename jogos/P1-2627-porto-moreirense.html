@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-uT4c4C/qlg2Kq+06sahxLZODV86MUxLV3Q9wUXakIXs=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self' https://jcsusyrgqhhdqrjqtinf.supabase.co; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FC Porto – Moreirense FC · Contas da Bola</title>
@@ -1107,6 +1107,52 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   .bar .theme { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* Accounts and rankings (D-195, D-197): the Jogar page's parts, plus forms and the clock */
+.acc .account { display: grid; gap: 20px; max-width: 640px; padding: 16px 0 8px; }
+.acc .acc-panel { display: grid; gap: 12px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--ring); border-radius: 2px; }
+.acc .acc-panel h2 { margin: 0; font-size: 24px; }
+.acc .acc-panel p { margin: 0; }
+.acc .acc-form { display: grid; gap: 10px; }
+.acc .acc-form.inline { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+.acc label { display: grid; gap: 4px; font-weight: 700; font-size: 15px; }
+.acc label.check { display: flex; gap: 8px; align-items: center; font-weight: 600; }
+.acc input:not([type="checkbox"]), .acc select { font: inherit; font-size: 17px; padding: 9px 10px; border: 1px solid var(--axis); border-radius: 2px; background: var(--raised); color: var(--ink); min-height: 44px; }
+.acc input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--amber); }
+.acc .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.acc .tabs, .ranking-view .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.acc .chip[aria-selected="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.acc .btn.google { justify-content: center; background: var(--raised); color: var(--ink); border: 1px solid var(--axis); }
+.acc .link { font: inherit; background: none; border: 0; padding: 4px 0; color: var(--accent); text-decoration: underline; cursor: pointer; min-height: 32px; }
+.acc .link.danger, .acc .btn.danger { color: var(--bad); }
+.acc .btn.danger { background: none; border: 1px solid var(--bad); }
+.acc .warn { color: var(--bad); }
+.acc .leagues { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.acc .leagues li { display: grid; gap: 4px; padding-bottom: 10px; border-bottom: 1px solid var(--grid); }
+.acc code { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+.acc .recap { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.acc .recap li { display: flex; gap: 12px; justify-content: space-between; align-items: center; }
+.acc .sq { display: inline-block; width: 14px; height: 14px; margin-right: 3px; border-radius: 1px; }
+.acc .sq.g { background: var(--good); } .acc .sq.y { background: var(--amber); } .acc .sq.x { background: var(--axis); }
+.acc .danger-zone summary { cursor: pointer; color: var(--bad); font-weight: 700; }
+.acc .danger-zone[open] { display: grid; gap: 10px; }
+.ranking-view { display: grid; gap: 14px; padding: 16px 0 8px; }
+.ranking-view .filters { gap: 16px; }
+.ranking-view .filters label { display: flex; gap: 8px; align-items: center; }
+.ranking-view .tbl.ranking { max-width: 640px; }
+.ranking-view .tbl th { text-align: left; font-size: 13px; color: var(--muted); padding: 4px 6px; border-bottom: 1px solid var(--axis); }
+.ranking-view .tbl th.n { text-align: right; }
+.ranking-view tr.mine td { background: var(--good-wash); font-weight: 700; }
+.ranking-view tr.model td { color: var(--muted); font-style: italic; }
+.ranking-view tr.gap td { text-align: center; color: var(--muted); }
+.play .clock { margin: 0 0 10px; font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.play .clock.low { color: var(--bad); }
+.play .warn { color: var(--bad); }
+.play .invite { border: 2px solid var(--amber); }
+.play .invite p { margin: 0; }
+.play .final .invite { margin-top: 16px; }
+html.accounts-off [data-account-link] { display: none; }
+@media (max-width: 520px) { .acc .acc-form.inline { grid-template-columns: 1fr; } }
+
 </style>
 <link rel="canonical" href="https://contasdabola.pt/jogos/P1-2627-porto-moreirense">
 <link rel="alternate" hreflang="pt" href="https://contasdabola.pt/jogos/P1-2627-porto-moreirense">
@@ -1134,12 +1180,13 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <a href="../epoca">Época</a>
 <a href="../clubes">Clubes</a>
 <a href="../como-funciona">Como funciona</a>
-</nav>
+<a href="../ranking">Ranking</a>
+<a href="../conta" data-account-link>Entrar</a></nav>
   <button class="theme" type="button" aria-label="Alternar entre claro e escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
   <a class="lang" href="../en/jogos/P1-2627-porto-moreirense" hreflang="en" lang="en">EN<span class="visually-hidden"> · Read this page in English</span></a>
 </div></header>
 <main id="top" class="wrap">
-<p class="stale" role="status" hidden data-after="2026-11-27T00:24:00Z">Estes números podem estar desatualizados: o site não é atualizado desde qua 25/11/2026 12:24.</p><article class="match-page">
+<p class="stale" role="status" hidden data-after="2026-11-27T01:05:00Z">Estes números podem estar desatualizados: o site não é atualizado desde qua 25/11/2026 13:05.</p><article class="match-page">
   <header class="match-head">
     <h1><span>FC Porto</span> <span class="final num">2–1</span> <span>Moreirense FC</span></h1>
     <p class="meta">sex 04/09/2026 20:15</p>
@@ -1203,7 +1250,7 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
 <p>Projeto pessoal e não comercial, sem ligação à Liga Portugal, aos clubes nem a casas de apostas. As previsões são probabilidades, não promessas, e nada aqui é aconselhamento de apostas. Os emblemas pertencem aos clubes.</p>
 <p><b>18+</b> · O jogo pode causar dependência. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Linha 1414 (gratuita e anónima)</a></p>
 <p>Dados não oficiais; as fontes estão em «Fontes e licenças». As nossas previsões em JSON estão sob CC BY 4.0, sem odds nem estatísticas de terceiros.</p>
-<p>Atualizado: <time datetime="2026-11-25T12:24:00Z">qua 25/11/2026 12:24</time></p><p class="links"><a href="../como-funciona">Como funciona</a> · <a href="../termos">Termos</a> · <a href="../privacidade">Privacidade</a> · <a href="../fontes-e-licencas">Fontes e licenças</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
+<p>Atualizado: <time datetime="2026-11-25T13:05:00Z">qua 25/11/2026 13:05</time></p><p class="links"><a href="../como-funciona">Como funciona</a> · <a href="../termos">Termos</a> · <a href="../privacidade">Privacidade</a> · <a href="../fontes-e-licencas">Fontes e licenças</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
 </div></footer>
 <script>
 (function () {
@@ -1261,7 +1308,270 @@ table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
   apply();
 })();
 </script>
+<script type="application/json" id="account-config">{"url":"https://jcsusyrgqhhdqrjqtinf.supabase.co","key":"sb_publishable_ijxoFtISarNf0vTop-K0wA_ty5YG7Ba","root":"../","site":"https://contasdabola.pt/","callback":"https://contasdabola.pt/conta","t":{"account":"Conta","sign_in":"Entrar","why":"Guarda os teus palpites e jogos em todos os dispositivos e entra nos rankings. \u00c9 gr\u00e1tis e podes apagar tudo quando quiseres.","google":"Continuar com o Google","tab_code":"C\u00f3digo por email","tab_password":"Email e password","email":"Email","send_code":"Enviar-me um c\u00f3digo","code_note":"Sem password: enviamos-te por email um c\u00f3digo de 6 d\u00edgitos para escreveres aqui.","password":"Password","create":"Criar conta","forgot":"Esqueceste-te da password?","forgot_mail":"Escreve primeiro o teu email.","password_note":"Pelo menos 8 caracteres, com letras e algarismos.","terms_note":"Ao criares conta aceitas os \u003ca href=\"termos\"\u003eTermos\u003c/a\u003e; a p\u00e1gina \u003ca href=\"privacidade\"\u003ePrivacidade\u003c/a\u003e diz o que guardamos.","code_sent":"Envi\u00e1mos um c\u00f3digo para {email}.","code":"C\u00f3digo","code_spam":"Demora no m\u00e1ximo um minuto. N\u00e3o chegou? V\u00ea no spam.","new_password":"Nova password","confirm":"Confirmar","back":"Voltar","choose_name":"Escolhe o teu nome para os rankings","change_name":"Mudar o nome","name_note":"3 a 20 letras, algarismos, _ ou . \u2014 \u00e9 p\u00fablico nos rankings e podes mud\u00e1-lo uma vez a cada 30 dias.","username":"Nome","age":"Tenho 16 anos ou mais.","save":"Guardar","leagues":"Ligas com amigos","loading":"A carregar\u2026","league_name":"Nome da liga","create_league":"Criar liga","league_code":"C\u00f3digo de convite","join":"Entrar","joined":"J\u00e1 est\u00e1s na liga.","no_leagues":"Ainda n\u00e3o tens ligas: cria uma e envia o c\u00f3digo aos teus amigos.","members":"{n} membros","see_ranking":"Ver o ranking","code_label":"C\u00f3digo:","copy_invite":"Copiar o link de convite","copied":"Copiado.","new_code":"Novo c\u00f3digo","remove_member":"Remover um membro","remove_who":"O nome do membro a remover:","delete_league":"Apagar a liga","delete_league_sure":"Apagar esta liga para todos?","leave":"Sair da liga","leave_sure":"Sair desta liga?","history":"Os teus jogos","no_history":"Ainda n\u00e3o jogaste. Joga a Tripla do Dia ou o Desafio do Dia.","tripla":"Tripla do Dia","desafio":"Desafio do Dia","your_data":"A tua conta","signed_as":"Entraste como {email}. Nome nos rankings: {name}.","imported":"{n} palpites chegaram \u00e0 conta depois do apito: ficam no teu hist\u00f3rico e n\u00e3o contam para o ranking.","export":"Descarregar os meus dados","sign_out":"Sair","delete_account":"Apagar a minha conta","delete_note":"Apaga a conta, os teus palpites, os teus jogos e as ligas que criaste, de imediato e para sempre.","delete_confirm":"Apagar tudo","delete_sure":"Apagar a conta e tudo o que tem? N\u00e3o d\u00e1 para desfazer.","deleted":"Conta apagada.","off":"As contas est\u00e3o indispon\u00edveis neste momento. Tudo o resto funciona como sempre.","retry":"Tentar outra vez","season":"\u00c9poca","week":"Esta semana","round":"Jornada {n}","everyone":"Todos","model":"O modelo","name":"Nome","points":"Pontos","matches":"Jogos","games":"Jogos","palpites_note":"1 ponto por palpite certo, feito antes do apito. Empates: primeiro quem fez mais palpites, depois quem l\u00e1 chegou primeiro. A linha do modelo usa a previs\u00e3o fechada 24 h antes do jogo.","games_note":"Cada adepto tem os seus jogos em cada dia, com 60 segundos por jogo: 3 pontos pelo vencedor, mais 2 pelo resultado exato e menos 1 por ajuda.","empty":"Ainda n\u00e3o h\u00e1 ningu\u00e9m aqui.","join_note":"\u003ca href=\"conta\"\u003eCria uma conta\u003c/a\u003e para entrares nos rankings.","unavailable":"O ranking est\u00e1 indispon\u00edvel neste momento. Tenta daqui a pouco.","e_taken":"Esse nome j\u00e1 est\u00e1 ocupado.","e_username":"3 a 20 letras, algarismos, _ ou . (nem no in\u00edcio nem no fim).","e_blocked":"Esse nome n\u00e3o \u00e9 permitido.","e_30days":"Mudaste o nome h\u00e1 menos de 30 dias.","e_age":"Confirma que tens 16 anos ou mais.","e_no_league":"N\u00e3o h\u00e1 nenhuma liga com esse c\u00f3digo.","e_full":"Essa liga est\u00e1 cheia (50 membros).","e_ten":"J\u00e1 est\u00e1s em 10 ligas.","e_league_name":"A liga precisa de um nome com 3 a 40 caracteres.","e_login":"Email ou password errados.","e_confirm":"Confirma primeiro o teu email, com o c\u00f3digo que te envi\u00e1mos.","e_code":"Esse c\u00f3digo est\u00e1 errado ou j\u00e1 expirou. Pede um novo.","e_password":"A password precisa de pelo menos 8 caracteres, com letras e algarismos.","e_rate":"Demasiadas tentativas. Espera uns minutos.","e_exists":"J\u00e1 h\u00e1 uma conta com esse email: entra.","e_network":"Sem liga\u00e7\u00e3o. Tenta outra vez.","e_generic":"Algo correu mal. Tenta outra vez."}}</script>
 <script>
+(function () {
+  // Accounts (D-195 to D-200): a small client for the Supabase Auth and REST APIs, with no
+  // library, so the page's scripts stay its own (D-186). The session lives in this browser; the
+  // account is a copy of the browser's data and the server's record of the games. Everything here
+  // adds to the page: without it, the page works as it did.
+  var C;
+  try { C = JSON.parse(document.getElementById("account-config").textContent); } catch (e) { return; }
+  var KEY_SESSION = "lfp-session", KEY_SYNC = "lfp-sync", KEY_CLAIM = "lfp-claim", KEY_PKCE = "lfp-pkce";
+  var KEY_OFF = "lfp-accounts-off";
+
+  function read(key) { try { return JSON.parse(localStorage.getItem(key) || "null"); } catch (e) { return null; } }
+  function store(key, value) {
+    try { if (value === null || value === undefined) localStorage.removeItem(key); else localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+
+  function Problem(status, code, message) { this.status = status; this.code = code; this.message = message; }
+
+  // One request to the API. ``auth``: "user" sends the session's token, "anon" the public key only.
+  function call(method, path, body, auth, extra) {
+    var headers = { apikey: C.key, "Content-Type": "application/json" };
+    for (var h in (extra || {})) headers[h] = extra[h];
+    var ready = auth === "user" ? token() : Promise.resolve(null);
+    return ready.then(function (t) {
+      if (auth === "user" && !t) throw new Problem(401, "no_session", "");
+      headers.Authorization = "Bearer " + (t || C.key);
+      return fetch(C.url + path, { method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body) });
+    }).then(function (r) {
+      return r.text().then(function (text) {
+        var data = null;
+        try { data = text ? JSON.parse(text) : null; } catch (e) { data = text; }
+        if (!r.ok) {
+          var d = data || {};
+          throw new Problem(r.status, d.code || d.error_code || d.error || "", d.message || d.msg || d.error_description || "");
+        }
+        return data;
+      });
+    }, function () { throw new Problem(0, "network", ""); });
+  }
+
+  // --- The session ---------------------------------------------------------------------------
+  var refreshing = null;
+  function keep(s) {
+    if (!s || !s.access_token) { store(KEY_SESSION, null); return null; }
+    var stored = { access_token: s.access_token, refresh_token: s.refresh_token,
+      expires_at: s.expires_at || Math.floor(Date.now() / 1000) + (s.expires_in || 3600), user: s.user || null };
+    store(KEY_SESSION, stored);
+    emit();
+    return stored;
+  }
+  function session() { return read(KEY_SESSION); }
+  function token() {
+    var s = session();
+    if (!s) return Promise.resolve(null);
+    if (s.expires_at - 60 > Date.now() / 1000) return Promise.resolve(s.access_token);
+    if (!refreshing) {
+      refreshing = call("POST", "/auth/v1/token?grant_type=refresh_token", { refresh_token: s.refresh_token }, "anon")
+        .then(function (fresh) { refreshing = null; return keep(fresh).access_token; },
+              function (e) { refreshing = null; if (e.status >= 400 && e.status < 500) { keep(null); } return null; });
+    }
+    return refreshing;
+  }
+  function claims() {
+    var s = session();
+    if (!s) return null;
+    try { return JSON.parse(atob(s.access_token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))); } catch (e) { return null; }
+  }
+  function isAccount() { var c = claims(); return !!c && c.is_anonymous !== true; }
+  function email() { var s = session(); return s && s.user ? s.user.email : null; }
+
+  var listeners = [];
+  function emit() { listeners.forEach(function (f) { try { f(); } catch (e) {} }); }
+
+  // An anonymous session, made only when a game needs one (D-196).
+  function ensureSession() {
+    if (session()) return token().then(function (t) { return t ? true : ensureSession(); });
+    return call("POST", "/auth/v1/signup", { data: {} }, "anon").then(function (s) { keep(s); return true; });
+  }
+
+  // Before an anonymous session signs in, it leaves a claim for the account to take its games.
+  function prepareClaim() {
+    var c = claims();
+    if (!c || c.is_anonymous !== true) return Promise.resolve();
+    return rpc("make_claim", {}).then(function (t) { store(KEY_CLAIM, { token: t, at: Date.now() }); }, function () {});
+  }
+  function afterSignIn(s) {
+    keep(s);
+    var c = read(KEY_CLAIM);
+    store(KEY_CLAIM, null);
+    var claimed = c && Date.now() - c.at < 25 * 60 * 1000 ? rpc("claim", { token: c.token }).catch(function () { return 0; }) : Promise.resolve(0);
+    return claimed.then(function () { store(KEY_SYNC, null); return sync(true); });
+  }
+
+  // --- Ways in (D-195): Google, email and password, a code by email ----------------------------
+  function b64url(bytes) {
+    var s = ""; bytes.forEach(function (b) { s += String.fromCharCode(b); });
+    return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function google(next) {
+    var raw = new Uint8Array(48); crypto.getRandomValues(raw);
+    var verifier = b64url(raw);
+    return prepareClaim().then(function () {
+      return crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier));
+    }).then(function (digest) {
+      store(KEY_PKCE, { verifier: verifier, next: next || null });
+      location.href = C.url + "/auth/v1/authorize?provider=google&redirect_to=" + encodeURIComponent(C.callback) +
+        "&code_challenge=" + b64url(new Uint8Array(digest)) + "&code_challenge_method=s256";
+    });
+  }
+  // Back from Google with ?code=: trade it for a session. Returns the page to go on to, or null.
+  function finishGoogle() {
+    var q = new URLSearchParams(location.search), code = q.get("code"), p = read(KEY_PKCE);
+    if (!code || !p) return Promise.resolve(null);
+    store(KEY_PKCE, null);
+    history.replaceState(null, "", location.pathname);
+    return call("POST", "/auth/v1/token?grant_type=pkce", { auth_code: code, code_verifier: p.verifier }, "anon")
+      .then(afterSignIn).then(function () { return p.next || ""; });
+  }
+  function signUp(mail, password) {
+    return prepareClaim().then(function () { return call("POST", "/auth/v1/signup", { email: mail, password: password }, "anon"); })
+      .then(function (r) { if (r && r.access_token) return afterSignIn(r).then(function () { return "in"; }); return "code"; });
+  }
+  function signIn(mail, password) {
+    return prepareClaim().then(function () { return call("POST", "/auth/v1/token?grant_type=password", { email: mail, password: password }, "anon"); })
+      .then(afterSignIn);
+  }
+  function sendCode(mail) {
+    return prepareClaim().then(function () { return call("POST", "/auth/v1/otp", { email: mail, create_user: true }, "anon"); });
+  }
+  // ``type``: "email" for the sign-in code, "signup" to confirm a new account, "recovery".
+  function verify(mail, code, type) {
+    return call("POST", "/auth/v1/verify", { email: mail, token: String(code).replace(/\D/g, ""), type: type }, "anon").then(afterSignIn);
+  }
+  function recover(mail) { return call("POST", "/auth/v1/recover", { email: mail }, "anon"); }
+  function setPassword(password) { return call("PUT", "/auth/v1/user", { password: password }, "user"); }
+  function signOut() {
+    var done = function () { keep(null); store(KEY_SYNC, null); emit(); };
+    return call("POST", "/auth/v1/logout", {}, "user").then(done, done);
+  }
+
+  function rpc(name, args, anon) { return call("POST", "/rest/v1/rpc/" + name, args || {}, anon ? "anon" : "user"); }
+  function rest(method, path, body, extra) { return call(method, "/rest/v1/" + path, body, "user", extra); }
+
+  // --- The kill switch (D-195): off, the account parts of the page hide and stay hidden --------
+  var state = { on: true, profile: undefined };
+  var checked = read(KEY_OFF);
+  if (checked && Date.now() - checked.at < 10 * 60 * 1000) state.on = checked.on;
+  function applySwitch() {
+    document.documentElement.classList.toggle("accounts-off", !state.on);
+    document.querySelectorAll("[data-account]").forEach(function (el) { el.hidden = !state.on; });
+  }
+  applySwitch();
+  var ready = (checked && Date.now() - checked.at < 10 * 60 * 1000 ? Promise.resolve() :
+    call("GET", "/rest/v1/config?key=eq.accounts_enabled&select=value", undefined, "anon").then(function (rows) {
+      state.on = !(rows && rows[0] && rows[0].value === false);
+      store(KEY_OFF, { on: state.on, at: Date.now() });
+    }, function () {})).then(applySwitch);
+
+  // --- Sync (D-195): a three-way merge of the settings and the picks ---------------------------
+  // KEY_SYNC holds what both sides had at the last sync; a side that differs from it changed.
+  function local(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+  function setLocal(key, value) { try { if (value === null || value === undefined) localStorage.removeItem(key); else localStorage.setItem(key, value); } catch (e) {} }
+  function localPicks() { try { return JSON.parse(local("picks") || "{}") || {}; } catch (e) { return {}; } }
+  function localSeen() { try { return JSON.parse(local("jogo-vistos") || "[]") || []; } catch (e) { return []; } }
+
+  var syncing = null, again = false;
+  function sync(first) {
+    if (!isAccount()) return Promise.resolve(null);
+    if (syncing) { again = true; return syncing; }
+    syncing = doSync(first).then(function (r) { syncing = null; if (again) { again = false; return sync(); } return r; },
+      function (e) { syncing = null; throw e; });
+    return syncing;
+  }
+  function doSync(first) {
+    var base = first ? null : read(KEY_SYNC);
+    return Promise.all([rest("GET", "profiles?select=username,club,theme,seen,settings_updated_at"), rest("GET", "picks?select=match_id,pick,imported")])
+      .then(function (both) {
+        var profile = both[0] && both[0][0] || null, server = {}, flags = {};
+        (both[1] || []).forEach(function (p) { server[p.match_id] = p.pick; flags[p.match_id] = p.imported; });
+        state.profile = profile;
+        var jobs = [], picks = localPicks(), was = base ? base.picks : {};
+        // Picks: on the first sync both sides join and the account wins a clash (contas.md §6).
+        Object.keys(picks).forEach(function (id) {
+          var mine = picks[id];
+          if (server[id] === mine) return;
+          if (server[id] === undefined && (base === null || was[id] !== mine)) {
+            jobs.push(rest("POST", "picks", { match_id: id, pick: mine }, { Prefer: "resolution=merge-duplicates,return=minimal" })
+              .then(function () { server[id] = mine; }, function () {}));
+          } else if (server[id] !== undefined && base !== null && was[id] !== mine && was[id] === server[id]) {
+            jobs.push(rest("PATCH", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), { pick: mine }, { Prefer: "return=minimal" })
+              .then(function () { server[id] = mine; }, function () {}));
+          }
+        });
+        if (base !== null) Object.keys(was).forEach(function (id) {
+          if (picks[id] === undefined && server[id] === was[id]) {
+            jobs.push(rest("DELETE", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), undefined, { Prefer: "return=minimal" })
+              .then(function () { delete server[id]; }, function () {}));
+          }
+        });
+        return Promise.all(jobs).then(function () {
+          // What the server kept is the truth (a late change is refused there).
+          setLocal("picks", JSON.stringify(server));
+          state.imported = Object.keys(flags).filter(function (id) { return flags[id]; }).length;
+          var settings = Promise.resolve();
+          if (profile) {
+            var now = { club: local("club"), theme: local("theme"), seen: localSeen() };
+            var old = base ? base.settings : null;
+            var pushed = !old || now.club !== old.club || now.theme !== old.theme || now.seen.length !== old.seen.length;
+            var pulled = old && profile.settings_updated_at !== base.settings_at;
+            // This device's change is the newest one; else the account's, made on another device.
+            if (pushed) {
+              var seen = now.seen.concat((profile.seen || []).filter(function (g) { return now.seen.indexOf(g) < 0; })).slice(-3000);
+              settings = rest("PATCH", "profiles?user_id=eq." + claims().sub + "&select=settings_updated_at", { club: now.club, theme: now.theme, seen: seen }, { Prefer: "return=representation" })
+                .then(function (rows) { profile.settings_updated_at = rows && rows[0] ? rows[0].settings_updated_at : profile.settings_updated_at; profile.club = now.club; profile.theme = now.theme; profile.seen = seen; setLocal("jogo-vistos", JSON.stringify(seen)); });
+            } else if (pulled) {
+              setLocal("club", profile.club);
+              setLocal("theme", profile.theme);
+              setLocal("jogo-vistos", JSON.stringify(profile.seen || []));
+              if (profile.theme) document.documentElement.dataset.theme = profile.theme;
+            }
+          }
+          return settings.then(function () {
+            store(KEY_SYNC, { picks: server, settings: profile ? { club: profile.club, theme: profile.theme, seen: profile.seen || [] } : null,
+              settings_at: profile ? profile.settings_updated_at : null, at: Date.now() });
+            emit();
+            return profile;
+          });
+        });
+      });
+  }
+  var soon = null;
+  function syncSoon() { clearTimeout(soon); soon = setTimeout(function () { sync().catch(function () {}); }, 800); }
+
+  // The invitation (D-197, Q17): at most once a week per browser, never to an account.
+  function invite(box) {
+    if (!state.on || isAccount() || !box) return;
+    var snooze = read("lfp-invite");
+    if (snooze && Date.now() - snooze < 7 * 24 * 3600 * 1000) return;
+    box.hidden = false;
+    var later = box.querySelector("[data-invite-later]");
+    if (later) later.addEventListener("click", function () { store("lfp-invite", Date.now()); box.hidden = true; });
+  }
+
+  // The menu's link says who is in.
+  function label() {
+    document.querySelectorAll("[data-account-link]").forEach(function (a) {
+      a.textContent = isAccount() ? (state.profile && state.profile.username) || C.t.account : C.t.sign_in;
+    });
+  }
+  listeners.push(label);
+
+  window.LFP_ACCOUNT = {
+    config: C, ready: ready, state: state, Problem: Problem,
+    session: session, claims: claims, isAccount: isAccount, email: email, ensureSession: ensureSession,
+    google: google, finishGoogle: finishGoogle, signUp: signUp, signIn: signIn, sendCode: sendCode,
+    verify: verify, recover: recover, setPassword: setPassword, signOut: signOut,
+    rpc: rpc, rest: rest, sync: sync, syncSoon: syncSoon, invite: invite,
+    on: function (f) { listeners.push(f); }
+  };
+  label();
+  ready.then(function () { if (state.on && isAccount()) sync().then(label, function () {}); });
+})();
+</script><script>
 (function () {
   try { if (localStorage.getItem("skipgc") === "t") return; } catch (e) {}
   if (navigator.globalPrivacyControl || navigator.webdriver) return;

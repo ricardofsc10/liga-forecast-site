@@ -1,0 +1,1617 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-3vdyc2CxPGEy2SSY4JLukQvK7+26E+Mhnmz/MZtsOIY=' 'sha256-DauqsCEAzBj2z8X4AF2qnNPO23Swf+4V+Sq4cCUMpoo=' 'sha256-LbmejC2PcPr1WTjyIs0YsenlKiZLMHCMDGJirL/4t1Y=' 'sha256-G4IwUQT//KSvHadzYuJ/NYX+Vwi0D7pngAG3qpwEGF4=' 'sha256-uT4c4C/qlg2Kq+06sahxLZODV86MUxLV3Q9wUXakIXs=' 'sha256-UGrRcx2itfh1vc/TFGL6/LiQ9HlBRUcxL8WVXQzRPqI=' 'sha256-FbKgeAEWOiW8jsKqQBRlwb4wy2dF6DwB8yoqrqD3i7g='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://contasdabola.goatcounter.com; font-src 'self'; connect-src 'self' https://jcsusyrgqhhdqrjqtinf.supabase.co; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ranking · Contas da Bola</title>
+<meta name="description" content="Os rankings dos adeptos: Palpites contra o modelo, a Tripla do Dia e o Desafio do Dia.">
+<meta name="color-scheme" content="dark light">
+<meta name="google-site-verification" content="FNL0J3pjsVLhlkGUh-aRbb5yhrt7pO-6M1AO6vy2qWo">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-192.png" sizes="192x192" type="image/png">
+<link rel="preload" href="static/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+(function () { var d = document.documentElement; d.classList.add("js"); try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") d.dataset.theme = t; } catch (e) {} })();
+</script>
+<style>
+/* Contas da Bola: the stand-mosaic world (D-092). Concrete ground, card-white ink, one
+   floodlight amber for actions; club colours appear only as cards. Flat: no gradients, no
+   shadows, 2px corners. */
+@font-face { font-family: "Archivo"; src: url("static/fonts/archivo.woff2") format("woff2");
+  font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
+:root {
+  color-scheme: light;
+  --delta-share: 45%; --delta-share-mine: 40%; --focus: #1b1d21;
+  --page: #e4e5e3; --surface: #f2f2f0; --raised: #fafaf8; --ink: #1b1d21; --ink-2: #3d4148; --muted: #5a5f67;
+  --grid: #d0d2cf; --axis: #9a9ea3; --ring: #c4c7c4;
+  --amber: #ffb000; --amber-ink: #1b1c1f; --amber-text: #8a5800;
+  --s1: #1f5fc4; --s2: #c8452a; --s3: #12804e; --s4: #a86b00; --s5: #b0417a;
+  --draw: #9a9ea3; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
+  --bw-fill: #1b1b1b; --bw-alt: #ffffff; --strip-draw: #7a7f86;  /* list strips (D-163): black stands out here; the draw at 3.2:1 */
+  --good-ink: #ffffff; --bad-ink: #ffffff;
+  --good: #0d6640; --bad: #b42318; --good-wash: rgba(13,102,64,0.14);  /* 5.5:1 on the page (D-186) */
+  --wash: rgba(31,95,196,0.12);
+  --card-other: #8f939a; --card-empty: #d0d2cf; --bw-edge: rgba(0,0,0,0.45);
+  --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
+  --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
+  --z-conference: #b9a63a; --z-conference-ink: #161300; --z-middle: #6f8792; --z-middle-ink: #0e1a20;
+  --z-playoff: #a8201f; --z-playoff-ink: #ffffff; --z-relegation: #ff4d4d; --z-relegation-ink: #240303;
+  --lv4: #d23535; --lv4-ink: #ffffff; --lv3: #e0752d; --lv3-ink: #1c0e03; --lv2: #c9cbc8; --lv2-ink: #1b1d21; --lv1: #2a8152; --lv1-ink: #ffffff;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {   color-scheme: dark;
+  --delta-share: 50%; --delta-share-mine: 35%; --focus: #ffb000;
+  --page: #202328; --surface: #2a2e34; --raised: #31353c; --ink: #ece9e2; --ink-2: #c9c6be; --muted: #a9a69e;
+  --grid: #3a3f46; --axis: #5d636b; --ring: #3a3f46;
+  --amber: #ffb000; --amber-ink: #1b1c1f; --amber-text: #ffb000;
+  --s1: #5b93f0; --s2: #f07a5a; --s3: #4cc283; --s4: #ffb000; --s5: #e889b5;
+  --draw: #8f939a; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
+  --bw-fill: #ffffff; --bw-alt: #1b1b1b; --strip-draw: #8f939a;
+--strip-alverca: #2968d6; --strip-alverca-alt: #d6202f; --strip-arouca: #f2c200; --strip-arouca-alt: #3b67d7; --strip-benfica: #d6202f; --strip-benfica-alt: #ffffff; --strip-estoril: #f2c200; --strip-estoril-alt: #206ad5; --strip-estrela-amadora: #d6202f; --strip-estrela-amadora-alt: #138a4a; --strip-famalicao: #3766d6; --strip-famalicao-alt: #ffffff; --strip-gil-vicente: #d6202f; --strip-gil-vicente-alt: #2968d6; --strip-maritimo: #138a4a; --strip-maritimo-alt: #d6202f; --strip-moreirense: #138a4a; --strip-moreirense-alt: #ffffff; --strip-porto: #2968d6; --strip-porto-alt: #ffffff; --strip-rio-ave: #138a4a; --strip-rio-ave-alt: #ffffff; --strip-santa-clara: #d6202f; --strip-santa-clara-alt: #ffffff; --strip-sp-braga: #d22630; --strip-sp-braga-alt: #ffffff; --strip-sporting: #0b8a52; --strip-sporting-alt: #ffffff;   --good-ink: #08200f; --bad-ink: #2a0606;
+  --good: #4cc283; --bad: #ff6b6b; --good-wash: rgba(76,194,131,0.16); --wash: rgba(91,147,240,0.16);
+  --card-other: #5d636b; --card-empty: #31353c; --bw-edge: rgba(255,255,255,0.55);
+  --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
+  --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
+  --z-conference: #b9a63a; --z-conference-ink: #161300; --z-middle: #6a8fa0; --z-middle-ink: #0e1a20;
+  --z-playoff: #a8201f; --z-playoff-ink: #ffffff; --z-relegation: #ff4d4d; --z-relegation-ink: #240303;
+  --lv4: #d23535; --lv4-ink: #ffffff; --lv3: #e0752d; --lv3-ink: #1c0e03; --lv2: #5d636b; --lv2-ink: #ece9e2; --lv1: #2a8152; --lv1-ink: #ffffff;
+ } }
+:root[data-theme="dark"] {   color-scheme: dark;
+  --delta-share: 50%; --delta-share-mine: 35%; --focus: #ffb000;
+  --page: #202328; --surface: #2a2e34; --raised: #31353c; --ink: #ece9e2; --ink-2: #c9c6be; --muted: #a9a69e;
+  --grid: #3a3f46; --axis: #5d636b; --ring: #3a3f46;
+  --amber: #ffb000; --amber-ink: #1b1c1f; --amber-text: #ffb000;
+  --s1: #5b93f0; --s2: #f07a5a; --s3: #4cc283; --s4: #ffb000; --s5: #e889b5;
+  --draw: #8f939a; --accent: var(--amber-text); --accent-ink: var(--amber-ink);
+  --bw-fill: #ffffff; --bw-alt: #1b1b1b; --strip-draw: #8f939a;
+--strip-alverca: #2968d6; --strip-alverca-alt: #d6202f; --strip-arouca: #f2c200; --strip-arouca-alt: #3b67d7; --strip-benfica: #d6202f; --strip-benfica-alt: #ffffff; --strip-estoril: #f2c200; --strip-estoril-alt: #206ad5; --strip-estrela-amadora: #d6202f; --strip-estrela-amadora-alt: #138a4a; --strip-famalicao: #3766d6; --strip-famalicao-alt: #ffffff; --strip-gil-vicente: #d6202f; --strip-gil-vicente-alt: #2968d6; --strip-maritimo: #138a4a; --strip-maritimo-alt: #d6202f; --strip-moreirense: #138a4a; --strip-moreirense-alt: #ffffff; --strip-porto: #2968d6; --strip-porto-alt: #ffffff; --strip-rio-ave: #138a4a; --strip-rio-ave-alt: #ffffff; --strip-santa-clara: #d6202f; --strip-santa-clara-alt: #ffffff; --strip-sp-braga: #d22630; --strip-sp-braga-alt: #ffffff; --strip-sporting: #0b8a52; --strip-sporting-alt: #ffffff;   --good-ink: #08200f; --bad-ink: #2a0606;
+  --good: #4cc283; --bad: #ff6b6b; --good-wash: rgba(76,194,131,0.16); --wash: rgba(91,147,240,0.16);
+  --card-other: #5d636b; --card-empty: #31353c; --bw-edge: rgba(255,255,255,0.55);
+  --z-title: #f5c542; --z-title-ink: #1a1500; --z-second: #1565c0; --z-second-ink: #ffffff;
+  --z-champions_playoff: #29b6e6; --z-champions_playoff-ink: #04202c; --z-europa: #e0752d; --z-europa-ink: #1c0e03;
+  --z-conference: #b9a63a; --z-conference-ink: #161300; --z-middle: #6a8fa0; --z-middle-ink: #0e1a20;
+  --z-playoff: #a8201f; --z-playoff-ink: #ffffff; --z-relegation: #ff4d4d; --z-relegation-ink: #240303;
+  --lv4: #d23535; --lv4-ink: #ffffff; --lv3: #e0752d; --lv3-ink: #1c0e03; --lv2: #5d636b; --lv2-ink: #ece9e2; --lv1: #2a8152; --lv1-ink: #ffffff;
+ }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; scrollbar-gutter: stable; }
+body { margin: 0; background: var(--page); color: var(--ink);
+  font: 16px/1.55 "Archivo", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif; font-stretch: 100%;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+::selection { background: var(--amber); color: var(--amber-ink); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.skip { position: absolute; left: 8px; top: -60px; z-index: 30; padding: 10px 14px; font-weight: 700; background: var(--amber); color: var(--amber-ink); border-radius: 2px; }
+.skip:focus { top: 8px; }
+.skip:hover { color: var(--amber-ink); }
+code { font: 0.92em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+main { padding: 24px 0 64px; }
+h1, h2, h3 { font-stretch: 72%; font-weight: 850; letter-spacing: -0.005em; text-wrap: balance; }
+h1 { font-size: clamp(40px, 7vw, 72px); line-height: 0.95; margin: 0 0 14px; }
+h2 { font-size: clamp(30px, 4.4vw, 40px); line-height: 1; margin: 0 0 8px; }
+h3 { font-size: 22px; line-height: 1.1; margin: 28px 0 8px; }
+p { margin: 6px 0; max-width: 68ch; text-wrap: pretty; }
+a { color: inherit; text-decoration-color: var(--amber); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { color: var(--amber-text); }
+.lede { color: var(--ink-2); font-size: 18px; max-width: 60ch; }
+.meta, .note, caption { color: var(--muted); font-size: 14px; }
+.kicker { font-size: 14px; font-weight: 600; color: var(--muted); margin: 0 0 6px; }
+.num, td, .tile .value { font-variant-numeric: tabular-nums; }
+
+/* Top bar */
+.bar { position: sticky; top: 0; z-index: 10; background: var(--page); border-bottom: 1px solid var(--ring); }
+.bar .wrap { display: flex; align-items: center; gap: 16px; height: 56px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; white-space: nowrap;
+  font-stretch: 72%; font-weight: 850; font-size: 22px; text-transform: uppercase; letter-spacing: 0.01em; }
+.brand svg { width: 19px; height: 12px; flex: none; }
+.brand svg rect { fill: var(--ink); } .brand svg rect.lit { fill: var(--amber); }
+.bar nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; margin-left: auto; }
+.bar nav::-webkit-scrollbar { display: none; }
+.bar nav a { color: var(--ink-2); text-decoration: none; font-size: 15px; font-weight: 600; padding: 6px 10px; white-space: nowrap; }
+.bar nav a:hover, .bar nav a[aria-current] { color: var(--ink); box-shadow: inset 0 -2px var(--amber); }
+.bar nav a:focus-visible { outline-offset: -2px; }  /* the nav scrolls, so it would clip a ring outside */
+.bar a.lang, .bar .theme { flex: none; font: inherit; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none;
+  padding: 5px 10px; border: 1px solid var(--axis); border-radius: 2px; background: none; cursor: pointer; }
+.bar a.lang:hover, .bar .theme:hover { border-color: var(--amber); color: var(--ink); }
+.bar .theme { display: none; } .js .bar .theme { display: inline-flex; align-items: center; }
+.bar .theme svg { width: 16px; height: 16px; }
+
+/* Club cards (D-090): a small card with the club's two colours */
+.club-card { display: inline-block; width: 9px; height: 16px; border-radius: 1px; flex: none; vertical-align: -2px;
+  background: linear-gradient(90deg, var(--a) 50%, var(--b) 50%); box-shadow: 0 0 0 1px var(--ring); margin-right: 8px; }
+.club-card { --a: #8f939a; --b: #ece9e2; }
+.card-academico-viseu { --a: #1b1b1b; --b: #ffffff; }
+.card-alverca { --a: #1f4fa3; --b: #d6202f; }
+.card-arouca { --a: #f2c200; --b: #1d3d8f; }
+.card-benfica { --a: #d6202f; --b: #ffffff; }
+.card-casa-pia { --a: #1b1b1b; --b: #ffffff; }
+.card-estoril { --a: #f2c200; --b: #1d5fbf; }
+.card-estrela-amadora { --a: #d6202f; --b: #138a4a; }
+.card-famalicao { --a: #1d3f8f; --b: #ffffff; }
+.card-gil-vicente { --a: #d6202f; --b: #1f4fa3; }
+.card-guimaraes { --a: #ffffff; --b: #1b1b1b; }
+.card-maritimo { --a: #138a4a; --b: #d6202f; }
+.card-moreirense { --a: #138a4a; --b: #ffffff; }
+.card-nacional { --a: #1b1b1b; --b: #ffffff; }
+.card-porto { --a: #1f4fa3; --b: #ffffff; }
+.card-rio-ave { --a: #138a4a; --b: #ffffff; }
+.card-santa-clara { --a: #d6202f; --b: #ffffff; }
+.card-sp-braga { --a: #d22630; --b: #ffffff; }
+.card-sporting { --a: #0b8a52; --b: #ffffff; }
+/* Club crests (D-180): where we have a club's crest, it takes the place of the card. */
+.club-card:is(.card-academico-viseu, .card-alverca, .card-arouca, .card-benfica, .card-casa-pia, .card-estoril, .card-estrela-amadora, .card-famalicao, .card-gil-vicente, .card-guimaraes, .card-maritimo, .card-moreirense, .card-nacional, .card-porto, .card-rio-ave, .card-santa-clara, .card-sp-braga, .card-sporting) { width: 18px; height: 18px; border-radius: 0; box-shadow: none;
+  background: center / contain no-repeat; vertical-align: -4px; margin-right: 7px; }
+.teams-line .club-card:is(.card-academico-viseu, .card-alverca, .card-arouca, .card-benfica, .card-casa-pia, .card-estoril, .card-estrela-amadora, .card-famalicao, .card-gil-vicente, .card-guimaraes, .card-maritimo, .card-moreirense, .card-nacional, .card-porto, .card-rio-ave, .card-santa-clara, .card-sp-braga, .card-sporting) { width: 16px; height: 16px; margin-right: 5px; }
+.club-head h1 .club-card:is(.card-academico-viseu, .card-alverca, .card-arouca, .card-benfica, .card-casa-pia, .card-estoril, .card-estrela-amadora, .card-famalicao, .card-gil-vicente, .card-guimaraes, .card-maritimo, .card-moreirense, .card-nacional, .card-porto, .card-rio-ave, .card-santa-clara, .card-sp-braga, .card-sporting) { width: 1.05em; height: 1.05em; vertical-align: -0.14em; margin-right: 0.25em; }
+.club-card.card-academico-viseu { background-image: url("static/crests/academico-viseu.png"); }
+.club-card.card-alverca { background-image: url("static/crests/alverca.png"); }
+.club-card.card-arouca { background-image: url("static/crests/arouca.png"); }
+.club-card.card-benfica { background-image: url("static/crests/benfica.png"); }
+.club-card.card-casa-pia { background-image: url("static/crests/casa-pia.png"); }
+.club-card.card-estoril { background-image: url("static/crests/estoril.png"); }
+.club-card.card-estrela-amadora { background-image: url("static/crests/estrela-amadora.png"); }
+.club-card.card-famalicao { background-image: url("static/crests/famalicao.png"); }
+.club-card.card-gil-vicente { background-image: url("static/crests/gil-vicente.png"); }
+.club-card.card-guimaraes { background-image: url("static/crests/guimaraes.png"); }
+.club-card.card-maritimo { background-image: url("static/crests/maritimo.png"); }
+.club-card.card-moreirense { background-image: url("static/crests/moreirense.png"); }
+.club-card.card-nacional { background-image: url("static/crests/nacional.png"); }
+.club-card.card-porto { background-image: url("static/crests/porto.png"); }
+.club-card.card-rio-ave { background-image: url("static/crests/rio-ave.png"); }
+.club-card.card-santa-clara { background-image: url("static/crests/santa-clara.png"); }
+.club-card.card-sp-braga { background-image: url("static/crests/sp-braga.png"); }
+.club-card.card-sporting { background-image: url("static/crests/sporting.png"); }
+/* A club page's title shows the large copy (D-191); only the element shown fetches its image. */
+.club-head h1 .club-card.card-academico-viseu { background-image: url("static/crests/large/academico-viseu.png"); }
+.club-head h1 .club-card.card-alverca { background-image: url("static/crests/large/alverca.png"); }
+.club-head h1 .club-card.card-arouca { background-image: url("static/crests/large/arouca.png"); }
+.club-head h1 .club-card.card-benfica { background-image: url("static/crests/large/benfica.png"); }
+.club-head h1 .club-card.card-casa-pia { background-image: url("static/crests/large/casa-pia.png"); }
+.club-head h1 .club-card.card-estoril { background-image: url("static/crests/large/estoril.png"); }
+.club-head h1 .club-card.card-estrela-amadora { background-image: url("static/crests/large/estrela-amadora.png"); }
+.club-head h1 .club-card.card-famalicao { background-image: url("static/crests/large/famalicao.png"); }
+.club-head h1 .club-card.card-gil-vicente { background-image: url("static/crests/large/gil-vicente.png"); }
+.club-head h1 .club-card.card-guimaraes { background-image: url("static/crests/large/guimaraes.png"); }
+.club-head h1 .club-card.card-maritimo { background-image: url("static/crests/large/maritimo.png"); }
+.club-head h1 .club-card.card-moreirense { background-image: url("static/crests/large/moreirense.png"); }
+.club-head h1 .club-card.card-nacional { background-image: url("static/crests/large/nacional.png"); }
+.club-head h1 .club-card.card-porto { background-image: url("static/crests/large/porto.png"); }
+.club-head h1 .club-card.card-rio-ave { background-image: url("static/crests/large/rio-ave.png"); }
+.club-head h1 .club-card.card-santa-clara { background-image: url("static/crests/large/santa-clara.png"); }
+.club-head h1 .club-card.card-sp-braga { background-image: url("static/crests/large/sp-braga.png"); }
+.club-head h1 .club-card.card-sporting { background-image: url("static/crests/large/sporting.png"); }
+/* List strips (D-163, D-164): each club's plain colour and its other one, per theme. */
+:root { --strip-alverca: #1f4fa3; --strip-alverca-alt: #d6202f; --strip-arouca: #f2c200; --strip-arouca-alt: #1d3d8f; --strip-benfica: #d6202f; --strip-benfica-alt: #4b0b10; --strip-estoril: #f2c200; --strip-estoril-alt: #1d5fbf; --strip-estrela-amadora: #d6202f; --strip-estrela-amadora-alt: #138a4a; --strip-famalicao: #1d3f8f; --strip-famalicao-alt: #0a1632; --strip-gil-vicente: #d6202f; --strip-gil-vicente-alt: #1f4fa3; --strip-maritimo: #138a4a; --strip-maritimo-alt: #d6202f; --strip-moreirense: #138a4a; --strip-moreirense-alt: #07301a; --strip-porto: #1f4fa3; --strip-porto-alt: #0b1c39; --strip-rio-ave: #138a4a; --strip-rio-ave-alt: #07301a; --strip-santa-clara: #d6202f; --strip-santa-clara-alt: #4b0b10; --strip-sp-braga: #d22630; --strip-sp-braga-alt: #4a0d11; --strip-sporting: #0b8a52; --strip-sporting-alt: #04301d; }
+.strip i[style*="--bw-alt"] { box-shadow: inset 0 0 0 1px var(--bw-edge); }  /* the second black-and-white club */
+/* Mosaic cards that mimic each club's home kit (D-152), defined once and named by every card. */
+:root { --kit-academico-viseu: linear-gradient(180deg, #ffffff 0 14%, #1b1b1b 14%); --kit-alverca: linear-gradient(180deg, #e8243c 0 22%, transparent 22%), linear-gradient(90deg, #1f6fc4 0 42%, #e8243c 42% 58%, #1f6fc4 58%); --kit-arouca: linear-gradient(180deg, #1d3d8f 0 10%, #f5d90a 10%); --kit-benfica: linear-gradient(180deg, #ffffff 0 8%, #d6202f 8%); --kit-casa-pia: linear-gradient(90deg, #d6202f 0 8%, #1b1b1b 8% 92%, #d6202f 92%); --kit-estoril: #f2b632; --kit-estrela-amadora: linear-gradient(90deg, #7a1a28 0% 16.6667%, #1f7a3a 16.6667% 33.3333%, #7a1a28 33.3333% 50%, #1f7a3a 50% 66.6667%, #7a1a28 66.6667% 83.3333%, #1f7a3a 83.3333% 100%); --kit-famalicao: linear-gradient(90deg, #14254d 0 24%, #ffffff 24% 76%, #14254d 76%); --kit-gil-vicente: linear-gradient(180deg, #d6202f 0 9%, #1e6fe0 9%); --kit-maritimo: linear-gradient(90deg, #d6202f 0% 20%, #138a4a 20% 40%, #d6202f 40% 60%, #138a4a 60% 80%, #d6202f 80% 100%); --kit-moreirense: conic-gradient(#138a4a 25%, #ffffff 0 50%, #138a4a 0 75%, #ffffff 0) 0 0 / 50% 50%; --kit-nacional: linear-gradient(90deg, #1b1b1b 0% 14.2857%, #ffffff 14.2857% 28.5714%, #1b1b1b 28.5714% 42.8571%, #ffffff 42.8571% 57.1429%, #1b1b1b 57.1429% 71.4286%, #ffffff 71.4286% 85.7143%, #1b1b1b 85.7143% 100%); --kit-porto: linear-gradient(90deg, #1f4fb5 0% 20%, #ffffff 20% 40%, #1f4fb5 40% 60%, #ffffff 60% 80%, #1f4fb5 80% 100%); --kit-rio-ave: linear-gradient(90deg, #ffffff 0% 14.2857%, #138a4a 14.2857% 28.5714%, #ffffff 28.5714% 42.8571%, #138a4a 42.8571% 57.1429%, #ffffff 57.1429% 71.4286%, #138a4a 71.4286% 85.7143%, #ffffff 85.7143% 100%); --kit-santa-clara: repeating-linear-gradient(135deg, #d4161c 0 5px, #b80f16 5px 7px); --kit-sp-braga: linear-gradient(90deg, #ffffff 0 20%, #d22630 20% 80%, #ffffff 80%); --kit-sporting: linear-gradient(180deg, #0b6b3a 0% 20%, #ffffff 20% 40%, #0b6b3a 40% 60%, #ffffff 60% 80%, #0b6b3a 80% 100%); --kit-guimaraes: linear-gradient(135deg, #ffffff 0 40%, #1b1b1b 40% 56%, #ffffff 56%); }
+
+/* Intro and hero */
+.intro { padding: 32px 0 20px; }
+.hero { margin: 8px 0 16px; border-radius: 2px; padding: 28px; color: var(--ink); background: var(--surface);
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.hero p.verdict { color: var(--ink); font-stretch: 72%; font-size: clamp(28px, 3.6vw, 40px); font-weight: 850; line-height: 1.02; margin: 4px 0 12px; }
+.hero p { color: var(--ink-2); }
+.hero p strong { color: var(--ink); }
+.hero .figure svg { max-width: 460px; }
+.hero .figure { background: var(--raised); border: 1px solid var(--ring); border-radius: 2px; padding: 12px 14px 8px; }
+.hero .figure .figcap { font-size: 13px; color: var(--muted); margin: 0 0 4px; }
+.strip { width: 100%; height: auto; display: block; font-size: 12px; }
+.strip .tick { fill: var(--muted); }
+.strip .grid { stroke: var(--grid); stroke-width: 1; }
+.strip .zero { stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.strip .band-good { fill: var(--good-wash); }
+.strip .whisker { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+.strip .dot { fill: var(--surface); stroke: var(--ink); stroke-width: 2.5; }
+.strip .dot.solid { fill: var(--ink); }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.chip { font-size: 13px; font-weight: 600; color: var(--ink-2); padding: 3px 8px; border: 1px solid var(--ring); border-radius: 2px; line-height: 1.3; }
+.pill { font-size: 13px; padding: 3px 10px; border-radius: 2px; background: var(--raised); color: var(--ink-2); border: 1px solid var(--ring); }
+
+/* Tiles */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 3px; margin: 0 0 8px; }
+.tile { background: var(--surface); border-radius: 2px; padding: 14px 16px; }
+.tile .value { font-stretch: 72%; font-size: 34px; font-weight: 850; line-height: 1.1; }
+.tile .label { color: var(--ink-2); font-size: 14px; }
+
+/* Sections */
+section.block { padding: 52px 0 0; }
+.head { margin: 0 0 16px; }
+.card { background: var(--surface); border-radius: 2px; padding: 18px; margin: 12px 0; overflow-x: auto; }
+.card > h3:first-child { margin-top: 0; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.grid2 > .card { margin: 0; }
+.grid2 + .card, .card + .grid2, .grid2 + .grid2 { margin-top: 12px; }
+.empty { background: var(--surface); border: 1px dashed var(--axis); border-radius: 2px; padding: 18px; color: var(--ink-2); }
+
+/* Match cards */
+.matches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 12px; }
+.match { background: var(--surface); border-radius: 2px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.match .when { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 14px; color: var(--muted); }
+.match .when b { color: var(--ink); font-weight: 650; font-size: 15px; }
+.teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.teams .t { font-weight: 700; font-size: 18px; line-height: 1.25; }
+.teams .t.away { text-align: right; }
+.teams .vs { color: var(--muted); font-size: 14px; }
+.teams .t.fav::after { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 1px; background: var(--amber); margin: 0 0 3px 6px; vertical-align: middle; }
+.stack { display: flex; gap: 2px; height: 12px; border-radius: 2px; overflow: hidden; }
+.stack span { display: block; min-width: 2px; }
+.stack .h { background: var(--s1); } .stack .d { background: var(--draw); } .stack .a { background: var(--s2); }
+.probs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.probs div { display: flex; flex-direction: column; }
+.probs div:nth-child(2) { text-align: center; } .probs div:nth-child(3) { text-align: right; }
+.probs .p { font-stretch: 72%; font-size: 28px; font-weight: 850; line-height: 1; font-variant-numeric: tabular-nums; }
+.probs .o { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.probs .k { font-size: 13px; color: var(--ink-2); }
+.probs .k i.h { background: var(--s1); } .probs .k i.d { background: var(--draw); } .probs .k i.a { background: var(--s2); }
+.probs .k i { display: inline-block; width: 8px; height: 8px; border-radius: 1px; margin-right: 5px; vertical-align: 0; }
+.probs .top .p { color: var(--ink); } .probs div:not(.top) .p { color: var(--ink-2); }
+.minis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 12px; border-top: 1px solid var(--grid); }
+.mini .row { display: flex; justify-content: space-between; font-size: 14px; color: var(--ink-2); }
+.mini .row b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.meter { height: 6px; border-radius: 1px; background: var(--grid); margin-top: 6px; overflow: hidden; }
+.meter span { display: block; height: 100%; background: var(--ink-2); }
+.scores { padding-top: 12px; border-top: 1px solid var(--grid); }
+/* Expected goals: two bars from the middle on a 4-goal scale (D-134). */
+.xg-duel { width: 100%; margin: 4px 0 18px; }
+.xg-duel .lbl { display: block; font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.xg-row { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+.xg-row b { font-stretch: 72%; font-size: 28px; font-weight: 850; line-height: 1; }
+.xg-row .bar { display: flex; height: 12px; border-radius: 1px; background: var(--card-empty); }
+.xg-row .bar.l { justify-content: flex-end; }
+.xg-row .bar i { display: block; height: 100%; background: var(--ink-2); }  /* data, not an action: no amber */
+.xg-names { display: flex; justify-content: space-between; gap: 12px; margin-top: 4px; font-size: 13px; color: var(--muted); }
+.lead .xg-duel { order: 4; max-width: 520px; }
+.scores .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 14px; color: var(--ink-2); }
+.scores .hint { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
+.scores .row .hint { margin: 0; }
+.scores ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.scores li { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 8px 6px 10px; border-radius: 2px; background: var(--raised); }
+.scores li b { font-stretch: 72%; font-size: 22px; font-weight: 850; font-variant-numeric: tabular-nums; }
+.scores li span { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.scores li.first span { color: var(--ink-2); font-weight: 600; }
+.scores li i { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--ink-2); }
+.match .foot { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--muted); }
+
+/* Tables */
+.scroll { position: relative; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.scroll:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+caption { text-align: left; padding: 0 0 8px; }
+th, td { padding: 8px 8px; border-bottom: 1px solid var(--grid); text-align: right; white-space: nowrap; }
+thead th { color: var(--muted); font-weight: 600; font-size: 13px; border-bottom-color: var(--axis); }
+/* the run-in grid is coloured cell by cell: a row hover would paint over its levels */
+:where(table:not(.runin)) > tbody tr:hover td { background: var(--raised); }
+th:first-child, td:first-child, td.text, th.text { text-align: left; }
+td .ci { display: block; color: var(--muted); font-size: 13px; font-weight: 400; }
+td.hit { background: var(--wash); font-weight: 650; }
+tbody tr:hover td.hit { background: var(--wash); }
+td.score { font-weight: 700; }
+td.better { color: var(--good); font-weight: 650; }
+thead th.group { text-align: center; border-bottom: 1px solid var(--grid); }
+.sig { font-weight: 650; }
+.badge { display: inline-block; padding: 1px 8px; border-radius: 2px; border: 1px solid var(--ring); background: var(--raised); color: var(--ink-2); font-size: 13px; font-weight: 500; }
+
+/* Charts */
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; color: var(--ink-2); margin: 4px 0 8px; }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 1px; vertical-align: middle; margin-right: 6px; }
+.k1 { background: var(--s1); } .k2 { background: var(--s2); } .k3 { background: var(--s3); }
+.k4 { background: var(--s4); } .k5 { background: var(--s5); }
+.kd { background: var(--axis); }
+.kb { background: var(--wash); height: 10px !important; border: 1px solid color-mix(in srgb, var(--s1) 35%, transparent); }
+.ke { background: var(--ink-2); width: 2px !important; height: 12px !important; }
+.kg { background: var(--good); }
+details { margin: 14px 0; }
+summary { cursor: pointer; color: var(--ink); font-weight: 700; padding: 10px 14px; border: 1px solid var(--ring); border-radius: 2px; background: var(--surface); list-style-position: inside; }
+summary:hover { border-color: var(--amber); }
+details[open] > summary { margin-bottom: 8px; }
+svg.chart .end { font-weight: 700; fill: var(--ink); }
+svg.chart { width: 100%; max-width: 760px; height: auto; display: block; font-size: 13px; min-width: 520px; font-family: "Archivo", sans-serif; }
+svg.chart.square { max-width: 340px; min-width: 0; }
+svg.chart.cols { min-width: 0; }  /* 18 narrow columns still read at phone width */
+svg .grid { stroke: var(--grid); stroke-width: 1; }
+svg .zero, svg .diagonal { stroke: var(--axis); stroke-width: 1.5; }
+svg .diagonal { stroke-dasharray: 4 4; }
+svg .tick, svg .axis-label { fill: var(--muted); }
+svg .label { fill: var(--ink-2); }
+svg .hit { fill: transparent; }
+svg g:hover .hit { fill: var(--wash); }
+svg .whisker { stroke: var(--ink-2); stroke-width: 2; stroke-linecap: round; }
+svg .dot { fill: var(--surface); stroke: var(--s1); stroke-width: 2; }
+svg .dot.solid { fill: var(--s1); }
+svg .line { fill: none; stroke-width: 2; stroke-linejoin: round; }
+svg line.band { stroke: var(--wash); stroke-width: 14; stroke-linecap: round; }
+svg rect.band { fill: var(--wash); stroke: var(--s1); stroke-opacity: 0.35; }
+svg .expected { stroke: var(--ink-2); stroke-width: 2; }
+svg .bar.better { fill: var(--good); } svg .bar.worse { fill: var(--axis); }
+td.out { color: var(--s2); font-weight: 650; }
+tbody tr:hover td.out { color: color-mix(in srgb, var(--s2) 85%, var(--ink)); }  /* keeps 4.5:1 on the hover row */
+svg .marker { stroke: var(--surface); stroke-width: 2; }
+svg .line.s1 { stroke: var(--s1); } svg .marker.s1 { fill: var(--s1); }
+svg .line.s2 { stroke: var(--s2); } svg .marker.s2 { fill: var(--s2); }
+svg .line.s3 { stroke: var(--s3); } svg .marker.s3 { fill: var(--s3); }
+svg .line.s4 { stroke: var(--s4); } svg .marker.s4 { fill: var(--s4); }
+svg .line.s5 { stroke: var(--s5); } svg .marker.s5 { fill: var(--s5); }
+
+/* Season table */
+td.chance { position: relative; }
+td.chance span { position: relative; z-index: 1; }
+td.chance::before { content: ""; position: absolute; inset: 3px 2px; border-radius: 2px;
+  background: var(--amber); opacity: calc(var(--p) * 0.6); }
+td.chance.down::before { background: var(--s2); }
+.range { position: relative; height: 8px; min-width: 110px; background: var(--grid); border-radius: 1px; margin: 4px 0 2px; }
+.range span { position: absolute; top: 0; bottom: 0; background: var(--wash); border: 1px solid color-mix(in srgb, var(--s1) 45%, transparent); border-radius: 1px; }
+.range i { position: absolute; top: -3px; width: 2px; height: 14px; background: var(--ink-2); }
+td.pts { min-width: 120px; }
+table.stakes { margin-top: 10px; font-size: 14px; width: 100%; table-layout: auto; }
+table.stakes td.text { white-space: normal; }
+table.stakes th, table.stakes td { padding: 4px 4px; }
+#season .short { display: none; }
+@media (max-width: 640px) {
+  #season th.pts, #season td.pts { display: none; }
+  #season th, #season td { padding: 6px 3px; font-size: 14px; white-space: normal; }
+  #season .long { display: none; } #season .short { display: inline; }
+  #season td.text:has(.club-card) { white-space: nowrap; }
+  #season table:not(.stakes) th:nth-child(2), #season table:not(.stakes) td:nth-child(2) { position: sticky; left: 0; z-index: 2; background: var(--surface); }
+}
+
+/* Scenario builder */
+.scn { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) {
+  .scn { grid-template-columns: minmax(0, 1fr); }
+}
+.scn-matches, .scn-side { min-width: 0; }
+.scn-day { font-size: 13px; font-weight: 700; color: var(--muted); margin: 12px 0 4px; }
+.scn-day:first-child { margin-top: 0; }
+.scn-day b { color: var(--ink); font-weight: 750; }
+.scn-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid var(--grid); font-size: 15px; }
+.scn-row span { min-width: 0; overflow-wrap: anywhere; }
+.scn-row small { display: block; margin-top: 1px; font-size: 13px; font-weight: 500; color: var(--muted); }
+.scn-row .pick { display: inline-flex; gap: 3px; flex: none; }
+.scn-row button, .scn-reset { font: inherit; font-size: 14px; font-weight: 700; min-width: 34px; padding: 4px 8px; border-radius: 2px; border: 1px solid var(--axis); background: var(--raised); color: var(--ink); cursor: pointer; }
+.scn-row button:hover, .scn-reset:hover { border-color: var(--amber); }
+.scn-row button[aria-pressed="true"] { background: var(--amber); color: var(--amber-ink); border-color: var(--amber); }
+/* The model's chance of each result, under its mark (D-153); every button keeps the same height. */
+.scn-row .pick button { min-height: 42px; line-height: 1.1; }
+.scn-row button small { display: block; margin: 2px 0 0; font-size: 11px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.scn-row button[aria-pressed="true"] small { color: var(--amber-ink); }
+.scn-reset { margin-bottom: 8px; }
+
+footer { margin-top: 56px; padding: 24px 0 40px; border-top: 1px solid var(--ring); color: var(--muted); font-size: 14px; }
+footer p { max-width: none; margin: 0 0 8px; }
+footer .links { margin-top: 12px; }
+.stale { margin: 16px 0 0; padding: 10px 14px; border: 1px solid var(--ring); border-left: 4px solid var(--ink); border-radius: 2px; color: var(--ink); max-width: none; }
+.prose { max-width: 70ch; padding-bottom: 24px; }
+.prose h2 { font-size: 20px; margin: 28px 0 8px; }
+.prose p, .prose li { color: var(--ink-2); }
+.prose ul { padding-left: 20px; }
+.prose button.chip { font: inherit; font-size: 14px; cursor: pointer; background: none; color: var(--ink); }
+
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; padding: 22px 18px; }
+  .bar .wrap { gap: 10px; }
+  .bar nav { margin-left: 0; }
+  section.block { padding-top: 40px; }
+  .card { padding: 14px; }
+}
+/* Club pages (D-072) */
+svg .col.z0 { fill: var(--axis); } svg .col.z1 { fill: var(--z-second); } svg .col.z2 { fill: var(--z-champions_playoff); }
+svg .col.z3 { fill: var(--z-europa); } svg .col.z4 { fill: var(--z-conference); }
+svg .col.z5 { fill: var(--z-playoff); } svg .col.z6 { fill: var(--z-relegation); }
+.zones { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; color: var(--ink-2); margin: 4px 0 8px; }
+.zones span { display: inline-flex; align-items: center; gap: 6px; }
+.zones i { width: 10px; height: 10px; border-radius: 1px; display: inline-block; }
+.zones i.z0 { background: var(--axis); } .zones i.z1 { background: var(--z-second); } .zones i.z2 { background: var(--z-champions_playoff); }
+.zones i.z3 { background: var(--z-europa); } .zones i.z4 { background: var(--z-conference); }
+.zones i.z5 { background: var(--z-playoff); } .zones i.z6 { background: var(--z-relegation); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 3px; margin: 0; }
+.facts div { background: var(--surface); border-radius: 2px; padding: 12px 14px; }
+.facts dt { font-size: 13px; color: var(--muted); font-weight: 600; }
+.facts dd { margin: 2px 0 0; font-stretch: 72%; font-size: 30px; font-weight: 850; font-variant-numeric: tabular-nums; }
+.facts dd small { font-family: "Archivo", sans-serif; font-stretch: 100%; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+.clubs-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.clubs-nav a { display: inline-flex; align-items: center; font-size: 14px; font-weight: 600; padding: 4px 10px; border: 1px solid var(--ring); border-radius: 2px; color: var(--ink-2); text-decoration: none; }
+.clubs-nav a:hover { border-color: var(--amber); color: var(--ink); }
+.clubs-nav a[aria-current] { background: var(--amber); color: var(--amber-ink); border-color: var(--amber); }
+/* Club names: no lines, the name lights up on hover. */
+a.club { color: inherit; text-decoration: none; }
+a.club:hover { color: var(--amber-text); }
+
+/* Front page (D-088, D-092): mosaics of 100 cards */
+.hello { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 64px; padding: 20px 0 32px; border-bottom: 1px solid var(--ring); }
+.hello p { margin: 0; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.38; max-width: 34ch; }
+.hello p.aside { font-size: 17px; color: var(--muted); max-width: 42ch; }
+.aside-box { align-self: end; display: grid; gap: 4px; }
+.hello-text { display: grid; gap: 12px; align-content: start; }
+.hello h1.value { font-size: clamp(34px, 3.8vw, 52px); line-height: 1; margin: 0; max-width: 20ch; }
+/* The club picker sits beside the title, set off by a rule rather than boxed in (#167). */
+.club-box { display: none; } .js .club-box { align-self: end; display: grid; gap: 12px; padding: 6px 0 6px 24px; border-left: 3px solid var(--amber); }
+.hello .club-box p { max-width: none; font-size: 18px; }
+.hello .club-box .club-now { font-size: 17px; line-height: 1.4; }
+.hello .club-box .play-cta { display: flex; justify-content: space-between; margin-bottom: 8px; }  /* the Daily Three (D-184) */
+.club-now strong { color: var(--accent); }
+.club-now a { color: var(--ink); font-weight: 700; white-space: nowrap; }
+.mosaic, .strip { display: grid; gap: 3px; }
+.mosaic { grid-template-columns: repeat(10, 1fr); }
+.mosaic i, .strip i { display: block; border-radius: 2px; }
+.mosaic i { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.10); }
+.strip { --draw: var(--strip-draw); }  /* plain colours, no rings: 5 px cards read as one colour each (D-163) */
+.mosaic i { aspect-ratio: 1; }
+.strip { grid-template-columns: repeat(50, minmax(0, 1fr)); gap: 2px; margin: 8px 0 6px; min-width: 0; }
+.strip i { aspect-ratio: 1 / 1.5; border-radius: 1px; }
+.lead { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: 56px; align-items: center; padding: 40px 0 48px; border-bottom: 1px solid var(--ring); }
+.lead .lead-name { font-size: clamp(42px, 5.4vw, 80px); line-height: 0.95; text-transform: uppercase; margin: 0; overflow-wrap: break-word; }
+.lead .lead-name .x { color: var(--muted); font-size: 0.6em; vertical-align: 0.16em; }
+.lead .meta { font-size: 16px; margin: 12px 0 0; }
+.trio-big { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 40px; margin: 28px 0 18px; }
+.trio-big b { display: block; font-stretch: 72%; font-weight: 850; font-size: clamp(56px, 6vw, 84px); line-height: 0.9; }
+.trio-big small { display: block; margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--muted); }
+.say { font-size: clamp(18px, 1.8vw, 22px); line-height: 1.4; max-width: 36ch; margin: 0 0 24px; }
+.say strong { color: var(--amber-text); font-weight: 700; }
+.lead-more { margin: -12px 0 20px; font-weight: 700; }
+.lead .lead-more { order: 6; }
+.cta { display: inline-flex; align-items: center; gap: 20px; background: var(--amber); color: var(--amber-ink); text-decoration: none;
+  font-stretch: 80%; font-weight: 800; font-size: 21px; padding: 14px 18px; border-radius: 2px; }
+.cta:hover { color: var(--amber-ink); background: color-mix(in srgb, var(--amber) 88%, var(--ink)); }
+button.cta { border: 0; font-family: inherit; cursor: pointer; }  /* the Season page opens its simulator with one (D-162) */
+.cta svg { width: 22px; height: 22px; flex: none; transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1); }
+.cta:hover svg { transform: translateX(4px); }
+.key { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 0; margin: 12px 0 0; font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.key li, .legend-cards li { display: inline-flex; align-items: center; gap: 8px; }
+.key i, .legend-cards i { width: 12px; height: 12px; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12); }
+.home-cols { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 56px; padding-top: 48px; }
+.home-cols h2 { margin-bottom: 6px; }
+.home-cols .lede { font-size: 16px; margin-bottom: 12px; }
+.games, .drop { list-style: none; padding: 0; margin: 0; }
+.games li { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; padding: 14px 0; border-bottom: 1px solid var(--grid); }
+.teams-line { font-weight: 700; font-size: 17px; }
+.teams-line .vs { color: var(--muted); font-weight: 500; }
+.teams-line .team { white-space: nowrap; }  /* a match breaks between its clubs, never inside a name */
+@media (max-width: 400px) { .results .teams-line .team { white-space: normal; } .results li { gap: 8px; } }
+.teams-line .club-card { margin-right: 6px; }
+.teams-line .vs { margin: 0; }
+.games .when { font-size: 13px; color: var(--muted); grid-column: 1 / -1; grid-row: 1; }  /* its own row, above the clubs (D-163) */
+.games .teams-line { grid-column: 1 / -1; }
+.games li.off .strip { opacity: 0.4; }  /* postponed or cancelled: on hold */
+.games .strip, .games .trio { grid-column: 1 / -1; }
+.trio { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--muted); }
+.trio b { color: var(--ink); font-size: 16px; }
+.more { display: inline-block; margin-top: 16px; font-weight: 700; }
+.legend-cards { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; padding: 0; margin: 14px 0 0; font-weight: 600; }
+.legend-cards b { margin-left: auto; font-stretch: 72%; font-weight: 850; font-size: 22px; }
+.drop li { padding: 12px 0; border-bottom: 1px solid var(--grid); }
+.drop .row { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; }
+.drop .row b { font-stretch: 72%; font-weight: 850; font-size: 24px; }
+.record { margin-top: 28px; padding: 20px; background: var(--surface); border-radius: 2px; }
+.record p { margin: 0; font-size: 17px; line-height: 1.45; }
+.record p.aside { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.stakes-box { display: grid; gap: 14px; }
+.stake-row .lbl { display: block; font-weight: 700; font-size: 17px; }
+.stake-row.today .lbl { color: var(--amber-text); }
+.stake-row .parts { display: block; margin-top: 2px; font-size: 14px; color: var(--ink-2); }
+.stake-row .parts b { color: var(--ink); font-weight: 800; }
+.stake-row .strip { margin: 6px 0 0; }
+.lead .note { margin: -8px 0 22px; }
+.recap .note { margin: 14px 0 0; color: var(--muted); }
+.moves-week { padding: 28px 0; border-top: 1px solid var(--ring); }
+.moves { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); column-gap: 48px; }
+.moves li { display: grid; grid-template-columns: minmax(0, 1fr) auto 4.2em; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--ring); }
+.moves .who { display: flex; align-items: center; gap: 8px; font-weight: 600; min-width: 0; }
+.moves .was-now { font-size: 20px; font-weight: 800; font-stretch: 72%; }
+.moves .was { color: var(--muted); font-weight: 600; }
+.moves .d { font-weight: 800; font-size: 15px; text-align: right; }
+.d.good { color: var(--good); } .d.bad { color: var(--bad); }
+.week-line { margin: 8px 0 0; font-size: 17px; }
+.story { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; margin-top: 20px; }
+.story article { display: grid; gap: 10px; align-content: start; padding: 16px 18px; background: var(--surface); border-top: 4px solid var(--z-title); border-radius: 2px; }
+.story .story-down { border-top-color: var(--z-relegation); }
+.story h2 { margin: 0; font-size: 15px; font-stretch: 100%; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.story p { margin: 0; font-size: 18px; line-height: 1.42; max-width: none; }
+.story-bar { display: flex; gap: 2px; height: 10px; border-radius: 2px; overflow: hidden; }
+.story-bar i { display: block; min-width: 2px; }
+.recap { padding: 40px 0 8px; border-bottom: 1px solid var(--ring); }
+.results { list-style: none; padding: 0; margin: 8px 0 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 40px; }
+.results li { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--grid); }
+.results .sc { font-stretch: 72%; font-weight: 850; font-size: 28px; }
+.results .txt small { display: block; color: var(--muted); font-size: 14px; }
+.results .tag { font-size: 13px; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
+.results .tag.hit { background: var(--amber); color: var(--amber-ink); }
+.results .tag.miss { background: var(--ink); color: var(--surface); }  /* as heavy as Right (D-135) */
+.games li.pending .trio { color: var(--muted); font-size: 13px; }
+/* Matches and match pages (D-088) */
+.page-head { padding: 24px 0 8px; }
+.page-head h1 { margin-bottom: 8px; }
+.club-filter { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; font-weight: 600; }
+.club-filter { display: none; } .js .club-filter { display: inline-flex; }
+.club-filter select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--axis); border-radius: 2px; padding: 6px 10px; }
+.list-block { padding-top: 32px; }
+.list-block h3 { margin: 18px 0 2px; font-size: 20px; color: var(--ink-2); }
+.list-block .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 40px; }
+.list-block .results { margin-bottom: 0; }
+.match-link { display: contents; color: inherit; text-decoration: none; }
+.match-link:hover .teams-line { color: var(--amber-text); }
+[hidden] { display: none !important; }
+.tests { margin-top: 40px; }
+.match-page { padding-top: 12px; }
+.match-head h1 { font-size: clamp(38px, 5.4vw, 72px); text-transform: uppercase; margin: 12px 0 0; }
+.match-head .x { color: var(--muted); font-size: 0.6em; vertical-align: 0.16em; }
+.match-head .final { color: var(--amber-text); white-space: nowrap; }
+.match-head .meta { margin: 10px 0 0; font-size: 16px; }
+.notice { margin: 16px 0 0; padding: 10px 14px; border: 1px solid var(--axis); border-radius: 2px; color: var(--ink-2); max-width: none; }
+.said { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 18px 0 0; font-size: 18px; max-width: none; }
+.tag { display: inline-block; font-size: 13px; font-weight: 700; padding: 4px 8px; border-radius: 2px; }
+.tag.hit { background: var(--amber); color: var(--amber-ink); }
+.tag.miss { background: var(--ink); color: var(--surface); }
+.match-x12 { display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 48px; align-items: center; padding: 28px 0 36px; border-bottom: 1px solid var(--ring); }
+.match-x12 .trio-big { margin-top: 0; }
+.match-x12 .say { margin: 16px 0 0; }
+.match-extras { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 40px 56px; padding: 32px 0; }
+.likely { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 0; margin: 12px 0; }
+.likely li { display: flex; flex-direction: column; align-items: center; padding: 12px 6px; background: var(--surface); border-radius: 2px; }
+.likely b { font-stretch: 72%; font-weight: 850; font-size: 30px; line-height: 1.05; }
+.likely span { font-size: 14px; color: var(--muted); }
+.market { max-width: 72ch; }
+@media (max-width: 720px) { .match-x12 { grid-template-columns: 1fr; gap: 20px; } }
+/* How it works (D-097) */
+.idea-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 3px; margin-top: 14px; }
+.idea-grid > div { background: var(--surface); padding: 18px; border-radius: 2px; }
+.idea-grid h3 { margin: 0 0 8px; font-size: 24px; }
+.idea-grid p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-2); }
+.glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 0 48px; margin: 12px 0 0; }
+.glossary > div { padding: 14px 0; border-bottom: 1px solid var(--grid); }
+.glossary dt { font-weight: 800; font-size: 17px; }
+.glossary dd { margin: 4px 0 0; color: var(--ink-2); font-size: 15px; max-width: 62ch; }
+.fold { margin: 3px 0; }
+.fold > summary { font-stretch: 80%; font-size: 18px; padding: 14px 16px; }
+.fold[open] { padding-bottom: 24px; }
+.curious { padding-top: 40px; }
+.curious > .fold > summary span { font-weight: 400; color: var(--muted); }
+.curious .list-block:first-of-type { padding-top: 12px; }
+.fold section.block { padding-top: 20px; }
+
+/* Clubs (D-096) and the fan's club (D-089) */
+.club-picker select { min-width: 190px; }
+/* The highlight is one clean block: it brings its own margin, and the rule lines around it go. */
+.mine, tr.mine td, tr.mine th { background-color: color-mix(in srgb, var(--amber) 14%, var(--page)); }
+li.mine { margin-inline: -8px; padding-inline: 8px; border-radius: 2px; --bar-gap: color-mix(in srgb, var(--amber) 14%, var(--page)); }
+.games li.mine, .results li.mine, .zone-rows > li.mine, .drop li.mine, li:has(+ li.mine) { border-bottom-color: transparent; }
+tr.mine td, tr.mine th, tr:has(+ tr.mine) td, tr:has(+ tr.mine) th { border-bottom-color: transparent; }
+/* Lists in columns (#120): every row is as wide as the highlight, so lines and highlight line up, and no row
+   hides a line, because the row before in the page is often in another column. */
+.results li, .list-block .games li, .games.two li { margin-inline: -8px; padding-inline: 8px; }
+.results li.mine, .results li:has(+ li.mine), .list-block .games li.mine, .list-block .games li:has(+ li.mine),
+.games.two li.mine, .games.two li:has(+ li.mine) { border-bottom-color: var(--grid); }
+.sim li.mine { background-color: color-mix(in srgb, var(--amber) 14%, var(--surface)); --bar-gap: color-mix(in srgb, var(--amber) 14%, var(--surface)); }
+.heat tr.mine th.text { background-color: color-mix(in srgb, var(--amber) 14%, var(--page)); }
+.heat tr.mine td { background-color: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
+.heat tr.mine td.hot { background-color: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
+.club-grid { list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 3px; padding: 0; margin: 28px 0 0; }
+/* The link fills its cell: a neighbour's longer line makes the whole row taller, and the hover
+   outline has to follow the card. A fan's club keeps the grid's edges, not the list's margin. */
+.club-grid > li { position: relative; padding: 16px; background-color: var(--surface); border-radius: 2px; }
+.club-grid > li.mine { margin-inline: 0; padding: 16px; background-color: color-mix(in srgb, var(--amber) 22%, var(--surface)); }
+/* Only the club's name is the link, so a screen reader names it in a word and reads the legend as
+   a list; its ::after still makes the whole card the target (D-154). */
+.club-grid a { text-decoration: none; color: inherit; }
+.club-grid a::after { content: ""; position: absolute; inset: 0; border-radius: 2px; }
+.club-grid a:hover { color: inherit; }
+.club-grid a:hover::after { box-shadow: inset 0 0 0 2px var(--amber); }
+.club-grid a:focus-visible { outline: none; }
+.club-grid a:focus-visible::after { outline: 2px solid var(--focus); outline-offset: 2px; }
+.club-grid .name { display: block; font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; }
+/* Each card (D-154): the club's bar of 100 in the season page's colours, outlined so the
+   mid-table slice keeps its edge on any card, and a legend of its three biggest slices (fewer once
+   a club's season is settled, and the card is then shorter). The bar is hidden from screen readers: the
+   legend says the same in words. */
+.club-grid .zbar { display: flex; gap: 1px; height: 10px; margin-top: 10px; border-radius: 2px; overflow: hidden; background: var(--muted); box-shadow: 0 0 0 1px var(--muted); }
+.club-grid .zbar i { min-width: 3px; }
+.club-grid .zleg { list-style: none; display: grid; gap: 3px; margin: 10px 0 0; padding: 0; font-size: 14px; color: var(--muted); }
+.club-grid .zleg li { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; align-items: center; gap: 8px; }
+.club-grid .zleg i { width: 12px; height: 12px; border-radius: 1px; box-shadow: 0 0 0 1px var(--muted); }
+.club-grid .zleg span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.club-grid .zleg small { font-size: 12px; }
+.club-grid .zleg b { color: var(--ink); text-align: right; }
+.club-grid li.mine .zleg { color: var(--ink-2); }
+@media (max-width: 360px) { .club-grid .zleg span { white-space: normal; } }
+.club-head { padding: 24px 0 4px; }
+.club-head h1 { display: flex; align-items: center; gap: 4px; font-size: clamp(48px, 7vw, 88px); text-transform: uppercase; margin: 0 0 14px; }
+.club-head h1 .club-card { width: 0.26em; height: 0.56em; margin-right: 0.2em; }
+.fav { display: none; align-items: center; gap: 8px; font: inherit; font-size: 15px; font-weight: 700; color: var(--ink); padding: 8px 12px; background: none; border: 1px solid var(--axis); border-radius: 2px; cursor: pointer; }
+.js .fav { display: inline-flex; }
+.fav svg { width: 16px; height: 16px; fill: none; stroke: var(--amber-text); stroke-width: 2; }
+.fav:hover { border-color: var(--amber); }
+.fav[aria-pressed="true"] { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
+.fav[aria-pressed="true"] svg { fill: var(--amber-ink); stroke: var(--amber-ink); }
+.club-head .say { margin: 20px 0 4px; max-width: 44ch; }
+.club-map { display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 16px; }
+.legend-cards.one { grid-template-columns: 1fr; margin: 0 0 18px; max-width: 280px; }
+.games.two { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 0 40px; }
+@media (max-width: 720px) { .club-map { grid-template-columns: minmax(0, 1fr); gap: 18px; } }
+
+/* Bars of 100 (D-099): each club's seasons, split by where it finishes */
+.z-title { background: var(--z-title); color: var(--z-title-ink); }
+.z-second { background: var(--z-second); color: var(--z-second-ink); }
+.z-champions_playoff { background: var(--z-champions_playoff); color: var(--z-champions_playoff-ink); }
+.z-europa { background: var(--z-europa); color: var(--z-europa-ink); }
+.z-conference { background: var(--z-conference); color: var(--z-conference-ink); }
+.z-middle { background: var(--z-middle); color: var(--z-middle-ink); }
+.z-playoff { background: var(--z-playoff); color: var(--z-playoff-ink); }
+.z-relegation { background: var(--z-relegation); color: var(--z-relegation-ink); }
+/* Colour-blind readers lose Europe against relegation: the two relegation places also carry a
+   pattern, and their numbers keep a halo of their own colour so the stripes never cross them. */
+.z-relegation, .mosaic i[style*="--z-relegation"], .strip i[style*="--z-relegation"], .legend-cards i[style*="--z-relegation"] { background-image: repeating-linear-gradient(45deg, rgba(0,0,0,.3) 0 2px, transparent 2px 6px) !important; }
+.z-playoff, .mosaic i[style*="--z-playoff"], .strip i[style*="--z-playoff"], .legend-cards i[style*="--z-playoff"] { background-image: repeating-linear-gradient(-45deg, rgba(0,0,0,.42) 0 2px, transparent 2px 6px) !important; }
+.z-relegation { text-shadow: 0 0 3px var(--z-relegation), 0 0 3px var(--z-relegation), 0 0 2px var(--z-relegation); }
+.z-playoff { text-shadow: 0 0 3px var(--z-playoff), 0 0 3px var(--z-playoff), 0 0 2px var(--z-playoff); }
+.zone-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 0; margin: 10px 0 14px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.zone-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.zone-legend small { font-weight: 500; color: var(--muted); }
+.zone-rows { list-style: none; margin: 0; padding: 0; }
+.zone-rows > li { border-bottom: 1px solid var(--grid); }
+.zone-bar { display: flex; height: 26px; min-width: 0; border-radius: 2px; overflow: hidden; }
+.zone-bar i { display: flex; align-items: center; justify-content: center; flex: 0 0 0; min-width: 0; overflow: hidden; font-style: normal; font-size: 13px; font-weight: 800;
+  box-shadow: inset -2px 0 0 var(--bar-gap, var(--page)); transition: flex-grow 520ms cubic-bezier(0.16, 1, 0.3, 1); }
+.zone-rows summary { display: grid; grid-template-columns: 24px 190px 96px minmax(0, 1fr); align-items: center; gap: 0 10px; padding: 7px 0; border: 0; background: none; border-radius: 0; font-weight: 400; color: inherit; list-style: none; }
+.zone-rows summary::-webkit-details-marker { display: none; }
+.zone-rows summary:hover .who { color: var(--amber-text); }
+.zone-rows details { margin: 0; }
+.zone-rows details[open] > summary { margin: 0; }
+.zone-rows .pos { color: var(--muted); font-size: 14px; }
+.zone-rows .who { font-weight: 650; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.zone-rows .pts { font-size: 13px; color: var(--muted); text-align: right; white-space: nowrap; }
+.zone-detail { margin: 0 0 8px; padding-left: 34px; font-size: 14px; color: var(--ink-2); max-width: none; }
+.zone-detail b { color: var(--ink); }
+.scn-table { --bar-gap: var(--surface); }
+.scn-table .zone-bar i { font-size: 12px; }
+.scn { align-items: stretch; }
+.scn-matches { display: flex; flex-direction: column; }
+/* One round at a time. Every round sits in the same cell, so the cell is as tall as the tallest
+   and nothing below moves when the fan changes round; a round with fewer dates spreads its rows. */
+.scn-rounds { display: grid; }
+.scn-page { grid-area: 1 / 1; display: flex; flex-direction: column; min-width: 0; }
+.scn-page:not(.on) { visibility: hidden; }
+.scn-page .scn-row { flex: 1 0 auto; }
+.scn-big { margin-top: 20px; }
+.scn-big[hidden], .scn-nav[hidden] { display: none; }
+.scn-big h3 { margin: 0 0 14px; font-size: 15px; font-weight: 750; font-stretch: 100%; font-family: inherit; letter-spacing: 0; }
+.scn-row.locked button { cursor: default; opacity: 0.32; }
+.scn-row.locked button:hover { border-color: var(--axis); }
+.scn-row.locked button.res { opacity: 1; background: var(--axis); border-color: var(--axis); }
+.scn-nav { margin-top: 10px; }
+.scn-nav-head { display: grid; grid-template-columns: 42px minmax(0, 1fr) 42px; align-items: center; gap: 6px; text-align: center; font-size: 15px; font-weight: 750; }
+.scn-nav-head small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); }
+.scn-nav button { font: inherit; font-weight: 700; padding: 0; border: 1px solid var(--axis); border-radius: 2px; background: var(--raised); color: var(--ink); cursor: pointer; }
+.scn-nav button:hover:not(:disabled) { border-color: var(--amber); }
+.scn-nav-head button { display: grid; place-items: center; height: 42px; }
+.scn-nav-head button:disabled { opacity: 0.35; cursor: default; }
+.scn-nav-head svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5; }
+.scn-strip { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; margin-top: 8px; }
+.scn-strip button { height: 26px; font-size: 12px; font-variant-numeric: tabular-nums; }
+/* The fan's matches: stronger, with the same small mark as elsewhere, and no wash over the row. */
+.scn-row.mine { background: none; }
+.scn-row.mine > span:first-child { font-weight: 750; }
+.scn-row.mine > span:first-child::after { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 1px; background: var(--amber); margin: 0 0 3px 6px; vertical-align: middle; }
+.scn-strip button.has { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
+.scn-strip button[aria-current] { box-shadow: inset 0 0 0 2px var(--ink); }
+.scn-strip button.has[aria-current] { box-shadow: inset 0 0 0 2px var(--amber-ink); }
+@media (max-width: 860px) {
+  /* First on the page and one scrolling line: three rows of numbers pushed the matches off screen. */
+  .scn-nav { margin: 0 0 14px; scroll-margin-top: 110px; }
+  .scn-strip { display: flex; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .scn-strip::-webkit-scrollbar { display: none; }
+  .scn-strip button { flex: 0 0 44px; height: 44px; font-size: 13px; }
+  /* Every control a finger can hit: 44 px in both directions (D-135). */
+  .scn-row button { min-width: 44px; min-height: 44px; font-size: 15px; }
+  .scn-nav-head { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .scn-nav-head button { height: 44px; }
+}
+@media (min-width: 861px) {
+  .scn-narrow { display: none; }
+  .scn-key { grid-column: 1 / -1; }
+  .scn-key .zone-legend { margin: 0; gap: 6px 14px; font-size: 13px; }
+  .scn-big { margin-bottom: 18px; }
+  .scn-matches > .scn-reset { align-self: flex-start; margin: auto 0 0; }
+  /* Both columns end together: the club rows share whatever height the matches take. */
+  .scn-side { display: flex; flex-direction: column; }
+  .scn-table { flex: 1; display: flex; flex-direction: column; }
+  .scn-table > li { flex: 1 0 auto; display: flex; align-items: center; }
+  .scn-table > li > details { width: 100%; }
+}
+@media (max-width: 860px) {
+  .scn-wide { display: none; }
+  .scn-side { align-self: start; }
+}
+@media (max-width: 640px) {
+  .zone-rows summary { grid-template-columns: 22px minmax(0, 1fr) auto; gap: 5px 6px; padding: 10px 0; }
+  .zone-rows summary .zone-bar { grid-column: 1 / -1; }
+  .zone-detail { padding-left: 0; }
+}
+/* The name above its bar, the change at the end of the name's line: no room waits empty. */
+.zone-rows.scn-table summary { grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px; padding: 3px 0; }
+.scn-table .who { grid-area: 1 / 1; align-self: end; font-size: 14px; line-height: 1.15; }
+/* The club's place in the table the fan is building, and how far it moved from where it stood. */
+.scn-table .rank { display: inline-block; min-width: 1.5em; color: var(--muted); font-weight: 650; }
+.scn-table .moved { margin-left: 6px; color: var(--muted); font-size: 12px; font-weight: 700; white-space: nowrap; }
+.scn-table .delta { grid-area: 1 / 2; align-self: end; min-height: 16px; font-size: 13px; font-weight: 750; line-height: 1.2; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* The change keeps its place's colour as far as it stays readable: the fan's club has a warmer,
+   lighter ground, so its text takes more ink there. Lowest contrast measured: 4.5:1. */
+.scn-table li.mine { --delta-share: var(--delta-share-mine); }
+.scn-table .zone-bar { grid-area: 2 / 1 / 2 / 3; height: 22px; margin-top: 2px; }
+.scn-table .zone-bar.ghost { grid-area: 3 / 1 / 3 / 3; height: 4px; margin-top: 1px; opacity: 0; transition: opacity 300ms; }
+.scn-table.has-choice .zone-bar.ghost { opacity: 0.38; }
+.scn-table .zone-detail { padding-left: 0; }
+/* The page must not move while a fan picks results: the line under the title keeps its space. */
+.sim .scn-status { min-height: 4.7em; max-width: 72ch; margin-bottom: 10px; }
+.zone-extra:empty { display: none; }
+.zone-extra span + span::before { content: " · "; }
+.phone-only { display: none; }
+/* Cards with black or white need an edge: black alone vanishes on a dark page, white on a light one (D-152). */
+:is(.mosaic, .strip, .key, .legend-cards) i:is([style*="#1b1b1b"], [style*="#ffffff"], [style*="--kit-academico-viseu)"], [style*="--kit-benfica)"], [style*="--kit-casa-pia)"], [style*="--kit-famalicao)"], [style*="--kit-moreirense)"], [style*="--kit-nacional)"], [style*="--kit-porto)"], [style*="--kit-rio-ave)"], [style*="--kit-sp-braga)"], [style*="--kit-sporting)"], [style*="--kit-guimaraes)"]) { box-shadow: inset 0 0 0 1px var(--bw-edge); }
+@media (max-width: 640px) {
+  .zone-bar i.small { font-size: 0; }
+  .sim .scn-status { min-height: 7.8em; }
+  .phone-only { display: inline; }
+  .zone-extra span.phone-only + span::before, .zone-extra span + span.phone-only::before { content: " · "; }
+  .zone-rows.scn-table summary { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 8px 0; }
+  .scn-table .who { grid-area: 1 / 1; }
+  .scn-table .delta { grid-area: 2 / 1; margin-bottom: 3px; text-align: left; }
+  .scn-table .zone-bar { grid-area: 3 / 1; height: 20px; margin-top: 0; }
+  .scn-table .zone-bar.ghost { grid-area: 4 / 1; height: 6px; margin-top: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { .zone-bar i { transition: none; } }
+
+/* Season page (D-095, D-098) */
+.scn-fx { display: none; }
+.scn-sample { margin: 14px 0 0; }
+th.zone { white-space: normal; min-width: 62px; max-width: 86px; line-height: 1.15; vertical-align: bottom; }
+th.zone small { display: block; font-weight: 500; margin-top: 2px; }
+.whatif { grid-column: 1 / -1; max-width: 620px; margin: 20px 0 0; padding: 16px 18px; background: var(--surface); border-radius: 2px; }
+.whatif h2 { margin: 0 0 4px; font-size: 22px; line-height: 1.1; }
+.whatif p { margin: 0 0 12px; color: var(--ink-2); }
+.whatif .opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.whatif .opts a { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 6px; text-align: center; font-weight: 700; text-decoration: none; color: var(--ink); background: var(--raised); border: 1px solid var(--axis); border-radius: 2px; }
+.whatif .opts a:hover { border-color: var(--amber); color: var(--ink); }
+.whatif .opts a[aria-pressed="true"] { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
+.whatif-out { margin-top: 14px; }
+.whatif-rows { list-style: none; margin: 0; padding: 0; }
+.whatif-rows li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--grid); font-size: 15px; color: var(--ink-2); }
+.whatif-rows li.moved { color: var(--ink); font-weight: 650; }
+.whatif-rows i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 8px; vertical-align: -1px; }
+.whatif-rows .value { white-space: nowrap; }
+.whatif-rows b { font-stretch: 72%; font-weight: 850; font-size: 20px; }
+.whatif-out .sim-more { margin: 12px 0 0; font-weight: 700; }
+.whatif-tag { margin: 0 0 8px; font-size: 14px; color: var(--ink-2); }
+.whatif-tag b { color: var(--amber-text); }
+.mosaic i { transition: background-color 300ms; }
+@media (prefers-reduced-motion: reduce) { .mosaic i { transition: none; } }
+.sim-line { grid-column: 1 / -1; margin: 14px 0 0; font-weight: 700; }
+.points-line { margin: 0 0 8px; font-weight: 600; }
+.points-line b { font-stretch: 72%; font-weight: 850; font-size: 28px; }
+.points-line small { color: var(--muted); font-size: 14px; }
+.sure-line { margin: 14px 0 0; color: var(--ink-2); max-width: 72ch; }
+@media (max-width: 860px) {
+  .scn-side { scroll-margin-top: 110px; }
+  /* The effect comes to the fan: at the thumb, only once there is an effect to show (D-122). */
+  .scn-fx:not([hidden]) { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 8; width: 100%; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); font: inherit; color: var(--ink); text-align: left; cursor: pointer; background: var(--raised); border: 0; border-top: 2px solid var(--amber); }
+  .scn-fx .line { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0 12px; }
+  .scn-fx .what { font-size: 15px; font-weight: 650; }
+  .scn-fx .nums { font-stretch: 72%; font-weight: 850; font-size: 26px; line-height: 1.1; white-space: nowrap; }
+  .scn-fx .nums b { color: var(--amber-text); font-weight: 850; }
+  .scn-fx .status-line { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 13px; color: var(--ink-2); }
+  .scn-fx .go { margin-left: auto; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  /* Room for the bar from the start, so the page keeps its height when the bar appears. */
+  main:has(.scn-fx) { padding-bottom: 110px; }
+  html:has(.scn-fx:not([hidden])) { scroll-padding-bottom: 96px; }
+}
+.sim { padding: 24px; background: var(--surface); border-radius: 2px; }
+.sim .scn-row button { min-width: 42px; min-height: 42px; }
+@media (max-width: 640px) { .sim { padding: 16px; margin: 0 -8px; } }
+table.heat { border-collapse: separate; border-spacing: 3px; width: auto; }
+.heat th, .heat td { border: 0; padding: 0; text-align: center; }
+.heat thead th { font-size: 13px; padding: 0 0 4px; min-width: 34px; }
+.heat th.text { text-align: left; padding-right: 12px; font-size: 15px; font-weight: 700; color: var(--ink); position: sticky; left: 0; background: var(--page); z-index: 1; }
+.heat td { width: 34px; height: 30px; font-size: 12px; font-weight: 700; color: var(--ink); border-radius: 2px;
+  background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
+.heat tbody tr:hover td { background: color-mix(in srgb, var(--amber) min(calc(var(--p) * 100%), 28%), var(--surface)); }
+.heat td.hot, .heat tbody tr:hover td.hot { color: var(--amber-ink); background: color-mix(in srgb, var(--amber) calc(55% + var(--p) * 45%), var(--surface)); }
+@media (max-width: 860px) {
+  /* The whole map at once, with no sideways scroll: the name above its 18 cells (D-128). */
+  table.heat, .heat thead, .heat tbody { display: block; width: 100%; }
+  .heat tr { display: grid; grid-template-columns: repeat(18, minmax(0, 1fr)); gap: 2px; margin-bottom: 7px; }
+  .heat thead th { min-width: 0; padding: 0; font-size: 11px; visibility: hidden; }
+  .heat thead th.text { display: none; }
+  .heat thead th:nth-child(2), .heat thead th:nth-child(6), .heat thead th:nth-child(11), .heat thead th:nth-child(16), .heat thead th:last-child { visibility: visible; }
+  .heat tbody th.text { grid-column: 1 / -1; position: static; padding: 0 0 2px; font-size: 14px; background: none; }
+  .heat td { width: auto; height: 24px; font-size: 11px; display: flex; align-items: center; justify-content: center; letter-spacing: -0.02em; }
+  .heat td.low { font-size: 0; }
+  .heat tr.mine { padding: 4px; margin-inline: -4px; border-radius: 2px; }
+}
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.two-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; }
+.two-charts h2 { font-size: 28px; }
+/* «Jogar» (D-177, D-184): the site's own tokens; the pitch is the one new object on the page. */
+.play { --pitch: #2f7a4b; --pitch-2: #2a6f44; --pitch-line: rgba(255,255,255,0.55); }
+:root[data-theme="dark"] .play { --pitch: #245c3a; --pitch-2: #205334; --pitch-line: rgba(255,255,255,0.4); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .play { --pitch: #245c3a; --pitch-2: #205334; --pitch-line: rgba(255,255,255,0.4); } }
+.play-hub { display: grid; gap: 20px; padding: 20px 0 28px; }
+.play-hub h1 { font-size: clamp(40px, 6vw, 64px); margin: 0 0 10px; }
+.play-hub .lede { margin: 0; }
+.hub-head { border-bottom: 1px solid var(--ring); padding-bottom: 20px; }
+.play .cards { display: grid; gap: 16px; }
+@media (min-width: 1000px) { .play .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.play .mode { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--ring); border-radius: 2px; }
+.play .mode.today { border: 2px solid var(--amber); }
+.play .mode h2 { font-size: 26px; margin: 0; }
+.play .mode p { margin: 0; color: var(--ink-2); }
+.play .mode .kicker { margin: 0; color: var(--muted); }
+.play .mode p.meta { color: var(--muted); }
+.play .mode .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.play .mode > .row:last-of-type { margin-top: auto; padding-top: 6px; }
+.play .pal-status { font-size: 15px; }
+.play .mode p.pal-season { font-size: 15px; font-weight: 700; color: var(--ink); }
+.play .chip { font: inherit; font-size: 14px; font-weight: 700; padding: 6px 12px; border: 1px solid var(--axis); border-radius: 2px; background: none; color: var(--ink); cursor: pointer; line-height: 1.3; }
+.play .chip[aria-pressed="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.play .btn { font: inherit; font-weight: 800; font-size: 17px; padding: 10px 18px; border: 0; border-radius: 2px; background: var(--amber); color: var(--amber-ink); cursor: pointer; display: inline-flex; gap: 12px; align-items: center; text-decoration: none; }
+.play .btn:hover { background: color-mix(in srgb, var(--amber) 88%, var(--ink)); color: var(--amber-ink); }
+.play .btn.quiet { background: none; border: 1px solid var(--axis); color: var(--ink); font-weight: 700; }
+.play .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+.play a.btn { align-self: flex-start; }
+.play .done { font-weight: 700; color: var(--good); }
+.play .crest { width: 30px; height: 30px; object-fit: contain; flex: none; display: block; }
+.play .club-card { width: 14px; height: 24px; }
+/* Round */
+.play .round { padding: 20px 0 8px; }
+.play .round-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: baseline; margin-bottom: 12px; }
+.play .round-top .kicker { margin: 0; font-size: 15px; }
+.play .round-top .exit { font-size: 15px; padding: 8px 14px; min-height: 44px; }
+.play .mode p.meta:empty { display: none; }
+.play .dots { display: flex; gap: 6px; flex-wrap: wrap; }
+.play .dots span { width: 28px; height: 6px; background: var(--grid); border-radius: 1px; }
+.play .dots span.on { background: var(--amber); } .play .dots span.past { background: var(--ink-2); }
+.play .season-tag { font-weight: 700; color: var(--ink); }
+.play .round-body { display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 28px; align-items: start; }
+.play .pitch-wrap { display: grid; gap: 6px; }
+.play .pitch-col { display: grid; min-width: 0; }
+.play .tband { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--ring); min-width: 0; }
+.play .tband.top { border-bottom: 0; } .play .tband.bottom { border-top: 0; }
+.play .tband .nm { font-stretch: 72%; font-weight: 850; font-size: 22px; line-height: 1; }
+.play .tband .sub { margin-left: auto; text-align: right; font-size: 13px; color: var(--muted); line-height: 1.3; }
+.play .tband .sub strong { color: var(--ink); }
+/* The pitch: vertical, home on top (D-177) */
+.play .pitch { position: relative; width: 100%; aspect-ratio: 68 / 88; overflow: hidden;
+  background: repeating-linear-gradient(180deg, var(--pitch) 0 10%, var(--pitch-2) 10% 20%); }
+.play .pitch svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+.play .pitch svg.lines * { fill: none; stroke: var(--pitch-line); stroke-width: 0.35; }
+.play .p { position: absolute; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 2px; width: 19%; }
+.play .p i { font-style: normal; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800;
+  background: var(--k); color: var(--ki); box-shadow: 0 0 0 2px var(--ki); }
+.play .p b { font-size: 11.5px; font-weight: 700; color: #fff; line-height: 1.1; text-align: center; text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.play .p.cap b::after { content: " (C)"; font-weight: 600; opacity: 0.85; }
+.play .eleven { margin: 0; padding: 12px 14px 12px 34px; background: var(--surface); border-inline: 1px solid var(--ring); columns: 2; font-size: 15px; }
+.play .pitch-note { font-size: 13px; color: var(--muted); margin: 0; }
+/* Guess, hints and reveal beside the pitch */
+.play .clues { display: grid; gap: 18px; }
+.play .box { background: var(--surface); border: 1px solid var(--ring); border-radius: 2px; padding: 16px 18px; display: grid; gap: 10px; }
+.play .box h3 { margin: 0; font-size: 22px; }
+.play .box .meta { margin: 0; }
+.play .vguess { display: grid; gap: 10px; }
+.play .vrow { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.play .vrow .nm { font-weight: 800; font-size: 18px; line-height: 1.2; }
+.play .vrow .club-card { justify-self: center; }
+.play .step { display: grid; grid-template-columns: 44px 56px 44px; align-items: center; }
+.play .step button { font: inherit; font-size: 22px; font-weight: 800; height: 44px; border: 1px solid var(--axis); background: var(--raised); color: var(--ink); cursor: pointer; }
+.play .step button:first-child { border-radius: 2px 0 0 2px; } .play .step button:last-child { border-radius: 0 2px 2px 0; }
+.play .step output { height: 44px; display: grid; place-items: center; font-size: 28px; font-weight: 850; font-stretch: 72%; border-block: 1px solid var(--axis); background: var(--raised); font-variant-numeric: tabular-nums; }
+.play .hints { display: grid; gap: 8px; }
+.play .hint { display: grid; gap: 8px; }
+.play .hint > button { font: inherit; text-align: left; display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--axis);
+  background: var(--raised); color: var(--ink); border-radius: 2px; font-weight: 700; cursor: pointer; }
+.play .hint > button span { color: var(--muted); font-weight: 600; font-size: 14px; white-space: nowrap; }
+.play .hint > button[disabled] { opacity: 0.5; cursor: not-allowed; }
+.play .hint.used > button { border-color: var(--amber); }
+.play .hint-body { padding: 4px 2px 6px; font-size: 15px; }
+.play .tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
+.play .tbl td { padding: 4px 6px; border-bottom: 1px solid var(--grid); }
+.play .tbl td.n { text-align: right; white-space: nowrap; }
+.play .form-row { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+.play .form-row .who { width: 9em; font-weight: 700; }
+.play .fl { width: 24px; height: 24px; display: grid; place-items: center; font-size: 12px; font-weight: 800; border-radius: 2px; }
+.play .fl.W { background: var(--good); color: var(--good-ink); } .play .fl.D { background: var(--draw); color: #fff; } .play .fl.L { background: var(--bad); color: var(--bad-ink); }
+.play .bars { display: grid; gap: 6px; }
+.play .bar1 { display: grid; grid-template-columns: 9em minmax(0, 1fr) 3em; gap: 8px; align-items: center; font-size: 15px; }
+.play .bar1 .t { height: 12px; background: var(--grid); border-radius: 1px; overflow: hidden; }
+.play .bar1 .t i { display: block; height: 100%; background: var(--ink-2); }
+.play .bar1 .v { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.play .reveal .score { font-stretch: 72%; font-weight: 850; font-size: 40px; line-height: 1.05; }
+.play .goals { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; font-size: 15px; }
+.play .goals li { display: grid; grid-template-columns: 3em minmax(0, 1fr); }
+.play .goals .m { color: var(--muted); font-variant-numeric: tabular-nums; }
+.play .pts { display: grid; gap: 2px; font-size: 15px; }
+.play .pts div { display: flex; justify-content: space-between; }
+.play .pts .total { font-weight: 850; font-size: 20px; border-top: 1px solid var(--ring); padding-top: 4px; margin-top: 2px; }
+.play details.model summary { cursor: pointer; font-weight: 700; }
+.play .verdict { font-weight: 800; font-size: 18px; margin: 0; }
+.play .verdict.good { color: var(--good); } .play .verdict.bad { color: var(--bad); }
+/* The end: the recap and the share sheet */
+.play .final { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 380px); gap: 28px; padding: 20px 0; align-items: start; }
+.play .final h2 { font-size: clamp(40px, 6vw, 60px); margin: 0; }
+.play .recap { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 6px; }
+.play .recap li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 16px; }
+.play .sq { width: 22px; height: 22px; border-radius: 2px; }
+.play .sq.g { background: var(--good); } .play .sq.y { background: var(--amber); } .play .sq.x { background: var(--ink-2); }
+.play .copied { color: var(--good); font-weight: 700; }
+.play .sheet { gap: 14px; }
+.play .card-img { width: 100%; aspect-ratio: 1080 / 1350; display: block; border-radius: 2px; box-shadow: 0 0 0 1px var(--ring); background: #17191c; }
+.play .btn.wide { width: 100%; justify-content: center; font-size: 19px; padding: 14px 18px; }
+.play .btn svg { width: 20px; height: 20px; }
+.play .nets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 6px; }
+.play .net { display: grid; justify-items: center; gap: 6px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink-2);
+  background: none; border: 0; padding: 0; cursor: pointer; text-decoration: none; text-align: center; }
+.play .net:hover { color: var(--ink); }
+.play .net .ic { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: #fff; }
+.play .net .ic svg { width: 24px; height: 24px; }
+.play .net .ic.plain { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--axis); }
+.play .net:hover .ic { box-shadow: 0 0 0 2px var(--amber); }
+.play .net:focus-visible { outline: none; } .play .net:focus-visible .ic { box-shadow: 0 0 0 3px var(--amber); }
+@media (max-width: 860px) {
+  .play .round-body, .play .final { grid-template-columns: minmax(0, 1fr); }
+  .play .p i { width: 22px; height: 22px; font-size: 11px; }
+  .play .p b { font-size: 10.5px; }
+}
+/* «Jornadas» (D-184): each round with its days. */
+.round-dates { font-size: 0.5em; font-weight: 600; font-stretch: 100%; color: var(--muted); margin-left: 10px; letter-spacing: 0; }
+/* The predictions game under «Jogar»: the way back up, and two matches a row from 1000 px (D-184). */
+.back-up { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
+.back-up a { color: var(--ink-2); text-decoration: none; } .back-up a:hover { color: var(--amber-text); }
+@media (min-width: 1000px) {
+  main.wrap .game { max-width: none; }
+  main.wrap .game :is(.note, .board) { max-width: 760px; }
+  main.wrap .game .picks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
+}
+/* Very wide screens (D-175, #167): every page takes the same wider frame, so the bar's buttons
+   stay put from page to page and the lists gain columns; the front page adds a side column for
+   this week's matches, filled by _side.js. */
+.side { display: none; }
+@media (min-width: 1600px) {
+  :is(.bar, footer) > .wrap, main.wrap { max-width: 1560px; }
+  main.wrap .game { max-width: none; }
+  main.wrap .game .picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 40px; }
+  .zone-rows summary { grid-template-columns: 28px 230px 112px minmax(0, 1fr); padding: 9px 0; font-size: 17px; }
+  .match-context { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .zone-rows .zone-bar { height: 30px; }
+  .club-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  body.has-side main.wrap { display: grid; grid-template-columns: minmax(0, 1fr) 340px; column-gap: 56px; }
+  body.has-side main.wrap > * { grid-column: 1; }
+  body.has-side main.wrap > .side { grid-column: 2; grid-row: 1 / span 40; align-self: start; display: grid; gap: 28px; padding: 20px 0 24px; }
+  body.has-side .side.stick { position: sticky; top: 72px; }
+  body.has-side .side .col { border-top: 1px solid var(--ring); padding-top: 20px; }
+  body.has-side .side .col:first-child { border-top: 0; padding-top: 0; }
+  body.has-side .home-cols { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 960px) {
+  .lead { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding-top: 24px; }
+  .lead-text { display: contents; }
+  .lead .lead-name { order: 1; } .lead .meta, .lead .prov { order: 2; } .lead-mosaic { order: 3; margin-top: 20px; }
+  .lead .trio-big { order: 4; } .lead .say { order: 5; } .lead .note { order: 6; } .lead .cta { order: 7; }
+  /* What the numbers count comes before the numbers (D-122). */
+  .lead.has-stake .say { order: 3; margin-top: 16px; }
+  .lead.has-stake .stakes-box { order: 4; width: 100%; margin: 0 0 24px; }
+  .lead.has-stake .note { margin-top: 0; }
+  .home-cols { grid-template-columns: 1fr; gap: 8px; padding-top: 32px; }
+  .home-cols .col { padding-top: 24px; }
+}
+@media (max-width: 640px) {
+  .bar .wrap { flex-wrap: wrap; height: auto; padding-top: 10px; row-gap: 4px; }
+  .bar .brand { margin-right: auto; }
+  .bar nav { order: 3; flex-basis: 100%; margin: 0 -8px; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent); }  /* the fade says the links scroll */
+  html { scroll-padding-top: 108px; }  /* the bar wraps to two rows here, about 99 px: anchors land below it */
+  /* touch targets of about 40 px on a phone */
+  .bar nav a { padding: 11px 8px; font-size: 14px; }
+  .bar a.lang, .bar .theme { min-height: 40px; min-width: 40px; justify-content: center; }
+  .bar a.lang { display: inline-flex; align-items: center; }
+  .hello { grid-template-columns: 1fr; gap: 10px; padding-bottom: 22px; }
+  .trio-big { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .trio-big div:nth-child(2) { text-align: center; } .trio-big div:nth-child(3) { text-align: right; }
+  .cta { display: flex; justify-content: space-between; font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .cta svg { transition: none; } }
+
+/* The run-in (D-158): FPL-style levels; hard is red and easy green, as fans read them */
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.runin { border-collapse: separate; border-spacing: 3px; font-size: 12px; width: auto; }
+.runin th { font-weight: 600; color: var(--muted); text-align: center; padding: 0 2px; }
+.runin tbody th { text-align: left; color: var(--ink); white-space: nowrap; padding-right: 8px; font-size: 14px; }
+.runin tr.me th { color: var(--amber-text); }
+.runin td { min-width: 38px; height: 38px; text-align: center; font-weight: 700; border-radius: 2px; line-height: 1.05; padding: 0 2px; }
+.runin-how > summary { width: fit-content; }
+.runin-how p { color: var(--ink-2); max-width: 70ch; }
+.runin abbr { text-decoration: none; }
+.runin td small { display: block; font-weight: 500; font-size: 11px; }
+.lv4 { background: var(--lv4); color: var(--lv4-ink); } .lv3 { background: var(--lv3); color: var(--lv3-ink); }
+.lv2 { background: var(--lv2); color: var(--lv2-ink); } .lv1 { background: var(--lv1); color: var(--lv1-ink); }
+.runin-key { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 12px 0 8px; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.runin-key i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+/* Form and head to head on the match page (D-159) */
+.match-context { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 24px 48px; padding-top: 32px; align-items: start; }
+.match-context section { display: grid; gap: 12px; }
+.match-context .context-note { grid-column: 1 / -1; margin: 0; }
+.form-row { display: grid; grid-template-columns: minmax(0, 120px) 1fr auto; align-items: center; gap: 10px; }
+.form-row .who { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.form-row .pts { color: var(--muted); font-size: 14px; }
+.form-chips { display: flex; gap: 5px; margin: 0; padding: 0; list-style: none; }
+.form-chips li { min-width: 48px; padding: 5px 0; text-align: center; border-radius: 2px; font-weight: 800; }
+.form-chips small { display: block; font-weight: 500; font-size: 11px; line-height: 1.2; }
+.form-chips .rW { background: var(--good); color: var(--good-ink); }
+.form-chips .rD { background: var(--draw); color: #1b1d21; }
+.form-chips .rL { background: var(--bad); color: var(--bad-ink); }
+.h2h-sum { display: flex; gap: 20px; font-size: 15px; color: var(--ink-2); }
+.h2h-sum b { display: block; font-stretch: 72%; font-weight: 850; font-size: 32px; line-height: 1; color: var(--ink); }
+.h2h { margin: 0; padding: 0; list-style: none; }
+.h2h li { display: grid; grid-template-columns: 96px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--grid); font-size: 15px; }
+.h2h .d { color: var(--muted); font-size: 14px; }
+.h2h .won { font-weight: 700; }
+@media (max-width: 400px) { .form-row { grid-template-columns: 1fr auto; } .form-row .form-chips { grid-column: 1 / -1; grid-row: 2; } .form-chips li { min-width: 0; flex: 1; } }
+/* Provisional forecasts (D-160): a label, never a different look for the numbers */
+.pill { display: inline-block; font-size: 12px; font-weight: 750; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border: 1.5px solid var(--amber); color: var(--amber-text); border-radius: 2px; margin-right: 8px; vertical-align: 1px; line-height: 1.2; }
+.pill.sm { font-size: 11px; padding: 1px 5px; margin: 0 0 0 6px; border-width: 1px; }
+.prov { color: var(--ink-2); font-size: 15px; margin: 10px 0 0; max-width: 46ch; }
+/* Predictions game (D-156) */
+.nojs { margin-top: 12px; } .js .nojs { display: none; }
+.game { padding-top: 32px; display: grid; gap: 14px; max-width: 760px; }
+.game .board { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; text-align: center; background: var(--surface); border-radius: 2px; padding: 14px; }
+.game .board[hidden] { display: none; }
+.game .board b { display: block; font-stretch: 72%; font-weight: 850; font-size: 56px; line-height: 1; }
+.game .board span, .game .board .of { color: var(--ink-2); font-size: 14px; }
+.game .picks { list-style: none; margin: 0; padding: 0; }
+.game .pick { display: grid; gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--grid); }
+.game .teams { display: flex; justify-content: space-between; gap: 4px 12px; flex-wrap: wrap; }
+.game .teams b { font-weight: 700; }
+.game .when { color: var(--muted); font-size: 14px; }
+.game .opts { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 6px; }
+/* The buttons name the clubs, so the line above them keeps only the date; their content sits in the middle (#167). */
+.game .opt { display: grid; grid-template-columns: auto minmax(0, auto); justify-content: center; align-content: center; column-gap: 7px; align-items: center; text-align: left; min-height: 48px; padding: 7px 10px;
+  font: inherit; font-size: 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--ring); border-radius: 2px; cursor: pointer; }
+.game .opt span { font-weight: 600; line-height: 1.2; overflow-wrap: anywhere; }  /* the only place the clubs are named: wrap, never cut */
+.game .opt small { grid-column: 2; color: var(--muted); font-size: 13px; }
+.game .opt small:empty { display: none; }
+.game .opt.is-model small { color: var(--ink-2); font-weight: 700; }
+.game .opt .swatch-draw { display: inline-block; width: 9px; height: 16px; border-radius: 1px; background: var(--draw); }
+.game .opt:hover:not(:disabled) { border-color: var(--amber); }
+.game .opt[aria-pressed="true"] { border-color: var(--amber); box-shadow: inset 0 0 0 2px var(--amber); }
+.game .opt.happened { background: var(--good-wash); }
+.game .opt:disabled { cursor: default; }
+.game .opt:disabled:not([aria-pressed="true"]):not(.happened) { color: var(--ink-2); }
+.game .note { margin: 0; }
+.game .verdict { display: flex; gap: 14px; margin: 0; font-size: 14px; font-weight: 700; }
+.game .verdict[hidden], .game .verdict [hidden] { display: none; }
+.game .verdict .hit { color: var(--good); }
+.game .verdict .miss { color: var(--bad); }
+.game-season { padding-top: 32px; max-width: 760px; }
+.game-season ol { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 6px; }
+.game-season li { padding: 10px 14px; background: var(--surface); border-radius: 2px; }
+.game-season li.total { font-weight: 700; }
+/* Small phones (360 px and below): the club name in the title shrinks with the screen, and each
+   prediction button puts the crest above the name, so no name is cut or broken mid-word (D-189). */
+@media (max-width: 400px) {
+  .club-head h1 { font-size: min(48px, 11.5vw); }
+  .game .opts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .game .opt { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; row-gap: 3px; padding: 8px 4px; font-size: 14px; }
+  .game .opt small { grid-column: 1; }
+  .game .opt span { overflow-wrap: normal; hyphens: auto; }
+  .whatif .opts a { font-size: 14px; padding: 6px 4px; }
+}
+@media print {
+  .bar { position: static; }
+  .bar .theme { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* Accounts and rankings (D-195, D-197): the Jogar page's parts, plus forms and the clock */
+.acc .account { display: grid; gap: 20px; max-width: 640px; padding: 16px 0 8px; }
+.acc .acc-panel { display: grid; gap: 12px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--ring); border-radius: 2px; }
+.acc .acc-panel h2 { margin: 0; font-size: 24px; }
+.acc .acc-panel p { margin: 0; }
+.acc .acc-form { display: grid; gap: 10px; }
+.acc .acc-form.inline { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }
+.acc label { display: grid; gap: 4px; font-weight: 700; font-size: 15px; }
+.acc label.check { display: flex; gap: 8px; align-items: center; font-weight: 600; }
+.acc input:not([type="checkbox"]), .acc select { font: inherit; font-size: 17px; padding: 9px 10px; border: 1px solid var(--axis); border-radius: 2px; background: var(--raised); color: var(--ink); min-height: 44px; }
+.acc input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--amber); }
+.acc .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.acc .tabs, .ranking-view .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.acc .chip[aria-selected="true"] { background: var(--ink); color: var(--page); border-color: var(--ink); }
+.acc .btn.google { justify-content: center; background: var(--raised); color: var(--ink); border: 1px solid var(--axis); }
+.acc .link { font: inherit; background: none; border: 0; padding: 4px 0; color: var(--accent); text-decoration: underline; cursor: pointer; min-height: 32px; }
+.acc .link.danger, .acc .btn.danger { color: var(--bad); }
+.acc .btn.danger { background: none; border: 1px solid var(--bad); }
+.acc .warn { color: var(--bad); }
+.acc .leagues { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.acc .leagues li { display: grid; gap: 4px; padding-bottom: 10px; border-bottom: 1px solid var(--grid); }
+.acc code { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+.acc .recap { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.acc .recap li { display: flex; gap: 12px; justify-content: space-between; align-items: center; }
+.acc .sq { display: inline-block; width: 14px; height: 14px; margin-right: 3px; border-radius: 1px; }
+.acc .sq.g { background: var(--good); } .acc .sq.y { background: var(--amber); } .acc .sq.x { background: var(--axis); }
+.acc .danger-zone summary { cursor: pointer; color: var(--bad); font-weight: 700; }
+.acc .danger-zone[open] { display: grid; gap: 10px; }
+.ranking-view { display: grid; gap: 14px; padding: 16px 0 8px; }
+.ranking-view .filters { gap: 16px; }
+.ranking-view .filters label { display: flex; gap: 8px; align-items: center; }
+.ranking-view .tbl.ranking { max-width: 640px; }
+.ranking-view .tbl th { text-align: left; font-size: 13px; color: var(--muted); padding: 4px 6px; border-bottom: 1px solid var(--axis); }
+.ranking-view .tbl th.n { text-align: right; }
+.ranking-view tr.mine td { background: var(--good-wash); font-weight: 700; }
+.ranking-view tr.model td { color: var(--muted); font-style: italic; }
+.ranking-view tr.gap td { text-align: center; color: var(--muted); }
+.play .clock { margin: 0 0 10px; font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.play .clock.low { color: var(--bad); }
+.play .warn { color: var(--bad); }
+.play .invite { border: 2px solid var(--amber); }
+.play .invite p { margin: 0; }
+.play .final .invite { margin-top: 16px; }
+html.accounts-off [data-account-link] { display: none; }
+@media (max-width: 520px) { .acc .acc-form.inline { grid-template-columns: 1fr; } }
+
+</style>
+<link rel="canonical" href="https://contasdabola.pt/ranking">
+<link rel="alternate" hreflang="pt" href="https://contasdabola.pt/ranking">
+<link rel="alternate" hreflang="en" href="https://contasdabola.pt/en/ranking">
+<link rel="alternate" hreflang="x-default" href="https://contasdabola.pt/ranking">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Contas da Bola">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:title" content="Ranking · Contas da Bola">
+<meta property="og:description" content="Os rankings dos adeptos: Palpites contra o modelo, a Tripla do Dia e o Desafio do Dia.">
+<meta property="og:url" content="https://contasdabola.pt/ranking">
+<meta property="og:image" content="https://contasdabola.pt/og/pt-geral-c8198557bf.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Probabilidades de título em 100: FC Porto 59, SL Benfica 40, Outros 1">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<a class="skip" href="#top">Saltar para o conteúdo</a>
+<header class="bar"><div class="wrap">
+  <a class="brand" href="./"><svg viewBox="0 0 19 12" aria-hidden="true"><rect x="0" y="0" width="5" height="5" rx="1"/><rect class="lit" x="7" y="0" width="5" height="5" rx="1"/><rect x="14" y="0" width="5" height="5" rx="1"/><rect class="lit" x="0" y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/><rect x="14" y="7" width="5" height="5" rx="1"/></svg><span>Contas da Bola</span></a>
+  <nav aria-label="Secções"><a href="./">Início</a>
+<a href="jogar">Jogar</a>
+<a href="jornadas">Jornadas</a>
+<a href="epoca">Época</a>
+<a href="clubes">Clubes</a>
+<a href="como-funciona">Como funciona</a>
+<a href="ranking" aria-current="page">Ranking</a>
+<a href="conta" data-account-link>Entrar</a></nav>
+  <button class="theme" type="button" aria-label="Alternar entre claro e escuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+  <a class="lang" href="en/ranking" hreflang="en" lang="en">EN<span class="visually-hidden"> · Read this page in English</span></a>
+</div></header>
+<main id="top" class="wrap">
+<p class="stale" role="status" hidden data-after="2026-11-27T01:05:00Z">Estes números podem estar desatualizados: o site não é atualizado desde qua 25/11/2026 13:05.</p><section class="page-head">
+  <h1>Ranking</h1>
+  <p class="lede">Os Palpites são o ranking geral: palpites feitos antes do apito, contra o modelo. A Tripla do Dia e o Desafio do Dia têm o seu.</p>
+  <p class="empty nojs">O ranking precisa de JavaScript.</p>
+</section>
+<div class="play acc ranking-view">
+  <div class="tabs" role="tablist" aria-label="Ranking">
+    <button class="chip" type="button" role="tab" aria-selected="true" data-board="palpites">Palpites</button>
+    <button class="chip" type="button" role="tab" aria-selected="false" data-board="tripla">Tripla do Dia</button>
+    <button class="chip" type="button" role="tab" aria-selected="false" data-board="desafio">Desafio do Dia</button>
+  </div>
+  <div class="row filters">
+    <label>Período <select id="period"></select></label>
+    <label hidden>Liga <select id="league"></select></label>
+  </div>
+  <div id="board" aria-live="polite"></div>
+</div>
+</main>
+<footer><div class="wrap">
+<p>Projeto pessoal e não comercial, sem ligação à Liga Portugal, aos clubes nem a casas de apostas. As previsões são probabilidades, não promessas, e nada aqui é aconselhamento de apostas. Os emblemas pertencem aos clubes.</p>
+<p><b>18+</b> · O jogo pode causar dependência. <a href="https://www.srij.turismodeportugal.pt/pt/sos-jogadores/servicos-de-apoio-ao-jogador">Linha 1414 (gratuita e anónima)</a></p>
+<p>Dados não oficiais; as fontes estão em «Fontes e licenças». As nossas previsões em JSON estão sob CC BY 4.0, sem odds nem estatísticas de terceiros.</p>
+<p>Atualizado: <time datetime="2026-11-25T13:05:00Z">qua 25/11/2026 13:05</time></p><p class="links"><a href="como-funciona">Como funciona</a> · <a href="termos">Termos</a> · <a href="privacidade">Privacidade</a> · <a href="fontes-e-licencas">Fontes e licenças</a> · <a href="mailto:contasdabola@gmail.com">contasdabola@gmail.com</a></p>
+</div></footer>
+<script>
+(function () {
+  var d = document.documentElement, b = document.querySelector(".bar .theme");
+  b.addEventListener("click", function () {
+    var dark = d.dataset.theme ? d.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    d.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("theme", d.dataset.theme); } catch (e) {}
+  });
+})();
+</script>
+<script>
+(function () { var p = document.querySelector(".stale"); if (p && Date.now() > Date.parse(p.dataset.after)) p.hidden = false; })();
+</script><script>
+(function () {
+  // The fan's club (D-089): kept in this browser only. Adds to the page, never required by it.
+  var KEY = "club", club = null;
+  try { club = localStorage.getItem(KEY); } catch (e) {}
+
+  function save(value) {
+    club = value || null;
+    try { if (club) localStorage.setItem(KEY, club); else localStorage.removeItem(KEY); } catch (e) {}
+    apply();
+  }
+
+  function apply() {
+    document.documentElement.dataset.club = club || "";
+    document.querySelectorAll("[data-clubs]").forEach(function (el) {
+      el.classList.toggle("mine", !!club && el.dataset.clubs.split(" ").indexOf(club) >= 0);
+    });
+    // The club's match follows the big three's in the week's list (D-088).
+    document.querySelectorAll("[data-reorder]").forEach(function (list) {
+      var mine = list.querySelector("li.mine:not([data-big])");
+      if (!mine) return;
+      var big = list.querySelectorAll("li[data-big]");
+      list.insertBefore(mine, big.length ? big[big.length - 1].nextSibling : list.firstChild);
+    });
+    document.querySelectorAll("[data-club-pick]").forEach(function (select) { select.value = club || ""; });
+    // The home page's sentence about the picked club (D-140).
+    document.querySelectorAll("[data-club-now]").forEach(function (el) { el.hidden = el.dataset.clubNow !== club; });
+    document.querySelectorAll("[data-club-toggle]").forEach(function (button) {
+      button.setAttribute("aria-pressed", String(button.dataset.clubToggle === club));
+    });
+  }
+
+  document.querySelectorAll("[data-club-pick]").forEach(function (select) {
+    select.addEventListener("change", function () { save(select.value); });
+  });
+  document.querySelectorAll("[data-club-toggle]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      save(button.dataset.clubToggle === club ? null : button.dataset.clubToggle);
+    });
+  });
+  window.markMyClub = apply;  // the simulator redraws its table and marks it again
+  apply();
+})();
+</script>
+<script type="application/json" id="account-config">{"url":"https://jcsusyrgqhhdqrjqtinf.supabase.co","key":"sb_publishable_ijxoFtISarNf0vTop-K0wA_ty5YG7Ba","root":"","site":"https://contasdabola.pt/","callback":"https://contasdabola.pt/conta","t":{"account":"Conta","sign_in":"Entrar","why":"Guarda os teus palpites e jogos em todos os dispositivos e entra nos rankings. \u00c9 gr\u00e1tis e podes apagar tudo quando quiseres.","google":"Continuar com o Google","tab_code":"C\u00f3digo por email","tab_password":"Email e password","email":"Email","send_code":"Enviar-me um c\u00f3digo","code_note":"Sem password: enviamos-te por email um c\u00f3digo de 6 d\u00edgitos para escreveres aqui.","password":"Password","create":"Criar conta","forgot":"Esqueceste-te da password?","forgot_mail":"Escreve primeiro o teu email.","password_note":"Pelo menos 8 caracteres, com letras e algarismos.","terms_note":"Ao criares conta aceitas os \u003ca href=\"termos\"\u003eTermos\u003c/a\u003e; a p\u00e1gina \u003ca href=\"privacidade\"\u003ePrivacidade\u003c/a\u003e diz o que guardamos.","code_sent":"Envi\u00e1mos um c\u00f3digo para {email}.","code":"C\u00f3digo","code_spam":"Demora no m\u00e1ximo um minuto. N\u00e3o chegou? V\u00ea no spam.","new_password":"Nova password","confirm":"Confirmar","back":"Voltar","choose_name":"Escolhe o teu nome para os rankings","change_name":"Mudar o nome","name_note":"3 a 20 letras, algarismos, _ ou . \u2014 \u00e9 p\u00fablico nos rankings e podes mud\u00e1-lo uma vez a cada 30 dias.","username":"Nome","age":"Tenho 16 anos ou mais.","save":"Guardar","leagues":"Ligas com amigos","loading":"A carregar\u2026","league_name":"Nome da liga","create_league":"Criar liga","league_code":"C\u00f3digo de convite","join":"Entrar","joined":"J\u00e1 est\u00e1s na liga.","no_leagues":"Ainda n\u00e3o tens ligas: cria uma e envia o c\u00f3digo aos teus amigos.","members":"{n} membros","see_ranking":"Ver o ranking","code_label":"C\u00f3digo:","copy_invite":"Copiar o link de convite","copied":"Copiado.","new_code":"Novo c\u00f3digo","remove_member":"Remover um membro","remove_who":"O nome do membro a remover:","delete_league":"Apagar a liga","delete_league_sure":"Apagar esta liga para todos?","leave":"Sair da liga","leave_sure":"Sair desta liga?","history":"Os teus jogos","no_history":"Ainda n\u00e3o jogaste. Joga a Tripla do Dia ou o Desafio do Dia.","tripla":"Tripla do Dia","desafio":"Desafio do Dia","your_data":"A tua conta","signed_as":"Entraste como {email}. Nome nos rankings: {name}.","imported":"{n} palpites chegaram \u00e0 conta depois do apito: ficam no teu hist\u00f3rico e n\u00e3o contam para o ranking.","export":"Descarregar os meus dados","sign_out":"Sair","delete_account":"Apagar a minha conta","delete_note":"Apaga a conta, os teus palpites, os teus jogos e as ligas que criaste, de imediato e para sempre.","delete_confirm":"Apagar tudo","delete_sure":"Apagar a conta e tudo o que tem? N\u00e3o d\u00e1 para desfazer.","deleted":"Conta apagada.","off":"As contas est\u00e3o indispon\u00edveis neste momento. Tudo o resto funciona como sempre.","retry":"Tentar outra vez","season":"\u00c9poca","week":"Esta semana","round":"Jornada {n}","everyone":"Todos","model":"O modelo","name":"Nome","points":"Pontos","matches":"Jogos","games":"Jogos","palpites_note":"1 ponto por palpite certo, feito antes do apito. Empates: primeiro quem fez mais palpites, depois quem l\u00e1 chegou primeiro. A linha do modelo usa a previs\u00e3o fechada 24 h antes do jogo.","games_note":"Cada adepto tem os seus jogos em cada dia, com 60 segundos por jogo: 3 pontos pelo vencedor, mais 2 pelo resultado exato e menos 1 por ajuda.","empty":"Ainda n\u00e3o h\u00e1 ningu\u00e9m aqui.","join_note":"\u003ca href=\"conta\"\u003eCria uma conta\u003c/a\u003e para entrares nos rankings.","unavailable":"O ranking est\u00e1 indispon\u00edvel neste momento. Tenta daqui a pouco.","e_taken":"Esse nome j\u00e1 est\u00e1 ocupado.","e_username":"3 a 20 letras, algarismos, _ ou . (nem no in\u00edcio nem no fim).","e_blocked":"Esse nome n\u00e3o \u00e9 permitido.","e_30days":"Mudaste o nome h\u00e1 menos de 30 dias.","e_age":"Confirma que tens 16 anos ou mais.","e_no_league":"N\u00e3o h\u00e1 nenhuma liga com esse c\u00f3digo.","e_full":"Essa liga est\u00e1 cheia (50 membros).","e_ten":"J\u00e1 est\u00e1s em 10 ligas.","e_league_name":"A liga precisa de um nome com 3 a 40 caracteres.","e_login":"Email ou password errados.","e_confirm":"Confirma primeiro o teu email, com o c\u00f3digo que te envi\u00e1mos.","e_code":"Esse c\u00f3digo est\u00e1 errado ou j\u00e1 expirou. Pede um novo.","e_password":"A password precisa de pelo menos 8 caracteres, com letras e algarismos.","e_rate":"Demasiadas tentativas. Espera uns minutos.","e_exists":"J\u00e1 h\u00e1 uma conta com esse email: entra.","e_network":"Sem liga\u00e7\u00e3o. Tenta outra vez.","e_generic":"Algo correu mal. Tenta outra vez."}}</script>
+<script>
+(function () {
+  // Accounts (D-195 to D-200): a small client for the Supabase Auth and REST APIs, with no
+  // library, so the page's scripts stay its own (D-186). The session lives in this browser; the
+  // account is a copy of the browser's data and the server's record of the games. Everything here
+  // adds to the page: without it, the page works as it did.
+  var C;
+  try { C = JSON.parse(document.getElementById("account-config").textContent); } catch (e) { return; }
+  var KEY_SESSION = "lfp-session", KEY_SYNC = "lfp-sync", KEY_CLAIM = "lfp-claim", KEY_PKCE = "lfp-pkce";
+  var KEY_OFF = "lfp-accounts-off";
+
+  function read(key) { try { return JSON.parse(localStorage.getItem(key) || "null"); } catch (e) { return null; } }
+  function store(key, value) {
+    try { if (value === null || value === undefined) localStorage.removeItem(key); else localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+
+  function Problem(status, code, message) { this.status = status; this.code = code; this.message = message; }
+
+  // One request to the API. ``auth``: "user" sends the session's token, "anon" the public key only.
+  function call(method, path, body, auth, extra) {
+    var headers = { apikey: C.key, "Content-Type": "application/json" };
+    for (var h in (extra || {})) headers[h] = extra[h];
+    var ready = auth === "user" ? token() : Promise.resolve(null);
+    return ready.then(function (t) {
+      if (auth === "user" && !t) throw new Problem(401, "no_session", "");
+      headers.Authorization = "Bearer " + (t || C.key);
+      return fetch(C.url + path, { method: method, headers: headers, body: body === undefined ? undefined : JSON.stringify(body) });
+    }).then(function (r) {
+      return r.text().then(function (text) {
+        var data = null;
+        try { data = text ? JSON.parse(text) : null; } catch (e) { data = text; }
+        if (!r.ok) {
+          var d = data || {};
+          throw new Problem(r.status, d.code || d.error_code || d.error || "", d.message || d.msg || d.error_description || "");
+        }
+        return data;
+      });
+    }, function () { throw new Problem(0, "network", ""); });
+  }
+
+  // --- The session ---------------------------------------------------------------------------
+  var refreshing = null;
+  function keep(s) {
+    if (!s || !s.access_token) { store(KEY_SESSION, null); return null; }
+    var stored = { access_token: s.access_token, refresh_token: s.refresh_token,
+      expires_at: s.expires_at || Math.floor(Date.now() / 1000) + (s.expires_in || 3600), user: s.user || null };
+    store(KEY_SESSION, stored);
+    emit();
+    return stored;
+  }
+  function session() { return read(KEY_SESSION); }
+  function token() {
+    var s = session();
+    if (!s) return Promise.resolve(null);
+    if (s.expires_at - 60 > Date.now() / 1000) return Promise.resolve(s.access_token);
+    if (!refreshing) {
+      refreshing = call("POST", "/auth/v1/token?grant_type=refresh_token", { refresh_token: s.refresh_token }, "anon")
+        .then(function (fresh) { refreshing = null; return keep(fresh).access_token; },
+              function (e) { refreshing = null; if (e.status >= 400 && e.status < 500) { keep(null); } return null; });
+    }
+    return refreshing;
+  }
+  function claims() {
+    var s = session();
+    if (!s) return null;
+    try { return JSON.parse(atob(s.access_token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))); } catch (e) { return null; }
+  }
+  function isAccount() { var c = claims(); return !!c && c.is_anonymous !== true; }
+  function email() { var s = session(); return s && s.user ? s.user.email : null; }
+
+  var listeners = [];
+  function emit() { listeners.forEach(function (f) { try { f(); } catch (e) {} }); }
+
+  // An anonymous session, made only when a game needs one (D-196).
+  function ensureSession() {
+    if (session()) return token().then(function (t) { return t ? true : ensureSession(); });
+    return call("POST", "/auth/v1/signup", { data: {} }, "anon").then(function (s) { keep(s); return true; });
+  }
+
+  // Before an anonymous session signs in, it leaves a claim for the account to take its games.
+  function prepareClaim() {
+    var c = claims();
+    if (!c || c.is_anonymous !== true) return Promise.resolve();
+    return rpc("make_claim", {}).then(function (t) { store(KEY_CLAIM, { token: t, at: Date.now() }); }, function () {});
+  }
+  function afterSignIn(s) {
+    keep(s);
+    var c = read(KEY_CLAIM);
+    store(KEY_CLAIM, null);
+    var claimed = c && Date.now() - c.at < 25 * 60 * 1000 ? rpc("claim", { token: c.token }).catch(function () { return 0; }) : Promise.resolve(0);
+    return claimed.then(function () { store(KEY_SYNC, null); return sync(true); });
+  }
+
+  // --- Ways in (D-195): Google, email and password, a code by email ----------------------------
+  function b64url(bytes) {
+    var s = ""; bytes.forEach(function (b) { s += String.fromCharCode(b); });
+    return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function google(next) {
+    var raw = new Uint8Array(48); crypto.getRandomValues(raw);
+    var verifier = b64url(raw);
+    return prepareClaim().then(function () {
+      return crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier));
+    }).then(function (digest) {
+      store(KEY_PKCE, { verifier: verifier, next: next || null });
+      location.href = C.url + "/auth/v1/authorize?provider=google&redirect_to=" + encodeURIComponent(C.callback) +
+        "&code_challenge=" + b64url(new Uint8Array(digest)) + "&code_challenge_method=s256";
+    });
+  }
+  // Back from Google with ?code=: trade it for a session. Returns the page to go on to, or null.
+  function finishGoogle() {
+    var q = new URLSearchParams(location.search), code = q.get("code"), p = read(KEY_PKCE);
+    if (!code || !p) return Promise.resolve(null);
+    store(KEY_PKCE, null);
+    history.replaceState(null, "", location.pathname);
+    return call("POST", "/auth/v1/token?grant_type=pkce", { auth_code: code, code_verifier: p.verifier }, "anon")
+      .then(afterSignIn).then(function () { return p.next || ""; });
+  }
+  function signUp(mail, password) {
+    return prepareClaim().then(function () { return call("POST", "/auth/v1/signup", { email: mail, password: password }, "anon"); })
+      .then(function (r) { if (r && r.access_token) return afterSignIn(r).then(function () { return "in"; }); return "code"; });
+  }
+  function signIn(mail, password) {
+    return prepareClaim().then(function () { return call("POST", "/auth/v1/token?grant_type=password", { email: mail, password: password }, "anon"); })
+      .then(afterSignIn);
+  }
+  function sendCode(mail) {
+    return prepareClaim().then(function () { return call("POST", "/auth/v1/otp", { email: mail, create_user: true }, "anon"); });
+  }
+  // ``type``: "email" for the sign-in code, "signup" to confirm a new account, "recovery".
+  function verify(mail, code, type) {
+    return call("POST", "/auth/v1/verify", { email: mail, token: String(code).replace(/\D/g, ""), type: type }, "anon").then(afterSignIn);
+  }
+  function recover(mail) { return call("POST", "/auth/v1/recover", { email: mail }, "anon"); }
+  function setPassword(password) { return call("PUT", "/auth/v1/user", { password: password }, "user"); }
+  function signOut() {
+    var done = function () { keep(null); store(KEY_SYNC, null); emit(); };
+    return call("POST", "/auth/v1/logout", {}, "user").then(done, done);
+  }
+
+  function rpc(name, args, anon) { return call("POST", "/rest/v1/rpc/" + name, args || {}, anon ? "anon" : "user"); }
+  function rest(method, path, body, extra) { return call(method, "/rest/v1/" + path, body, "user", extra); }
+
+  // --- The kill switch (D-195): off, the account parts of the page hide and stay hidden --------
+  var state = { on: true, profile: undefined };
+  var checked = read(KEY_OFF);
+  if (checked && Date.now() - checked.at < 10 * 60 * 1000) state.on = checked.on;
+  function applySwitch() {
+    document.documentElement.classList.toggle("accounts-off", !state.on);
+    document.querySelectorAll("[data-account]").forEach(function (el) { el.hidden = !state.on; });
+  }
+  applySwitch();
+  var ready = (checked && Date.now() - checked.at < 10 * 60 * 1000 ? Promise.resolve() :
+    call("GET", "/rest/v1/config?key=eq.accounts_enabled&select=value", undefined, "anon").then(function (rows) {
+      state.on = !(rows && rows[0] && rows[0].value === false);
+      store(KEY_OFF, { on: state.on, at: Date.now() });
+    }, function () {})).then(applySwitch);
+
+  // --- Sync (D-195): a three-way merge of the settings and the picks ---------------------------
+  // KEY_SYNC holds what both sides had at the last sync; a side that differs from it changed.
+  function local(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+  function setLocal(key, value) { try { if (value === null || value === undefined) localStorage.removeItem(key); else localStorage.setItem(key, value); } catch (e) {} }
+  function localPicks() { try { return JSON.parse(local("picks") || "{}") || {}; } catch (e) { return {}; } }
+  function localSeen() { try { return JSON.parse(local("jogo-vistos") || "[]") || []; } catch (e) { return []; } }
+
+  var syncing = null, again = false;
+  function sync(first) {
+    if (!isAccount()) return Promise.resolve(null);
+    if (syncing) { again = true; return syncing; }
+    syncing = doSync(first).then(function (r) { syncing = null; if (again) { again = false; return sync(); } return r; },
+      function (e) { syncing = null; throw e; });
+    return syncing;
+  }
+  function doSync(first) {
+    var base = first ? null : read(KEY_SYNC);
+    return Promise.all([rest("GET", "profiles?select=username,club,theme,seen,settings_updated_at"), rest("GET", "picks?select=match_id,pick,imported")])
+      .then(function (both) {
+        var profile = both[0] && both[0][0] || null, server = {}, flags = {};
+        (both[1] || []).forEach(function (p) { server[p.match_id] = p.pick; flags[p.match_id] = p.imported; });
+        state.profile = profile;
+        var jobs = [], picks = localPicks(), was = base ? base.picks : {};
+        // Picks: on the first sync both sides join and the account wins a clash (contas.md §6).
+        Object.keys(picks).forEach(function (id) {
+          var mine = picks[id];
+          if (server[id] === mine) return;
+          if (server[id] === undefined && (base === null || was[id] !== mine)) {
+            jobs.push(rest("POST", "picks", { match_id: id, pick: mine }, { Prefer: "resolution=merge-duplicates,return=minimal" })
+              .then(function () { server[id] = mine; }, function () {}));
+          } else if (server[id] !== undefined && base !== null && was[id] !== mine && was[id] === server[id]) {
+            jobs.push(rest("PATCH", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), { pick: mine }, { Prefer: "return=minimal" })
+              .then(function () { server[id] = mine; }, function () {}));
+          }
+        });
+        if (base !== null) Object.keys(was).forEach(function (id) {
+          if (picks[id] === undefined && server[id] === was[id]) {
+            jobs.push(rest("DELETE", "picks?user_id=eq." + claims().sub + "&match_id=eq." + encodeURIComponent(id), undefined, { Prefer: "return=minimal" })
+              .then(function () { delete server[id]; }, function () {}));
+          }
+        });
+        return Promise.all(jobs).then(function () {
+          // What the server kept is the truth (a late change is refused there).
+          setLocal("picks", JSON.stringify(server));
+          state.imported = Object.keys(flags).filter(function (id) { return flags[id]; }).length;
+          var settings = Promise.resolve();
+          if (profile) {
+            var now = { club: local("club"), theme: local("theme"), seen: localSeen() };
+            var old = base ? base.settings : null;
+            var pushed = !old || now.club !== old.club || now.theme !== old.theme || now.seen.length !== old.seen.length;
+            var pulled = old && profile.settings_updated_at !== base.settings_at;
+            // This device's change is the newest one; else the account's, made on another device.
+            if (pushed) {
+              var seen = now.seen.concat((profile.seen || []).filter(function (g) { return now.seen.indexOf(g) < 0; })).slice(-3000);
+              settings = rest("PATCH", "profiles?user_id=eq." + claims().sub + "&select=settings_updated_at", { club: now.club, theme: now.theme, seen: seen }, { Prefer: "return=representation" })
+                .then(function (rows) { profile.settings_updated_at = rows && rows[0] ? rows[0].settings_updated_at : profile.settings_updated_at; profile.club = now.club; profile.theme = now.theme; profile.seen = seen; setLocal("jogo-vistos", JSON.stringify(seen)); });
+            } else if (pulled) {
+              setLocal("club", profile.club);
+              setLocal("theme", profile.theme);
+              setLocal("jogo-vistos", JSON.stringify(profile.seen || []));
+              if (profile.theme) document.documentElement.dataset.theme = profile.theme;
+            }
+          }
+          return settings.then(function () {
+            store(KEY_SYNC, { picks: server, settings: profile ? { club: profile.club, theme: profile.theme, seen: profile.seen || [] } : null,
+              settings_at: profile ? profile.settings_updated_at : null, at: Date.now() });
+            emit();
+            return profile;
+          });
+        });
+      });
+  }
+  var soon = null;
+  function syncSoon() { clearTimeout(soon); soon = setTimeout(function () { sync().catch(function () {}); }, 800); }
+
+  // The invitation (D-197, Q17): at most once a week per browser, never to an account.
+  function invite(box) {
+    if (!state.on || isAccount() || !box) return;
+    var snooze = read("lfp-invite");
+    if (snooze && Date.now() - snooze < 7 * 24 * 3600 * 1000) return;
+    box.hidden = false;
+    var later = box.querySelector("[data-invite-later]");
+    if (later) later.addEventListener("click", function () { store("lfp-invite", Date.now()); box.hidden = true; });
+  }
+
+  // The menu's link says who is in.
+  function label() {
+    document.querySelectorAll("[data-account-link]").forEach(function (a) {
+      a.textContent = isAccount() ? (state.profile && state.profile.username) || C.t.account : C.t.sign_in;
+    });
+  }
+  listeners.push(label);
+
+  window.LFP_ACCOUNT = {
+    config: C, ready: ready, state: state, Problem: Problem,
+    session: session, claims: claims, isAccount: isAccount, email: email, ensureSession: ensureSession,
+    google: google, finishGoogle: finishGoogle, signUp: signUp, signIn: signIn, sendCode: sendCode,
+    verify: verify, recover: recover, setPassword: setPassword, signOut: signOut,
+    rpc: rpc, rest: rest, sync: sync, syncSoon: syncSoon, invite: invite,
+    on: function (f) { listeners.push(f); }
+  };
+  label();
+  ready.then(function () { if (state.on && isAccount()) sync().then(label, function () {}); });
+})();
+</script><script>
+(function () {
+  // The rankings (D-197): Palpites (the general one), Tripla and Desafio, read live from the
+  // server's ranking() function. The page holds no names: they come in here, escaped.
+  var A = window.LFP_ACCOUNT, out = document.getElementById("board");
+  if (!A || !out) return;
+  var T = A.config.t;
+  var q = new URLSearchParams(location.search);
+  var view = { board: "palpites", period: "season", league: q.get("liga") || "" };
+  var tabs = document.querySelectorAll("[data-board]"), period = document.getElementById("period"), league = document.getElementById("league");
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function fill(text, values) { return text.replace(/\{(\w+)\}/g, function (_, k) { return values[k]; }); }
+
+  function periods() {
+    var opts = view.board === "palpites" ? [["season", T.season]] : [["season", T.season], ["week", T.week]];
+    var done = view.board === "palpites" ? A.rpc("ranking_rounds", {}, true).then(function (rounds) {
+      rounds.slice().reverse().forEach(function (n) { opts.push(["round:" + n, fill(T.round, { n: n })]); });
+    }, function () {}) : Promise.resolve();
+    return done.then(function () {
+      if (!opts.some(function (o) { return o[0] === view.period; })) view.period = "season";
+      period.innerHTML = opts.map(function (o) { return '<option value="' + o[0] + '"' + (o[0] === view.period ? " selected" : "") + ">" + esc(o[1]) + "</option>"; }).join("");
+    });
+  }
+
+  function leagues() {
+    if (!A.isAccount()) { league.closest("label").hidden = true; view.league = ""; return Promise.resolve(); }
+    return A.rpc("my_leagues").then(function (rows) {
+      league.closest("label").hidden = !rows.length;
+      league.innerHTML = '<option value="">' + T.everyone + "</option>" + rows.map(function (l) {
+        return '<option value="' + esc(l.id) + '"' + (l.id === view.league ? " selected" : "") + ">" + esc(l.name) + "</option>";
+      }).join("");
+      if (!rows.some(function (l) { return l.id === view.league; })) view.league = "";
+    }, function () { league.closest("label").hidden = true; });
+  }
+
+  function row(r, extra) {
+    return '<tr class="' + (r.me ? "mine " : "") + (extra || "") + '"><td class="n">' + (r.rank || "") + "</td><td>" + esc(r.username) +
+      '</td><td class="n"><strong>' + r.points + '</strong></td><td class="n">' + r.played + "</td></tr>";
+  }
+
+  function draw() {
+    out.innerHTML = '<p class="meta">' + T.loading + "</p>";
+    var anon = !A.isAccount();
+    A.rpc("ranking", { board: view.board, period: view.period, league: view.league || null }, anon).then(function (d) {
+      var rows = d.rows || [], body = rows.map(function (r) { return row(r); }).join("");
+      if (d.me && !rows.some(function (r) { return r.me; })) body += '<tr class="gap"><td colspan="4">…</td></tr>' + row(d.me);
+      if (d.model && d.model.played) body = row({ rank: "", username: T.model, points: d.model.points, played: d.model.played }, "model") + body;
+      var unit = view.board === "palpites" ? T.matches : T.games;
+      out.innerHTML = rows.length || (d.model && d.model.played) ?
+        '<table class="tbl ranking"><thead><tr><th class="n">#</th><th>' + T.name + '</th><th class="n">' + T.points + '</th><th class="n">' + unit + "</th></tr></thead><tbody>" + body + "</tbody></table>" +
+        (view.board === "palpites" ? '<p class="meta">' + T.palpites_note + "</p>" : '<p class="meta">' + T.games_note + "</p>")
+        : '<p class="meta">' + T.empty + "</p>";
+      if (!A.isAccount()) out.insertAdjacentHTML("beforeend", '<p class="meta">' + T.join_note + "</p>");
+    }, function () {
+      out.innerHTML = '<p class="meta warn">' + T.unavailable + "</p>";
+    });
+  }
+
+  function select(board) {
+    view.board = board;
+    tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t.dataset.board === board)); });
+    periods().then(draw);
+  }
+  var started = false;  // a tab chosen before the page is ready is the one it opens on
+  tabs.forEach(function (t) { t.addEventListener("click", function () { if (started) select(t.dataset.board); else view.board = t.dataset.board; }); });
+  period.addEventListener("change", function () { view.period = period.value; draw(); });
+  league.addEventListener("change", function () { view.league = league.value; draw(); });
+
+  A.ready.then(function () {
+    if (!A.state.on) { out.innerHTML = '<p class="meta">' + T.off + "</p>"; return; }
+    if (location.hash === "#tripla" || location.hash === "#desafio") view.board = location.hash.slice(1);
+    leagues().then(function () { started = true; select(view.board); });
+  });
+})();
+</script>
+<script>
+(function () {
+  try { if (localStorage.getItem("skipgc") === "t") return; } catch (e) {}
+  if (navigator.globalPrivacyControl || navigator.webdriver) return;
+  var r = "";
+  try { var u = new URL(document.referrer); if (u.host !== location.host) r = u.origin + u.pathname; } catch (e) {}
+  new Image().src = "https://contasdabola.goatcounter.com/count" + "?p=" + encodeURIComponent(location.pathname) + (r ? "&r=" + encodeURIComponent(r) : "") + "&rnd=" + Math.random().toString(36).slice(2);
+})();
+</script></body>
+</html>
