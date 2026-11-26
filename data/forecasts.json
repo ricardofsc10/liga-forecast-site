@@ -2472,6 +2472,28 @@
    "state": "played",
    "timing": "valid",
    "x12_source": "pre_closing"
+  },
+  {
+   "away": "CD Nacional",
+   "corrected": false,
+   "forecast": {
+    "away": 0.2362,
+    "both_score": 0.5214,
+    "draw": 0.2724,
+    "home": 0.4914,
+    "over_2_5": 0.4952
+   },
+   "home": "CS Marítimo",
+   "kickoff_utc": "2026-11-27T20:15:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-maritimo-nacional",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending",
+   "x12_source": "odds_ratings"
   }
  ]
 }

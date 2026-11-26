@@ -4153,6 +4153,48 @@
    "match_id": "P1-2627-santa-clara-gil-vicente",
    "model_version": "e13-bsd-xg",
    "sha256": "1c340c46f9f94840ba8eb0ceab1a0c28936477aaa0e097ea085c9cc604b21ce0"
+  },
+  {
+   "created_at": "2026-11-26T20:23:52Z",
+   "line": 594,
+   "match_id": "P1-2627-maritimo-nacional",
+   "model_version": "phase2-v1",
+   "sha256": "2eb7d3d4da1ca5ee609ed438b07053db8ee4831f9142460f59aabdbab398e66c"
+  },
+  {
+   "created_at": "2026-11-26T20:23:52Z",
+   "line": 595,
+   "match_id": "P1-2627-maritimo-nacional",
+   "model_version": "phase4-v1",
+   "sha256": "8814c9fe5af4726d5fb935be1827e4897f56971eee2932c118c62d8a68d314fe"
+  },
+  {
+   "created_at": "2026-11-26T20:23:52Z",
+   "line": 596,
+   "match_id": "P1-2627-maritimo-nacional",
+   "model_version": "phase4-v2",
+   "sha256": "9f1786049ae51366e1859f24e930cd452e68c959d7b5e26a0aff1a894b33a2b0"
+  },
+  {
+   "created_at": "2026-11-26T20:23:52Z",
+   "line": 597,
+   "match_id": "P1-2627-maritimo-nacional",
+   "model_version": "e7-xg",
+   "sha256": "dd329154fe6843b5123c247d8302165256dbc9a5dd53f01b2066cefee6315757"
+  },
+  {
+   "created_at": "2026-11-26T20:23:52Z",
+   "line": 598,
+   "match_id": "P1-2627-maritimo-nacional",
+   "model_version": "e10-dynamic",
+   "sha256": "caacc78d7bbaca6cd4acce3c5e860d3c03b14ea7401d94af6ca22c4ccc0f84eb"
+  },
+  {
+   "created_at": "2026-11-26T20:23:52Z",
+   "line": 599,
+   "match_id": "P1-2627-maritimo-nacional",
+   "model_version": "e13-bsd-xg",
+   "sha256": "a2d572077b2e44eb930f5ac6a2f53dbcb0f167f9b71cb798ac553957bed34499"
   }
  ]
 }

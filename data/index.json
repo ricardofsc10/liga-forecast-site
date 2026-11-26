@@ -5,7 +5,7 @@
   "season.json": "The latest frozen season table and the head-to-head matrix."
  },
  "format": 2,
- "last_ledger_line_utc": "2026-11-25T17:23:44Z",
+ "last_ledger_line_utc": "2026-11-26T20:23:52Z",
  "left_out": [
   "Bookmaker odds, pre-match and closing, and everything derived from them: their sources' terms do not allow redistribution. Where the shown 1X2 is the market's no-vig pre-closing odds (x12_source pre_closing), its 1X2 and RPS are null here.",
   "Match statistics and expected goals: their sources' terms do not allow redistribution.",
