@@ -4195,6 +4195,90 @@
    "match_id": "P1-2627-maritimo-nacional",
    "model_version": "e13-bsd-xg",
    "sha256": "a2d572077b2e44eb930f5ac6a2f53dbcb0f167f9b71cb798ac553957bed34499"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 600,
+   "match_id": "P1-2627-arouca-rio-ave",
+   "model_version": "phase2-v1",
+   "sha256": "19698898deffdbd89189f81eadd265b391ce48b465e3340c77181bb5e4bd93eb"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 601,
+   "match_id": "P1-2627-moreirense-santa-clara",
+   "model_version": "phase2-v1",
+   "sha256": "9860f4e3076d9ee50b02a39224127e45edd430bbc85be5e716693f335b1355e1"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 602,
+   "match_id": "P1-2627-arouca-rio-ave",
+   "model_version": "phase4-v1",
+   "sha256": "da7eab6ded56ec44f138be8d476482782af824ef9cfe9cf7aa9dec9f95ebf351"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 603,
+   "match_id": "P1-2627-moreirense-santa-clara",
+   "model_version": "phase4-v1",
+   "sha256": "3f0c0feba3bbf3e7acc36fd6c07ddef5c83a2ac583569ee9d0b019d5489bcb73"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 604,
+   "match_id": "P1-2627-arouca-rio-ave",
+   "model_version": "phase4-v2",
+   "sha256": "1baa3e28ee0fc0afdc95819a1eceb68f35c00dc1af9dbf9e921fffcce3b15daf"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 605,
+   "match_id": "P1-2627-moreirense-santa-clara",
+   "model_version": "phase4-v2",
+   "sha256": "eff5bdf9c07927a7dee7a1b2a5b70d70ea73de2c3afa59063fb56240d8d8ad65"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 606,
+   "match_id": "P1-2627-arouca-rio-ave",
+   "model_version": "e7-xg",
+   "sha256": "32e538f40372d0e28040d11df3c41b88dea6a5a0d73c3acd4b38b2686292caaa"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 607,
+   "match_id": "P1-2627-moreirense-santa-clara",
+   "model_version": "e7-xg",
+   "sha256": "008619681c842a3f034fd3e3328cbb8df16f266c1862630a4becbe95606346f8"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 608,
+   "match_id": "P1-2627-arouca-rio-ave",
+   "model_version": "e10-dynamic",
+   "sha256": "2b4f42c1a432bb63e17b2bebf21372ac572aa40ecfae4b72fec55383eb771d24"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 609,
+   "match_id": "P1-2627-moreirense-santa-clara",
+   "model_version": "e10-dynamic",
+   "sha256": "47fbc44e70b81f8b5950982447500559eb9778675cfe98a96750591acd459497"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 610,
+   "match_id": "P1-2627-arouca-rio-ave",
+   "model_version": "e13-bsd-xg",
+   "sha256": "39412bd37f8ca8b7ed379608200be55d42a22894ae6ceda0d6659eee0d833d96"
+  },
+  {
+   "created_at": "2026-11-27T16:23:54Z",
+   "line": 611,
+   "match_id": "P1-2627-moreirense-santa-clara",
+   "model_version": "e13-bsd-xg",
+   "sha256": "6342bfb61e349baef5d4b009d821e1ceaf77bc74e7aef99ec85bfec771a25bf4"
   }
  ]
 }

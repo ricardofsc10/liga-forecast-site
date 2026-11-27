@@ -2494,6 +2494,50 @@
    "state": "upcoming",
    "timing": "pending",
    "x12_source": "odds_ratings"
+  },
+  {
+   "away": "Rio Ave FC",
+   "corrected": false,
+   "forecast": {
+    "away": 0.189,
+    "both_score": 0.4966,
+    "draw": 0.2492,
+    "home": 0.5618,
+    "over_2_5": 0.5402
+   },
+   "home": "FC Arouca",
+   "kickoff_utc": "2026-11-28T15:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-arouca-rio-ave",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending",
+   "x12_source": "odds_ratings"
+  },
+  {
+   "away": "Santa Clara",
+   "corrected": false,
+   "forecast": {
+    "away": 0.4632,
+    "both_score": 0.4357,
+    "draw": 0.2796,
+    "home": 0.2572,
+    "over_2_5": 0.3389
+   },
+   "home": "Moreirense FC",
+   "kickoff_utc": "2026-11-28T15:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-moreirense-santa-clara",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending",
+   "x12_source": "odds_ratings"
   }
  ]
 }
