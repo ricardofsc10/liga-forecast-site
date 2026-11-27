@@ -2538,6 +2538,28 @@
    "state": "upcoming",
    "timing": "pending",
    "x12_source": "odds_ratings"
+  },
+  {
+   "away": "FC Alverca",
+   "corrected": false,
+   "forecast": {
+    "away": 0.313,
+    "both_score": 0.502,
+    "draw": 0.291,
+    "home": 0.396,
+    "over_2_5": 0.4242
+   },
+   "home": "Académico",
+   "kickoff_utc": "2026-11-28T18:00:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-academico-viseu-alverca",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending",
+   "x12_source": "odds_ratings"
   }
  ]
 }
