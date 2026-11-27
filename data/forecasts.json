@@ -2491,7 +2491,7 @@
    "rps": null,
    "score": null,
    "season": "2026/27",
-   "state": "upcoming",
+   "state": "awaiting",
    "timing": "pending",
    "x12_source": "odds_ratings"
   },
@@ -2560,6 +2560,28 @@
    "state": "upcoming",
    "timing": "pending",
    "x12_source": "odds_ratings"
+  },
+  {
+   "away": "Estrela Amadora",
+   "corrected": false,
+   "forecast": {
+    "away": null,
+    "both_score": 0.4825,
+    "draw": null,
+    "home": null,
+    "over_2_5": 0.5359
+   },
+   "home": "Vitória SC",
+   "kickoff_utc": "2026-11-28T20:30:00Z",
+   "kind": "prospective",
+   "match_id": "P1-2627-guimaraes-estrela-amadora",
+   "model_version": "phase4-v2",
+   "rps": null,
+   "score": null,
+   "season": "2026/27",
+   "state": "upcoming",
+   "timing": "pending",
+   "x12_source": "pre_closing"
   }
  ]
 }

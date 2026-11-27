@@ -4321,6 +4321,48 @@
    "match_id": "P1-2627-academico-viseu-alverca",
    "model_version": "e13-bsd-xg",
    "sha256": "8c651126148862d9a5dafabfc34c85bdcb28194e6dbe18eb916eac9dd583d14e"
+  },
+  {
+   "created_at": "2026-11-27T21:23:55Z",
+   "line": 618,
+   "match_id": "P1-2627-guimaraes-estrela-amadora",
+   "model_version": "phase2-v1",
+   "sha256": "c53072282005f51baddf0c256fe46ac8679ccc8e064c3f4bebbe1b3d0c911e14"
+  },
+  {
+   "created_at": "2026-11-27T21:23:55Z",
+   "line": 619,
+   "match_id": "P1-2627-guimaraes-estrela-amadora",
+   "model_version": "phase4-v1",
+   "sha256": "b803e3cee03a7a068da65eba9f3e130c50390c73c115809e42a49369aaa3199c"
+  },
+  {
+   "created_at": "2026-11-27T21:23:55Z",
+   "line": 620,
+   "match_id": "P1-2627-guimaraes-estrela-amadora",
+   "model_version": "phase4-v2",
+   "sha256": "cd47ce47abcb34b8da3d2ff278fa97c32ac37643b45c594d6179d03b4a75b03b"
+  },
+  {
+   "created_at": "2026-11-27T21:23:55Z",
+   "line": 621,
+   "match_id": "P1-2627-guimaraes-estrela-amadora",
+   "model_version": "e7-xg",
+   "sha256": "df346cd150b4c8cc8a8cd20490bd017e446f5a6efb2622e5ae3cddd2c8fdcbe2"
+  },
+  {
+   "created_at": "2026-11-27T21:23:55Z",
+   "line": 622,
+   "match_id": "P1-2627-guimaraes-estrela-amadora",
+   "model_version": "e10-dynamic",
+   "sha256": "c8d65bc879ab438d4b0d68ce9f36a7cd18b74b7897b3841753dbac7509379e4e"
+  },
+  {
+   "created_at": "2026-11-27T21:23:55Z",
+   "line": 623,
+   "match_id": "P1-2627-guimaraes-estrela-amadora",
+   "model_version": "e13-bsd-xg",
+   "sha256": "c4f5fa7ab8dd3a57fef6fccc96a5af63489ab60ff6970fa78f8f711f3990be3e"
   }
  ]
 }
