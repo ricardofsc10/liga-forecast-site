@@ -2488,11 +2488,14 @@
    "kind": "prospective",
    "match_id": "P1-2627-maritimo-nacional",
    "model_version": "phase4-v2",
-   "rps": null,
-   "score": null,
+   "rps": 0.4124,
+   "score": [
+    1,
+    2
+   ],
    "season": "2026/27",
-   "state": "awaiting",
-   "timing": "pending",
+   "state": "played",
+   "timing": "valid",
    "x12_source": "odds_ratings"
   },
   {
